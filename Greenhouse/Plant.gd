@@ -143,6 +143,12 @@ func update_overlays():
 func tick():
 	if not planted:
 		return
+		
+	var night_plants = ['cool_beans', 'nightshade', 'star_flower']
+	var day_plants = ['fire_flower', 'golden_berry', 'jade_sunflower']
+	
+	
+	
 	var plantStage = int(progress / 25);
 	if not prev_plant_stage == plantStage:
 		plant_sprite.region_rect.position.x = plantStage * 128
@@ -165,6 +171,19 @@ func tick():
 		grow_timer.stop()
 
 	update_overlays()
+	
+	if plant in night_plants:
+		if Utils.is_night():
+			$SleepParticles.emitting = false
+		else:
+			$SleepParticles.emitting = true
+		return
+	if plant in day_plants:
+		if Utils.is_day():
+			$SleepParticles.emitting = false
+		else:
+			$SleepParticles.emitting = true
+		return
 
 func emit_tooltip():
 	if planted:

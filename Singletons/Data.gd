@@ -481,3 +481,5 @@ var achievements = [
 ]
 
 var unlocked_journal_pages = ['index']
+
+var time = 9*60

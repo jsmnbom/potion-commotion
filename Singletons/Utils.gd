@@ -88,3 +88,25 @@ func set_cursor_hand(enabled):
 	for viewport_container in get_tree().get_nodes_in_group('ViewportContainer'):
 		viewport_container.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+	
+func is_night():
+	# Dusk and dawn count too
+	if Data.time > 21*60 or Data.time < 6*60:
+		return true
+	elif (Data.time < 9*60):
+		return true
+	elif (Data.time < 18*60):
+		return false
+	elif (Data.time <= 21*60):
+		return true
+		
+func is_day():
+	# Dusk and dawn count too
+	if Data.time > 21*60 or Data.time < 6*60:
+		return false
+	elif (Data.time < 9*60):
+		return true
+	elif (Data.time < 18*60):
+		return true
+	elif (Data.time <= 21*60):
+		return true
