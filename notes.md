@@ -24,7 +24,6 @@ Better brewing (like spefic rules for some potions)
 Sick plants - Healing potion?
 Luck
 Fortune potion
-Some plants only grow at night/day
 Fix potion sell prices
 Rain?
 Stats?
@@ -37,3 +36,4 @@ Harder achevements
 Name entry
 Unify colours of elements and text
 Weeds should grow on dry fields
+Fix savegame
