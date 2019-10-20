@@ -20,6 +20,10 @@ extents = Vector2( 218, 160 )
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ],
+"_edit_vertical_guides_": [  ]
+}
 
 [node name="ViewportTween" type="Tween" parent="."]
 
@@ -117,9 +121,9 @@ margin_bottom = 352.0
 
 [node name="JournalPopout" parent="." instance=ExtResource( 9 )]
 show_behind_parent = true
-margin_left = -160.0
+margin_left = -288.0
 margin_top = 384.0
-margin_right = 128.0
+margin_right = 0.0
 margin_bottom = 496.0
 
 [node name="SavePopout" parent="." instance=ExtResource( 10 )]

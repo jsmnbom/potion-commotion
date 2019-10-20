@@ -15,6 +15,7 @@ signal tooltip(msg)
 # {'selected': var item}:
 # {'deselected': true}:
 signal inventory_item(msg)
+# no data
 signal inventory_deselect
 
 # {'type': var item_type, 'id': var item_id, 'animated': true, 'from_position': var from_position}:
@@ -45,3 +46,8 @@ signal achievement(msg)
 signal save_game
 signal load_game
 signal saved
+
+# no data
+signal unlock_journal
+# {'id': var page_id}:
+signal unlock_journal_page(msg)

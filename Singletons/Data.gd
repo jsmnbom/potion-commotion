@@ -92,7 +92,7 @@ class _InventorySeed extends _InventoryItem:
 	
 	func _init(plant, cost, description, default_count=0):
 		self.type = 'seed'
-		self.count = -1 if default_count == -1 else (10 if Debug.INVENTORY else default_count)
+		self.count = default_count
 		self.plant = plant
 		self.cost = cost
 		self.id = plant
@@ -114,7 +114,7 @@ class _InventoryPotion extends _InventoryItem:
 
 	func _init(id, name, ingredients, description, long_description, sell_price_overwrite=null, default_count=0):
 		self.type = 'potion'
-		self.count = 10 if Debug.INVENTORY else default_count
+		self.count = default_count
 		self.id = id
 		self.short_name = name
 		self.name = 'Potion of %s' % name
@@ -133,7 +133,7 @@ class _InventoryPlantResource extends _InventoryItem:
 	func _init(plant, description, default_count=0):
 		self.type = 'resource'
 		self.plant = plant
-		self.count = 10 if Debug.INVENTORY else default_count
+		self.count = default_count
 		self.id = plant
 		self.description = description
 		
@@ -148,7 +148,7 @@ class _InventoryResource extends _InventoryItem:
 	
 	func _init(id, name, description, default_count=0):
 		self.type = 'resource'
-		self.count = 10 if Debug.INVENTORY else default_count
+		self.count = default_count
 		self.id = id
 		self.name = name
 		self.description = description
@@ -479,3 +479,5 @@ var achievements = [
 	# Feeds birds
 	# Book pages
 ]
+
+var unlocked_journal_pages = ['index']

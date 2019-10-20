@@ -18,12 +18,11 @@ onready var PAGES = {
 	'TheCauldron3': ['The Cauldron #3', $Pages/TheCauldron3]
 }
 
-var unlocked_pages = ['index', 'TheApprenticeship', 'AStrangeGarden']
 var viewed_pages = ['index']
 
 var index_areas = []
 
-var current_page = 'TheApprenticeship'
+var current_page = 'AStrangeGarden'
 
 func add_page(key, title, page):
 	$Pages.add_child(page)
@@ -33,6 +32,7 @@ func add_page(key, title, page):
 func _ready():
 	Events.connect('mouse_area', self, '_on_mouse_area')
 	Events.connect('show_journal', self, '_on_show_journal')
+	Events.connect('unlock_journal_page', self, '_on_unlock_journal_page')
 	
 	for page in PAGES:
 		PAGES[page][1].hide()
@@ -67,8 +67,8 @@ func _ready():
 	
 	if Debug.JOURNAL:
 		for page in PAGES:
-			if not page in unlocked_pages:
-				unlocked_pages.append(page)
+			if not page in Data.unlocked_journal_pages:
+				Data.unlocked_journal_pages.append(page)
 	
 	update_index()
 	show_page(current_page)
@@ -86,9 +86,9 @@ func _on_mouse_area(msg):
 					elif msg['node'] == $Return/Area:
 						show_page('index')
 					elif msg['node'] == $Forward/Area:
-						show_page(unlocked_pages[unlocked_pages.find(current_page)+1])
+						show_page(Data.unlocked_journal_pages[Data.unlocked_journal_pages.find(current_page)+1])
 					elif msg['node'] == $Back/Area:
-						show_page(unlocked_pages[unlocked_pages.find(current_page)-1])
+						show_page(Data.unlocked_journal_pages[Data.unlocked_journal_pages.find(current_page)-1])
 			if msg['node'] in index_areas:
 				var i = index_areas.find(msg['node'])
 				var item
@@ -107,8 +107,8 @@ func show_page(page):
 	current_page = page
 	PAGES[current_page][1].show()
 	$Return.visible = current_page != 'index'
-	$Forward.visible = unlocked_pages.find(current_page) < unlocked_pages.size() - 1
-	$Back.visible = unlocked_pages.find(current_page) > 0
+	$Forward.visible = Data.unlocked_journal_pages.find(current_page) < Data.unlocked_journal_pages.size() - 1
+	$Back.visible = Data.unlocked_journal_pages.find(current_page) > 0
 	if not current_page in viewed_pages:
 		viewed_pages.append(current_page)
 		update_index()
@@ -125,7 +125,7 @@ func update_index():
 	index_areas = []
 	for i in range(PAGES.keys().size()):
 		var page = PAGES.keys()[i]
-		if page == 'index' or not page in unlocked_pages:
+		if page == 'index' or not page in Data.unlocked_journal_pages:
 			continue
 		var item = IndexItem.instance()
 		item.set_meta('page', page)
@@ -139,11 +139,24 @@ func update_index():
 			index_items1.add_child(item)
 		else:
 			index_items2.add_child(item)
-		
-		
+
+func _pages_comparison(a,b):
+    return PAGES.keys().find(a) < PAGES.keys().find(b)
+
+func sort_unlocked_pages():
+	Data.unlocked_journal_pages.sort_custom(self, '_pages_comparison')
 
 func _on_show_journal(show):
 	if show:
+		show_page(current_page)
 		show()
 	else:
 		hide()
+
+func _on_unlock_journal_page(msg):
+	var page_id = msg['id']
+	if not page_id in Data.unlocked_journal_pages:
+		Data.unlocked_journal_pages.append(page_id)
+		
+	update_index()
+	sort_unlocked_pages()

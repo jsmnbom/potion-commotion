@@ -62,7 +62,7 @@ func _find_top_node(global_position, local_positions):
 		var highest_layer = 0
 		for raw_result in raw_results:
 			var collider = raw_result['collider']
-			if collider is Area2D and collider.collision_layer & AREA_INTERSECT_ALL_LAYERS > 0 and collider.get_parent().is_visible():
+			if collider is Area2D and collider.collision_layer & AREA_INTERSECT_ALL_LAYERS > 0 and collider.is_visible() and collider.get_parent().is_visible():
 				raw_collisions[collider.collision_layer].append(collider)
 				if collider.collision_layer > highest_layer:
 					highest_layer = collider.collision_layer
@@ -105,7 +105,7 @@ func _physics_process(delta):
 	if top_node != null:
 		if not (top_node == mouse_over_node and button_mask == last_button_mask):
 			mouse_over_node = top_node
-			prints(mouse_over_node.name, mouse_over_node.get_parent().name,  mouse_over_node.get_parent().rect_position if mouse_over_node.get_parent() is Control else 0)
+			#prints(mouse_over_node.name, mouse_over_node.get_parent().name,  mouse_over_node.get_parent().rect_position if mouse_over_node.get_parent() is Control else 0)
 			Events.emit_signal('mouse_area', _make_data(top_node, true, global_position, local_positions, button_mask, _button_clicks(button_mask)))
 
 	last_button_mask = button_mask

@@ -6,29 +6,32 @@ var bounding_box = Rect2(128, 128, 1355-256, 1016-256)
 var jump_wait = 0
 var jump_wait_max = Utils.rng.randf_range(10, 90)
 
-var fly_min = 60
-var fly_max = 3*60
-
 var goal_pos
 var last_pos
 var jumping = false
 var flying = false
+
+var page_node = null
+var is_offscreen = true
 
 func random_pos():
 	return Vector2(
 		Utils.rng.randf_range(bounding_box.position.x, bounding_box.position.x + bounding_box.size.x),
 		Utils.rng.randf_range(bounding_box.position.y, bounding_box.position.y + bounding_box.size.y)
 	)
+	
+func random_offscreen_pos():
+	return Vector2(Utils.rng_sample(1, [-128, full_size.x+128])[0], position.y + (Utils.rng_sign() * Utils.rng.randf_range(50, 200)))
 
 func _ready():
 	position = random_pos()
+	position = random_offscreen_pos()
 	
 	random_goal()
 	
 	$Sprite.frame = 0
 	
-	$Timer.wait_time = Utils.rng.randf_range(fly_min, fly_max)
-	$Timer.start()
+	
 	
 func random_goal():
 	goal_pos = Vector2(
@@ -42,7 +45,11 @@ func random_goal():
 	
 	
 func _physics_process(delta):
-	if not jumping and not flying:
+	if page_node != null:
+		if page_node.get_ref():
+			page_node.get_ref().position = position + Vector2(0,32)
+	
+	if not jumping and not flying and not is_offscreen:
 		jump_wait += 1
 		if jump_wait >= jump_wait_max:
 			jump_wait = 0
@@ -73,41 +80,54 @@ func stop_jumping():
 	jumping = false
 		
 
-func _on_Timer_timeout():
-	if not flying:
-		$Timer.stop()
+func fetch_page(node):
+	page_node = weakref(node)
+	flying = true
+	
+	var offscreen_pos
+	
+	if is_offscreen:
+		last_pos = random_pos()
+		offscreen_pos = position
+	else:
 		last_pos = position
-		var offscreen_pos = Vector2(Utils.rng_sample(1, [-128, full_size.x+128])[0], position.y + (Utils.rng_sign() * Utils.rng.randf_range(50, 200)))
-		var time = (offscreen_pos-last_pos).length()/200
-		
-		$Tween.stop_all()
-		$Tween.remove_all()
-		jumping = false
-		
-		if offscreen_pos.x > position.x:
-			scale.x = -1
-		else:
-			scale.x = 1
-		
-		z_index = 4
-		
+		offscreen_pos = random_offscreen_pos()
+	var time = (offscreen_pos-last_pos).length()/400
+	
+	$Tween.stop_all()
+	$Tween.remove_all()
+	jumping = false
+	
+	if offscreen_pos.x > last_pos.x:
+		scale.x = -1
+	else:
+		scale.x = 1
+	
+	z_index = 6
+	
+	if is_offscreen:
+		midway()
+		$Tween.interpolate_property(self, 'position', offscreen_pos, last_pos, time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0)
+		$Tween.interpolate_callback(self, time, 'stop_flying')
+		is_offscreen = false
+	else:
 		$Tween.interpolate_property(self, 'position', last_pos, offscreen_pos, time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-		$Tween.interpolate_callback(self, time+1, 'flip')
+		$Tween.interpolate_callback(self, time+1, 'midway')
 		$Tween.interpolate_property(self, 'position', offscreen_pos, last_pos, time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, time+5)
 		$Tween.interpolate_callback(self, time+time+5, 'stop_flying')
-		
-		$Tween.start()
-		flying = true
-		$AnimationPlayer.play('Flying')
 	
-func flip():
+	$Tween.start()
+	$AnimationPlayer.play('Flying')
+	
+func midway():
 	scale.x *= -1
+	
+	page_node.get_ref().show()
 	
 func stop_flying():
 	flying = false
-	$Timer.wait_time = Utils.rng.randf_range(fly_min, fly_max)
-	$Timer.start()
 	$AnimationPlayer.stop()
 	$Sprite.frame = 0
 	z_index = 2
+	page_node = null
 	

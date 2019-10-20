@@ -24,16 +24,16 @@ Better brewing (like spefic rules for some potions)
 Sick plants - Healing potion?
 Luck
 Fortune potion
-Birds coming back with things
-Nightshade - only grows at night
+Some plants only grow at night/day
 Fix potion sell prices
 Rain?
 Stats?
 Brewing bg
-Better birb and plant z indexes (dynamic) (done?)
 Clock?
 Settings
 Main menu
 Cap items to 100
 Harder achevements
 Name entry
+Unify colours of elements and text
+Weeds should grow on dry fields

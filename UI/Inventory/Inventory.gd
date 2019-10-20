@@ -24,6 +24,10 @@ func _ready():
 	Events.connect('mouse_area', self, '_on_mouse_area')
 	Events.connect('inventory_deselect', self, 'set_selected_item', [null])
 
+	if Debug.INVENTORY:
+		for item in Data.inventory:
+			Events.emit_signal('inventory_add', {'type': item.type, 'id': item.id, 'count': 10})
+
 func update_item(node, item):
 	if item.count == -1:
 		node.get_node('Count').set_text('∞')

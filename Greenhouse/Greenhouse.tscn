@@ -3,7 +3,7 @@
 [ext_resource path="res://Greenhouse/Greenhouse.gd" type="Script" id=1]
 [ext_resource path="res://assets/grass.png" type="Texture" id=2]
 [ext_resource path="res://Greenhouse/Plant.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Greenhouse/Birb.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Greenhouse/BirbController.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 677, 508 )
@@ -126,10 +126,6 @@ position = Vector2( 1088, 832 )
 
 [node name="DayTimer" type="Timer" parent="."]
 
-[node name="Birb1" parent="." instance=ExtResource( 4 )]
-position = Vector2( 352, 288 )
-
-[node name="Birb2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 755.2, 608 )
+[node name="BirbController" parent="." instance=ExtResource( 4 )]
 [connection signal="timeout" from="WeedsTimer" to="." method="_on_WeedsTimer_timeout"]
 [connection signal="timeout" from="DayTimer" to="." method="_on_DayTimer_timeout"]
