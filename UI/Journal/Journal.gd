@@ -123,6 +123,7 @@ func update_index():
 	for item in index_items2.get_children():
 		item.queue_free()
 	index_areas = []
+	var j = 0
 	for i in range(PAGES.keys().size()):
 		var page = PAGES.keys()[i]
 		if page == 'index' or not page in Data.unlocked_journal_pages:
@@ -135,10 +136,11 @@ func update_index():
 		item.get_node('Label').bbcode_text = text
 		index_areas.append(item.get_node('Area'))
 		item.hide()
-		if i < index_per_page:
+		if j < index_per_page:
 			index_items1.add_child(item)
 		else:
 			index_items2.add_child(item)
+		j += 1
 
 func _pages_comparison(a,b):
     return PAGES.keys().find(a) < PAGES.keys().find(b)

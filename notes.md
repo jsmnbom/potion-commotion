@@ -19,6 +19,7 @@ Need mabel
     Mandrake - harvested during day runs away
     Get new recipes from Mabel
     Fix star flower seed sprite
+    Get book sprite from mabel
 
 Better brewing (like spefic rules for some potions)
 Sick plants - Healing potion?
@@ -35,5 +36,4 @@ Cap items to 100
 Harder achevements
 Name entry
 Unify colours of elements and text
-Weeds should grow on dry fields
 Fix savegame

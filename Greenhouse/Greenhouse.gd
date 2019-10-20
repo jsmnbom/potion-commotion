@@ -1,7 +1,7 @@
 extends Node2D
 
 var weed_wait_min = 30
-var weed_wait_max = 5*30
+var weed_wait_max = 3*30
 
 var selected_potion = null
 
@@ -67,12 +67,12 @@ func _on_inventory_item(msg):
 
 func _on_WeedsTimer_timeout():
 	$WeedsTimer.wait_time = Utils.rng.randf_range(weed_wait_min, weed_wait_max)
-	var wet_plants = []
+	var unweeded = []
 	for plant in $Plants.get_children():
-		if not plant.dried_out:
-			wet_plants.append(plant)
-	if wet_plants.size() > 0:
-		var plant = wet_plants[Utils.rng.randi_range(0, wet_plants.size()-1)]
+		if not plant.weeds:
+			unweeded.append(plant)
+	if unweeded.size() > 0:
+		var plant = unweeded[Utils.rng.randi_range(0, unweeded.size()-1)]
 		plant.set_weeds()
 
 func _on_DayTimer_timeout():

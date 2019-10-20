@@ -10,13 +10,13 @@ var FAST_PLANTS = false
 var GEMS = true
 
 # Makes weeds grow very fast
-var WEEDS = false
+var WEEDS = true
 
 # Makes fields dry out much faster
 var DRY = false
 
 # Starts all fields wet
-var START_WET = true
+var START_WET = false
 
 # Set achivement values to 150
 var ACHIEVEMENTS = false
@@ -25,4 +25,4 @@ var ACHIEVEMENTS = false
 var JOURNAL = false
 
 # Day+night is only 30 sec
-var FAST_DAY = true
+var FAST_DAY = false

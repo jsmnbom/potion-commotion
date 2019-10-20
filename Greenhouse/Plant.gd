@@ -375,6 +375,8 @@ func _on_mouse_area(msg):
 					})
 					grow_timer.paused = false
 					Utils.set_custom_cursor('sickle', null)
+					Events.emit_signal('tooltip', {'hide': true})
+					overlay.hide()
 				elif left_click and can_use_potion(selected_potion):
 					add_potion(selected_potion)
 					Events.emit_signal('inventory_add', {'type': 'potion', 'id': selected_potion.id, 'count': -1})
