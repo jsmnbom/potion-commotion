@@ -31,6 +31,16 @@ func _notification(what):
         $QuitDialog.show()
 
 func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		if $QuitDialog.visible:
+			$QuitDialog.hide()
+		else:
+			if $Achievements.visible:
+				Events.emit_signal('show_achievements', false)
+			elif $Journal.visible:
+				Events.emit_signal('show_journal', false)
+			else:
+				Events.emit_signal('inventory_deselect')
 	if event.is_action_pressed("ui_quit"):
 		get_tree().quit()
 	if event.is_action_pressed("ui_save"):

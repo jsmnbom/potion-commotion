@@ -135,10 +135,6 @@ func _on_add_item_tween_complete(node, item, tween, count):
 	add_item(item, node, count)
 	tween.get_parent().remove_child(tween)
 
-func _input(event):
-	if event.is_action_pressed("ui_cancel"):
-		set_selected_item(null)
-
 func serialize():
 	var data = {
 		'seed': {},

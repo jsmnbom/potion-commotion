@@ -5,6 +5,8 @@ var quit_after_save = false
 func _ready():
 	Events.connect('mouse_area', self, '_on_mouse_area')
 	Events.connect('saved', self, '_on_saved')
+	
+	_on_QuitDialog_visibility_changed()
 
 func _on_mouse_area(msg):
 	var node = msg['node']
@@ -28,3 +30,7 @@ func _on_mouse_area(msg):
 func _on_saved():
 	if quit_after_save:
 		get_tree().quit()
+
+func _on_QuitDialog_visibility_changed():
+	$QuitWithSave.visible = visible
+	$QuitWithoutSave.visible = visible

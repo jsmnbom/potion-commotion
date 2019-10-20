@@ -16,6 +16,9 @@ func rng_sample(n, _list):
 		list.remove(x)
 	return sample
 
+func rng_choose(list):
+	return list[randi() % list.size()]
+
 func rng_sign():
 	return -1 if randf() > 0.5 else 1
 

@@ -31,7 +31,6 @@ Rain?
 Stats?
 Brewing bg
 Better birb and plant z indexes (dynamic) (done?)
-Increased random yields
 Clock?
 Settings
 Main menu
