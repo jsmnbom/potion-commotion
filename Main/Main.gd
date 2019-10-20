@@ -1,0 +1,149 @@
+extends Node2D
+
+onready var greenhouse_viewport_container = $GreenhouseViewportContainer
+onready var brewing_viewport_container = $BrewingViewportContainer
+onready var greenhouse_viewport = $GreenhouseViewportContainer/GreenhouseViewport
+onready var brewing_viewport = $BrewingViewportContainer/BrewingViewport
+
+var brewing_tooltip = 'Click to start brewing!'
+var greenhouse_tooltip = 'Click to go back to your greenhouse!'
+
+var greenhouse_active = true
+
+var main_rect = Rect2(Vector2(32, 32), Vector2(1355, 1080-32-32))
+var sub_rect = Rect2(Vector2(32+1355+32, 32), Vector2(1920-(32+1355+32+32), 352))
+
+func _ready():
+	Events.connect('mouse_area', self, '_on_mouse_area')
+	$ViewportTween.connect('tween_completed', self, '_on_tween_complete')
+	Events.connect('show_achievements', self, '_on_show_achievements')
+	get_tree().get_root().call_deferred('add_child', preload('res://Main/MouseHelper.tscn').instance())
+
+	Events.connect('save_game', self, 'save_game')
+	Events.connect('load_game', self, 'load_game')
+	
+	brewing_viewport_container.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	
+	get_tree().set_auto_accept_quit(false)
+
+func _notification(what):
+    if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
+        $QuitDialog.show()
+
+func _input(event):
+	if event.is_action_pressed("ui_quit"):
+		get_tree().quit()
+	if event.is_action_pressed("ui_save"):
+		save_game()
+	if event.is_action_pressed("ui_load"):
+		load_game()
+
+func switch():
+	var main_viewport = brewing_viewport
+	var main_container = brewing_viewport_container
+	var sub_viewport = greenhouse_viewport
+	var sub_container = greenhouse_viewport_container
+	if greenhouse_active:
+		main_viewport = greenhouse_viewport
+		main_container = greenhouse_viewport_container
+		sub_viewport = brewing_viewport
+		sub_container = brewing_viewport_container
+
+	greenhouse_viewport_container.mouse_default_cursor_shape = Control.CURSOR_ARROW
+	brewing_viewport_container.mouse_default_cursor_shape = Control.CURSOR_ARROW
+		
+	var tween = $ViewportTween
+	tween.interpolate_property(sub_container, 'rect_position',
+		sub_container.rect_position, sub_rect.position, 1,
+		Tween.TRANS_QUART, Tween.EASE_IN_OUT)
+	tween.interpolate_property(sub_container, 'rect_size',
+		sub_container.rect_size, sub_rect.size, 1,
+		Tween.TRANS_QUART, Tween.EASE_IN_OUT)
+	tween.interpolate_property(main_container, 'rect_position',
+		main_container.rect_position, main_rect.position, 1,
+		Tween.TRANS_QUART, Tween.EASE_IN_OUT)
+	tween.interpolate_property(main_container, 'rect_size',
+		main_container.rect_size, main_rect.size, 1,
+		Tween.TRANS_QUART, Tween.EASE_IN_OUT)
+	tween.interpolate_property(main_viewport, 'size',
+		main_viewport.size, main_rect.size, 1,
+		Tween.TRANS_QUART, Tween.EASE_IN_OUT)
+	tween.interpolate_property(sub_viewport, 'size',
+		sub_viewport.size, main_rect.size, 1,
+		Tween.TRANS_QUART, Tween.EASE_IN_OUT)
+	tween.start()
+
+func _on_tween_complete(object, key):
+	if greenhouse_active:
+		brewing_viewport_container.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	else:
+		greenhouse_viewport_container.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+
+func serialize_array(nodes):
+	var data = []
+	for node in nodes:
+		data.append(node.serialize())
+	return data
+
+func deserialize_array(nodes, array):
+	for i in nodes.size():
+		var node = nodes[i]
+		node.deserialize(array[i])
+
+func save_game():
+	print('saving!')
+	var data = {
+		'plants': serialize_array(get_tree().get_nodes_in_group('Plants')),
+		'inventory': $Inventory.serialize(),
+		'achievements': $Achievements.serialize(),
+		'gems': $GemDisplay.serialize()
+	}
+
+	var save_file = File.new()
+	save_file.open("user://savegame.save", File.WRITE)
+	save_file.store_line(to_json(data))
+	save_file.close()
+	Events.emit_signal('saved')
+
+func load_game():
+	print('loading!')
+	var save_file = File.new()
+	if not save_file.file_exists("user://savegame.save"):
+		print('No savegame found!')
+		return
+	save_file.open("user://savegame.save", File.READ)
+	var data = parse_json(save_file.get_line())
+	
+	print('loading inventory')
+	$Inventory.deserialize(data['inventory'])
+	print('loading plants')
+	deserialize_array(get_tree().get_nodes_in_group('Plants'), data['plants'])
+	print('loading achievements')
+	$Achievements.deserialize(data['achievements'])
+	print('loading gems')
+	$GemDisplay.deserialize(data['gems'])
+	save_file.close()
+	print('done loading!')
+
+func _on_show_achievements(show):
+	if show:
+		$Achievements.show()
+	else:
+		$Achievements.hide()
+		
+func _on_mouse_area(msg):
+	if msg['node'] == $SubViewportArea:
+		match msg:
+			{'mouse_over': false, ..}:
+				Events.emit_signal('tooltip', {'hide': true})
+			{'mouse_over': true, 'button_left_click': var left, ..}:
+				if greenhouse_active:
+					Events.emit_signal('tooltip', {'description': brewing_tooltip})
+					if left:
+						greenhouse_active = false
+						switch()
+				else:
+					if left:
+						greenhouse_active = true
+						switch()
+					Events.emit_signal('tooltip', {'description': greenhouse_tooltip})

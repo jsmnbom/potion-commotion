@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/fonts/tome_fancy_big.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/fonts/tome_normal.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/fonts/tome_fancy_medium.tres" type="DynamicFont" id=3]
+
+[node name="JournalEntry" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Title" type="Label" parent="."]
+margin_right = 576.0
+margin_bottom = 69.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.101961, 0.113725, 0.113725, 1 )
+text = "A strange garden"
+align = 1
+
+[node name="Label" type="RichTextLabel" parent="."]
+margin_top = 76.0
+margin_right = 576.0
+margin_bottom = 580.0
+custom_fonts/normal_font = ExtResource( 2 )
+custom_colors/default_color = Color( 0.101961, 0.113725, 0.113725, 1 )
+text = "I seem to have stumbled a strange garden. It almost oozes magical aura.
+I have decided to write this journal in an attempt to document the strangeness I have observed."
+scroll_active = false
+
+[node name="Signature" type="Label" parent="."]
+margin_left = 288.0
+margin_top = 580.0
+margin_right = 576.0
+margin_bottom = 621.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.101961, 0.113725, 0.113725, 1 )
+text = "~ Ardon Silvera"
+align = 2

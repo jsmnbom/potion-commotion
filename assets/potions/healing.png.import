@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+path="res://.import/healing.png-276b330322e04a5c546d4a5dbcd209de.image"
+
+[deps]
+
+source_file="res://assets/potions/healing.png"
+dest_files=[ "res://.import/healing.png-276b330322e04a5c546d4a5dbcd209de.image" ]
+
+[params]
+

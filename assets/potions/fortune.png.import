@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+path="res://.import/fortune.png-fb9189200e29571e3983c227c9d150b8.image"
+
+[deps]
+
+source_file="res://assets/potions/fortune.png"
+dest_files=[ "res://.import/fortune.png-fb9189200e29571e3983c227c9d150b8.image" ]
+
+[params]
+

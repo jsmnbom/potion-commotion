@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+path="res://.import/midnight.png-594aa9a0572c9a27ac44e3ed1b75f732.image"
+
+[deps]
+
+source_file="res://assets/potions/midnight.png"
+dest_files=[ "res://.import/midnight.png-594aa9a0572c9a27ac44e3ed1b75f732.image" ]
+
+[params]
+

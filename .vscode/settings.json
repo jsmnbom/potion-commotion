@@ -1,0 +1,11 @@
+{
+    "files.exclude": {
+        "**/*.import": true,
+        "**/*.tres": true,
+        "**/*.tscn": true
+    },
+    "spellright.language": [],
+    "spellright.documentTypes": [
+        "latex"
+    ]
+}

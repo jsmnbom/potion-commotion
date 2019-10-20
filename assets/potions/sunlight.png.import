@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+path="res://.import/sunlight.png-7a49f3bf05e1f81d402f148c4f472aff.image"
+
+[deps]
+
+source_file="res://assets/potions/sunlight.png"
+dest_files=[ "res://.import/sunlight.png-7a49f3bf05e1f81d402f148c4f472aff.image" ]
+
+[params]
+

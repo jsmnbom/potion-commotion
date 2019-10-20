@@ -1,0 +1,147 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Main/Main.gd" type="Script" id=1]
+[ext_resource path="res://assets/grass.png" type="Texture" id=2]
+[ext_resource path="res://assets/ui/frame.png" type="Texture" id=3]
+[ext_resource path="res://Greenhouse/Greenhouse.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Brewing/Brewing.tscn" type="PackedScene" id=5]
+[ext_resource path="res://UI/Inventory/Inventory.tscn" type="PackedScene" id=6]
+[ext_resource path="res://UI/GemDisplay/GemDisplay.tscn" type="PackedScene" id=7]
+[ext_resource path="res://UI/Achievements/AchievementsPopout.tscn" type="PackedScene" id=8]
+[ext_resource path="res://UI/Journal/JournalPopout.tscn" type="PackedScene" id=9]
+[ext_resource path="res://UI/SaveLoad/SavePopout.tscn" type="PackedScene" id=10]
+[ext_resource path="res://UI/Tooltip/Tooltip.tscn" type="PackedScene" id=11]
+[ext_resource path="res://UI/Achievements/Achievements.tscn" type="PackedScene" id=12]
+[ext_resource path="res://UI/Journal/Journal.tscn" type="PackedScene" id=13]
+[ext_resource path="res://UI/QuitDialog/QuitDialog.tscn" type="PackedScene" id=14]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 218, 160 )
+
+[node name="Main" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="ViewportTween" type="Tween" parent="."]
+
+[node name="BG" type="TextureRect" parent="."]
+show_behind_parent = true
+margin_right = 1920.0
+margin_bottom = 1080.0
+mouse_filter = 2
+texture = ExtResource( 2 )
+stretch_mode = 2
+
+[node name="MainFrame" type="TextureRect" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+mouse_filter = 2
+texture = ExtResource( 3 )
+
+[node name="GreenhouseViewportContainer" type="ViewportContainer" parent="." groups=[
+"ViewportContainer",
+]]
+show_behind_parent = true
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 1387.0
+margin_bottom = 1048.0
+stretch = true
+
+[node name="GreenhouseViewport" type="Viewport" parent="GreenhouseViewportContainer" groups=[
+"sub_viewports",
+]]
+size = Vector2( 1355, 1016 )
+handle_input_locally = false
+disable_3d = true
+usage = 0
+render_target_update_mode = 3
+gui_disable_input = true
+
+[node name="Greenhouse" parent="GreenhouseViewportContainer/GreenhouseViewport" instance=ExtResource( 4 )]
+
+[node name="SubViewportArea" type="Area2D" parent="." groups=[
+"MouseAreas",
+]]
+position = Vector2( 1419, 32 )
+collision_layer = 16
+
+[node name="Collision" type="CollisionShape2D" parent="SubViewportArea"]
+position = Vector2( 234, 176 )
+shape = SubResource( 1 )
+
+[node name="BrewingViewportContainer" type="ViewportContainer" parent="." groups=[
+"ViewportContainer",
+]]
+show_behind_parent = true
+margin_left = 1419.0
+margin_top = 32.0
+margin_right = 1888.0
+margin_bottom = 384.0
+mouse_default_cursor_shape = 2
+stretch = true
+
+[node name="BrewingViewport" type="Viewport" parent="BrewingViewportContainer" groups=[
+"sub_viewports",
+]]
+size = Vector2( 1355, 1016 )
+handle_input_locally = false
+hdr = false
+disable_3d = true
+usage = 0
+render_target_update_mode = 3
+gui_disable_input = true
+
+[node name="Brewing" parent="BrewingViewportContainer/BrewingViewport" instance=ExtResource( 5 )]
+
+[node name="Inventory" parent="." instance=ExtResource( 6 )]
+margin_left = 1435.0
+margin_top = 416.0
+margin_right = 1872.0
+margin_bottom = 1016.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="GemDisplay" parent="." instance=ExtResource( 7 )]
+show_behind_parent = true
+margin_left = -272.0
+margin_top = 96.0
+margin_right = 128.0
+margin_bottom = 208.0
+
+[node name="AchievementsPopout" parent="." instance=ExtResource( 8 )]
+show_behind_parent = true
+margin_left = -272.0
+margin_top = 240.0
+margin_right = 128.0
+margin_bottom = 352.0
+
+[node name="JournalPopout" parent="." instance=ExtResource( 9 )]
+show_behind_parent = true
+margin_left = -160.0
+margin_top = 384.0
+margin_right = 128.0
+margin_bottom = 496.0
+
+[node name="SavePopout" parent="." instance=ExtResource( 10 )]
+show_behind_parent = true
+margin_left = -92.0
+margin_top = 872.0
+margin_right = 128.0
+margin_bottom = 984.0
+
+[node name="Tooltip" parent="." instance=ExtResource( 11 )]
+visible = false
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 105.0
+margin_bottom = 94.0
+
+[node name="Achievements" parent="." instance=ExtResource( 12 )]
+visible = false
+
+[node name="Journal" parent="." instance=ExtResource( 13 )]
+visible = false
+mouse_filter = 2
+
+[node name="QuitDialog" parent="." instance=ExtResource( 14 )]
+visible = false

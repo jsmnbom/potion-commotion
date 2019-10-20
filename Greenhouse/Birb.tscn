@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Greenhouse/Birb.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/Open_Sans/OpenSans-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/birb/birb.png" type="Texture" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+outline_size = 1
+outline_color = Color( 0.329412, 0.145098, 0.145098, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Flying"
+length = 0.75
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.075, 0.15, 0.225, 0.3, 0.375, 0.45, 0.525, 0.6, 0.675 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 4, 5, 6, 5, 4, 3, 2 ]
+}
+
+[node name="Birb" type="Node2D"]
+z_index = 2
+z_as_relative = false
+script = ExtResource( 1 )
+
+[node name="Attention" type="Label" parent="."]
+visible = false
+margin_left = 2.717
+margin_top = -90.0
+margin_right = 42.717
+margin_bottom = -45.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "!!!"
+
+[node name="Area" type="Area2D" parent="." groups=[
+"MouseAreas",
+]]
+collision_layer = 4
+
+[node name="Collision" type="CollisionPolygon2D" parent="Area"]
+visible = false
+polygon = PoolVector2Array( -23.5565, -74.4399, -8.35037, -74.7635, -4.14444, -66.3516, 0.38504, -54.7044, 28.2089, -28.1746, 40.1797, -14.2627, 42.768, -0.0271759, 38.562, 6.4435, 18.5029, 4.82582, 15.5911, -4.55666, 8.14986, 1.59048, -6.08563, 5.14937, -22.5859, 3.85522, -22.5859, -10.0567, -13.2034, -14.9097, -27.4389, -28.4982, -32.2919, -45.3219, -41.9979, -56.3221, -41.3508, -70.8811 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -32 )
+texture = ExtResource( 3 )
+hframes = 7
+frame = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Flying = SubResource( 2 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

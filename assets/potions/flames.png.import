@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+path="res://.import/flames.png-311a9ec00c985dd78fc7ae87dda7bead.image"
+
+[deps]
+
+source_file="res://assets/potions/flames.png"
+dest_files=[ "res://.import/flames.png-311a9ec00c985dd78fc7ae87dda7bead.image" ]
+
+[params]
+

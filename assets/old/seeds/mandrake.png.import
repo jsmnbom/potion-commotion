@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+path="res://.import/mandrake.png-47bb10c5f044108952a44bdf03ba86e7.image"
+
+[deps]
+
+source_file="res://assets/old/seeds/mandrake.png"
+dest_files=[ "res://.import/mandrake.png-47bb10c5f044108952a44bdf03ba86e7.image" ]
+
+[params]
+

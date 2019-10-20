@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+path="res://.import/stars.png-adf10e5b84fa9d2c8302d5f7ca781188.image"
+
+[deps]
+
+source_file="res://assets/potions/stars.png"
+dest_files=[ "res://.import/stars.png-adf10e5b84fa9d2c8302d5f7ca781188.image" ]
+
+[params]
+

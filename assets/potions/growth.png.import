@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+path="res://.import/growth.png-4f63ef0fd62cb3cf2aa2364a48f4573b.image"
+
+[deps]
+
+source_file="res://assets/potions/growth.png"
+dest_files=[ "res://.import/growth.png-4f63ef0fd62cb3cf2aa2364a48f4573b.image" ]
+
+[params]
+

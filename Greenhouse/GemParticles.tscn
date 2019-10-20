@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/gem.png" type="Texture" id=1]
+[ext_resource path="res://Greenhouse/GemParticles.gd" type="Script" id=2]
+
+[sub_resource type="ParticlesMaterial" id=1]
+flag_disable_z = true
+spread = 20.0
+flatness = 1.0
+gravity = Vector3( -98, 0, 0 )
+initial_velocity = 150.0
+initial_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = 8.12
+angle = 270.0
+
+[node name="GemParticles" type="Particles2D"]
+rotation = -1.5708
+emitting = false
+amount = 20
+lifetime = 6.0
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+visibility_rect = Rect2( -100, -300, 300, 600 )
+process_material = SubResource( 1 )
+texture = ExtResource( 1 )
+script = ExtResource( 2 )

@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+path="res://.import/poison.png-e090ff33a6d9b70e57754e25026b7a09.image"
+
+[deps]
+
+source_file="res://assets/potions/poison.png"
+dest_files=[ "res://.import/poison.png-e090ff33a6d9b70e57754e25026b7a09.image" ]
+
+[params]
+
