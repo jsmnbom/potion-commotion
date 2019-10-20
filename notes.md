@@ -8,6 +8,8 @@ Potion of birb
 Daily missions
 Bird feather
 Achevement boosts
+Better brewing (like spefic rules for some potions)
+
 
 ## TODO
 
@@ -21,7 +23,6 @@ Need mabel
     Fix star flower seed sprite
     Get book sprite from mabel
 
-Better brewing (like spefic rules for some potions)
 Sick plants - Healing potion?
 Luck
 Fortune potion
