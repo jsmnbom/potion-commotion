@@ -13,7 +13,7 @@ func init(_page_id):
 	if File.new().file_exists('res://assets/journal_items/%s.png' % page_id):
 		$ItemSprite.texture = Utils.get_scaled_res('res://assets/journal_items/%s.png' % page_id, 128, 128)
 	else:
-		print('Journal page icon missing %s' % page_id)
+		$ItemSprite.texture = Utils.get_scaled_res('res://assets/journal_items/text.png', 128, 128)
 
 func _on_mouse_area(msg):
 	if msg['node'] == $Area:

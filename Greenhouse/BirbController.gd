@@ -51,11 +51,11 @@ func _on_Timer_timeout():
 			should_have.append(potion_id)
 			
 	if 'mandrake' in should_have:
-		should_have.append('Cauldron1')
+		should_have.append('TheCauldron1')
 	if 'golden_berry' in should_have:
-		should_have.append('Cauldron2')
+		should_have.append('TheCauldron2')
 	if 'crystal_stalk' in should_have:
-		should_have.append('Cauldron3')
+		should_have.append('TheCauldron3')
 		
 	var missing = []
 	for page in should_have:

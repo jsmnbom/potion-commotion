@@ -128,9 +128,9 @@ func save_game():
 	var sf = $SaveNotification
 	var tween = $SaveNotification/Tween
 
-	sf/Label2.text = 'Current playtime: %s' % Utils.time_string(Data.play_time)
+	$SaveNotification/Label2.text = 'Current playtime: %s' % Utils.time_string(Data.play_time)
 	
-	sf/Tween.remove_all()
+	tween.remove_all()
 	sf.show()
 	tween.interpolate_property(sf, 'modulate:a',
 		sf.modulate.a, 1.0, 0.5,
