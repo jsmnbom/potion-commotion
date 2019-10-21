@@ -21,3 +21,10 @@ func _on_Timer_timeout():
 func _on_add_luck(luck):
 	Data.luck += clamp(luck, 0.0, 1.0)
 	update_luck()
+
+func serialize():
+	return Data.luck
+
+func deserialize(data):
+	Data.luck = data
+	update_luck()

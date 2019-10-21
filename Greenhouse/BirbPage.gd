@@ -2,6 +2,7 @@ extends Node2D
 
 var JOURNAL_POS = Vector2(48, 416)
 var page_id
+var destination
 
 func _ready():
 	$PageSprite.texture = Utils.get_scaled_res('res://assets/journal_items/page.png', 128, 128)
@@ -24,8 +25,6 @@ func _on_mouse_area(msg):
 					$Area.hide()
 					$Tween.interpolate_property(self, 'position', position, JOURNAL_POS, 1,  Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 					$Tween.interpolate_property(self, 'scale', scale, Vector2(0.25, 0.25), 1,  Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
-					if Data.unlocked_journal_pages.size() == 1:
-						Events.emit_signal('unlock_journal')
 					$Tween.interpolate_callback(self, 1, 'queue_free')
 					$Tween.start()
 					

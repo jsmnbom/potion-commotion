@@ -162,9 +162,21 @@ func _on_show_journal(show):
 func _on_unlock_journal_page(msg):
 	var page_id = msg['id']
 	if not page_id in Data.unlocked_journal_pages:
+		if Data.unlocked_journal_pages.size() == 1:
+			Events.emit_signal('unlock_journal')
 		Data.unlocked_journal_pages.append(page_id)
 		
 	update_index()
 	sort_unlocked_pages()
 
 	Events.emit_signal('achievement', {'diff_id': 'diff_pages', 'diff_add': page_id})
+
+
+func serialize():
+	return {
+		'unlocked': Data.unlocked_journal_pages
+	}
+
+func deserialize(data):
+	for page in data['unlocked']:
+		_on_unlock_journal_page({'id': page})

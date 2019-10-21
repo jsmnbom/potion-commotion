@@ -4,6 +4,8 @@ onready var greenhouse_viewport_container = $GreenhouseViewportContainer
 onready var brewing_viewport_container = $BrewingViewportContainer
 onready var greenhouse_viewport = $GreenhouseViewportContainer/GreenhouseViewport
 onready var brewing_viewport = $BrewingViewportContainer/BrewingViewport
+onready var brewing = $BrewingViewportContainer/BrewingViewport/Brewing
+onready var greenhouse = $GreenhouseViewportContainer/GreenhouseViewport/Greenhouse
 
 var brewing_tooltip = 'Click to start brewing!'
 var greenhouse_tooltip = 'Click to go back to your greenhouse!'
@@ -116,7 +118,13 @@ func save_game():
 		'plants': serialize_array(get_tree().get_nodes_in_group('Plants')),
 		'inventory': $Inventory.serialize(),
 		'achievements': $Achievements.serialize(),
-		'gems': $GemDisplay.serialize()
+		'gems': $GemDisplay.serialize(),
+		'luck': $LuckDisplay.serialize(),
+		'birbs': greenhouse.get_node('BirbController').serialize(),
+		'time': Data.time,
+		'play_time': Data.play_time,
+		'journal': $Journal.serialize(),
+		'player_name': Data.player_name
 	}
 
 	var save_file = File.new()
@@ -159,6 +167,19 @@ func load_game():
 	$Achievements.deserialize(data['achievements'])
 	print('loading gems')
 	$GemDisplay.deserialize(data['gems'])
+	print('loading luck')
+	$LuckDisplay.deserialize(data['luck'])
+	print('loading birbs')
+	greenhouse.get_node('BirbController').deserialize(data['birbs'])
+	print('loading time')
+	Data.time = int(clamp(data['time'] - 1, 0, 24*60))
+	greenhouse._on_DayTimer_timeout()
+	print('loading play_time')
+	Data.play_time = data['play_time']
+	print('loading journal')
+	$Journal.deserialize(data['journal'])
+	print('loading player_name')
+	Data.player_name = data['player_name']
 	save_file.close()
 	print('done loading!')
 

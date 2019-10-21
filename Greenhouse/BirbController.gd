@@ -81,5 +81,34 @@ func birb_fetch_page(birb, page_id):
 	page.position = Vector2(-256, -256)
 	page.init(page_id)
 	page.hide()
-	add_child(page)
+	$BirbPages.add_child(page)
 	birb.fetch_page(page)
+
+func serialize():
+	var data = {
+		'birbs': [],
+		'birb_pages': []
+	}
+
+	for birb in [$Birb1, $Birb2]:
+		data['birbs'].append(birb.serialize())
+
+	for page in $BirbPages.get_children():
+		data['birb_pages'].append({
+			'pos': [page.destination.x, page.destination.y],
+			'page_id': page.page_id
+		})
+
+	return data
+
+func deserialize(data):
+	for i in range(2):
+		[$Birb1, $Birb2][i].deserialize(data['birbs'][i])
+
+	for page_data in data['birb_pages']:
+		var page = BirbPage.instance()
+		birb_pages_created.append(page_data['page_id'])
+		page.position = Vector2(page_data['pos'][0], page_data['pos'][1])
+		page.init(page_data['page_id'])
+		page.show()
+		$BirbPages.add_child(page)

@@ -26,6 +26,7 @@ func random_offscreen_pos():
 func _ready():
 	position = random_pos()
 	position = random_offscreen_pos()
+	last_pos = position
 	
 	random_goal()
 	
@@ -49,6 +50,7 @@ func _physics_process(delta):
 		if page_node:
 			page_node.position = position + Vector2(0,32)
 			page_node.z_index = 7
+			page_node.destination = last_pos
 	
 	if not jumping and not flying and not is_offscreen:
 		jump_wait += 1
@@ -131,9 +133,22 @@ func stop_flying():
 	$AnimationPlayer.stop()
 	$Sprite.frame = 0
 	z_index = 4
-	var page_node = page_node_ref.get_ref()
-	if page_node:
-		page_node.z_index = 3
+	if page_node_ref != null:
+		var page_node = page_node_ref.get_ref()
+		if page_node:
+			page_node.z_index = 3
 	page_node_ref = null
 	flying = false
-	
+
+func serialize():
+	return {
+		'is_offscreen': is_offscreen,
+		'pos': [last_pos.x, last_pos.y] if flying else [position.x, position.y],
+		'goal_pos': [goal_pos.x, goal_pos.y]
+	}
+
+func deserialize(data):
+	is_offscreen = data['is_offscreen']
+	position = Vector2(data['pos'][0], data['pos'][1])
+	goal_pos = Vector2(data['goal_pos'][0], data['goal_pos'][1])
+	stop_flying()
