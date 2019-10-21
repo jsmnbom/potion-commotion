@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Game/Game.gd" type="Script" id=1]
 [ext_resource path="res://assets/grass.png" type="Texture" id=2]
@@ -14,9 +14,22 @@
 [ext_resource path="res://UI/Tooltip/Tooltip.tscn" type="PackedScene" id=12]
 [ext_resource path="res://UI/Achievements/Achievements.tscn" type="PackedScene" id=13]
 [ext_resource path="res://UI/Journal/Journal.tscn" type="PackedScene" id=14]
+[ext_resource path="res://assets/fonts/Courgette/Courgette-Regular.ttf" type="DynamicFontData" id=15]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 218, 160 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 100
+outline_size = 4
+outline_color = Color( 0.564706, 0.447059, 0.101961, 1 )
+font_data = ExtResource( 15 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 60
+outline_size = 4
+outline_color = Color( 0.564706, 0.447059, 0.101961, 1 )
+font_data = ExtResource( 15 )
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -153,3 +166,33 @@ visible = false
 [node name="Journal" parent="." instance=ExtResource( 14 )]
 visible = false
 mouse_filter = 2
+
+[node name="PlayTimeTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="SaveNotification" type="Control" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 440.0
+margin_right = 40.0
+margin_bottom = 480.0
+
+[node name="Label1" type="Label" parent="SaveNotification"]
+margin_top = 1.507
+margin_right = 1355.0
+margin_bottom = 127.507
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.780392, 0.639216, 0.231373, 1 )
+text = "Game saved!"
+align = 1
+
+[node name="Label2" type="Label" parent="SaveNotification"]
+margin_top = 114.0
+margin_right = 1355.0
+margin_bottom = 240.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.780392, 0.639216, 0.231373, 1 )
+align = 1
+
+[node name="Tween" type="Tween" parent="SaveNotification"]
+[connection signal="timeout" from="PlayTimeTimer" to="." method="_on_PlayTimeTimer_timeout"]

@@ -83,6 +83,7 @@ func stop_jumping():
 
 func fetch_page(node):
 	page_node_ref = weakref(node)
+	prints(name, 'start_flying')
 	flying = true
 	
 	var offscreen_pos
@@ -126,7 +127,7 @@ func midway():
 	page_node_ref.get_ref().show()
 	
 func stop_flying():
-	flying = false
+	prints(name, 'stop_flying')
 	$AnimationPlayer.stop()
 	$Sprite.frame = 0
 	z_index = 4
@@ -134,4 +135,5 @@ func stop_flying():
 	if page_node:
 		page_node.z_index = 3
 	page_node_ref = null
+	flying = false
 	

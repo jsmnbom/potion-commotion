@@ -124,6 +124,23 @@ func save_game():
 	save_file.store_line(to_json(data))
 	save_file.close()
 	Events.emit_signal('saved')
+	
+	var sf = $SaveNotification
+	var tween = $SaveNotification/Tween
+
+	sf/Label2.text = 'Current playtime: %s' % Utils.time_string(Data.play_time)
+	
+	sf/Tween.remove_all()
+	sf.show()
+	tween.interpolate_property(sf, 'modulate:a',
+		sf.modulate.a, 1.0, 0.5,
+		Tween.TRANS_LINEAR, Tween.EASE_IN)
+	tween.interpolate_property(sf, 'modulate:a',
+		1.0, 0.0, 0.5,
+		Tween.TRANS_LINEAR, Tween.EASE_OUT, 2)
+	tween.interpolate_callback(sf, 2.5, 'hide')
+	tween.start()
+	
 
 func load_game():
 	print('loading!')
@@ -167,3 +184,6 @@ func _on_mouse_area(msg):
 						greenhouse_active = true
 						switch()
 					Events.emit_signal('tooltip', {'description': greenhouse_tooltip})
+
+func _on_PlayTimeTimer_timeout():
+	Data.play_time += 1
