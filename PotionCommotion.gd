@@ -6,7 +6,7 @@ var game = null
 func _ready():
 	get_tree().set_auto_accept_quit(false)
 	
-	Events.connect('new_game', self, '_on_new_game')
+	Events.connect('start_new_game', self, '_on_start_new_game')
 	Events.connect('continue_game', self, '_on_continue_game')
 	Events.connect('exit_confirm', self, '_on_exit_confirm')
 	Events.connect('exit_confirm_close', self, '_on_exit_confirm_close')
@@ -23,12 +23,15 @@ func _input(event):
 			if not game or not game.visible:
 				$MouseHelper.hide()
 		else:
-			if game and not game.ui_cancel():
+			if $MainMenu.visible:
+				$MainMenu.ui_cancel()
+			elif game:
+				if not game.ui_cancel():
 					game.hide()
 					$MouseHelper.hide()
 					$MainMenu.show()
 
-func _on_new_game():
+func _on_start_new_game():
 	Data.clear()
 	$MouseHelper.show()
 	$MainMenu.hide()

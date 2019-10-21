@@ -46,7 +46,8 @@ signal achievement(msg)
 signal save_game
 signal load_game
 signal saved
-signal new_game
+signal menu_new_game
+signal start_new_game
 signal continue_game
 signal exit_confirm
 signal exit_confirm_close

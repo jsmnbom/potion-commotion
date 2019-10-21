@@ -8,9 +8,6 @@ func _init():
 	var file = File.new()
 	file.open("res://assets/plants/hitboxes.bin", File.READ)
 	_plant_hitboxes = file.get_var()
-	
-	for item in inventory:
-		inventory_by_id[item.type][item.id] = item
 
 	_calculate_potion_prices()
 	
@@ -306,6 +303,15 @@ func clear():
 
 	time = 9*60
 
+	inventory_by_id = {
+		'seed': {},
+		'resource': {},
+		'potion': {}
+	}
+
+	for item in inventory:
+		inventory_by_id[item.type][item.id] = item
+
 func _calculate_potion_prices():
 	for potion_id in inventory_by_id['potion']:
 		var potion = inventory_by_id['potion'][potion_id]
@@ -485,14 +491,12 @@ var plants
 
 var inventory
 
-var inventory_by_id = {
-	'seed': {},
-	'resource': {},
-	'potion': {}
-}
+var inventory_by_id 
 
 var achievements
 
 var unlocked_journal_pages
 
 var time
+
+var player_name

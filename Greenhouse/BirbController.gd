@@ -61,6 +61,8 @@ func _on_Timer_timeout():
 	for page in should_have:
 		if not page in unlocked and not page in birb_pages_created:
 			missing.append(page)
+
+	print(missing)
 	
 	if missing.size() < 1:
 		return

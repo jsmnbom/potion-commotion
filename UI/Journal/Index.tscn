@@ -8,12 +8,14 @@ margin_bottom = 624.0
 mouse_filter = 2
 
 [node name="Title" type="Label" parent="."]
-margin_right = 576.0
+margin_left = -16.0
+margin_right = 592.0
 margin_bottom = 69.05
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0.101961, 0.113725, 0.113725, 1 )
 text = "[name]'s Journal"
 align = 1
+valign = 1
 
 [node name="Items1" type="VBoxContainer" parent="."]
 margin_top = 76.0

@@ -14,6 +14,8 @@ func _ready():
 	
 	$Options/Back.connect('gui_input', self, '_on_Options_Back_gui_input')
 	$HowToPlay/Back.connect('gui_input', self, '_on_HowToPlay_Back_gui_input')
+	$NameEntry/Cancel.connect('gui_input', self, '_on_NameEntry_Cancel_gui_input')
+	Events.connect('menu_new_game', self, '_on_menu_new_game')
 
 #func _on_Exit_pressed():
 #	if has_game_opened:
@@ -21,6 +23,22 @@ func _ready():
 #	else:
 #		get_tree().quit()
 
+func hide_buttons():
+	for button in buttons:
+		button._on_Button_mouse_exited()
+		button.hide()
+
+func show_buttons():
+	for button in buttons:
+		button.show()
+
+func ui_cancel():
+	for node in [$HowToPlay, $Options, $NameEntry]:
+		if node.visible:
+			node.hide()
+			show_buttons()
+			return true
+	return false
 
 func _on_MainMenu_visibility_changed():
 	if not visible:
@@ -38,34 +56,36 @@ func _on_MainMenu_visibility_changed():
 func _on_HowToPlay_Back_gui_input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
 		$HowToPlay.hide()
-		for button in buttons:
-			button.show()
+		show_buttons()
 
 func _on_Options_Back_gui_input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
 		$Options.hide()
-		for button in buttons:
-			button.show()
+		show_buttons()
 
 func _on_HowToPlayButton_pressed():
-	for button in buttons:
-		button._on_Button_mouse_exited()
-		button.hide()
+	hide_buttons()
 	$HowToPlay.show()
 
-
 func _on_OptionsButton_pressed():
-	for button in buttons:
-		button._on_Button_mouse_exited()
-		button.hide()
+	hide_buttons()
 	$Options.show()
-
 
 func _on_ContinueButton_pressed():
 	has_game_opened = true
 	Events.emit_signal('continue_game')
 
-
 func _on_NewButton_pressed():
+	hide_buttons()
+	$NameEntry.show()
+
+func _on_NameEntry_Cancel_gui_input(event):
+	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
+		$NameEntry.hide()
+		show_buttons()
+	
+func _on_menu_new_game():
+	$NameEntry.hide()
+	show_buttons()
 	has_game_opened = true
-	Events.emit_signal('new_game')
+	Events.emit_signal('start_new_game')

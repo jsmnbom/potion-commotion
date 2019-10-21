@@ -33,6 +33,8 @@ func _ready():
 	Events.connect('mouse_area', self, '_on_mouse_area')
 	Events.connect('show_journal', self, '_on_show_journal')
 	Events.connect('unlock_journal_page', self, '_on_unlock_journal_page')
+
+	PAGES['index'][1].get_node('Title').text = '%s\'s Journal' % Data.player_name
 	
 	for page in PAGES:
 		PAGES[page][1].hide()

@@ -2,14 +2,15 @@ extends NinePatchRect
 
 
 func _ready():
-	$Master.add_icon_override('grabber', Utils.get_scaled_res('res://assets/potions/hydration.png', 48, 48))
-	$Master.add_icon_override('grabber_highlight', Utils.get_scaled_res('res://assets/potions/hydration.png', 48, 48))
-	$Music.add_icon_override('grabber', Utils.get_scaled_res('res://assets/potions/hydration.png', 48, 48))
-	$Music.add_icon_override('grabber_highlight', Utils.get_scaled_res('res://assets/potions/hydration.png', 48, 48))
-	$SFX.add_icon_override('grabber', Utils.get_scaled_res('res://assets/potions/hydration.png', 48, 48))
-	$SFX.add_icon_override('grabber_highlight', Utils.get_scaled_res('res://assets/potions/hydration.png', 48, 48))
-	$Ambiance.add_icon_override('grabber', Utils.get_scaled_res('res://assets/potions/hydration.png', 48, 48))
-	$Ambiance.add_icon_override('grabber_highlight', Utils.get_scaled_res('res://assets/potions/hydration.png', 48, 48))
+	var hydration = Utils.get_scaled_res('res://assets/potions/hydration.png', 48, 48)
+	$Master.add_icon_override('grabber', hydration)
+	$Master.add_icon_override('grabber_highlight', hydration)
+	$Music.add_icon_override('grabber', hydration)
+	$Music.add_icon_override('grabber_highlight', hydration)
+	$SFX.add_icon_override('grabber', hydration)
+	$SFX.add_icon_override('grabber_highlight', hydration)
+	$Ambiance.add_icon_override('grabber', hydration)
+	$Ambiance.add_icon_override('grabber_highlight', hydration)
 	
 	$FullScreen.pressed = OS.window_fullscreen
 	_on_Master_value_changed($Master.value)

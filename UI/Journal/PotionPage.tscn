@@ -25,6 +25,7 @@ margin_bottom = 106.0
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0.101961, 0.113725, 0.113725, 1 )
 align = 1
+valign = 1
 
 [node name="Description" type="Label" parent="."]
 margin_top = 108.0

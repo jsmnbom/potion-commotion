@@ -15,6 +15,7 @@ custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0.101961, 0.113725, 0.113725, 1 )
 text = "A strange garden"
 align = 1
+valign = 1
 
 [node name="Label" type="RichTextLabel" parent="."]
 margin_top = 76.0
