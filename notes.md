@@ -31,14 +31,13 @@ Need mabel
 
 Sick plants - Healing potion?
 Fix potion sell prices
-Rain?
+Rain - ???
 Stats?
 Brewing bg
-Clock?
+Clock - ???
 Harder achevements
 Unify colours of elements and text
 Fix savegame
 Hotkeys
 Journal page icons for text pages
 Journal page achevement
-Main menu exit button

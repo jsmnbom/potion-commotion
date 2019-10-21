@@ -9,6 +9,9 @@ func _ready():
 	$NewButton/TextureRect.texture = Utils.get_scaled_res('res://assets/resources/fire_flower.png', 48, 48)
 	$HowToPlayButton/TextureRect.texture = Utils.get_scaled_res('res://assets/weeds.png', 64, 64)
 	$OptionsButton/TextureRect.texture = Utils.get_scaled_res('res://assets/ui/sickle.png', 48, 48)
+	
+	$ExitButton.texture_normal =  Utils.get_scaled_res('res://assets/ui/exit.png', 64, 64)
+	$ExitButton.texture_hover = Utils.get_scaled_res('res://assets/ui/exit_hover.png', 64, 64)
 
 	_on_MainMenu_visibility_changed()
 	
@@ -16,12 +19,6 @@ func _ready():
 	$HowToPlay/Back.connect('gui_input', self, '_on_HowToPlay_Back_gui_input')
 	$NameEntry/Cancel.connect('gui_input', self, '_on_NameEntry_Cancel_gui_input')
 	Events.connect('menu_new_game', self, '_on_menu_new_game')
-
-#func _on_Exit_pressed():
-#	if has_game_opened:
-#		Events.emit_signal('exit_confirm')
-#	else:
-#		get_tree().quit()
 
 func hide_buttons():
 	for button in buttons:
@@ -89,3 +86,9 @@ func _on_menu_new_game():
 	show_buttons()
 	has_game_opened = true
 	Events.emit_signal('start_new_game')
+
+func _on_ExitButton_pressed():
+	if has_game_opened:
+		Events.emit_signal('exit_confirm')
+	else:
+		get_tree().quit()

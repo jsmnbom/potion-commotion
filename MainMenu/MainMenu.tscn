@@ -71,6 +71,7 @@ texture = ExtResource( 3 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 965, 348 )
 frames = SubResource( 3 )
+frame = 1
 playing = true
 
 [node name="ContinueButton" parent="." instance=ExtResource( 8 )]
@@ -109,6 +110,13 @@ margin_bottom = 1056.0
 [node name="Label" parent="OptionsButton" index="0"]
 text = "Options"
 
+[node name="ExitButton" type="TextureButton" parent="."]
+margin_left = 16.0
+margin_top = 1000.0
+margin_right = 80.0
+margin_bottom = 1064.0
+mouse_default_cursor_shape = 2
+
 [node name="Options" parent="." instance=ExtResource( 9 )]
 visible = false
 margin_left = 640.0
@@ -134,6 +142,7 @@ margin_bottom = 928.0
 [connection signal="pressed" from="NewButton" to="." method="_on_NewButton_pressed"]
 [connection signal="pressed" from="HowToPlayButton" to="." method="_on_HowToPlayButton_pressed"]
 [connection signal="pressed" from="OptionsButton" to="." method="_on_OptionsButton_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_ExitButton_pressed"]
 
 [editable path="ContinueButton"]
 
