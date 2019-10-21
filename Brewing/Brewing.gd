@@ -48,39 +48,36 @@ func potion_to_brew():
             item.ingredients.sort()
             if item.ingredients == ingredients:
                 return item
-    return null
+    return Data.inventory_by_id['potion']['hydration']
 
 func start_brewing():
     var potion = potion_to_brew()
-    if potion != null:
-        var tween = Tween.new()
-        add_child(tween)
-        
-        var end_pos = Vector2($Cauldron.position.x, $Cauldron.position.y)
-        
-        var potion_sprite = Sprite.new()
-        potion_sprite.texture = potion.get_scaled_res(48, 48)
-        potion_sprite.position = end_pos
-        potion_sprite.modulate.a = 0
-        add_child(potion_sprite)
-        
-        tween.interpolate_property(self, 'ingredient_offset_size',
-                ingredient_offset_size, 0, 1.5,
-                Tween.TRANS_QUART, Tween.EASE_IN_OUT)
+    var tween = Tween.new()
+    add_child(tween)
+    
+    var end_pos = Vector2($Cauldron.position.x, $Cauldron.position.y)
+    
+    var potion_sprite = Sprite.new()
+    potion_sprite.texture = potion.get_scaled_res(48, 48)
+    potion_sprite.position = end_pos
+    potion_sprite.modulate.a = 0
+    add_child(potion_sprite)
+    
+    tween.interpolate_property(self, 'ingredient_offset_size',
+            ingredient_offset_size, 0, 1.5,
+            Tween.TRANS_QUART, Tween.EASE_IN_OUT)
 
-        for sprite in $Ingredients.get_children():
-            tween.interpolate_property(sprite, 'modulate:a',
-                    1, 0, 0.5,
-                    Tween.TRANS_QUART, Tween.EASE_IN_OUT, 1.5)
-        # TODO: Should end at 0.75 or 1? Depends on add_item_animated modulation
-        tween.interpolate_property(potion_sprite, 'modulate:a',
-                0, 0.75, 0.5,
+    for sprite in $Ingredients.get_children():
+        tween.interpolate_property(sprite, 'modulate:a',
+                1, 0, 0.5,
                 Tween.TRANS_QUART, Tween.EASE_IN_OUT, 1.5)
-        tween.connect('tween_all_completed', self, '_on_brewing_complete',
-                [potion, tween, potion_sprite])
-        tween.start()
-    else:
-        print('No potion match')
+    # TODO: Should end at 0.75 or 1? Depends on add_item_animated modulation
+    tween.interpolate_property(potion_sprite, 'modulate:a',
+            0, 0.75, 0.5,
+            Tween.TRANS_QUART, Tween.EASE_IN_OUT, 1.5)
+    tween.connect('tween_all_completed', self, '_on_brewing_complete',
+            [potion, tween, potion_sprite])
+    tween.start()
 
 func _on_brewing_complete(potion, tween, potion_sprite):
     potion_sprite.get_parent().remove_child(potion_sprite)

@@ -38,4 +38,4 @@ Unify colours of elements and text
 Fix savegame
 Journal page icons for text pages
 Journal page achevement
-Failed potion = hydration
+When brewing and switch viewport potion appears over greenhouse
