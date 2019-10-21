@@ -25,6 +25,7 @@ Sick plants - Healing potion
 Mandrake - harvested during day runs away
 Clock
 Rain
+Harder achevements (after playtesting)
 
 ## TODO
 
@@ -33,7 +34,5 @@ Need mabel
     Music
 
 Brewing bg
-Harder achevements
 Unify colours of elements and text
-Fix savegame
 When brewing and switch viewport potion appears over greenhouse
