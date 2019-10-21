@@ -47,6 +47,10 @@ func ui_cancel():
 	return false
 
 func _input(event):
+	if event.is_action_pressed("open_journal"):
+		Events.emit_signal('show_journal', !$Journal.visible)
+	if event.is_action_pressed("open_achevements"):
+		Events.emit_signal('show_achievements', !$Achievements.visible)
 	if event.is_action_pressed("ui_quit"):
 		get_tree().quit()
 	if event.is_action_pressed("ui_save"):

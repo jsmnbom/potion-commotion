@@ -38,6 +38,5 @@ Clock - ???
 Harder achevements
 Unify colours of elements and text
 Fix savegame
-Hotkeys
 Journal page icons for text pages
 Journal page achevement
