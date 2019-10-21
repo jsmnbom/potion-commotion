@@ -11,13 +11,13 @@ func rng_sample(n, _list):
 	var list = _list.duplicate()
 	var sample = []
 	for i in range(n):
-		var x = randi() % list.size()
+		var x = rng.randi() % list.size()
 		sample.append(list[x])
 		list.remove(x)
 	return sample
 
 func rng_choose(list):
-	return list[randi() % list.size()]
+	return list[rng.randi() % list.size()]
 
 func rng_sign():
 	return -1 if randf() > 0.5 else 1
