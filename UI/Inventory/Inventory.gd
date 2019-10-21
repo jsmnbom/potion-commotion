@@ -2,6 +2,9 @@ extends Control
 
 var InventoryItem = preload('res://UI/Inventory/InventoryItem.tscn')
 
+var small_item_font = preload('res://assets/fonts/inventory_item_small.tres')
+var big_item_font = preload('res://assets/fonts/inventory_item_big.tres')
+
 var selected_item_type = null;
 var selected_item = null;
 
@@ -10,7 +13,6 @@ var mouse_over_item = null
 var gems = 0
 
 var inventory_items = []
-
 func _ready():
 	for item in Data.inventory:
 		var node = InventoryItem.instance()
@@ -18,6 +20,8 @@ func _ready():
 		$MarginContainer/GridContainer.add_child(node)
 		update_item(node, item)
 		inventory_items.append([item, node, node.get_node('Area')])
+		var label = node.get_node('Count')
+		label.add_font_override('font', small_item_font)
 
 	Events.connect('inventory_add', self, '_on_inventory_add')
 	Events.connect('gems_update', self, '_on_gems_update')
@@ -52,11 +56,15 @@ func _on_mouse_area(msg):
 					mouse_over_item = null
 					Events.emit_signal('tooltip', {'hide': true})
 					Utils.set_cursor_hand(false)
+					var label = node.get_node('Count')
+					label.add_font_override('font', small_item_font)
 				{'mouse_over': true, 'button_left_click': var left, 'button_right_click': var right, ..}:
 					mouse_over_item = item
 					Events.emit_signal('tooltip', {'inventory_item': item})
 					if (item.count > 0 or item.count == -1):
 						Utils.set_cursor_hand(true)
+					var label = node.get_node('Count')
+					label.add_font_override('font', big_item_font)
 					if left:
 						if (selected_item == item.id and selected_item_type == item.type) or item.count == 0:
 							set_selected_item(null)

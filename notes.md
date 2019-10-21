@@ -29,8 +29,6 @@ Need mabel
     Mandrake - harvested during day runs away - ???
     Get new recipes from Mabel
 
-    Midnight/sunlight journal page icons
-
 Sick plants - Healing potion?
 Luck
 Fortune potion
@@ -45,3 +43,5 @@ Unify colours of elements and text
 Fix savegame
 Hotkeys
 Journal page icons for text pages
+Journal page achevement
+Main menu exit button
