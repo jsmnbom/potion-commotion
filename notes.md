@@ -18,7 +18,7 @@ Need mabel
     Sounds
     Music
     Better lucky clover plant sprite
-    Mandrake - harvested during day runs away
+    Mandrake - harvested during day runs away - ???
     Get new recipes from Mabel
     Fix star flower seed sprite
     Get book sprite from mabel
@@ -31,10 +31,10 @@ Rain?
 Stats?
 Brewing bg
 Clock?
-Settings
-Main menu
 Cap items to 100
 Harder achevements
 Name entry
 Unify colours of elements and text
 Fix savegame
+Hotkeys
+

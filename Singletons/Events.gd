@@ -46,6 +46,10 @@ signal achievement(msg)
 signal save_game
 signal load_game
 signal saved
+signal new_game
+signal continue_game
+signal exit_confirm
+signal exit_confirm_close
 
 # no data
 signal unlock_journal

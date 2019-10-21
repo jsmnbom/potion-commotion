@@ -16,9 +16,10 @@ func _on_mouse_area(msg):
 				Utils.set_cursor_hand(mouse_over)
 				if node == $CloseArea:
 					if mouse_over and left:
-						hide()
+						Events.emit_signal('exit_confirm_close')
 				else:
-					node.get_parent().add_color_override("font_color",  Color('#89874f') if mouse_over else Color.black)
+					node.get_parent().add_color_override("font_color",  Color('#c7a33b') if mouse_over else Color.black)
+					node.get_parent().mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND if mouse_over else Control.CURSOR_ARROW
 					if left:
 						if node == $QuitWithoutSave/Area:
 							get_tree().quit()

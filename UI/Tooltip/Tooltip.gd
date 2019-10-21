@@ -1,7 +1,5 @@
 extends NinePatchRect
 
-onready var inventory = get_tree().get_root().get_node('Main/Inventory')
-
 onready var title_label = $Title
 onready var sell_price_container = $SellPriceContainer
 onready var sell_price_label = $SellPriceContainer/SellPriceLabel
@@ -189,7 +187,7 @@ func show_inventory_item(item):
 
 			recipe_container.show()
 			for i in range(item.ingredients.size()):
-				var ingredient_item = inventory.get_item('resource', item.ingredients[i])
+				var ingredient_item = Data.inventory_by_id['resource'][item.ingredients[i]]
 				recipe_container.get_child(i+1).texture = ingredient_item.get_scaled_res(16, 16)
 	if description_items.size() > 0:
 		set_description(PoolStringArray(description_items).join('\n'))
@@ -235,7 +233,7 @@ func show_plant(plant, progress, time_left, used_potions, weeds):
 		for i in range(2):
 			var potion_node = used_potions_container.get_node('Potion%s' % i)
 			if used_potions.size() > i:
-				var potion = inventory.get_item('potion', used_potions[i])
+				var potion = Data.inventory_by_id['potion'][used_potions[i]]
 				potion_node.show()
 				potion_node.texture = potion.get_scaled_res(64, 64)
 			else:

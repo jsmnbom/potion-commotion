@@ -1,0 +1,128 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/ui/9pr_big.png" type="Texture" id=1]
+[ext_resource path="res://MainMenu/Options.gd" type="Script" id=2]
+[ext_resource path="res://assets/fonts/options.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/ui/9pr_h_thin.png" type="Texture" id=4]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 4 )
+region_rect = Rect2( 33, 0, 30, 15 )
+expand_margin_top = 7.0
+expand_margin_bottom = 7.0
+
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 4 )
+region_rect = Rect2( 33, 0, 30, 15 )
+
+[node name="Options" type="NinePatchRect"]
+margin_right = 640.0
+margin_bottom = 392.0
+texture = ExtResource( 1 )
+patch_margin_left = 49
+patch_margin_top = 49
+patch_margin_right = 49
+patch_margin_bottom = 49
+script = ExtResource( 2 )
+
+[node name="FullScreenLabel" type="Label" parent="."]
+margin_left = 276.674
+margin_top = 45.3268
+margin_right = 419.674
+margin_bottom = 86.3268
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.101961, 0.113725, 0.113725, 1 )
+text = "Fullscreen"
+
+[node name="FullScreen" type="CheckBox" parent="."]
+margin_left = 200.369
+margin_top = 26.9109
+margin_right = 224.369
+margin_bottom = 50.9109
+rect_scale = Vector2( 3, 3 )
+
+[node name="MasterLabel" type="Label" parent="."]
+margin_left = 41.0
+margin_top = 108.0
+margin_right = 271.0
+margin_bottom = 149.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.101961, 0.113725, 0.113725, 1 )
+text = "Master volume: "
+
+[node name="Master" type="HSlider" parent="."]
+margin_left = 342.0
+margin_top = 112.0
+margin_right = 598.0
+margin_bottom = 144.0
+custom_styles/slider = SubResource( 1 )
+custom_styles/grabber_area = SubResource( 2 )
+
+[node name="MusicLabel" type="Label" parent="."]
+margin_left = 41.0
+margin_top = 164.0
+margin_right = 271.0
+margin_bottom = 205.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.101961, 0.113725, 0.113725, 1 )
+text = "Music volume:"
+
+[node name="Music" type="HSlider" parent="."]
+margin_left = 342.0
+margin_top = 168.0
+margin_right = 598.0
+margin_bottom = 200.0
+custom_styles/slider = SubResource( 1 )
+custom_styles/grabber_area = SubResource( 2 )
+
+[node name="SFXLabel" type="Label" parent="."]
+margin_left = 41.0
+margin_top = 220.0
+margin_right = 312.0
+margin_bottom = 261.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.101961, 0.113725, 0.113725, 1 )
+text = "Sound FX volume:"
+
+[node name="SFX" type="HSlider" parent="."]
+margin_left = 342.0
+margin_top = 224.0
+margin_right = 598.0
+margin_bottom = 256.0
+custom_styles/slider = SubResource( 1 )
+custom_styles/grabber_area = SubResource( 2 )
+
+[node name="AmbianceLabel" type="Label" parent="."]
+margin_left = 41.0
+margin_top = 276.0
+margin_right = 271.0
+margin_bottom = 317.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.101961, 0.113725, 0.113725, 1 )
+text = "Ambiance volume:"
+
+[node name="Ambiance" type="HSlider" parent="."]
+margin_left = 342.0
+margin_top = 280.0
+margin_right = 598.0
+margin_bottom = 312.0
+custom_styles/slider = SubResource( 1 )
+custom_styles/grabber_area = SubResource( 2 )
+
+[node name="Back" type="Label" parent="."]
+margin_left = 225.944
+margin_top = 327.31
+margin_right = 391.944
+margin_bottom = 363.31
+mouse_filter = 0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.101961, 0.113725, 0.113725, 1 )
+text = "Back to menu"
+[connection signal="visibility_changed" from="." to="." method="_on_Options_visibility_changed"]
+[connection signal="toggled" from="FullScreen" to="." method="_on_FullScreen_toggled"]
+[connection signal="value_changed" from="Master" to="." method="_on_Master_value_changed"]
+[connection signal="value_changed" from="Music" to="." method="_on_Music_value_changed"]
+[connection signal="value_changed" from="SFX" to="." method="_on_SFX_value_changed"]
+[connection signal="value_changed" from="Ambiance" to="." method="_on_Ambiance_value_changed"]
+[connection signal="mouse_entered" from="Back" to="." method="_on_Back_mouse_entered"]
+[connection signal="mouse_exited" from="Back" to="." method="_on_Back_mouse_exited"]

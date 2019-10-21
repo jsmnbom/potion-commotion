@@ -10,6 +10,8 @@ var greenhouse_tooltip = 'Click to go back to your greenhouse!'
 
 var greenhouse_active = true
 
+var selected_item = null
+
 var main_rect = Rect2(Vector2(32, 32), Vector2(1355, 1080-32-32))
 var sub_rect = Rect2(Vector2(32+1355+32, 32), Vector2(1920-(32+1355+32+32), 352))
 
@@ -17,30 +19,34 @@ func _ready():
 	Events.connect('mouse_area', self, '_on_mouse_area')
 	$ViewportTween.connect('tween_completed', self, '_on_tween_complete')
 	Events.connect('show_achievements', self, '_on_show_achievements')
-	get_tree().get_root().call_deferred('add_child', preload('res://Main/MouseHelper.tscn').instance())
 
 	Events.connect('save_game', self, 'save_game')
 	Events.connect('load_game', self, 'load_game')
 	
-	brewing_viewport_container.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	Events.connect('inventory_item', self, '_on_inventory_item')
 	
-	get_tree().set_auto_accept_quit(false)
+	brewing_viewport_container.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 
-func _notification(what):
-    if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
-        $QuitDialog.show()
+func _on_inventory_item(msg):
+	match(msg):
+		{'selected': var item}:
+			selected_item = item
+		{'deselected': true}:
+			selected_item = null
+
+func ui_cancel():
+	if $Achievements.visible:
+		Events.emit_signal('show_achievements', false)
+		return true
+	elif $Journal.visible:
+		Events.emit_signal('show_journal', false)
+		return true
+	elif selected_item:
+		Events.emit_signal('inventory_deselect')
+		return true
+	return false
 
 func _input(event):
-	if event.is_action_pressed("ui_cancel"):
-		if $QuitDialog.visible:
-			$QuitDialog.hide()
-		else:
-			if $Achievements.visible:
-				Events.emit_signal('show_achievements', false)
-			elif $Journal.visible:
-				Events.emit_signal('show_journal', false)
-			else:
-				Events.emit_signal('inventory_deselect')
 	if event.is_action_pressed("ui_quit"):
 		get_tree().quit()
 	if event.is_action_pressed("ui_save"):
