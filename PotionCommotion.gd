@@ -53,6 +53,9 @@ func _on_continue_game():
 		var new_game = Game.instance()
 		game = new_game
 		add_child_below_node($MainMenu, new_game)
+		Events.emit_signal('load_game')
+		$MouseHelper.show()
+		$MainMenu.hide()
 
 func _on_exit_confirm():
 	$QuitDialog.show()
