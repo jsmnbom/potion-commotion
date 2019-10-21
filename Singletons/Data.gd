@@ -293,8 +293,7 @@ func clear():
 		_AchievementTotal.new('total_items', 'Gain a total of %s items', [1000, 10000, 100000]),
 		_AchievementTotal.new('total_gems', 'Gain a total of %s gems', [1000, 300000, 1000000]),
 		_AchievementTotal.new('total_seeds', 'Gain a total of %s seeds', [100, 1000, 10000]),
-		# Feeds birds
-		# Book pages
+		_AchievementDiff.new('diff_pages', 'Collect all journal pages', [0, 0, 30], true),
 	]
 
 	unlocked_journal_pages = ['index']
@@ -463,6 +462,7 @@ class _Achievement:
 	var text
 	var steps
 	var value setget ,get_value
+	var big
 		
 	func get_value():
 		return 0
@@ -470,10 +470,11 @@ class _Achievement:
 class _AchievementTotal extends _Achievement:
 	var total = 0
 	
-	func _init(id, text, steps):
+	func _init(id, text, steps, big=false):
 		self.id = id
 		self.text = text
 		self.steps = steps
+		self.big = big
 
 	func get_value():
 		return self.total
@@ -481,10 +482,11 @@ class _AchievementTotal extends _Achievement:
 class _AchievementDiff extends _Achievement:
 	var seen = []
 	
-	func _init(id, text, steps):
+	func _init(id, text, steps, big=false):
 		self.id = id
 		self.text = text
 		self.steps = steps
+		self.big = big
 
 	func get_value():
 		return seen.size()

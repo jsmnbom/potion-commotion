@@ -12,7 +12,7 @@ size = 30
 extra_spacing_space = -5
 font_data = ExtResource( 2 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 240, 16 )
 
 [sub_resource type="DynamicFont" id=3]
@@ -55,7 +55,7 @@ collision_layer = 4096
 
 [node name="Collision" type="CollisionShape2D" parent="BarArea"]
 position = Vector2( 256, 32 )
-shape = SubResource( 2 )
+shape = SubResource( 4 )
 
 [node name="Progress" type="TextureProgress" parent="."]
 modulate = Color( 0, 0, 0, 0.588235 )
@@ -77,7 +77,7 @@ custom_colors/font_color = Color( 1, 1, 1, 1 )
 align = 1
 valign = 1
 
-[node name="NinePatchRect" type="NinePatchRect" parent="."]
+[node name="Border" type="NinePatchRect" parent="."]
 margin_top = 48.0
 margin_right = 512.0
 margin_bottom = 112.0

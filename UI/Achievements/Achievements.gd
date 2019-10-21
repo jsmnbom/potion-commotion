@@ -21,8 +21,10 @@ func _ready():
 				data.total = 150
 		var achievement_node = Achievement.instance()
 		achievement_node.set_data(data)
-		achievement_node.rect_position = Vector2(360+56,180+24)+Vector2((512+64)*floor(i/4), (112+24)*(i%4))
+		achievement_node.rect_position = Vector2(360+56,180+24)+Vector2((512+64)*floor(i%2), (112+24)*floor(i/2))
 		achievement_node.get_node('BarTexture').texture = bar_texture
+		if data.big:
+			achievement_node.make_big()
 		add_child(achievement_node)
 		achievements[data.id] = [data, achievement_node]
 

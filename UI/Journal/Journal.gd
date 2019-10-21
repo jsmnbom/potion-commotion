@@ -166,3 +166,5 @@ func _on_unlock_journal_page(msg):
 		
 	update_index()
 	sort_unlocked_pages()
+
+	Events.emit_signal('achievement', {'diff_id': 'diff_pages', 'diff_add': page_id})

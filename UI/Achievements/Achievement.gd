@@ -14,6 +14,17 @@ func _ready():
 
 	set_value(0)
 
+func make_big():
+	for node in [self, $Border, $Text]:
+		node.rect_size.x = node.rect_size.x * 2 + 64
+	for node in [$BarTexture, $Progress, $ProgressLabel]:
+		node.rect_size.x = node.rect_size.x * 2 + 64 + 32
+	
+	$BarArea/Collision.position.x = $Border.rect_size.x / 2
+	$BarArea/Collision.shape = $BarArea/Collision.shape.duplicate()
+	$BarArea/Collision.shape.extents.x = $BarArea/Collision.shape.extents.x * 2 + 48
+	
+
 func set_data(data):
 	raw_text = data.text.replace(' ', '  ')
 	steps = data.steps
@@ -45,7 +56,10 @@ func set_value(_value):
 
 	$Progress.value = 100 - (progress * 100)
 	
-	$Text.set_text(raw_text % Utils.format_number(goal))
+	var text = raw_text
+	if '%s' in text:
+		text = text % Utils.format_number(goal)
+	$Text.set_text(text)
 
 
 func _on_mouse_area(msg):
