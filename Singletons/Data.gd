@@ -250,14 +250,14 @@ func clear():
 			Selling"""
 		), _InventoryPotion.new('poison',
 			'Poison',
-			['nightshade', 'nightshade', 'nightshade', 'hydroangea', 'hydroangea'],
+			['nightshade', 'nightshade', 'nightshade', 'nightshade', 'hydroangea'],
 			'Poisons plants. Whyever would you wanna do that??',
 			"""
 			Use:
 			Selling"""
 		), _InventoryPotion.new('gardening',
 			'Gardening',
-			['weeds', 'weeds', 'hydroangea', 'frost', 'ash'],
+			['weeds', 'weeds', 'weeds', 'hydroangea', 'hydroangea'],
 			'Makes plants grow even when infested with weeds.',
 			"""
 			Use:
