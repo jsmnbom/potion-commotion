@@ -56,3 +56,6 @@ signal exit_confirm_close
 signal unlock_journal
 # {'id': var page_id}:
 signal unlock_journal_page(msg)
+
+# float
+signal add_luck(x)

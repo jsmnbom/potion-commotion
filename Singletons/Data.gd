@@ -301,6 +301,8 @@ func clear():
 
 	time = 9*60
 
+	luck = 0.0
+
 	inventory_by_id = {
 		'seed': {},
 		'resource': {},
@@ -500,3 +502,5 @@ var unlocked_journal_pages
 var time
 
 var player_name
+
+var luck

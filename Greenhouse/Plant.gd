@@ -397,7 +397,7 @@ func _on_mouse_area(msg):
 						'id': drop,
 						'animated': true,
 						'from_position': position,
-						'count': Utils.rng_choose([1,1,2])
+						'count': round(Utils.rng_choose([1,1,2])*(1+Data.luck))
 					})
 					reset()
 					Utils.set_custom_cursor('sickle', null)
@@ -417,7 +417,7 @@ func _on_mouse_area(msg):
 						'id': plant,
 						'animated': true,
 						'from_position': position,
-						'count': Utils.rng_choose([2,2,3,3,4])
+						'count': round(Utils.rng_choose([2,2,3,3,4])*(1+Data.luck))
 					})
 					reset()
 				elif (planted and progress >= 100) or weeds:

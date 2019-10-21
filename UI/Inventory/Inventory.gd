@@ -124,28 +124,32 @@ func add_item_animated(item, node, from_position, count):
 	root.add_child(tween)
 
 	from_position += Vector2(32, 32)
-	
-	var sprite = Sprite.new()
-	sprite.texture = item.get_scaled_res(48, 48)
-	sprite.position = from_position
-	sprite.name = item.id
-	# TODO: Is this good?
-	sprite.modulate.a = 0.75
-	tween.add_child(sprite)
-	
-	var end_position = (node.get_node('Texture').get_global_rect().position +
-		(node.get_node('Texture').rect_size / 2))
-	
-	tween.interpolate_property(sprite, 'position',
-		from_position, end_position, 1,
-		Tween.TRANS_QUART, Tween.EASE_IN_OUT)
-	tween.connect('tween_all_completed', self, '_on_add_item_tween_complete',
-			[node, item, tween, count])
+
+	for i in range(count):
+		var sprite = Sprite.new()
+		sprite.texture = item.get_scaled_res(48, 48)
+		sprite.position = from_position
+		sprite.name = item.id
+		sprite.modulate.a = 0.85
+		sprite.hide()
+		tween.add_child(sprite)
+		
+		var end_position = (node.get_node('Texture').get_global_rect().position +
+			(node.get_node('Texture').rect_size / 2))
+		
+		tween.interpolate_callback(self, 0.2*i, 'show_sprite', sprite)
+		tween.interpolate_property(sprite, 'position',
+			from_position, end_position, 1,
+			Tween.TRANS_QUART, Tween.EASE_IN_OUT, 0.2*i)
+		tween.interpolate_callback(self, 1+0.2*i, 'add_item', item, node, 1)
+	tween.connect('tween_all_completed', self, '_on_add_item_tween_complete', [tween])
 	tween.start()
 
-func _on_add_item_tween_complete(node, item, tween, count):
-	add_item(item, node, count)
-	tween.get_parent().remove_child(tween)
+func _on_add_item_tween_complete(tween):
+	tween.queue_free()
+
+func show_sprite(sprite):
+	sprite.show()
 
 func serialize():
 	var data = {

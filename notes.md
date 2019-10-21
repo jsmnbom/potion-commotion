@@ -30,14 +30,11 @@ Need mabel
     Get new recipes from Mabel
 
 Sick plants - Healing potion?
-Luck
-Fortune potion
 Fix potion sell prices
 Rain?
 Stats?
 Brewing bg
 Clock?
-Cap items to 100
 Harder achevements
 Unify colours of elements and text
 Fix savegame
