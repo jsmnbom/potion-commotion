@@ -69,7 +69,7 @@ func reset():
 
 	dry_timer.paused = true
 	
-	plant_sprite.z_index = 1
+	plant_sprite.z_index = 2
 
 	if should_dry_out:
 		should_dry_out = false
@@ -152,20 +152,22 @@ func tick():
 			$SleepParticles.emitting = false
 		else:
 			$SleepParticles.emitting = true
+			return
 		return
 	if plant in day_plants:
 		if Utils.is_day():
 			$SleepParticles.emitting = false
 		else:
 			$SleepParticles.emitting = true
-		return
+			return
+		
 	
 	var plantStage = int(progress / 25);
 	if not prev_plant_stage == plantStage:
 		plant_sprite.region_rect.position.x = plantStage * 128
 		
 		if plantStage > 0:
-			plant_sprite.z_index = 3
+			plant_sprite.z_index = 5
 
 		for i in range(plant_area.get_children().size()-1, 0, -1 ):
 			plant_area.remove_child(plant_area.get_child(i))

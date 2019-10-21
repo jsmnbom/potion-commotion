@@ -11,5 +11,6 @@ func _on_click():
 	Events.emit_signal('show_journal', true)
 	
 func _on_unlock_journal():
+	show()
 	popin()
 	

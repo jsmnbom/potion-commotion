@@ -11,7 +11,7 @@ var last_pos
 var jumping = false
 var flying = false
 
-var page_node = null
+var page_node_ref = null
 var is_offscreen = true
 
 func random_pos():
@@ -32,7 +32,6 @@ func _ready():
 	$Sprite.frame = 0
 	
 	
-	
 func random_goal():
 	goal_pos = Vector2(
 		Utils.rng.randf_range(bounding_box.position.x, bounding_box.position.x + bounding_box.size.x),
@@ -45,9 +44,11 @@ func random_goal():
 	
 	
 func _physics_process(delta):
-	if page_node != null:
-		if page_node.get_ref():
-			page_node.get_ref().position = position + Vector2(0,32)
+	if page_node_ref != null:
+		var page_node = page_node_ref.get_ref()
+		if page_node:
+			page_node.position = position + Vector2(0,32)
+			page_node.z_index = 6
 	
 	if not jumping and not flying and not is_offscreen:
 		jump_wait += 1
@@ -81,7 +82,7 @@ func stop_jumping():
 		
 
 func fetch_page(node):
-	page_node = weakref(node)
+	page_node_ref = weakref(node)
 	flying = true
 	
 	var offscreen_pos
@@ -103,7 +104,7 @@ func fetch_page(node):
 	else:
 		scale.x = 1
 	
-	z_index = 6
+	z_index = 7
 	
 	if is_offscreen:
 		midway()
@@ -122,12 +123,15 @@ func fetch_page(node):
 func midway():
 	scale.x *= -1
 	
-	page_node.get_ref().show()
+	page_node_ref.get_ref().show()
 	
 func stop_flying():
 	flying = false
 	$AnimationPlayer.stop()
 	$Sprite.frame = 0
-	z_index = 2
-	page_node = null
+	z_index = 4
+	var page_node = page_node_ref.get_ref()
+	if page_node:
+		page_node.z_index = 3
+	page_node_ref = null
 	

@@ -29,6 +29,7 @@ func get_plants():
 func _init():
     var plants = get_plants()
     for plant in plants:
+        print(plant)
         var original_img = get_scaled_img('res://assets/plants/originals/%s.png' % plant, 320, 128)
         var original_rect = Rect2(Vector2(0,0), original_img.get_size())
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/star.png-9e3065734b9c475db4a63278bacb3f9b.stex"
+path="res://.import/page_starflower.png-9d351ce691dd50445197bb0cbdb73e11.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/journal_items/star.png"
-dest_files=[ "res://.import/star.png-9e3065734b9c475db4a63278bacb3f9b.stex" ]
+source_file="res://assets/journal_items/page_starflower.png"
+dest_files=[ "res://.import/page_starflower.png-9d351ce691dd50445197bb0cbdb73e11.stex" ]
 
 [params]
 

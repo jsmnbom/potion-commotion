@@ -1,5 +1,15 @@
 # Potion commotion
 
+## Z-indexes
+
+0 fields
+2 seeds + weeds
+3 birbpages
+4 birbs
+5 plants
+6 birbpage - flying
+7 birb - flying
+
 ## Maybe
 
 Potion of dealing
@@ -14,14 +24,12 @@ Better brewing (like spefic rules for some potions)
 ## TODO
 
 Need mabel
-    Midnight/Sunlight potion sprites
     Sounds
     Music
-    Better lucky clover plant sprite
     Mandrake - harvested during day runs away - ???
     Get new recipes from Mabel
-    Fix star flower seed sprite
-    Get book sprite from mabel
+
+    Midnight/sunlight journal page icons
 
 Sick plants - Healing potion?
 Luck
@@ -33,8 +41,7 @@ Brewing bg
 Clock?
 Cap items to 100
 Harder achevements
-Name entry
 Unify colours of elements and text
 Fix savegame
 Hotkeys
-
+Journal page icons for text pages

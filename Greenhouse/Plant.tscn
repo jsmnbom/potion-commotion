@@ -68,13 +68,14 @@ shape = SubResource( 1 )
 
 [node name="PlantSprite" type="Sprite" parent="."]
 position = Vector2( 0, -64 )
-z_index = 5
+z_index = 2
 z_as_relative = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 128, 256 )
 
 [node name="WeedsSprite" type="Sprite" parent="."]
-z_index = 5
+z_index = 2
+z_as_relative = false
 
 [node name="GrowTimer" type="Timer" parent="."]
 wait_time = 0.06

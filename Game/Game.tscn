@@ -119,6 +119,7 @@ margin_right = 128.0
 margin_bottom = 352.0
 
 [node name="JournalPopout" parent="." instance=ExtResource( 9 )]
+visible = false
 show_behind_parent = true
 margin_left = -288.0
 margin_top = 384.0

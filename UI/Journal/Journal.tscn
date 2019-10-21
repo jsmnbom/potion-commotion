@@ -121,6 +121,7 @@ text = "The cauldron #3"
 text = ""
 
 [node name="Forward" type="TextureRect" parent="."]
+visible = false
 margin_left = 1184.93
 margin_top = 847.277
 margin_right = 1248.93
@@ -137,6 +138,7 @@ collision_layer = 4096
 polygon = PoolVector2Array( -1.93201, -7.8855, 15.917, -7.8855, 76.2417, 28.2642, 16.3688, 66.4473, -2.38379, 65.5436, -3.96533, 47.0168, 13.8835, 30.9754, -4.41724, 12.4487 )
 
 [node name="Back" type="TextureRect" parent="."]
+visible = false
 margin_left = 739.065
 margin_top = 842.108
 margin_right = 803.065
@@ -158,6 +160,7 @@ collision_layer = 4096
 polygon = PoolVector2Array( -459.163, -9.49072, -513.559, 19.5048, -513.443, 29.8272, -458.351, 58.5908, -446.869, 58.9388, -446.869, 43.5131, -467.398, 25.1879, -446.057, 4.65906, -446.521, -9.37476 )
 
 [node name="Return" type="TextureRect" parent="."]
+visible = false
 margin_left = 1009.87
 margin_top = 842.811
 margin_right = 1105.87

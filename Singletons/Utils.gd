@@ -74,6 +74,8 @@ func set_custom_cursor(name, res, hotspot=null):
 	else:
 		Input.set_custom_mouse_cursor(res, Input.CURSOR_ARROW, hotspot)
 		custom_cursors[name] = [res, hotspot]
+		while name in custom_cursor_stack:
+			custom_cursor_stack.erase(name)
 		custom_cursor_stack.append(name)
 
 func set_cursor_arrow():

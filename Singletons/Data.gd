@@ -8,8 +8,6 @@ func _init():
 	var file = File.new()
 	file.open("res://assets/plants/hitboxes.bin", File.READ)
 	_plant_hitboxes = file.get_var()
-
-	_calculate_potion_prices()
 	
 func clear():
 	plants = {
@@ -311,6 +309,8 @@ func clear():
 
 	for item in inventory:
 		inventory_by_id[item.type][item.id] = item
+
+	_calculate_potion_prices()
 
 func _calculate_potion_prices():
 	for potion_id in inventory_by_id['potion']:

@@ -74,6 +74,7 @@ func _ready():
 	
 	update_index()
 	show_page(current_page)
+	_on_show_journal(false)
 
 func _on_mouse_area(msg):
 	match msg:
@@ -155,7 +156,8 @@ func _on_show_journal(show):
 		show_page(current_page)
 		show()
 	else:
-		hide()
+		for node in [self, $Forward, $Return, $Back]:
+			node.hide()
 
 func _on_unlock_journal_page(msg):
 	var page_id = msg['id']

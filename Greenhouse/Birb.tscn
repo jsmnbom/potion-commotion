@@ -28,7 +28,7 @@ tracks/0/keys = {
 }
 
 [node name="Birb" type="Node2D"]
-z_index = 2
+z_index = 4
 z_as_relative = false
 script = ExtResource( 1 )
 
