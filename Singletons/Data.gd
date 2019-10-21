@@ -149,7 +149,7 @@ func clear():
 			Use:
 			On a dried out field
 			""",
-			2
+			5
 		), _InventoryPotion.new('ice',
 			'Ice',
 			['cool_beans', 'cool_beans', 'cool_beans', 'cool_beans', 'cool_beans'],
@@ -339,9 +339,11 @@ func _calculate_potion_prices():
 			elif sell_price < 1000:
 				sell_price = stepify(sell_price, 10)
 			elif sell_price < 10000:
-				sell_price = stepify(sell_price, 50)
+				sell_price = stepify(sell_price, 100)
 			elif sell_price < 100000:
 				sell_price = stepify(sell_price, 1000)
+			else:
+				sell_price = stepify(sell_price, 25000)
 			potion.sell_price = sell_price
 		else:
 			potion.sell_price = potion.sell_price_overwrite

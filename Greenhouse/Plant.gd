@@ -153,7 +153,6 @@ func tick():
 		else:
 			$SleepParticles.emitting = true
 			return
-		return
 	if plant in day_plants:
 		if Utils.is_day():
 			$SleepParticles.emitting = false
@@ -161,6 +160,7 @@ func tick():
 			$SleepParticles.emitting = true
 			return
 		
+	progress += 1
 	
 	var plantStage = int(progress / 25);
 	if not prev_plant_stage == plantStage:
@@ -209,7 +209,6 @@ func _on_GrowTimer_timeout():
 		grow_timer.wait_time = next_grow_time
 		grow_timer.start()
 		next_grow_time = -1
-	progress += 1
 	tick()
 
 func set_weeds():

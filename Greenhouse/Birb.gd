@@ -48,7 +48,7 @@ func _physics_process(delta):
 		var page_node = page_node_ref.get_ref()
 		if page_node:
 			page_node.position = position + Vector2(0,32)
-			page_node.z_index = 6
+			page_node.z_index = 7
 	
 	if not jumping and not flying and not is_offscreen:
 		jump_wait += 1
@@ -105,7 +105,7 @@ func fetch_page(node):
 	else:
 		scale.x = 1
 	
-	z_index = 7
+	z_index = 8
 	
 	if is_offscreen:
 		midway()

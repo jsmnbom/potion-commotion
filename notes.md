@@ -7,8 +7,9 @@
 3 birbpages
 4 birbs
 5 plants
-6 birbpage - flying
-7 birb - flying
+6 plant particles
+7 birbpage - flying
+8 birb - flying
 
 ## Maybe
 
@@ -31,7 +32,6 @@ Need mabel
     Sounds
     Music
 
-Fix potion sell prices
 Brewing bg
 Harder achevements
 Unify colours of elements and text
