@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://MainMenu/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/main_menu/bg.png" type="Texture" id=2]
@@ -11,12 +11,13 @@
 [ext_resource path="res://MainMenu/Options.tscn" type="PackedScene" id=9]
 [ext_resource path="res://MainMenu/HowToPlay.tscn" type="PackedScene" id=10]
 [ext_resource path="res://MainMenu/NameEntry.tscn" type="PackedScene" id=11]
-[ext_resource path="res://assets/ui/main_menu/potion0.png" type="Texture" id=12]
-[ext_resource path="res://assets/ui/main_menu/potion1.png" type="Texture" id=13]
-[ext_resource path="res://assets/ui/main_menu/potion2.png" type="Texture" id=14]
-[ext_resource path="res://assets/ui/main_menu/potion3.png" type="Texture" id=15]
-[ext_resource path="res://assets/ui/main_menu/potion4.png" type="Texture" id=16]
-[ext_resource path="res://assets/ui/main_menu/potion5.png" type="Texture" id=17]
+[ext_resource path="res://assets/ui/main_menu/crystal_eye_stalk.png" type="Texture" id=12]
+[ext_resource path="res://assets/ui/main_menu/potion0.png" type="Texture" id=13]
+[ext_resource path="res://assets/ui/main_menu/potion1.png" type="Texture" id=14]
+[ext_resource path="res://assets/ui/main_menu/potion2.png" type="Texture" id=15]
+[ext_resource path="res://assets/ui/main_menu/potion3.png" type="Texture" id=16]
+[ext_resource path="res://assets/ui/main_menu/potion4.png" type="Texture" id=17]
+[ext_resource path="res://assets/ui/main_menu/potion5.png" type="Texture" id=18]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 particles_animation = true
@@ -51,7 +52,7 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
+"frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -82,10 +83,10 @@ visibility_rect = Rect2( -2500, -1000, 1080, 10000 )
 process_material = SubResource( 2 )
 texture = ExtResource( 3 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+[node name="Title" type="AnimatedSprite" parent="."]
 position = Vector2( 965, 348 )
 frames = SubResource( 3 )
-frame = 3
+frame = 1
 playing = true
 
 [node name="ContinueButton" parent="." instance=ExtResource( 8 )]
@@ -152,10 +153,14 @@ margin_top = 688.0
 margin_right = 1216.0
 margin_bottom = 928.0
 
-[node name="AnimatedSprite2" type="AnimatedSprite" parent="."]
+[node name="CrystalStalkEye" type="Sprite" parent="."]
+position = Vector2( 1082, 142 )
+texture = ExtResource( 12 )
+
+[node name="Potion" type="AnimatedSprite" parent="."]
 position = Vector2( 508.341, 488.522 )
 frames = SubResource( 4 )
-frame = 3
+frame = 5
 playing = true
 [connection signal="visibility_changed" from="." to="." method="_on_MainMenu_visibility_changed"]
 [connection signal="pressed" from="ContinueButton" to="." method="_on_ContinueButton_pressed"]

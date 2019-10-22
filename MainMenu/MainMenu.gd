@@ -3,6 +3,9 @@ extends Control
 var has_game_opened = false
 
 onready var buttons = [$ContinueButton, $NewButton, $HowToPlayButton, $OptionsButton]
+onready var eye = $CrystalStalkEye
+onready var eye_middle = $CrystalStalkEye.position
+
 
 func _ready():
 	$ContinueButton/TextureRect.texture = Utils.get_scaled_res('res://assets/potions/hydration.png', 48, 48)
@@ -19,6 +22,11 @@ func _ready():
 	$HowToPlay/Back.connect('gui_input', self, '_on_HowToPlay_Back_gui_input')
 	$NameEntry/Cancel.connect('gui_input', self, '_on_NameEntry_Cancel_gui_input')
 	Events.connect('menu_new_game', self, '_on_menu_new_game')
+
+func _physics_process(delta):
+	if visible:
+		var mouse_pos = get_viewport().get_mouse_position()
+		eye.position = eye_middle + (mouse_pos - eye_middle).clamped(7)
 
 func hide_buttons():
 	for button in buttons:

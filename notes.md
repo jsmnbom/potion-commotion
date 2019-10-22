@@ -35,3 +35,4 @@ Need mabel
 
 Brewing bg
 Style the fullscreen checkbox
+Remove mouseover requirement from overlay
