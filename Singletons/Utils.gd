@@ -112,3 +112,8 @@ func is_day():
 		return true
 	elif (Data.time <= 21*60):
 		return true
+
+func get_global_position(local_position, viewport):
+	var container = viewport.get_parent()
+	var scale_factor = container.rect_size / viewport.size
+	return local_position * scale_factor + container.rect_position

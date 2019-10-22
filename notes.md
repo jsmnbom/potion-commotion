@@ -35,4 +35,4 @@ Need mabel
 
 Brewing bg
 Unify colours of elements and text
-When brewing and switch viewport potion appears over greenhouse
+Improve title screen (better animation)

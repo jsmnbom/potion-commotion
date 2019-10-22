@@ -158,6 +158,10 @@ func _on_show_journal(show):
 	else:
 		for node in [self, $Forward, $Return, $Back]:
 			node.hide()
+		for item in index_items1.get_children():
+			item.visible = false
+		for item in index_items2.get_children():
+			item.visible = false
 
 func _on_unlock_journal_page(msg):
 	var page_id = msg['id']

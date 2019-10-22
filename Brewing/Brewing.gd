@@ -71,9 +71,8 @@ func start_brewing():
         tween.interpolate_property(sprite, 'modulate:a',
                 1, 0, 0.5,
                 Tween.TRANS_QUART, Tween.EASE_IN_OUT, 1.5)
-    # TODO: Should end at 0.75 or 1? Depends on add_item_animated modulation
     tween.interpolate_property(potion_sprite, 'modulate:a',
-            0, 0.75, 0.5,
+            0, 0.85, 0.5,
             Tween.TRANS_QUART, Tween.EASE_IN_OUT, 1.5)
     tween.connect('tween_all_completed', self, '_on_brewing_complete',
             [potion, tween, potion_sprite])
@@ -83,7 +82,7 @@ func _on_brewing_complete(potion, tween, potion_sprite):
     potion_sprite.get_parent().remove_child(potion_sprite)
     tween.get_parent().remove_child(tween)
     ingredients = []
-    Events.emit_signal('inventory_add', {'type': 'potion', 'id': potion.id, 'animated': true, 'from_position': $Cauldron.position})
+    Events.emit_signal('inventory_add', {'type': 'potion', 'id': potion.id, 'animated': true, 'from_position': Utils.get_global_position($Cauldron.position, get_viewport())})
     Events.emit_signal('achievement', {'diff_id': 'diff_brew', 'diff_add': potion.id, 'total_id': 'total_brew', 'total_add': 1})
     ingredient_offset_size = 90
     for child in $Ingredients.get_children():

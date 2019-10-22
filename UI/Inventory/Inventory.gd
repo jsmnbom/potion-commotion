@@ -123,8 +123,6 @@ func add_item_animated(item, node, from_position, count):
 	var tween = Tween.new()
 	root.add_child(tween)
 
-	from_position += Vector2(32, 32)
-
 	for i in range(count):
 		var sprite = Sprite.new()
 		sprite.texture = item.get_scaled_res(48, 48)
@@ -137,11 +135,11 @@ func add_item_animated(item, node, from_position, count):
 		var end_position = (node.get_node('Texture').get_global_rect().position +
 			(node.get_node('Texture').rect_size / 2))
 		
-		tween.interpolate_callback(self, 0.2*i, 'show_sprite', sprite)
+		tween.interpolate_callback(self, 0.1*i, 'show_sprite', sprite)
 		tween.interpolate_property(sprite, 'position',
 			from_position, end_position, 1,
-			Tween.TRANS_QUART, Tween.EASE_IN_OUT, 0.2*i)
-		tween.interpolate_callback(self, 1+0.2*i, 'add_item', item, node, 1)
+			Tween.TRANS_QUART, Tween.EASE_IN_OUT, 0.1*i)
+		tween.interpolate_callback(self, 1+0.1*i, 'add_item', item, node, 1)
 	tween.connect('tween_all_completed', self, '_on_add_item_tween_complete', [tween])
 	tween.start()
 
