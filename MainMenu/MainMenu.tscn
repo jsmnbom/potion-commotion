@@ -160,7 +160,7 @@ texture = ExtResource( 12 )
 [node name="Potion" type="AnimatedSprite" parent="."]
 position = Vector2( 508.341, 488.522 )
 frames = SubResource( 4 )
-frame = 5
+frame = 2
 playing = true
 [connection signal="visibility_changed" from="." to="." method="_on_MainMenu_visibility_changed"]
 [connection signal="pressed" from="ContinueButton" to="." method="_on_ContinueButton_pressed"]
