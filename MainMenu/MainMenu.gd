@@ -23,6 +23,8 @@ func _ready():
 	$NameEntry/Cancel.connect('gui_input', self, '_on_NameEntry_Cancel_gui_input')
 	Events.connect('menu_new_game', self, '_on_menu_new_game')
 
+	$VersionLabel.text = Data.version
+
 func _physics_process(delta):
 	if visible:
 		var mouse_pos = get_viewport().get_mouse_position()

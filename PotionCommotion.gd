@@ -11,6 +11,8 @@ func _ready():
 	Events.connect('exit_confirm', self, '_on_exit_confirm')
 	Events.connect('exit_confirm_close', self, '_on_exit_confirm_close')
 
+	OS.set_window_title('Potion Commotion %s' % Data.version)
+
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
 		$QuitDialog.show()

@@ -1,6 +1,5 @@
 extends Control
 
-var TEX_OPEN = Utils.get_scaled_res('res://assets/ui/journal/opening.png', 28*2*4*30, 35*3*30)
 var IndexItem = preload('res://UI/Journal/IndexItem.tscn')
 var PagePlant = preload('res://UI/Journal/PagePlant.tscn')
 var PotionPage = preload('res://UI/Journal/PotionPage.tscn')

@@ -8,6 +8,10 @@ func _init():
 	var file = File.new()
 	file.open("res://assets/plants/hitboxes.bin", File.READ)
 	_plant_hitboxes = file.get_var()
+
+	var version_file = File.new()
+	version_file.open("res://VERSION", File.READ)
+	version = version_file.get_line()
 	
 func clear():
 	plants = {
@@ -512,3 +516,5 @@ var player_name
 var luck
 
 var play_time
+
+var version
