@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://MainMenu/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/main_menu/bg.png" type="Texture" id=2]
@@ -11,6 +11,12 @@
 [ext_resource path="res://MainMenu/Options.tscn" type="PackedScene" id=9]
 [ext_resource path="res://MainMenu/HowToPlay.tscn" type="PackedScene" id=10]
 [ext_resource path="res://MainMenu/NameEntry.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/ui/main_menu/potion0.png" type="Texture" id=12]
+[ext_resource path="res://assets/ui/main_menu/potion1.png" type="Texture" id=13]
+[ext_resource path="res://assets/ui/main_menu/potion2.png" type="Texture" id=14]
+[ext_resource path="res://assets/ui/main_menu/potion3.png" type="Texture" id=15]
+[ext_resource path="res://assets/ui/main_menu/potion4.png" type="Texture" id=16]
+[ext_resource path="res://assets/ui/main_menu/potion5.png" type="Texture" id=17]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 particles_animation = true
@@ -43,6 +49,14 @@ animations = [ {
 "speed": 1.5
 } ]
 
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -71,7 +85,7 @@ texture = ExtResource( 3 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 965, 348 )
 frames = SubResource( 3 )
-frame = 2
+frame = 3
 playing = true
 
 [node name="ContinueButton" parent="." instance=ExtResource( 8 )]
@@ -137,6 +151,12 @@ margin_left = 704.0
 margin_top = 688.0
 margin_right = 1216.0
 margin_bottom = 928.0
+
+[node name="AnimatedSprite2" type="AnimatedSprite" parent="."]
+position = Vector2( 508.341, 488.522 )
+frames = SubResource( 4 )
+frame = 3
+playing = true
 [connection signal="visibility_changed" from="." to="." method="_on_MainMenu_visibility_changed"]
 [connection signal="pressed" from="ContinueButton" to="." method="_on_ContinueButton_pressed"]
 [connection signal="pressed" from="NewButton" to="." method="_on_NewButton_pressed"]

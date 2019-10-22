@@ -34,4 +34,4 @@ Need mabel
     Music
 
 Brewing bg
-Improve title screen (better animation)
+Style the fullscreen checkbox
