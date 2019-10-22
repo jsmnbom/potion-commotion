@@ -65,6 +65,7 @@ position = Vector2( 660, 415 )
 collision_layer = 65536
 
 [node name="Collision" type="CollisionShape2D" parent="Area"]
+visible = false
 position = Vector2( 300, 125 )
 shape = SubResource( 2 )
 
@@ -74,19 +75,19 @@ margin_top = 446.648
 margin_right = 1184.74
 margin_bottom = 575.648
 custom_fonts/font = SubResource( 3 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0.384314, 0.286275, 0, 1 )
 text = "Would you like to
 save before exiting?"
 align = 1
 
 [node name="QuitWithSave" type="Label" parent="."]
 margin_left = 714.501
-margin_top = 592.954
+margin_top = 592.219
 margin_right = 928.501
-margin_bottom = 632.954
+margin_bottom = 632.219
 mouse_filter = 0
 custom_fonts/font = SubResource( 4 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0.564706, 0.447059, 0.101961, 1 )
 text = "Save then exit"
 
 [node name="Area" type="Area2D" parent="QuitWithSave" groups=[
@@ -106,7 +107,7 @@ margin_right = 1209.6
 margin_bottom = 631.954
 mouse_filter = 0
 custom_fonts/font = SubResource( 4 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0.564706, 0.447059, 0.101961, 1 )
 text = "Exit without saving"
 
 [node name="Area" type="Area2D" parent="QuitWithoutSave" groups=[

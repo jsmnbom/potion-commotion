@@ -5,21 +5,21 @@ func _ready():
 	pass
 	
 func _on_StartNewGame_mouse_entered():
-	$StartNewGame.add_color_override("font_color", Color('#c7a33b'))
+	$StartNewGame.add_color_override("font_color", Color('#dc51ca'))
 	$StartNewGame.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 
 
 func _on_StartNewGame_mouse_exited():
-	$StartNewGame.add_color_override("font_color", Color('1a1d1d'))
+	$StartNewGame.add_color_override("font_color", Color('#90721a'))
 	$StartNewGame.mouse_default_cursor_shape = Control.CURSOR_ARROW
 
 func _on_Cancel_mouse_entered():
-	$Cancel.add_color_override("font_color", Color('#c7a33b'))
+	$Cancel.add_color_override("font_color", Color('#dc51ca'))
 	$Cancel.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 
 
 func _on_Cancel_mouse_exited():
-	$Cancel.add_color_override("font_color", Color('1a1d1d'))
+	$Cancel.add_color_override("font_color", Color('#90721a'))
 	$Cancel.mouse_default_cursor_shape = Control.CURSOR_ARROW
 
 func _on_NameEntry_visibility_changed():

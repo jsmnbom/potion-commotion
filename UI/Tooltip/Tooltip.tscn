@@ -177,7 +177,7 @@ stretch_margin_right = 12
 stretch_margin_bottom = 12
 
 [node name="BG" type="TextureRect" parent="Progress"]
-modulate = Color( 0.286275, 0.603922, 0.580392, 1 )
+modulate = Color( 0.545098, 0.329412, 0.654902, 1 )
 show_behind_parent = true
 margin_left = 4.0
 margin_top = 4.0

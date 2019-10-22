@@ -22,7 +22,7 @@ margin_right = 292.0
 margin_bottom = 32.0
 mouse_filter = 2
 custom_fonts/normal_font = ExtResource( 1 )
-custom_colors/default_color = Color( 0.101961, 0.113725, 0.113725, 1 )
+custom_colors/default_color = Color( 0.564706, 0.447059, 0.101961, 1 )
 bbcode_enabled = true
 
 [node name="Area" type="Area2D" parent="." groups=[

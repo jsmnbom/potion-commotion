@@ -18,7 +18,7 @@ func _on_mouse_area(msg):
 					if mouse_over and left:
 						Events.emit_signal('exit_confirm_close')
 				else:
-					node.get_parent().add_color_override("font_color",  Color('#c7a33b') if mouse_over else Color.black)
+					node.get_parent().add_color_override("font_color",  Color('#dc51ca') if mouse_over else Color('#90721a'))
 					node.get_parent().mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND if mouse_over else Control.CURSOR_ARROW
 					if left:
 						if node == $QuitWithoutSave/Area:

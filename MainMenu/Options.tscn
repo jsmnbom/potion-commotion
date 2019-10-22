@@ -31,7 +31,7 @@ margin_top = 45.3268
 margin_right = 419.674
 margin_bottom = 86.3268
 custom_fonts/font = ExtResource( 3 )
-custom_colors/font_color = Color( 0.101961, 0.113725, 0.113725, 1 )
+custom_colors/font_color = Color( 0.384314, 0.286275, 0, 1 )
 text = "Fullscreen"
 
 [node name="FullScreen" type="CheckBox" parent="."]
@@ -47,7 +47,7 @@ margin_top = 108.0
 margin_right = 271.0
 margin_bottom = 149.0
 custom_fonts/font = ExtResource( 3 )
-custom_colors/font_color = Color( 0.101961, 0.113725, 0.113725, 1 )
+custom_colors/font_color = Color( 0.384314, 0.286275, 0, 1 )
 text = "Master volume: "
 
 [node name="Master" type="HSlider" parent="."]
@@ -64,7 +64,7 @@ margin_top = 164.0
 margin_right = 271.0
 margin_bottom = 205.0
 custom_fonts/font = ExtResource( 3 )
-custom_colors/font_color = Color( 0.101961, 0.113725, 0.113725, 1 )
+custom_colors/font_color = Color( 0.384314, 0.286275, 0, 1 )
 text = "Music volume:"
 
 [node name="Music" type="HSlider" parent="."]
@@ -81,7 +81,7 @@ margin_top = 220.0
 margin_right = 312.0
 margin_bottom = 261.0
 custom_fonts/font = ExtResource( 3 )
-custom_colors/font_color = Color( 0.101961, 0.113725, 0.113725, 1 )
+custom_colors/font_color = Color( 0.384314, 0.286275, 0, 1 )
 text = "Sound FX volume:"
 
 [node name="SFX" type="HSlider" parent="."]
@@ -98,7 +98,7 @@ margin_top = 276.0
 margin_right = 271.0
 margin_bottom = 317.0
 custom_fonts/font = ExtResource( 3 )
-custom_colors/font_color = Color( 0.101961, 0.113725, 0.113725, 1 )
+custom_colors/font_color = Color( 0.384314, 0.286275, 0, 1 )
 text = "Ambiance volume:"
 
 [node name="Ambiance" type="HSlider" parent="."]
@@ -116,7 +116,7 @@ margin_right = 391.944
 margin_bottom = 363.31
 mouse_filter = 0
 custom_fonts/font = ExtResource( 3 )
-custom_colors/font_color = Color( 0.101961, 0.113725, 0.113725, 1 )
+custom_colors/font_color = Color( 0.564706, 0.447059, 0.101961, 1 )
 text = "Back to menu"
 [connection signal="visibility_changed" from="." to="." method="_on_Options_visibility_changed"]
 [connection signal="toggled" from="FullScreen" to="." method="_on_FullScreen_toggled"]

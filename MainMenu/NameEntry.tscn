@@ -5,19 +5,19 @@
 [ext_resource path="res://assets/fonts/Courgette/Courgette-Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://assets/fonts/options.tres" type="DynamicFont" id=4]
 
-[sub_resource type="StyleBoxTexture" id=5]
+[sub_resource type="StyleBoxTexture" id=1]
 
 [sub_resource type="StyleBoxTexture" id=2]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=3]
 size = 50
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=4]
 size = 18
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=5]
 size = 40
 font_data = ExtResource( 3 )
 
@@ -36,10 +36,10 @@ margin_left = 92.2392
 margin_top = 97.5703
 margin_right = 418.239
 margin_bottom = 170.57
-custom_styles/focus = SubResource( 5 )
+custom_styles/focus = SubResource( 1 )
 custom_styles/normal = SubResource( 2 )
-custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 0.101961, 0.113725, 0.113725, 1 )
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.780392, 0.639216, 0.231373, 1 )
 align = 1
 max_length = 10
 placeholder_text = "Apprentice"
@@ -50,8 +50,8 @@ margin_left = 49.0931
 margin_top = 70.3226
 margin_right = 457.093
 margin_bottom = 93.3226
-custom_fonts/font = SubResource( 3 )
-custom_colors/font_color = Color( 0.101961, 0.113725, 0.113725, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.384314, 0.286275, 0, 1 )
 text = "Starting a new game will overwrite any save game."
 
 [node name="Label2" type="Label" parent="."]
@@ -59,8 +59,8 @@ margin_left = 49.0931
 margin_top = 23.2197
 margin_right = 462.093
 margin_bottom = 74.2197
-custom_fonts/font = SubResource( 4 )
-custom_colors/font_color = Color( 0.101961, 0.113725, 0.113725, 1 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.384314, 0.286275, 0, 1 )
 text = "Please enter your name"
 
 [node name="StartNewGame" type="Label" parent="."]
@@ -70,7 +70,7 @@ margin_right = 477.325
 margin_bottom = 214.704
 mouse_filter = 0
 custom_fonts/font = ExtResource( 4 )
-custom_colors/font_color = Color( 0.101961, 0.113725, 0.113725, 1 )
+custom_colors/font_color = Color( 0.564706, 0.447059, 0.101961, 1 )
 text = "Start new game"
 
 [node name="Cancel" type="Label" parent="."]
@@ -80,14 +80,15 @@ margin_right = 114.215
 margin_bottom = 214.04
 mouse_filter = 0
 custom_fonts/font = ExtResource( 4 )
-custom_colors/font_color = Color( 0.101961, 0.113725, 0.113725, 1 )
+custom_colors/font_color = Color( 0.564706, 0.447059, 0.101961, 1 )
 text = "Cancel"
 
 [node name="Line2D" type="Line2D" parent="."]
 position = Vector2( 108.161, 157.278 )
 points = PoolVector2Array( 2.62143, 1.16798, 293.2, 1.16798 )
 width = 5.0
-default_color = Color( 0.101961, 0.113725, 0.113725, 1 )
+default_color = Color( 0.564706, 0.447059, 0.101961, 1 )
+texture_mode = 117336080
 [connection signal="visibility_changed" from="." to="." method="_on_NameEntry_visibility_changed"]
 [connection signal="text_changed" from="LineEdit" to="." method="_on_LineEdit_text_changed"]
 [connection signal="text_entered" from="LineEdit" to="." method="_on_LineEdit_text_entered"]

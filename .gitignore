@@ -2,6 +2,10 @@ bin
 .sconsign.dblite
 *.obj
 
+### Krita files
+*.*~
+*.kra-autosave.kra
+
 ### Godot ###
 
 # Godot-specific ignores

@@ -14,7 +14,7 @@ script = ExtResource( 1 )
 margin_right = 576.0
 margin_bottom = 42.0
 custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.101961, 0.113725, 0.113725, 1 )
+custom_colors/font_color = Color( 0.384314, 0.286275, 0, 1 )
 text = "Potion of"
 align = 1
 
@@ -23,7 +23,7 @@ margin_top = 42.0
 margin_right = 576.0
 margin_bottom = 106.0
 custom_fonts/font = ExtResource( 3 )
-custom_colors/font_color = Color( 0.101961, 0.113725, 0.113725, 1 )
+custom_colors/font_color = Color( 0.384314, 0.286275, 0, 1 )
 align = 1
 valign = 1
 
@@ -32,7 +32,7 @@ margin_top = 108.0
 margin_right = 448.0
 margin_bottom = 612.0
 custom_fonts/font = ExtResource( 4 )
-custom_colors/font_color = Color( 0.101961, 0.113725, 0.113725, 1 )
+custom_colors/font_color = Color( 0.384314, 0.286275, 0, 1 )
 autowrap = true
 
 [node name="Preview" type="Sprite" parent="."]

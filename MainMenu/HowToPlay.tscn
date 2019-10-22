@@ -26,7 +26,7 @@ margin_right = 608.0
 margin_bottom = 362.0
 rect_clip_content = false
 custom_fonts/normal_font = SubResource( 1 )
-custom_colors/default_color = Color( 0.101961, 0.113725, 0.113725, 1 )
+custom_colors/default_color = Color( 0.384314, 0.286275, 0, 1 )
 bbcode_enabled = true
 bbcode_text = "[color=#dc51ca]Click[/color] on a plant to harvest it.
 [color=#dc51ca]Left click[/color] to pick items up.
@@ -46,7 +46,7 @@ margin_right = 391.944
 margin_bottom = 363.31
 mouse_filter = 0
 custom_fonts/font = ExtResource( 4 )
-custom_colors/font_color = Color( 0.101961, 0.113725, 0.113725, 1 )
+custom_colors/font_color = Color( 0.564706, 0.447059, 0.101961, 1 )
 text = "Back to menu"
 [connection signal="visibility_changed" from="." to="." method="_on_HowToPlay_visibility_changed"]
 [connection signal="mouse_entered" from="Back" to="." method="_on_Back_mouse_entered"]

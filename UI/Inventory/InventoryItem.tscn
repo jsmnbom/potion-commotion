@@ -3,7 +3,7 @@
 [ext_resource path="res://assets/ui/inventory_item_frame.png" type="Texture" id=1]
 [ext_resource path="res://assets/ui/inventory_item_count_frame.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 32 )
 
 [node name="InventoryItem" type="Control"]
@@ -35,7 +35,7 @@ texture = ExtResource( 2 )
 margin_top = 8.0
 margin_right = 56.0
 margin_bottom = 58.0
-custom_colors/font_color = Color( 0.780392, 0.639216, 0.231373, 1 )
+custom_colors/font_color = Color( 0.384314, 0.286275, 0, 1 )
 text = "100"
 align = 2
 valign = 2
@@ -44,4 +44,4 @@ valign = 2
 
 [node name="Collision" type="CollisionShape2D" parent="Area"]
 position = Vector2( 32, 32 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )

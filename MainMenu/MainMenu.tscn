@@ -71,6 +71,7 @@ texture = ExtResource( 3 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 965, 348 )
 frames = SubResource( 3 )
+frame = 2
 playing = true
 
 [node name="ContinueButton" parent="." instance=ExtResource( 8 )]

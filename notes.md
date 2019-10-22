@@ -34,5 +34,4 @@ Need mabel
     Music
 
 Brewing bg
-Unify colours of elements and text
 Improve title screen (better animation)
