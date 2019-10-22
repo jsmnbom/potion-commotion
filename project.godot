@@ -17,6 +17,7 @@ _global_script_class_icons={
 
 config/name="PotionCommotion"
 run/main_scene="res://PotionCommotion.tscn"
+boot_splash/image="res://assets/ui/boot_splash.png"
 config/icon="res://icon.png"
 
 [autoload]
@@ -28,6 +29,7 @@ Events="*res://Singletons/Events.gd"
 
 [debug]
 
+settings/crash_handler/message="Please"
 gdscript/warnings/enable=false
 gdscript/warnings/unused_variable=false
 gdscript/warnings/unused_class_variable=false

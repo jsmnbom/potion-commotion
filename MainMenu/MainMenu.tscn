@@ -90,6 +90,7 @@ frame = 1
 playing = true
 
 [node name="ContinueButton" parent="." instance=ExtResource( 8 )]
+editor/display_folded = true
 margin_left = 768.0
 margin_top = 576.0
 margin_right = 1152.0
@@ -160,7 +161,7 @@ texture = ExtResource( 12 )
 [node name="Potion" type="AnimatedSprite" parent="."]
 position = Vector2( 508.341, 488.522 )
 frames = SubResource( 4 )
-frame = 2
+frame = 3
 playing = true
 [connection signal="visibility_changed" from="." to="." method="_on_MainMenu_visibility_changed"]
 [connection signal="pressed" from="ContinueButton" to="." method="_on_ContinueButton_pressed"]
