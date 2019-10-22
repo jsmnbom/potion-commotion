@@ -27,12 +27,22 @@ Clock
 Rain
 Harder achevements (after playtesting)
 
+## Sound
+
+Sounds
+    Plant harvested
+    Potion ingredient added
+    Potion brewed
+    Bird flying in?
+    On button hover?
+Ambiance
+    Outdoors
+    Brewing basement
+Music
+
 ## TODO
 
-Need mabel
-    Sounds
-    Music
-
+Sound
 Brewing bg
 Style the fullscreen checkbox
 Remove mouseover requirement from overlay
