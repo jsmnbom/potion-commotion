@@ -67,11 +67,11 @@ func _on_Timer_timeout():
 		
 	var page_id = Utils.rng_choose(missing)
 	for birb in [$Birb1, $Birb2]:
-		if birb.is_offscreen:
+		if birb.is_offscreen and not birb.flying:
 			birb_fetch_page(birb, page_id)
 			return
 	for birb in [$Birb1, $Birb2]:
-		if not birb.flying:
+		if not birb.flying and not birb.is_offscreen:
 			birb_fetch_page(birb, page_id)
 			return
 

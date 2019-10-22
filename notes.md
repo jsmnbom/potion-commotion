@@ -26,6 +26,7 @@ Mandrake - harvested during day runs away
 Clock
 Rain
 Harder achevements (after playtesting)
+Poison potion makes everything wonky
 
 ## Sound
 
