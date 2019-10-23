@@ -7,8 +7,6 @@ var selected_potion = null
 
 var GemParticles = preload('res://Greenhouse/GemParticles.tscn')
 
-var day_duration = 20*60
-
 func _ready():
 	if Debug.WEEDS:
 		weed_wait_min = 5
@@ -17,9 +15,9 @@ func _ready():
 	$WeedsTimer.start()
 	
 	if Debug.FAST_DAY:
-		day_duration = 30
+		Data.day_duration = 30
 
-	$DayTimer.wait_time = float(day_duration) / (24.0*60)
+	$DayTimer.wait_time = float(Data.day_duration) / (24.0*60)
 	$DayTimer.start()
 	_on_DayTimer_timeout()
 
@@ -103,9 +101,7 @@ func _on_DayTimer_timeout():
 			t = range_lerp(float(Data.time), 13.5*60, 18*60, 1, 0.8)
 	elif (Data.time <= 21*60):
 		t = range_lerp(float(Data.time), 18*60, 21*60, 0.8, 0.2)
-	#prints(Data.time, t)
 	modulate = NIGHT.linear_interpolate(DAY, t)
 
 	for plant in $Plants.get_children():
 		plant.light.energy = 1 - t
-	#print(modulate)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Game/Game.gd" type="Script" id=1]
 [ext_resource path="res://assets/grass.png" type="Texture" id=2]
@@ -11,11 +11,12 @@
 [ext_resource path="res://UI/Journal/JournalPopout.tscn" type="PackedScene" id=9]
 [ext_resource path="res://UI/Achievements/AchievementsPopout.tscn" type="PackedScene" id=10]
 [ext_resource path="res://UI/SavePopout/SavePopout.tscn" type="PackedScene" id=11]
-[ext_resource path="res://UI/MenuPopout/MenuPopout.tscn" type="PackedScene" id=12]
-[ext_resource path="res://UI/Tooltip/Tooltip.tscn" type="PackedScene" id=13]
-[ext_resource path="res://UI/Achievements/Achievements.tscn" type="PackedScene" id=14]
-[ext_resource path="res://UI/Journal/Journal.tscn" type="PackedScene" id=15]
-[ext_resource path="res://assets/fonts/Courgette/Courgette-Regular.ttf" type="DynamicFontData" id=16]
+[ext_resource path="res://UI/Clock/Clock.tscn" type="PackedScene" id=12]
+[ext_resource path="res://UI/MenuPopout/MenuPopout.tscn" type="PackedScene" id=13]
+[ext_resource path="res://UI/Tooltip/Tooltip.tscn" type="PackedScene" id=14]
+[ext_resource path="res://UI/Achievements/Achievements.tscn" type="PackedScene" id=15]
+[ext_resource path="res://UI/Journal/Journal.tscn" type="PackedScene" id=16]
+[ext_resource path="res://assets/fonts/Courgette/Courgette-Regular.ttf" type="DynamicFontData" id=17]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 218, 160 )
@@ -24,13 +25,13 @@ extents = Vector2( 218, 160 )
 size = 100
 outline_size = 4
 outline_color = Color( 0.564706, 0.447059, 0.101961, 1 )
-font_data = ExtResource( 16 )
+font_data = ExtResource( 17 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 60
 outline_size = 4
 outline_color = Color( 0.564706, 0.447059, 0.101961, 1 )
-font_data = ExtResource( 16 )
+font_data = ExtResource( 17 )
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -155,24 +156,27 @@ margin_top = 707.2
 margin_right = 128.0
 margin_bottom = 819.2
 
-[node name="MenuPopout" parent="." instance=ExtResource( 12 )]
+[node name="Clock" parent="." instance=ExtResource( 12 )]
+position = Vector2( 1248, 64 )
+
+[node name="MenuPopout" parent="." instance=ExtResource( 13 )]
 show_behind_parent = true
 margin_left = -108.0
 margin_top = 856.0
 margin_right = 128.0
 margin_bottom = 968.0
 
-[node name="Tooltip" parent="." instance=ExtResource( 13 )]
+[node name="Tooltip" parent="." instance=ExtResource( 14 )]
 visible = false
 margin_left = 50.0
 margin_top = 50.0
 margin_right = 105.0
 margin_bottom = 94.0
 
-[node name="Achievements" parent="." instance=ExtResource( 14 )]
+[node name="Achievements" parent="." instance=ExtResource( 15 )]
 visible = false
 
-[node name="Journal" parent="." instance=ExtResource( 15 )]
+[node name="Journal" parent="." instance=ExtResource( 16 )]
 visible = false
 mouse_filter = 2
 

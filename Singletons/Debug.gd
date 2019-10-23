@@ -25,4 +25,4 @@ var ACHIEVEMENTS = false
 var JOURNAL = true
 
 # Day+night is only 30 sec
-var FAST_DAY = false
+var FAST_DAY = true

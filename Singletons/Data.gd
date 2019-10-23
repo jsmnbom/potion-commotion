@@ -507,14 +507,16 @@ var inventory_by_id
 
 var achievements
 
-var unlocked_journal_pages
+var unlocked_journal_pages = []
 
-var time
+var time = 0.0
 
-var player_name
+var player_name = ''
 
-var luck
+var luck = 0.0
 
-var play_time
+var play_time = 0
 
-var version
+var version = ''
+
+var day_duration = 24*60

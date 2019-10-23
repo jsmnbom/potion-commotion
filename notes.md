@@ -23,10 +23,10 @@ Achevement boosts
 Better brewing (like spefic rules for some potions)
 Sick plants - Healing potion
 Mandrake - harvested during day runs away
-Clock
 Rain
 Harder achevements (after playtesting)
 Poison potion makes everything wonky
+Remove mouseover requirement from overlay
 
 ## Sound
 
@@ -45,4 +45,3 @@ Music
 
 Sound
 Brewing bg
-Remove mouseover requirement from overlay

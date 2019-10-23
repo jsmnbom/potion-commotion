@@ -1,13 +1,18 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://UI/Clock/Clock.gd" type="Script" id=1]
+[ext_resource path="res://assets/ui/clock.png" type="Texture" id=2]
+[ext_resource path="res://assets/ui/clock_hand.png" type="Texture" id=3]
 
 [node name="Clock" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
-margin_right = 48.0
-margin_bottom = 48.0
+margin_right = 64.0
+margin_bottom = 64.0
+texture = ExtResource( 2 )
 
-[node name="ClockHand" type="Node2D" parent="."]
-position = Vector2( 24, 24 )
+[node name="ClockHand" type="Sprite" parent="."]
+position = Vector2( 56.0666, 55.5316 )
+texture = ExtResource( 3 )
+offset = Vector2( 0.215702, -12.1548 )
