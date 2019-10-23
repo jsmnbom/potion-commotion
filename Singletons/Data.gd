@@ -336,6 +336,8 @@ func _calculate_potion_prices():
 						sell_price += float(inventory_by_id['potion']['stars'].sell_price) *1.1
 					'weeds':
 						sell_price += 2
+					'hydroangea':
+						sell_price += 1
 					_:
 						sell_price += inventory_by_id['seed'][ingredient].cost / 2
 			if sell_price < 100:

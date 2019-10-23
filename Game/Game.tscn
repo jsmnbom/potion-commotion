@@ -37,7 +37,7 @@ font_data = ExtResource( 17 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_horizontal_guides_": [ 1016.25, 80.1019, 1000.29 ],
-"_edit_vertical_guides_": [  ]
+"_edit_vertical_guides_": [ -114.224 ]
 }
 
 [node name="ViewportTween" type="Tween" parent="."]
@@ -184,6 +184,7 @@ mouse_filter = 2
 autostart = true
 
 [node name="SaveNotification" type="Control" parent="."]
+editor/display_folded = true
 visible = false
 modulate = Color( 1, 1, 1, 0 )
 margin_top = 440.0
