@@ -13,10 +13,10 @@
 [ext_resource path="res://UI/SavePopout/SavePopout.tscn" type="PackedScene" id=11]
 [ext_resource path="res://UI/Clock/Clock.tscn" type="PackedScene" id=12]
 [ext_resource path="res://UI/MenuPopout/MenuPopout.tscn" type="PackedScene" id=13]
-[ext_resource path="res://UI/Tooltip/Tooltip.tscn" type="PackedScene" id=14]
-[ext_resource path="res://UI/Achievements/Achievements.tscn" type="PackedScene" id=15]
-[ext_resource path="res://UI/Journal/Journal.tscn" type="PackedScene" id=16]
-[ext_resource path="res://assets/fonts/Courgette/Courgette-Regular.ttf" type="DynamicFontData" id=17]
+[ext_resource path="res://UI/Achievements/Achievements.tscn" type="PackedScene" id=14]
+[ext_resource path="res://UI/Journal/Journal.tscn" type="PackedScene" id=15]
+[ext_resource path="res://assets/fonts/Courgette/Courgette-Regular.ttf" type="DynamicFontData" id=16]
+[ext_resource path="res://UI/Tooltip/Tooltip.tscn" type="PackedScene" id=17]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 218, 160 )
@@ -25,13 +25,13 @@ extents = Vector2( 218, 160 )
 size = 100
 outline_size = 4
 outline_color = Color( 0.564706, 0.447059, 0.101961, 1 )
-font_data = ExtResource( 17 )
+font_data = ExtResource( 16 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 60
 outline_size = 4
 outline_color = Color( 0.564706, 0.447059, 0.101961, 1 )
-font_data = ExtResource( 17 )
+font_data = ExtResource( 16 )
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -166,17 +166,10 @@ margin_top = 856.0
 margin_right = 128.0
 margin_bottom = 968.0
 
-[node name="Tooltip" parent="." instance=ExtResource( 14 )]
-visible = false
-margin_left = 50.0
-margin_top = 50.0
-margin_right = 105.0
-margin_bottom = 94.0
-
-[node name="Achievements" parent="." instance=ExtResource( 15 )]
+[node name="Achievements" parent="." instance=ExtResource( 14 )]
 visible = false
 
-[node name="Journal" parent="." instance=ExtResource( 16 )]
+[node name="Journal" parent="." instance=ExtResource( 15 )]
 visible = false
 mouse_filter = 2
 
@@ -209,4 +202,11 @@ custom_colors/font_color = Color( 0.780392, 0.639216, 0.231373, 1 )
 align = 1
 
 [node name="Tween" type="Tween" parent="SaveNotification"]
+
+[node name="Tooltip" parent="." instance=ExtResource( 17 )]
+visible = false
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 105.0
+margin_bottom = 94.0
 [connection signal="timeout" from="PlayTimeTimer" to="." method="_on_PlayTimeTimer_timeout"]

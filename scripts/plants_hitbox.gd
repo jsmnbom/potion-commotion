@@ -41,11 +41,20 @@ func _init():
         var bitmap = BitMap.new()
         bitmap.create_from_image_alpha(atlas_img, 0.5)
         bitmap.grow_mask(GROW_PIXELS, atlas_rect)
+        
+        hitboxes[plant]= [[], []]
 
         for i in range(5):
             var rect = Rect2(Vector2(i*128, 0), Vector2(128, 256))
             var polygons = bitmap.opaque_to_polygons(rect, 2)
-            hitboxes[plant].append(polygons)
+            var small_polygons = []
+            for poly in polygons:
+                var small_poly = PoolVector2Array()
+                for point in poly:
+                    small_poly.append(point * 0.75)
+                small_polygons.append(small_poly)
+            hitboxes[plant][0].append(polygons)
+            hitboxes[plant][1].append(small_polygons)
 
     var file = File.new()
     file.open("res://assets/plants/hitboxes.bin", File.WRITE)

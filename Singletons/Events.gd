@@ -57,6 +57,8 @@ signal show_main_menu
 signal unlock_journal
 # {'id': var page_id}:
 signal unlock_journal_page(msg)
+# {'id': var page_id}:
+signal show_journal_page(msg)
 
 # float
 signal add_luck(x)

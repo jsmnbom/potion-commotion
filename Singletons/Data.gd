@@ -315,6 +315,8 @@ func clear():
 	}
 
 	for item in inventory:
+		if item is _InventoryPotion:
+			item.ingredients.sort()
 		inventory_by_id[item.type][item.id] = item
 
 	_calculate_potion_prices()
@@ -372,6 +374,7 @@ class _PlantData extends _ResourceData:
 	var name
 	var growth_time
 	var collision_polygons setget ,get_collision_polygons
+	var collision_polygons_small setget ,get_collision_polygons_small
 	var description
 	
 	func _init(id, name, growth_time, description):
@@ -381,7 +384,10 @@ class _PlantData extends _ResourceData:
 		self.description = description
 
 	func get_collision_polygons():
-		return Data._plant_hitboxes[self.id]
+		return Data._plant_hitboxes[self.id][0]
+
+	func get_collision_polygons_small():
+		return Data._plant_hitboxes[self.id][1]
 
 	func get_res_path():
 		return 'res://assets/plants/%s.png' % self.id

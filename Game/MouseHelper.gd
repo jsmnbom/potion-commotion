@@ -7,7 +7,7 @@ var last_button_mask = 0
 var mouse_over_node = null
 
 func layer(x):
-	return pow(2, x-1)
+	return Utils.collision_layer(x)
 
 var AREA_INTERSECT_LAYER = {
 	'game_bg': layer(1),
@@ -17,7 +17,8 @@ var AREA_INTERSECT_LAYER = {
 	'game_ui': layer(5),
 	'overlay_close': layer(11),
 	'overlay_bg': layer(12),
-	'overlay_ui': layer(13),
+	'overlay_ui1': layer(13),
+	'overlay_ui2': layer(14),
 	'overlay2_close': layer(16),
 	'overlay2_bg': layer(17),
 	'overlay2_ui': layer(18)
@@ -31,7 +32,7 @@ func _init():
 	AREA_INTERSECT_ALL_LAYERS = int(AREA_INTERSECT_ALL_LAYERS)
 
 func _area_intersect(local_position, world):
-	return world.direct_space_state.intersect_point(local_position, 32, [], AREA_INTERSECT_ALL_LAYERS, false, true)
+	return world.direct_space_state.intersect_point(local_position, 128, [], AREA_INTERSECT_ALL_LAYERS, false, true)
 
 class GlobalPositionYSorter:
 	static func sort(a, b):
@@ -106,7 +107,7 @@ func _physics_process(delta):
 		if top_node != null:
 			if not (top_node == mouse_over_node and button_mask == last_button_mask):
 				mouse_over_node = top_node
-				#prints(mouse_over_node.name, mouse_over_node.get_parent().name,  mouse_over_node.get_parent().rect_position if mouse_over_node.get_parent() is Control else 0)
+				prints(mouse_over_node.name, mouse_over_node.get_parent().name,  mouse_over_node.get_parent().rect_position if mouse_over_node.get_parent() is Control else 0)
 				Events.emit_signal('mouse_area', _make_data(top_node, true, global_position, local_positions, button_mask, _button_clicks(button_mask)))
 
 	last_button_mask = button_mask

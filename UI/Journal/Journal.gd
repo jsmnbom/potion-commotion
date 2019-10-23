@@ -23,6 +23,13 @@ var index_areas = []
 
 var current_page = 'AStrangeGarden'
 
+var animation_timer = 0
+var animation_timer_paused = false
+
+func _physics_process(delta):
+	if not animation_timer_paused:
+		animation_timer = (animation_timer + 1) % 240
+
 func add_page(key, title, page):
 	$Pages.add_child(page)
 	page.hide()
@@ -32,6 +39,7 @@ func _ready():
 	Events.connect('mouse_area', self, '_on_mouse_area')
 	Events.connect('show_journal', self, '_on_show_journal')
 	Events.connect('unlock_journal_page', self, '_on_unlock_journal_page')
+	Events.connect('show_journal_page', self, '_on_show_journal_page')
 
 	if Data.player_name.ends_with('s'):
 		$Pages/Index/Title.text = '%s\' Journal' % Data.player_name
@@ -53,14 +61,15 @@ func _ready():
 		var page = PagePlant.instance()
 		page.name = plant_id
 		var text = plant.description + '\n\n'
-		text += 'Growth time: %s\n\nUsed in:\n' % Utils.time_string(plant.growth_time)
+		text += 'Growth time: %s' % Utils.time_string(plant.growth_time)
+		var used_in = []
 		for potion in potions:
 			var potion_item = potions[potion]
 			if plant_id in potion_item.ingredients:
-				text +=  potion_item.name + '\n'
+				used_in.append(potion)
 				continue
 		
-		page.init(plant.name, text, plant.res_path)
+		page.init(plant.name, text, plant.res_path, used_in, plant.collision_polygons_small)
 		add_page(plant_id, plant.name, page)
 		
 	for potion in potions:
@@ -68,7 +77,7 @@ func _ready():
 		var page = PotionPage.instance()
 		page.name = potion_item.id
 		var text = potion_item.long_description.dedent().lstrip('\n').rstrip('\n') + '\n\n'
-		page.init(potion_item.short_name, text, potion_item.res_path)
+		page.init(potion_item.short_name, text, potion_item.res_path, potion_item.ingredients, self)
 		add_page(potion_item.id, potion_item.name, page)
 	
 	if Debug.JOURNAL:
@@ -112,10 +121,13 @@ func _on_mouse_area(msg):
 				if mouse_over and left:
 					if msg['node'] == $Return/Area:
 						show_page('index')
+						Utils.set_cursor_hand(false)
 					elif msg['node'] == $Forward/Area:
 						show_next_page()
+						Utils.set_cursor_hand(false)
 					elif msg['node'] == $Back/Area:
 						show_prev_page()
+						Utils.set_cursor_hand(false)
 			if msg['node'] in index_areas:
 				var i = index_areas.find(msg['node'])
 				var item
@@ -128,6 +140,7 @@ func _on_mouse_area(msg):
 				if left and mouse_over:
 					var page = item.get_meta('page')
 					show_page(page)
+					Utils.set_cursor_hand(false)
 
 func show_page(page):
 	PAGES[current_page][1].hide()
@@ -199,6 +212,10 @@ func _on_unlock_journal_page(msg):
 
 	Events.emit_signal('achievement', {'diff_id': 'diff_pages', 'diff_add': page_id})
 
+func _on_show_journal_page(msg):
+	var page_id = msg['id']
+	if page_id in Data.unlocked_journal_pages:
+		show_page(page_id)
 
 func serialize():
 	return {

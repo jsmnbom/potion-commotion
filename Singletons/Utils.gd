@@ -117,3 +117,7 @@ func get_global_position(local_position, viewport):
 	var container = viewport.get_parent()
 	var scale_factor = container.rect_size / viewport.size
 	return local_position * scale_factor + container.rect_position
+
+
+func collision_layer(x):
+	return pow(2, x-1)
