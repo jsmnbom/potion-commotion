@@ -10,6 +10,7 @@ func _ready():
 	Events.connect('continue_game', self, '_on_continue_game')
 	Events.connect('exit_confirm', self, '_on_exit_confirm')
 	Events.connect('exit_confirm_close', self, '_on_exit_confirm_close')
+	Events.connect('show_main_menu', self, '_on_show_main_menu')
 
 	OS.set_window_title('Potion Commotion %s' % Data.version)
 
@@ -32,6 +33,12 @@ func _input(event):
 					game.hide()
 					$MouseHelper.hide()
 					$MainMenu.show()
+
+func _on_show_main_menu():
+	game.hide()
+	$MouseHelper.hide()
+	$MainMenu.show()
+
 
 func _on_start_new_game():
 	Data.clear()

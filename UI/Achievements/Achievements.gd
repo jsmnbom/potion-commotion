@@ -34,9 +34,12 @@ func _on_mouse_area(msg):
 	if msg['node'] == $CloseArea:
 		match msg:
 			{'mouse_over': var mouse_over, 'button_left_click': var left, ..}:
-				Utils.set_cursor_hand(mouse_over)
-				if mouse_over and left:
-					Events.emit_signal('show_achievements', false)
+				if mouse_over:
+					Utils.set_custom_cursor('close', Utils.get_scaled_res('res://assets/ui/close.png', 32, 32), Vector2(14,14))
+					if left:
+						Events.emit_signal('show_achievements', false)
+				else:
+					Utils.set_custom_cursor('close', null)
 
 func _on_achievement(msg):
 	match msg:

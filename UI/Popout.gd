@@ -45,6 +45,7 @@ func _on_mouse_area(msg):
 					Utils.set_cursor_hand(true)
 				if left:
 					_on_click()
+					Utils.set_cursor_hand(false)
 				if not left:
 					popout()
 				

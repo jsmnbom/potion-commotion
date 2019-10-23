@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Game/Game.gd" type="Script" id=1]
 [ext_resource path="res://assets/grass.png" type="Texture" id=2]
@@ -10,11 +10,12 @@
 [ext_resource path="res://UI/LuckDisplay/LuckDisplay.tscn" type="PackedScene" id=8]
 [ext_resource path="res://UI/Journal/JournalPopout.tscn" type="PackedScene" id=9]
 [ext_resource path="res://UI/Achievements/AchievementsPopout.tscn" type="PackedScene" id=10]
-[ext_resource path="res://UI/SaveLoad/SavePopout.tscn" type="PackedScene" id=11]
-[ext_resource path="res://UI/Tooltip/Tooltip.tscn" type="PackedScene" id=12]
-[ext_resource path="res://UI/Achievements/Achievements.tscn" type="PackedScene" id=13]
-[ext_resource path="res://UI/Journal/Journal.tscn" type="PackedScene" id=14]
-[ext_resource path="res://assets/fonts/Courgette/Courgette-Regular.ttf" type="DynamicFontData" id=15]
+[ext_resource path="res://UI/SavePopout/SavePopout.tscn" type="PackedScene" id=11]
+[ext_resource path="res://UI/MenuPopout/MenuPopout.tscn" type="PackedScene" id=12]
+[ext_resource path="res://UI/Tooltip/Tooltip.tscn" type="PackedScene" id=13]
+[ext_resource path="res://UI/Achievements/Achievements.tscn" type="PackedScene" id=14]
+[ext_resource path="res://UI/Journal/Journal.tscn" type="PackedScene" id=15]
+[ext_resource path="res://assets/fonts/Courgette/Courgette-Regular.ttf" type="DynamicFontData" id=16]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 218, 160 )
@@ -23,18 +24,18 @@ extents = Vector2( 218, 160 )
 size = 100
 outline_size = 4
 outline_color = Color( 0.564706, 0.447059, 0.101961, 1 )
-font_data = ExtResource( 15 )
+font_data = ExtResource( 16 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 60
 outline_size = 4
 outline_color = Color( 0.564706, 0.447059, 0.101961, 1 )
-font_data = ExtResource( 15 )
+font_data = ExtResource( 16 )
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
 __meta__ = {
-"_edit_horizontal_guides_": [  ],
+"_edit_horizontal_guides_": [ 1016.25, 80.1019, 1000.29 ],
 "_edit_vertical_guides_": [  ]
 }
 
@@ -121,49 +122,57 @@ size_flags_vertical = 3
 [node name="GemDisplay" parent="." instance=ExtResource( 7 )]
 show_behind_parent = true
 margin_left = -272.0
-margin_top = 96.0
+margin_top = 112.0
 margin_right = 128.0
-margin_bottom = 208.0
+margin_bottom = 224.0
 
 [node name="LuckDisplay" parent="." instance=ExtResource( 8 )]
 show_behind_parent = true
 margin_left = -92.0
-margin_top = 240.0
+margin_top = 260.8
 margin_right = 128.0
-margin_bottom = 352.0
+margin_bottom = 372.8
 
 [node name="JournalPopout" parent="." instance=ExtResource( 9 )]
+visible = false
 show_behind_parent = true
 margin_left = -288.0
-margin_top = 384.0
+margin_top = 409.6
 margin_right = 0.0
-margin_bottom = 496.0
+margin_bottom = 521.6
 
 [node name="AchievementsPopout" parent="." instance=ExtResource( 10 )]
 show_behind_parent = true
 margin_left = -272.0
-margin_top = 528.0
+margin_top = 558.4
 margin_right = 128.0
-margin_bottom = 640.0
+margin_bottom = 670.4
 
 [node name="SavePopout" parent="." instance=ExtResource( 11 )]
 show_behind_parent = true
 margin_left = -92.0
-margin_top = 872.0
+margin_top = 707.2
 margin_right = 128.0
-margin_bottom = 984.0
+margin_bottom = 819.2
 
-[node name="Tooltip" parent="." instance=ExtResource( 12 )]
+[node name="MenuPopout" parent="." instance=ExtResource( 12 )]
+show_behind_parent = true
+margin_left = -108.0
+margin_top = 856.0
+margin_right = 128.0
+margin_bottom = 968.0
+
+[node name="Tooltip" parent="." instance=ExtResource( 13 )]
 visible = false
 margin_left = 50.0
 margin_top = 50.0
 margin_right = 105.0
 margin_bottom = 94.0
 
-[node name="Achievements" parent="." instance=ExtResource( 13 )]
+[node name="Achievements" parent="." instance=ExtResource( 14 )]
 visible = false
 
-[node name="Journal" parent="." instance=ExtResource( 14 )]
+[node name="Journal" parent="." instance=ExtResource( 15 )]
 visible = false
 mouse_filter = 2
 

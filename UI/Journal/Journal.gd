@@ -4,7 +4,7 @@ var IndexItem = preload('res://UI/Journal/IndexItem.tscn')
 var PagePlant = preload('res://UI/Journal/PagePlant.tscn')
 var PotionPage = preload('res://UI/Journal/PotionPage.tscn')
 
-var index_per_page = 17
+var index_per_page = 15
 onready var index_items1 = $Pages/Index/Items1
 onready var index_items2 = $Pages/Index/Items2
 
@@ -33,7 +33,12 @@ func _ready():
 	Events.connect('show_journal', self, '_on_show_journal')
 	Events.connect('unlock_journal_page', self, '_on_unlock_journal_page')
 
-	PAGES['index'][1].get_node('Title').text = '%s\'s Journal' % Data.player_name
+	if Data.player_name.ends_with('s'):
+		$Pages/Index/Title.text = '%s\' Journal' % Data.player_name
+	else:
+		$Pages/Index/Title.text = '%s\'s Journal' % Data.player_name
+	
+	$Pages/TheApprenticeship/Signature.text = '~%s' % Data.player_name
 	
 	for page in PAGES:
 		PAGES[page][1].hide()
@@ -69,35 +74,55 @@ func _ready():
 	if Debug.JOURNAL:
 		for page in PAGES:
 			if not page in Data.unlocked_journal_pages:
-				Data.unlocked_journal_pages.append(page)
+				Events.emit_signal('unlock_journal_page', {'id': page})
 	
 	update_index()
 	show_page(current_page)
 	_on_show_journal(false)
+
+func _unhandled_input(event):
+	if event.is_action_pressed('ui_up') or event.is_action_pressed('ui_down'):
+		show_page('index')
+	elif event.is_action_pressed('ui_right') and Data.unlocked_journal_pages.find(current_page) < Data.unlocked_journal_pages.size() - 1:
+		show_next_page()
+	elif event.is_action_pressed('ui_left') and Data.unlocked_journal_pages.find(current_page) > 0:
+		show_prev_page()
+
+
+func show_next_page():
+	show_page(Data.unlocked_journal_pages[Data.unlocked_journal_pages.find(current_page)+1])
+
+func show_prev_page():
+	show_page(Data.unlocked_journal_pages[Data.unlocked_journal_pages.find(current_page)-1])
 
 func _on_mouse_area(msg):
 	match msg:
 		{'mouse_over': var mouse_over, 'button_left_click': var left, ..}:
 			if msg['node'] == $Area:
 					Utils.set_cursor_hand(false)
-			if msg['node'] in [$CloseArea, $Return/Area, $Forward/Area, $Back/Area]:
+			if msg['node'] == $CloseArea:
+				if mouse_over:
+					Utils.set_custom_cursor('close', Utils.get_scaled_res('res://assets/ui/close.png', 32, 32), Vector2(14,14))
+					if left:
+						Events.emit_signal('show_journal', false)
+				else:
+					Utils.set_custom_cursor('close', null)
+			if msg['node'] in [$Return/Area, $Forward/Area, $Back/Area]:
 				Utils.set_cursor_hand(mouse_over)
 				if mouse_over and left:
-					if msg['node'] == $CloseArea:
-						Events.emit_signal('show_journal', false)
-					elif msg['node'] == $Return/Area:
+					if msg['node'] == $Return/Area:
 						show_page('index')
 					elif msg['node'] == $Forward/Area:
-						show_page(Data.unlocked_journal_pages[Data.unlocked_journal_pages.find(current_page)+1])
+						show_next_page()
 					elif msg['node'] == $Back/Area:
-						show_page(Data.unlocked_journal_pages[Data.unlocked_journal_pages.find(current_page)-1])
+						show_prev_page()
 			if msg['node'] in index_areas:
 				var i = index_areas.find(msg['node'])
 				var item
-				if i < index_per_page-1:
+				if i < index_per_page:
 					item = index_items1.get_child(i)
 				else:
-					item = index_items2.get_child(i-index_per_page+1)
+					item = index_items2.get_child(i-index_per_page)
 				item.get_node('BG').color = Color(0,0,0,0.1 if mouse_over else 0)
 				Utils.set_cursor_hand(mouse_over)
 				if left and mouse_over:

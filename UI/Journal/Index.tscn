@@ -18,16 +18,16 @@ align = 1
 valign = 1
 
 [node name="Items1" type="VBoxContainer" parent="."]
-margin_top = 76.0
+margin_top = 68.0
 margin_right = 288.0
-margin_bottom = 652.0
+margin_bottom = 644.0
 mouse_filter = 2
 custom_constants/separation = 38
 
 [node name="Items2" type="VBoxContainer" parent="."]
 margin_left = 288.0
-margin_top = 76.0
+margin_top = 68.0
 margin_right = 576.0
-margin_bottom = 652.0
+margin_bottom = 644.0
 mouse_filter = 2
 custom_constants/separation = 38

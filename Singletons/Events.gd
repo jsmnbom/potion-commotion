@@ -51,6 +51,7 @@ signal start_new_game
 signal continue_game
 signal exit_confirm
 signal exit_confirm_close
+signal show_main_menu
 
 # no data
 signal unlock_journal

@@ -49,7 +49,7 @@ func ui_cancel():
 	return false
 
 func _input(event):
-	if event.is_action_pressed("open_journal"):
+	if event.is_action_pressed("open_journal") and $JournalPopout.visible:
 		Events.emit_signal('show_journal', !$Journal.visible)
 	if event.is_action_pressed("open_achevements"):
 		Events.emit_signal('show_achievements', !$Achievements.visible)

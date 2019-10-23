@@ -1,6 +1,6 @@
 extends Node2D
 
-var JOURNAL_POS = Vector2(48, 416)
+var JOURNAL_POS = Vector2(48, 432)
 var page_id
 var destination
 

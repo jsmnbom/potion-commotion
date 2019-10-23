@@ -22,7 +22,7 @@ var START_WET = true
 var ACHIEVEMENTS = false
 
 # Unlock all journal pages
-var JOURNAL = false
+var JOURNAL = true
 
 # Day+night is only 30 sec
 var FAST_DAY = false
