@@ -34,13 +34,19 @@ func format_number(n):
 
 	return res
 
+var res_cache = {}
+
 func get_scaled_res(res_path, height, width):
+	if [res_path, height, width] in res_cache.keys():
+		return res_cache[[res_path, height, width]]
+	prints('cache miss', res_path, height, width)
 	var img = ResourceLoader.load(res_path)
 	if img is ImageTexture or img is StreamTexture:
 		img = img.get_data()
 	img.resize(height, width, 0)
 	var tex = ImageTexture.new()
 	tex.create_from_image(img)
+	res_cache[[res_path, height, width]] = tex
 	return tex
 
 func pluralise(amount, singular_form, plural_form):

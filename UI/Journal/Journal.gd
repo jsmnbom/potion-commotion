@@ -36,6 +36,7 @@ func add_page(key, title, page):
 	PAGES[key] = [title, page]
 
 func _ready():
+	var start = OS.get_ticks_msec()
 	Events.connect('mouse_area', self, '_on_mouse_area')
 	Events.connect('show_journal', self, '_on_show_journal')
 	Events.connect('unlock_journal_page', self, '_on_unlock_journal_page')
@@ -56,7 +57,9 @@ func _ready():
 		if item is Data._InventoryPotion:
 			potions[item.id] = item
 	
+	var inner_start = OS.get_ticks_msec()
 	for plant_id in Data.plants:
+		var plant_start = OS.get_ticks_msec()
 		var plant = Data.plants[plant_id]
 		var page = PagePlant.instance()
 		page.name = plant_id
@@ -71,15 +74,20 @@ func _ready():
 		
 		page.init(plant.name, text, plant.res_path, used_in, plant.collision_polygons_small)
 		add_page(plant_id, plant.name, page)
+		prints(plant_id, OS.get_ticks_msec() - plant_start)
 		
 	for potion in potions:
+		var potion_start = OS.get_ticks_msec()
 		var potion_item = potions[potion]
 		var page = PotionPage.instance()
 		page.name = potion_item.id
 		var text = potion_item.long_description.dedent().lstrip('\n').rstrip('\n') + '\n\n'
 		page.init(potion_item.short_name, text, potion_item.res_path, potion_item.ingredients, self)
 		add_page(potion_item.id, potion_item.name, page)
+		prints(potion_item.id, OS.get_ticks_msec() - potion_start)
 	
+	prints('innner', OS.get_ticks_msec() - inner_start)
+
 	if Debug.JOURNAL:
 		for page in PAGES:
 			if not page in Data.unlocked_journal_pages:
@@ -88,6 +96,7 @@ func _ready():
 	update_index()
 	show_page(current_page)
 	_on_show_journal(false)
+	prints('Journal._ready', OS.get_ticks_msec() - start)
 
 func _unhandled_input(event):
 	if event.is_action_pressed('ui_up') or event.is_action_pressed('ui_down') or event.is_action_pressed('ui_back'):

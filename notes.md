@@ -16,6 +16,7 @@
 Potion of dealing
 Potion of rain
 Potion of birb
+Potion of (something that makes plants ignore time of day)
 Daily missions
 Daily lootboxes
 Bird feather

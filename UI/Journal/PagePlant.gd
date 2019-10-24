@@ -21,6 +21,9 @@ func init(title, description, res, used_in, collision_polygons):
 		sprite.position = Vector2(488+(i%2)*48, 144+floor(i/2)*64)
 		
 		var area = Area2D.new()
+		area.monitorable = false
+		area.monitoring = false
+		area.input_pickable = false
 		area.collision_layer = Utils.collision_layer(13)
 		var shape = RectangleShape2D.new()
 		shape.extents = Vector2(24,24)
@@ -32,6 +35,9 @@ func init(title, description, res, used_in, collision_polygons):
 	
 	for i in range(5):
 		var area = Area2D.new()
+		area.monitorable = false
+		area.monitoring = false
+		area.input_pickable = false
 		area.collision_layer = Utils.collision_layer(13)
 		area.position = Vector2(-192+96*i, 0)
 		

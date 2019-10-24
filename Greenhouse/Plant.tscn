@@ -55,6 +55,9 @@ texture = ExtResource( 2 )
 [node name="PlantArea" type="Area2D" parent="." groups=[
 "MouseAreas",
 ]]
+input_pickable = false
+monitoring = false
+monitorable = false
 collision_layer = 8
 
 [node name="Collision" type="CollisionShape2D" parent="PlantArea"]
@@ -62,6 +65,9 @@ collision_layer = 8
 [node name="FieldArea" type="Area2D" parent="." groups=[
 "MouseAreas",
 ]]
+input_pickable = false
+monitoring = false
+monitorable = false
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FieldArea"]

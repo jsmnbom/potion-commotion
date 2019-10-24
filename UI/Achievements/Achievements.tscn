@@ -37,6 +37,9 @@ axis_stretch_vertical = 1
 [node name="CloseArea" type="Area2D" parent="." groups=[
 "MouseAreas",
 ]]
+input_pickable = false
+monitoring = false
+monitorable = false
 collision_layer = 1024
 
 [node name="Collision" type="CollisionShape2D" parent="CloseArea"]
@@ -48,6 +51,9 @@ shape = SubResource( 1 )
 "MouseAreas",
 ]]
 position = Vector2( 360, 180 )
+input_pickable = false
+monitoring = false
+monitorable = false
 collision_layer = 2048
 
 [node name="Collision" type="CollisionShape2D" parent="Area"]

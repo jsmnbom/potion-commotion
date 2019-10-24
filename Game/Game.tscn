@@ -82,6 +82,9 @@ gui_disable_input = true
 "MouseAreas",
 ]]
 position = Vector2( 1419, 32 )
+input_pickable = false
+monitoring = false
+monitorable = false
 collision_layer = 16
 
 [node name="Collision" type="CollisionShape2D" parent="SubViewportArea"]

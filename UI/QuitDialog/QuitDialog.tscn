@@ -51,6 +51,9 @@ axis_stretch_vertical = 1
 [node name="CloseArea" type="Area2D" parent="." groups=[
 "MouseAreas",
 ]]
+input_pickable = false
+monitoring = false
+monitorable = false
 collision_layer = 32768
 
 [node name="Collision" type="CollisionShape2D" parent="CloseArea"]
@@ -62,6 +65,9 @@ shape = SubResource( 1 )
 "MouseAreas",
 ]]
 position = Vector2( 660, 415 )
+input_pickable = false
+monitoring = false
+monitorable = false
 collision_layer = 65536
 
 [node name="Collision" type="CollisionShape2D" parent="Area"]
@@ -93,6 +99,9 @@ text = "Save then exit"
 [node name="Area" type="Area2D" parent="QuitWithSave" groups=[
 "MouseAreas",
 ]]
+input_pickable = false
+monitoring = false
+monitorable = false
 collision_layer = 131072
 
 [node name="Collision" type="CollisionShape2D" parent="QuitWithSave/Area"]
@@ -113,6 +122,9 @@ text = "Exit without saving"
 [node name="Area" type="Area2D" parent="QuitWithoutSave" groups=[
 "MouseAreas",
 ]]
+input_pickable = false
+monitoring = false
+monitorable = false
 collision_layer = 131072
 
 [node name="Collision" type="CollisionShape2D" parent="QuitWithoutSave/Area"]

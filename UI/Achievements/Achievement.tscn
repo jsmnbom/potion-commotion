@@ -51,6 +51,9 @@ stretch_mode = 2
 "MouseAreas",
 ]]
 position = Vector2( 0, 48 )
+input_pickable = false
+monitoring = false
+monitorable = false
 collision_layer = 4096
 
 [node name="Collision" type="CollisionShape2D" parent="BarArea"]

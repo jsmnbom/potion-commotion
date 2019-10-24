@@ -42,6 +42,9 @@ func init(title, description, res, ingredients, journal):
 		sprite.position = get_ingredient_pos($Ingredients.get_children().size())
 		
 		var area = Area2D.new()
+		area.monitorable = false
+		area.monitoring = false
+		area.input_pickable = false
 		area.collision_layer = Utils.collision_layer(14)
 		var shape = RectangleShape2D.new()
 		shape.extents = Vector2(24,24)

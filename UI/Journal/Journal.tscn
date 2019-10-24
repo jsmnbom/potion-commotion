@@ -28,6 +28,9 @@ color = Color( 0, 0, 0, 0.784314 )
 [node name="CloseArea" type="Area2D" parent="." groups=[
 "MouseAreas",
 ]]
+input_pickable = false
+monitoring = false
+monitorable = false
 collision_layer = 1024
 
 [node name="Collision" type="CollisionShape2D" parent="CloseArea"]
@@ -39,6 +42,9 @@ shape = SubResource( 1 )
 "MouseAreas",
 ]]
 position = Vector2( 640, 170 )
+input_pickable = false
+monitoring = false
+monitorable = false
 collision_layer = 2048
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area"]
@@ -132,6 +138,9 @@ texture = ExtResource( 5 )
 [node name="Area" type="Area2D" parent="Forward" groups=[
 "MouseAreas",
 ]]
+input_pickable = false
+monitoring = false
+monitorable = false
 collision_layer = 4096
 
 [node name="Collision" type="CollisionPolygon2D" parent="Forward/Area"]
@@ -154,6 +163,9 @@ texture = ExtResource( 5 )
 position = Vector2( -445.863, 5.16943 )
 rotation = -3.14159
 scale = Vector2( 1, -1 )
+input_pickable = false
+monitoring = false
+monitorable = false
 collision_layer = 4096
 
 [node name="Collision" type="CollisionPolygon2D" parent="Back/Area"]
@@ -172,6 +184,9 @@ texture = ExtResource( 6 )
 [node name="Area" type="Area2D" parent="Return" groups=[
 "MouseAreas",
 ]]
+input_pickable = false
+monitoring = false
+monitorable = false
 collision_layer = 4096
 
 [node name="Collision" type="CollisionPolygon2D" parent="Return/Area"]

@@ -25,7 +25,7 @@ func clear():
 			'fire_flower',
 			'Fire Flower',
 			60,
-			'Very hot to the touch, the Fire flower gives off a pretty light when it gets dark.'
+			'You might want to wear gloves when handling this plant. It gets incredibly hot and even glows bright orange at night. That being said, it is a very pretty plant, and also quite useful since it allows for the creation of the Potion of Flames which can be used to burn plants into Ash. The Fire Flower loves the warm sunlight and refuses to grow during the day.'
 		),
 		'cool_beans': _PlantData.new(
 			'cool_beans',
