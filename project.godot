@@ -159,6 +159,11 @@ ui_fullscreen={
 2d_physics/layer_17="overlay2_bg"
 2d_physics/layer_18="overlay3_ui"
 
+[physics]
+
+2d/thread_model=2
+common/enable_object_picking=false
+
 [rendering]
 
 quality/intended_usage/framebuffer_allocation=0

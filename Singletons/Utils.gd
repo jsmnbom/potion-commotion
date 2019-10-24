@@ -39,7 +39,6 @@ var res_cache = {}
 func get_scaled_res(res_path, height, width):
 	if [res_path, height, width] in res_cache.keys():
 		return res_cache[[res_path, height, width]]
-	prints('cache miss', res_path, height, width)
 	var img = ResourceLoader.load(res_path)
 	if img is ImageTexture or img is StreamTexture:
 		img = img.get_data()

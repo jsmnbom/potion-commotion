@@ -33,6 +33,8 @@ monitoring = false
 monitorable = false
 collision_layer = 1024
 
+collision_mask = 0
+
 [node name="Collision" type="CollisionShape2D" parent="CloseArea"]
 visible = false
 position = Vector2( 960, 540 )
@@ -46,6 +48,8 @@ input_pickable = false
 monitoring = false
 monitorable = false
 collision_layer = 2048
+
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area"]
 position = Vector2( 320, 384 )
@@ -143,6 +147,8 @@ monitoring = false
 monitorable = false
 collision_layer = 4096
 
+collision_mask = 0
+
 [node name="Collision" type="CollisionPolygon2D" parent="Forward/Area"]
 polygon = PoolVector2Array( -1.93201, -7.8855, 15.917, -7.8855, 76.2417, 28.2642, 16.3688, 66.4473, -2.38379, 65.5436, -3.96533, 47.0168, 13.8835, 30.9754, -4.41724, 12.4487 )
 
@@ -168,6 +174,8 @@ monitoring = false
 monitorable = false
 collision_layer = 4096
 
+collision_mask = 0
+
 [node name="Collision" type="CollisionPolygon2D" parent="Back/Area"]
 polygon = PoolVector2Array( -459.163, -9.49072, -513.559, 19.5048, -513.443, 29.8272, -458.351, 58.5908, -446.869, 58.9388, -446.869, 43.5131, -467.398, 25.1879, -446.057, 4.65906, -446.521, -9.37476 )
 
@@ -188,6 +196,8 @@ input_pickable = false
 monitoring = false
 monitorable = false
 collision_layer = 4096
+
+collision_mask = 0
 
 [node name="Collision" type="CollisionPolygon2D" parent="Return/Area"]
 polygon = PoolVector2Array( 116.401, 31.6959, 79.8354, -7.02057, 59.0432, -7.37909, 59.4017, 4.80945, -13.0125, 3.73401, -12.654, 52.8466, 60.8356, 53.2051, 61.5526, 65.0351, 82.3448, 66.4691 )

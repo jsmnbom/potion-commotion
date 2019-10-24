@@ -48,6 +48,8 @@ position = Vector2( 288, 508 )
 position = Vector2( 288, 508 )
 collision_layer = 4096
 
+collision_mask = 0
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PauseArea"]
 shape = SubResource( 1 )
 [connection signal="visibility_changed" from="." to="." method="_on_Potion_visibility_changed"]

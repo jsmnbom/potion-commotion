@@ -56,6 +56,8 @@ monitoring = false
 monitorable = false
 collision_layer = 32768
 
+collision_mask = 0
+
 [node name="Collision" type="CollisionShape2D" parent="CloseArea"]
 visible = false
 position = Vector2( 960, 540 )
@@ -69,6 +71,8 @@ input_pickable = false
 monitoring = false
 monitorable = false
 collision_layer = 65536
+
+collision_mask = 0
 
 [node name="Collision" type="CollisionShape2D" parent="Area"]
 visible = false
@@ -104,6 +108,8 @@ monitoring = false
 monitorable = false
 collision_layer = 131072
 
+collision_mask = 0
+
 [node name="Collision" type="CollisionShape2D" parent="QuitWithSave/Area"]
 visible = false
 position = Vector2( 100, 20 )
@@ -126,6 +132,8 @@ input_pickable = false
 monitoring = false
 monitorable = false
 collision_layer = 131072
+
+collision_mask = 0
 
 [node name="Collision" type="CollisionShape2D" parent="QuitWithoutSave/Area"]
 visible = false

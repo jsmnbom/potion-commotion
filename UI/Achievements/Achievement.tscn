@@ -56,6 +56,8 @@ monitoring = false
 monitorable = false
 collision_layer = 4096
 
+collision_mask = 0
+
 [node name="Collision" type="CollisionShape2D" parent="BarArea"]
 position = Vector2( 256, 32 )
 shape = SubResource( 2 )

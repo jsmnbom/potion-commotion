@@ -60,6 +60,8 @@ monitoring = false
 monitorable = false
 collision_layer = 8
 
+collision_mask = 0
+
 [node name="Collision" type="CollisionShape2D" parent="PlantArea"]
 
 [node name="FieldArea" type="Area2D" parent="." groups=[
@@ -69,6 +71,8 @@ input_pickable = false
 monitoring = false
 monitorable = false
 collision_layer = 2
+
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FieldArea"]
 shape = SubResource( 1 )
