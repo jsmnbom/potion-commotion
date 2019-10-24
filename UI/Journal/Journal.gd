@@ -90,7 +90,7 @@ func _ready():
 	_on_show_journal(false)
 
 func _unhandled_input(event):
-	if event.is_action_pressed('ui_up') or event.is_action_pressed('ui_down'):
+	if event.is_action_pressed('ui_up') or event.is_action_pressed('ui_down') or event.is_action_pressed('ui_back'):
 		show_page('index')
 	elif event.is_action_pressed('ui_right') and Data.unlocked_journal_pages.find(current_page) < Data.unlocked_journal_pages.size() - 1:
 		show_next_page()

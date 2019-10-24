@@ -10,14 +10,19 @@ func _ready():
 
 func _on_mouse_area(msg):
 	var node = msg['node']
+	
 	if node in [$CloseArea, $QuitWithSave/Area, $QuitWithoutSave/Area]:
 		match msg:
 			{'mouse_over': var mouse_over, 'button_left_click': var left, ..}:
-				Utils.set_cursor_hand(mouse_over)
 				if node == $CloseArea:
-					if mouse_over and left:
-						Events.emit_signal('exit_confirm_close')
+					if mouse_over:
+						Utils.set_custom_cursor('close', Utils.get_scaled_res('res://assets/ui/close.png', 32, 32), Vector2(14,14))
+						if left:
+							Events.emit_signal('exit_confirm_close')
+					else:
+						Utils.set_custom_cursor('close', null)
 				else:
+					Utils.set_cursor_hand(mouse_over)
 					node.get_parent().add_color_override("font_color",  Color('#dc51ca') if mouse_over else Color('#90721a'))
 					node.get_parent().mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND if mouse_over else Control.CURSOR_ARROW
 					if left:

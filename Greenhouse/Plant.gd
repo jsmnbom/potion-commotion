@@ -139,6 +139,8 @@ func update_overlays():
 			else:
 				overlay.hide()
 			Events.emit_signal('tooltip', {'hide': true})
+	else:
+		overlay.hide()
 
 func tick():
 	if not planted:
@@ -184,6 +186,7 @@ func tick():
 		grow_timer.stop()
 
 	update_overlays()
+	update_cursor()
 
 func emit_tooltip():
 	if planted:
@@ -217,8 +220,7 @@ func set_weeds():
 	if not 'gardening' in used_potions:
 		grow_timer.paused = true
 	update_overlays()
-	if is_mouse_over:
-		Utils.set_custom_cursor('sickle', Utils.get_scaled_res('res://assets/ui/sickle.png', 32, 32), Vector2(16,16))
+	update_cursor()
 
 func _on_inventory_item(msg):
 	match(msg):
@@ -353,6 +355,14 @@ func deserialize(data):
 func _on_DryTimer_timeout():
 	should_dry_out = true
 
+func update_cursor():
+	if is_mouse_over:
+		if (planted and progress >= 100) or weeds:
+			Utils.set_custom_cursor('sickle', Utils.get_scaled_res('res://assets/ui/sickle.png', 32, 32), Vector2(16,16))
+		else:
+			Utils.set_custom_cursor('sickle', null)
+
+
 func _on_mouse_area(msg):
 	if msg['node'] == plant_area or msg['node'] == field_area:
 		match msg:
@@ -373,9 +383,9 @@ func _on_mouse_area(msg):
 						'from_position': position
 					})
 					grow_timer.paused = false
-					Utils.set_custom_cursor('sickle', null)
+					update_cursor()
+					update_overlays()
 					Events.emit_signal('tooltip', {'hide': true})
-					overlay.hide()
 				elif left_click and can_use_potion(selected_potion):
 					add_potion(selected_potion)
 					Events.emit_signal('inventory_add', {'type': 'potion', 'id': selected_potion.id, 'count': -1})
@@ -399,7 +409,7 @@ func _on_mouse_area(msg):
 						'count': round(Utils.rng_choose([1,1,2])*(1+Data.luck))
 					})
 					reset()
-					Utils.set_custom_cursor('sickle', null)
+					update_cursor()
 				elif left and not planted and selected_seed != null and not dried_out and not weeds:
 					set_plant(selected_seed.id)
 					Events.emit_signal('inventory_add', {'type': 'seed', 'id': plant, 'count': -1})
@@ -419,8 +429,8 @@ func _on_mouse_area(msg):
 						'count': round(Utils.rng_choose([2,2,3,3,4])*(1+Data.luck))
 					})
 					reset()
-				elif (planted and progress >= 100) or weeds:
-					Utils.set_custom_cursor('sickle', Utils.get_scaled_res('res://assets/ui/sickle.png', 32, 32), Vector2(16,16))
+					update_cursor()
 				is_mouse_over = true
 				update_overlays()
+				update_cursor()
 				
