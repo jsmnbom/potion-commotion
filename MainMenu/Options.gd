@@ -28,6 +28,7 @@ func _unhandled_input(event):
 	if event.is_action_pressed('ui_fullscreen'):
 		$Fullscreen.pressed = !$Fullscreen.pressed
 		_on_FullScreen_toggled($Fullscreen.pressed)
+		save_options()
 
 func _on_FullScreen_toggled(button_pressed):
 	OS.window_fullscreen = button_pressed
