@@ -102,3 +102,12 @@ func _on_ExitButton_pressed():
 		Events.emit_signal('exit_confirm')
 	else:
 		get_tree().quit()
+
+func start_loading():
+	hide_buttons()
+	$Loading.show()
+
+func stop_loading():
+	$Loading.hide()
+	show_buttons()
+	

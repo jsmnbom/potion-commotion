@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://MainMenu/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/main_menu/bg.png" type="Texture" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://assets/ui/main_menu/potion4.png" type="Texture" id=17]
 [ext_resource path="res://assets/ui/main_menu/potion5.png" type="Texture" id=18]
 [ext_resource path="res://assets/fonts/Open_Sans/OpenSans-Regular.ttf" type="DynamicFontData" id=19]
+[ext_resource path="res://assets/fonts/Courgette/Courgette-Regular.ttf" type="DynamicFontData" id=20]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 particles_animation = true
@@ -63,6 +64,12 @@ animations = [ {
 size = 24
 font_data = ExtResource( 19 )
 
+[sub_resource type="DynamicFont" id=6]
+size = 90
+outline_size = 4
+outline_color = Color( 0.564706, 0.447059, 0.101961, 1 )
+font_data = ExtResource( 20 )
+
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -91,7 +98,7 @@ texture = ExtResource( 3 )
 [node name="Title" type="AnimatedSprite" parent="."]
 position = Vector2( 965, 348 )
 frames = SubResource( 3 )
-frame = 3
+frame = 1
 playing = true
 
 [node name="ContinueButton" parent="." instance=ExtResource( 8 )]
@@ -176,6 +183,17 @@ margin_right = 1917.0
 margin_bottom = 1081.0
 custom_fonts/font = SubResource( 5 )
 align = 2
+
+[node name="Loading" type="Label" parent="."]
+visible = false
+margin_left = 750.0
+margin_top = 752.0
+margin_right = 1170.0
+margin_bottom = 865.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0.780392, 0.639216, 0.231373, 1 )
+text = "Loading..."
+align = 1
 [connection signal="visibility_changed" from="." to="." method="_on_MainMenu_visibility_changed"]
 [connection signal="pressed" from="ContinueButton" to="." method="_on_ContinueButton_pressed"]
 [connection signal="pressed" from="NewButton" to="." method="_on_NewButton_pressed"]

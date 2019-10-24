@@ -183,6 +183,8 @@ func load_game():
 	save_file.close()
 	print('done loading!')
 
+	Events.emit_signal('loaded')
+
 func _on_show_achievements(show):
 	if show:
 		$Achievements.show()

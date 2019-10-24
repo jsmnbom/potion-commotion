@@ -86,7 +86,6 @@ input_pickable = false
 monitoring = false
 monitorable = false
 collision_layer = 16
-
 collision_mask = 0
 
 [node name="Collision" type="CollisionShape2D" parent="SubViewportArea"]
@@ -182,7 +181,6 @@ mouse_filter = 2
 autostart = true
 
 [node name="SaveNotification" type="Control" parent="."]
-editor/display_folded = true
 visible = false
 modulate = Color( 1, 1, 1, 0 )
 margin_top = 440.0
