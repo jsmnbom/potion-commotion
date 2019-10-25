@@ -11,12 +11,13 @@
 7 birbpage - flying
 8 birb - flying
 
-## Maybe
+## Maybe / Later
 
-Potion of dealing
-Potion of rain
-Potion of birb
-Potion of (something that makes plants ignore time of day)
+More potions:
+    Potion of dealing
+    Potion of rain
+    Potion of birb
+    Potion of (something that makes plants ignore time of day)
 Daily missions
 Daily lootboxes
 Bird feather
@@ -47,3 +48,15 @@ Music
 Audio
 Brewing bg
 Write last of journal pages
+
+
+## Bugs
+
+Journal NEW not saved
+JOurnal plant page tooltips in greenhouse
+JOurnal buttons not hidden
+Index items not hidden
+Ingredients not hidden
+Player name not restored on load
+Game saved noticiation should be behind ui
+On loading Z from not sleeping plants shown momentarily

@@ -256,13 +256,13 @@ func clear():
 
 	achievements = [
 		_AchievementDiff.new('diff_plants', 'Harvest %s different plants', [2, 5, 10]),
-		_AchievementTotal.new('total_brew', 'Brew a total of %s potions', [10, 100, 1000]),
+		_AchievementTotal.new('total_brew', 'Brew a total of %s potions', [200, 2000, 5000]),
 		_AchievementDiff.new('diff_brew', 'Brew %s different potions', [5, 10, 20]),
-		_AchievementTotal.new('total_plants', 'Harvest a total of %s plants.', [50, 500, 1000]),
-		_AchievementTotal.new('total_potions', 'Use a total of %s potions', [20, 200, 2000]),
-		_AchievementTotal.new('total_items', 'Gain a total of %s items', [1000, 10000, 100000]),
-		_AchievementTotal.new('total_gems', 'Gain a total of %s gems', [1000, 300000, 1000000]),
-		_AchievementTotal.new('total_seeds', 'Gain a total of %s seeds', [100, 1000, 10000]),
+		_AchievementTotal.new('total_plants', 'Harvest a total of %s plants.', [500, 5000, 50000]),
+		_AchievementTotal.new('total_potions', 'Use a total of %s potions', [100, 1000, 2500]),
+		_AchievementTotal.new('total_items', 'Gain a total of %s items', [3000, 30000, 300000]),
+		_AchievementTotal.new('total_gems', 'Gain a total of %s gems', [1000, 100000, 1000000]),
+		_AchievementTotal.new('total_seeds', 'Gain a total of %s seeds', [500, 5000, 50000]),
 		_AchievementDiff.new('diff_pages', 'Collect all journal pages', [0, 0, 30], true),
 	]
 
