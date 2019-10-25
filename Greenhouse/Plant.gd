@@ -24,7 +24,6 @@ const GOLD_MODULATE = Color(2,1.5,0)
 const FIELD_DRY_MODULATE = Color(0.69, 0.69, 0.69)
 
 onready var overlay = $Overlay
-onready var plant_area_collision = $PlantArea/Collision
 onready var plant_area = $PlantArea
 onready var field_area = $FieldArea
 onready var weeds_sprite = $WeedsSprite
