@@ -50,4 +50,3 @@ Brewing bg
 
 ## Bugs
 
-Can interact with popout out of screen even if modal is open
