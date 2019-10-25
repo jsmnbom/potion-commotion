@@ -68,8 +68,10 @@ func _ready():
 			if plant_id in potion_item.ingredients:
 				used_in.append(potion)
 				continue
+		var seed_res_path = Data.inventory_by_id['seed'][plant_id].res_path
+		var resource_res_path = Data.inventory_by_id['resource'][plant_id].res_path
 		
-		page.init(plant.name, text, plant.res_path, used_in, plant.collision_polygons_small)
+		page.init(plant.name, text, plant.res_path, seed_res_path, resource_res_path, used_in, plant.collision_polygons_small)
 		add_page(plant_id, plant.name, page)
 		
 	for potion in potions:

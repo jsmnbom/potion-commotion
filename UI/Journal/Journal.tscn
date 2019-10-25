@@ -32,7 +32,6 @@ input_pickable = false
 monitoring = false
 monitorable = false
 collision_layer = 1024
-
 collision_mask = 0
 
 [node name="Collision" type="CollisionShape2D" parent="CloseArea"]
@@ -48,7 +47,6 @@ input_pickable = false
 monitoring = false
 monitorable = false
 collision_layer = 2048
-
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area"]
@@ -81,11 +79,14 @@ mouse_filter = 2
 visible = false
 
 [node name="AStrangeGarden" parent="Pages" instance=ExtResource( 4 )]
-editor/display_folded = true
 visible = false
 
+[node name="Label" parent="Pages/AStrangeGarden" index="1"]
+text = "I seem to have stumbled a strange garden. It almost oozes magical aura.
+I have decided to write this journal in an attempt to document the strangeness I have observed. It seems the perfect place to grow my magical crops, unfortunately I only brought a single seed, the Hydroangea. I will have to venture to the city to purchase more seeds.
+"
+
 [node name="TheApprenticeship" parent="Pages" instance=ExtResource( 4 )]
-editor/display_folded = true
 visible = false
 
 [node name="Title" parent="Pages/TheApprenticeship" index="0"]
@@ -95,40 +96,41 @@ text = "The Apprenticeship"
 text = "Today marks the first day I was supposed to start as an apprentice for the esteemed magical botanist Ardon Silvera.
 I arrived yesterday and I have yet to see any signs of them.
 I've found a couple of torn out pages of what seems to be their journal. Maybe they will be happy that I found them.
-Until then, this garden looks a bit run down, maybe I should get to work."
+Until then, this garden looks a bit run down, maybe I should get to work. Looks like they left a lot of Hydroangea seeds behind but nothing else, I might be able to scrape together a bit of gems by selling potions, and use those to purchase more seeds.
+"
 
 [node name="Signature" parent="Pages/TheApprenticeship" index="2"]
 text = "~ [name]"
 
 [node name="TheCauldron1" parent="Pages" instance=ExtResource( 4 )]
-editor/display_folded = true
 visible = false
 
 [node name="Title" parent="Pages/TheCauldron1" index="0"]
 text = "The cauldron #1"
 
 [node name="Label" parent="Pages/TheCauldron1" index="1"]
-text = ""
+text = "Not many days after I arrived here, I found a cauldron looking apparatus in the nearby cottage that I have moved in to. It looks nothing like any other cauldron I have ever used, but it seems to work about the same. Even though the fact that I never need to add any water is a bit peculiar.
+"
 
 [node name="TheCauldron2" parent="Pages" instance=ExtResource( 4 )]
-editor/display_folded = true
 visible = false
 
 [node name="Title" parent="Pages/TheCauldron2" index="0"]
 text = "The cauldron #2"
 
 [node name="Label" parent="Pages/TheCauldron2" index="1"]
-text = ""
+text = "The cauldron is unlike any cauldron I have ever used before! No matter what I throw into it I get a potion back. Not always the most useful potions mind you, but by adding just the right ingredients it’s quite trivial to get the potion I want.
+Even weirder is that i get the potion back, already bottled in a flask, that really should have tripped me onto the cauldrons strange properties before.
+"
 
 [node name="TheCauldron3" parent="Pages" instance=ExtResource( 4 )]
-editor/display_folded = true
 visible = false
 
 [node name="Title" parent="Pages/TheCauldron3" index="0"]
 text = "The cauldron #3"
 
 [node name="Label" parent="Pages/TheCauldron3" index="1"]
-text = ""
+text = "The cauldron! The cauldron is not actually a cauldron. My research leads me to believe it might actually be a portal to another world! I wonder who keeps throwing back potions when i put ingredients into it. More research is required - though I’m not totally sure how to go about doing that. Jumping into it, while a good way of gathering data, doesn’t seem like the best idea, but at this point I’m pretty much out of ideas of what else to do."
 
 [node name="Forward" type="TextureRect" parent="."]
 visible = false
@@ -146,7 +148,6 @@ input_pickable = false
 monitoring = false
 monitorable = false
 collision_layer = 4096
-
 collision_mask = 0
 
 [node name="Collision" type="CollisionPolygon2D" parent="Forward/Area"]
@@ -173,7 +174,6 @@ input_pickable = false
 monitoring = false
 monitorable = false
 collision_layer = 4096
-
 collision_mask = 0
 
 [node name="Collision" type="CollisionPolygon2D" parent="Back/Area"]
@@ -196,7 +196,6 @@ input_pickable = false
 monitoring = false
 monitorable = false
 collision_layer = 4096
-
 collision_mask = 0
 
 [node name="Collision" type="CollisionPolygon2D" parent="Return/Area"]

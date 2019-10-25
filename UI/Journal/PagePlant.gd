@@ -7,18 +7,21 @@ var GROW_STAGES = ['0-24% grown', '25-49% grown', '50-74% grown', '75-99% grown'
 var potion_areas = {}
 var plant_areas = []
 	
-func init(title, description, res, used_in, collision_polygons):
+func init(title, description, res_path, seed_res_path, resource_res_path, used_in, collision_polygons):
 	$Title.text = title
 	$Description.text = description
-	$Preview.texture = Utils.get_scaled_res(res, 96*5, 192*2)
+	$Preview.texture = Utils.get_scaled_res(res_path, 96*5, 192*2)
 	$FieldPreview.texture = Utils.get_scaled_res('res://assets/field.png', 96, 96)
+	
+	$SeedPreview.texture = Utils.get_scaled_res(seed_res_path, 48 ,48)
+	$ResourcePreview.texture = Utils.get_scaled_res(resource_res_path, 48, 48)
 	
 	for potion in used_in:
 		var item = Data.inventory_by_id['potion'][potion]
 		var sprite = Sprite.new()
 		sprite.texture = item.get_scaled_res(48, 48)
 		var i = $Potions.get_children().size()
-		sprite.position = Vector2(488+(i%2)*48, 144+floor(i/2)*64)
+		sprite.position = Vector2(38+(i%2)*48, 24+floor(i/2)*64)
 		
 		var area = Area2D.new()
 		area.monitorable = false
