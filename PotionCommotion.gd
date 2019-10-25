@@ -17,7 +17,7 @@ func _ready():
 
 	OS.set_window_title('Potion Commotion %s' % Data.version)
 
-func _physics_process(delta):
+func _process(delta):
 	if new_game_wait != 0:
 		new_game_wait -= 1
 		if new_game_wait == 0:
