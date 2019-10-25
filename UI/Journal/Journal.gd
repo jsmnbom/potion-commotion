@@ -40,13 +40,7 @@ func _ready():
 	Events.connect('show_journal', self, '_on_show_journal')
 	Events.connect('unlock_journal_page', self, '_on_unlock_journal_page')
 	Events.connect('show_journal_page', self, '_on_show_journal_page')
-
-	if Data.player_name.ends_with('s'):
-		$Pages/Index/Title.text = '%s\' Journal' % Data.player_name
-	else:
-		$Pages/Index/Title.text = '%s\'s Journal' % Data.player_name
-	
-	$Pages/TheApprenticeship/Signature.text = '~%s' % Data.player_name
+	Events.connect('loaded', self, '_on_loaded')
 	
 	for page in PAGES:
 		PAGES[page][1].hide()
@@ -90,6 +84,14 @@ func _ready():
 	update_index()
 	show_page(current_page)
 	_on_show_journal(false)
+
+func _on_loaded():
+	if Data.player_name.ends_with('s'):
+		$Pages/Index/Title.text = '%s\' Journal' % Data.player_name
+	else:
+		$Pages/Index/Title.text = '%s\'s Journal' % Data.player_name
+	
+	$Pages/TheApprenticeship/Signature.text = '~%s' % Data.player_name
 
 func _unhandled_input(event):
 	if event.is_action_pressed('ui_up') or event.is_action_pressed('ui_down') or event.is_action_pressed('ui_back'):
@@ -195,6 +197,7 @@ func _on_show_journal(show):
 		show_page(current_page)
 		show()
 	else:
+		PAGES[current_page][1].hide()
 		for node in [self, $Forward, $Return, $Back]:
 			node.hide()
 		for item in index_items1.get_children():
@@ -221,9 +224,11 @@ func _on_show_journal_page(msg):
 
 func serialize():
 	return {
-		'unlocked': Data.unlocked_journal_pages
+		'unlocked': Data.unlocked_journal_pages,
+		'viewed': viewed_pages
 	}
 
 func deserialize(data):
+	viewed_pages = data['viewed']
 	for page in data['unlocked']:
 		_on_unlock_journal_page({'id': page})

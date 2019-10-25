@@ -47,16 +47,8 @@ Music
 
 Audio
 Brewing bg
-Write last of journal pages
 
 
 ## Bugs
 
-Journal NEW not saved
-JOurnal plant page tooltips in greenhouse
-JOurnal buttons not hidden
-Index items not hidden
-Ingredients not hidden
-Player name not restored on load
-Game saved noticiation should be behind ui
 On loading Z from not sleeping plants shown momentarily

@@ -13,9 +13,9 @@
 [ext_resource path="res://UI/SavePopout/SavePopout.tscn" type="PackedScene" id=11]
 [ext_resource path="res://UI/Clock/Clock.tscn" type="PackedScene" id=12]
 [ext_resource path="res://UI/MenuPopout/MenuPopout.tscn" type="PackedScene" id=13]
-[ext_resource path="res://UI/Achievements/Achievements.tscn" type="PackedScene" id=14]
-[ext_resource path="res://UI/Journal/Journal.tscn" type="PackedScene" id=15]
-[ext_resource path="res://assets/fonts/Courgette/Courgette-Regular.ttf" type="DynamicFontData" id=16]
+[ext_resource path="res://assets/fonts/Courgette/Courgette-Regular.ttf" type="DynamicFontData" id=14]
+[ext_resource path="res://UI/Achievements/Achievements.tscn" type="PackedScene" id=15]
+[ext_resource path="res://UI/Journal/Journal.tscn" type="PackedScene" id=16]
 [ext_resource path="res://UI/Tooltip/Tooltip.tscn" type="PackedScene" id=17]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -25,13 +25,13 @@ extents = Vector2( 218, 160 )
 size = 100
 outline_size = 4
 outline_color = Color( 0.564706, 0.447059, 0.101961, 1 )
-font_data = ExtResource( 16 )
+font_data = ExtResource( 14 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 60
 outline_size = 4
 outline_color = Color( 0.564706, 0.447059, 0.101961, 1 )
-font_data = ExtResource( 16 )
+font_data = ExtResource( 14 )
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -41,6 +41,9 @@ __meta__ = {
 }
 
 [node name="ViewportTween" type="Tween" parent="."]
+
+[node name="PlayTimeTimer" type="Timer" parent="."]
+autostart = true
 
 [node name="BG" type="TextureRect" parent="."]
 show_behind_parent = true
@@ -59,6 +62,7 @@ texture = ExtResource( 3 )
 [node name="GreenhouseViewportContainer" type="ViewportContainer" parent="." groups=[
 "ViewportContainer",
 ]]
+editor/display_folded = true
 show_behind_parent = true
 margin_left = 32.0
 margin_top = 32.0
@@ -81,6 +85,7 @@ gui_disable_input = true
 [node name="SubViewportArea" type="Area2D" parent="." groups=[
 "MouseAreas",
 ]]
+editor/display_folded = true
 position = Vector2( 1419, 32 )
 input_pickable = false
 monitoring = false
@@ -95,6 +100,7 @@ shape = SubResource( 1 )
 [node name="BrewingViewportContainer" type="ViewportContainer" parent="." groups=[
 "ViewportContainer",
 ]]
+editor/display_folded = true
 show_behind_parent = true
 margin_left = 1419.0
 margin_top = 32.0
@@ -170,17 +176,8 @@ margin_top = 856.0
 margin_right = 128.0
 margin_bottom = 968.0
 
-[node name="Achievements" parent="." instance=ExtResource( 14 )]
-visible = false
-
-[node name="Journal" parent="." instance=ExtResource( 15 )]
-visible = false
-mouse_filter = 2
-
-[node name="PlayTimeTimer" type="Timer" parent="."]
-autostart = true
-
 [node name="SaveNotification" type="Control" parent="."]
+editor/display_folded = true
 visible = false
 modulate = Color( 1, 1, 1, 0 )
 margin_top = 440.0
@@ -205,6 +202,13 @@ custom_colors/font_color = Color( 0.780392, 0.639216, 0.231373, 1 )
 align = 1
 
 [node name="Tween" type="Tween" parent="SaveNotification"]
+
+[node name="Achievements" parent="." instance=ExtResource( 15 )]
+visible = false
+
+[node name="Journal" parent="." instance=ExtResource( 16 )]
+visible = false
+mouse_filter = 2
 
 [node name="Tooltip" parent="." instance=ExtResource( 17 )]
 visible = false
