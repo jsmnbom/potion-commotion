@@ -22,8 +22,6 @@ func _process(delta):
 		new_game_wait -= 1
 		if new_game_wait == 0:
 			Data.clear()
-			$MouseHelper.show()
-			$MainMenu.hide()
 			var new_game = Game.instance()
 			if not game:
 				game = new_game
@@ -32,6 +30,7 @@ func _process(delta):
 				game.queue_free()
 				game = new_game
 				add_child_below_node($MainMenu, new_game)
+			Events.emit_signal('loaded')
 	elif continue_game_wait != 0:
 		continue_game_wait -= 1
 		if continue_game_wait == 0:
