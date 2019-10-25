@@ -115,16 +115,16 @@ func deserialize_array(nodes, array):
 func save_game():
 	print('saving!')
 	var data = {
-		'plants': serialize_array(get_tree().get_nodes_in_group('Plants')),
+		'time': Data.time,
 		'inventory': $Inventory.serialize(),
+		'plants': serialize_array(get_tree().get_nodes_in_group('Plants')),
 		'achievements': $Achievements.serialize(),
 		'gems': $GemDisplay.serialize(),
 		'luck': $LuckDisplay.serialize(),
 		'birbs': greenhouse.get_node('BirbController').serialize(),
-		'time': Data.time,
 		'play_time': Data.play_time,
-		'journal': $Journal.serialize(),
-		'player_name': Data.player_name
+		'player_name': Data.player_name,
+		'journal': $Journal.serialize()
 	}
 
 	var save_file = File.new()
@@ -159,6 +159,9 @@ func load_game():
 	save_file.open("user://savegame.save", File.READ)
 	var data = parse_json(save_file.get_line())
 	
+	print('loading time')
+	Data.time = int(clamp(data['time'] - 1, 0, 24*60))
+	greenhouse._on_DayTimer_timeout()
 	print('loading inventory')
 	$Inventory.deserialize(data['inventory'])
 	print('loading plants')
@@ -171,15 +174,12 @@ func load_game():
 	$LuckDisplay.deserialize(data['luck'])
 	print('loading birbs')
 	greenhouse.get_node('BirbController').deserialize(data['birbs'])
-	print('loading time')
-	Data.time = int(clamp(data['time'] - 1, 0, 24*60))
-	greenhouse._on_DayTimer_timeout()
 	print('loading play_time')
 	Data.play_time = data['play_time']
-	print('loading journal')
-	$Journal.deserialize(data['journal'])
 	print('loading player_name')
 	Data.player_name = data['player_name']
+	print('loading journal')
+	$Journal.deserialize(data['journal'])
 	save_file.close()
 	print('done loading!')
 

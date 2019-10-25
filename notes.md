@@ -48,7 +48,6 @@ Music
 Audio
 Brewing bg
 
-
 ## Bugs
 
-On loading Z from not sleeping plants shown momentarily
+Can interact with popout out of screen even if modal is open
