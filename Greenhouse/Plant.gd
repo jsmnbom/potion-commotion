@@ -137,10 +137,15 @@ func update_overlays():
 			overlay.show()
 		elif dried_out:
 			hydration.show()
+			if selected_potion == 'hydration':
+				overlay.show()
+			else:
+				overlay.hide()
 		else:
 			if selected_seed != null and not planted:
 				overlay.show()
 			else:
+				print('hide')
 				overlay.hide()
 			Events.emit_signal('tooltip', {'hide': true})
 	else:

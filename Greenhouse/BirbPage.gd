@@ -23,6 +23,7 @@ func _on_mouse_area(msg):
 				Utils.set_cursor_hand(mouse_over)
 				if left:
 					$Area.hide()
+					z_index = 17
 					$Tween.interpolate_property(self, 'position', position, JOURNAL_POS, 1,  Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 					$Tween.interpolate_property(self, 'scale', scale, Vector2(0.25, 0.25), 1,  Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 					$Tween.interpolate_callback(self, 1, 'queue_free')
