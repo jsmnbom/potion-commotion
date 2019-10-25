@@ -3,13 +3,23 @@
 ## Z-indexes
 
 0 fields
-2 seeds + weeds
-3 birbpages
-4 birbs
-5 plants
-6 plant particles
-7 birbpage - flying
-8 birb - flying
+2 seeds
+3 seed particles
+4 birbpages
+5 birbs
+6 plants row 4
+7 plants particles + weeds row 4
+8 birbs
+9 plants row 3
+10 plants particles + weeds row 3
+11 birbs
+12 plants row 2
+13 plants particles + weeds row 2
+14 birbs
+15 plants row 1
+16 plant particles + weeds row 1
+17 birbpage - flying
+18 birb - flying
 
 ## Maybe / Later
 

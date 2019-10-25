@@ -52,6 +52,7 @@ func _ready():
 	Events.connect('inventory_item', self, '_on_inventory_item')
 	Events.connect('mouse_area', self, '_on_mouse_area')
 
+
 func reset():
 	plant_sprite.hide()
 	planted = false
@@ -62,14 +63,17 @@ func reset():
 	used_potions = []
 	star_particles.emitting = false
 	light.enabled = false
-	for i in range(plant_area.get_children().size()-1, 0, -1 ):
-		plant_area.remove_child(plant_area.get_child(i))
+	for i in range(plant_area.get_children().size()):
+		plant_area.remove_child(plant_area.get_child(0))
 
 	plant_sprite.modulate = Color(1,1,1)
 
 	dry_timer.paused = true
 	
 	plant_sprite.z_index = 2
+	$SleepParticles.z_index = 3
+	$StarParticles.z_index = 3
+	weeds_sprite.z_index = 3
 
 	if should_dry_out:
 		should_dry_out = false
@@ -164,21 +168,45 @@ func tick():
 		
 	progress += 1
 	
-	var plantStage = int(progress / 25);
+	var plantStage = int(progress / 25)
 	if not prev_plant_stage == plantStage:
 		plant_sprite.region_rect.position.x = plantStage * 128
 		
 		if plantStage > 0:
-			plant_sprite.z_index = 5
+			if position.y > 736:
+				# row 4
+				plant_sprite.z_index = 15
+				$SleepParticles.z_index = 16
+				$StarParticles.z_index = 16
+				weeds_sprite.z_index = 16
+			elif position.y > 544:
+				#row 3
+				plant_sprite.z_index = 12
+				$SleepParticles.z_index = 13
+				$StarParticles.z_index = 13
+				weeds_sprite.z_index = 13
+			elif position.y > 352:
+				#row 2
+				plant_sprite.z_index = 9
+				$SleepParticles.z_index = 10
+				$StarParticles.z_index = 10
+				weeds_sprite.z_index = 10
+			else:
+				# row 1
+				plant_sprite.z_index = 6
+				$SleepParticles.z_index = 7
+				$StarParticles.z_index = 7
+				weeds_sprite.z_index = 7
+			
 
-		for i in range(plant_area.get_children().size()-1, 0, -1 ):
-			plant_area.remove_child(plant_area.get_child(i))
-	
-		for poly in collision_polygons[plantStage]:
-			var collision = CollisionPolygon2D.new()
-			collision.polygon = poly
-			collision.position = Vector2(-64, -128-64) + offset
-			plant_area.add_child(collision)
+			for i in range(plant_area.get_children().size()):
+				plant_area.remove_child(plant_area.get_child(0))
+		
+			for poly in collision_polygons[plantStage]:
+				var collision = CollisionPolygon2D.new()
+				collision.polygon = poly
+				collision.position = Vector2(-64, -128-64) + offset
+				plant_area.add_child(collision)
 		
 	prev_plant_stage = plantStage
 
@@ -333,6 +361,8 @@ func deserialize(data):
 	dry_timer.wait_time = data['dry_time_left']
 	if data['plant'] != null:
 		set_plant(data['plant'])
+		offset = Vector2(int(data['offset_x']), int(data['offset_y']))
+		plant_sprite.position = offset + Vector2(0, -64)
 		plant_sprite.show()
 
 		if data['grow_time_left'] > 0:
@@ -344,13 +374,15 @@ func deserialize(data):
 
 		grow_timer.start()
 		planted = true
+		
 		tick()
+	else:
+		offset = Vector2(0,0)
 	if data['weeds']:
 		set_weeds()
 	else:
 		weeds = false
 		weeds_sprite.hide()
-	offset = Vector2(int(data['offset_x']), int(data['offset_y']))
 
 func _on_DryTimer_timeout():
 	should_dry_out = true
@@ -433,4 +465,12 @@ func _on_mouse_area(msg):
 				is_mouse_over = true
 				update_overlays()
 				update_cursor()
-				
+
+func bottom_y():
+	var highest = 0
+	var plantStage = int(progress / 25)
+	for poly in collision_polygons[plantStage]:
+		for vec in poly:
+			if vec.y > highest:
+				highest = vec.y
+	return position.y + highest -128-64-8 + offset.y

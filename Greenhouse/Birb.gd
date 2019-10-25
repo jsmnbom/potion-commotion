@@ -8,6 +8,8 @@ var jump_wait_max = Utils.rng.randf_range(10, 90)
 
 var goal_pos
 var last_pos
+var small_goal = Vector2(0,0)
+var top = 0
 var jumping = false
 var flying = false
 
@@ -31,7 +33,8 @@ func _ready():
 	random_goal()
 	
 	$Sprite.frame = 0
-	
+
+	z_index = 5
 	
 func random_goal():
 	goal_pos = Vector2(
@@ -45,11 +48,25 @@ func random_goal():
 	
 	
 func _physics_process(delta):
+	#update()
+
+	if not flying:
+		for plant in overlapping_plants:
+			if self.position.y > overlapping_plants[plant] or small_goal.y > overlapping_plants[plant] or top > overlapping_plants[plant]:
+				z_index = plant.plant_sprite.z_index + 2
+				if not plant in in_front_of_plants:
+					in_front_of_plants.append(plant)
+			else:
+				if plant in in_front_of_plants:
+					in_front_of_plants.erase(plant)
+					if in_front_of_plants.size() == 0:
+						z_index = 5
+
 	if page_node_ref != null:
 		var page_node = page_node_ref.get_ref()
 		if page_node:
 			page_node.position = position + Vector2(0,32)
-			page_node.z_index = 7
+			page_node.z_index = 17
 			page_node.destination = last_pos
 	
 	if not jumping and not flying and not is_offscreen:
@@ -62,7 +79,7 @@ func _physics_process(delta):
 			if (goal_pos-position).length() < 50:
 				random_goal()
 			
-			var small_goal = position + (goal_pos-position).clamped(100)
+			small_goal = position + (goal_pos-position).clamped(100)
 			
 			if small_goal.x > position.x:
 				scale.x = -1
@@ -71,7 +88,7 @@ func _physics_process(delta):
 			
 			$Tween.stop_all()
 			$Tween.remove_all()
-			var top = min(small_goal.y, start_pos.y)-50
+			top = min(small_goal.y, start_pos.y)-50
 			$Tween.interpolate_property(self, 'position:x', start_pos.x, small_goal.x, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 			$Tween.interpolate_property(self, 'position:y', start_pos.y, top, 0.5, Tween.TRANS_CUBIC, Tween.EASE_OUT)
 			$Tween.interpolate_property(self, 'position:y', top, small_goal.y, 0.5, Tween.TRANS_CUBIC, Tween.EASE_IN, 0.5)
@@ -81,6 +98,8 @@ func _physics_process(delta):
 	
 func stop_jumping():
 	jumping = false
+	small_goal = Vector2(0,0)
+	top = 0
 		
 
 func fetch_page(node):
@@ -107,7 +126,7 @@ func fetch_page(node):
 	else:
 		scale.x = 1
 	
-	z_index = 8
+	z_index = 18
 	
 	if is_offscreen:
 		midway()
@@ -132,7 +151,7 @@ func stop_flying():
 	prints(name, 'stop_flying')
 	$AnimationPlayer.stop()
 	$Sprite.frame = 0
-	z_index = 4
+	z_index = 5
 	if page_node_ref != null:
 		var page_node = page_node_ref.get_ref()
 		if page_node:
@@ -152,3 +171,27 @@ func deserialize(data):
 	position = Vector2(data['pos'][0], data['pos'][1])
 	goal_pos = Vector2(data['goal_pos'][0], data['goal_pos'][1])
 	stop_flying()
+
+# func _draw():
+# 	#draw_line(Vector2(0, 500)- self.position,Vector2(1355, 500)- self.position , Color(255,0,0), 5)
+# 	for plant in in_front_of_plants:
+# 		if plant.planted:
+# 			draw_line(Vector2(0, plant.bottom_y())- self.position, Vector2(1355, plant.bottom_y())-self.position, Color(255,0 if name == 'Birb2' else 255,0), 5)
+
+var overlapping_plants = {}
+var in_front_of_plants = []
+
+func _on_Area_area_entered(area):
+	var plant =  area.get_parent()
+	if plant.planted:
+		overlapping_plants[area.get_parent()] = area.get_parent().bottom_y()
+
+
+func _on_Area_area_exited(area):
+	var plant =  area.get_parent()
+	if plant in overlapping_plants:
+		overlapping_plants.erase(plant)
+		if plant in in_front_of_plants:
+			in_front_of_plants.erase(plant)
+			if in_front_of_plants.size() == 0:
+				z_index = 5

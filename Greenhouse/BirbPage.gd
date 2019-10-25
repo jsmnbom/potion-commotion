@@ -2,7 +2,7 @@ extends Node2D
 
 var JOURNAL_POS = Vector2(48, 432)
 var page_id
-var destination
+var destination = Vector2(1355/2, 1016/2)
 
 func _ready():
 	$PageSprite.texture = Utils.get_scaled_res('res://assets/journal_items/page.png', 128, 128)

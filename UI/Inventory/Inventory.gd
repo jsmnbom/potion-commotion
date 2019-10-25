@@ -30,7 +30,7 @@ func _ready():
 
 	if Debug.INVENTORY:
 		for item in Data.inventory:
-			Events.emit_signal('inventory_add', {'type': item.type, 'id': item.id, 'count': 10})
+			Events.emit_signal('inventory_add', {'type': item.type, 'id': item.id, 'count': 50})
 
 func update_item(node, item):
 	if item.count == -1:

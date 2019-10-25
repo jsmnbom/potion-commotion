@@ -79,7 +79,8 @@ func _ready():
 	if Debug.JOURNAL:
 		for page in PAGES:
 			if not page in Data.unlocked_journal_pages:
-				Events.emit_signal('unlock_journal_page', {'id': page})
+				if not page in ['AStrangeGarden', 'TheApprenticeship']:
+					Events.emit_signal('unlock_journal_page', {'id': page})
 	
 	update_index()
 	show_page(current_page)
