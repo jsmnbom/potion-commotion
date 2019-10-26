@@ -39,6 +39,7 @@ Rain
 Harder achevements (after playtesting)
 Poison potion makes everything wonky
 Remove mouseover requirement from overlay
+Better brewing bg
 
 ## Sound
 
@@ -56,7 +57,6 @@ Music
 ## TODO
 
 Audio
-Brewing bg
 
 ## Bugs
 
