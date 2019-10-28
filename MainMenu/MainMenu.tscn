@@ -98,7 +98,7 @@ texture = ExtResource( 3 )
 [node name="Title" type="AnimatedSprite" parent="."]
 position = Vector2( 965, 348 )
 frames = SubResource( 3 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="ContinueButton" parent="." instance=ExtResource( 8 )]
@@ -173,7 +173,7 @@ texture = ExtResource( 12 )
 [node name="Potion" type="AnimatedSprite" parent="."]
 position = Vector2( 508.341, 488.522 )
 frames = SubResource( 4 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="VersionLabel" type="Label" parent="."]
@@ -194,6 +194,17 @@ custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0.780392, 0.639216, 0.231373, 1 )
 text = "Loading..."
 align = 1
+
+[node name="Clouds2" type="Particles2D" parent="."]
+material = SubResource( 1 )
+position = Vector2( 2099.39, 446.827 )
+amount = 10
+lifetime = 35.0
+preprocess = 35.0
+explosiveness = 0.1
+visibility_rect = Rect2( -2500, -1000, 1080, 10000 )
+process_material = SubResource( 2 )
+texture = ExtResource( 3 )
 [connection signal="visibility_changed" from="." to="." method="_on_MainMenu_visibility_changed"]
 [connection signal="pressed" from="ContinueButton" to="." method="_on_ContinueButton_pressed"]
 [connection signal="pressed" from="NewButton" to="." method="_on_NewButton_pressed"]

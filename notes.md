@@ -40,6 +40,7 @@ Harder achevements (after playtesting)
 Poison potion makes everything wonky
 Remove mouseover requirement from overlay
 Better brewing bg
+Gems fly up to gemdisplay when selling and such
 
 ## Sound
 
@@ -57,6 +58,7 @@ Music
 ## TODO
 
 Audio
+Add subtitle in game
+Add shovel
 
 ## Bugs
-
