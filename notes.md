@@ -59,6 +59,6 @@ Music
 
 Audio
 Add subtitle in game
-Add shovel
+Clock time left text
 
 ## Bugs

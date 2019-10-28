@@ -51,6 +51,7 @@ func _on_MainMenu_visibility_changed():
 	if not visible:
 		for button in buttons:
 			button._on_Button_mouse_exited()
+	stop_loading()
 	if has_game_opened:
 		$ContinueButton.disabled = false
 	else:

@@ -14,6 +14,7 @@ var used_potions = []
 var next_grow_time = -1
 var should_dry_out = false
 var dried_out = false
+var shovel_picked_up = false
 
 var dry_out_time_min = 5*60
 var dry_out_time_max = 30*60
@@ -50,6 +51,7 @@ func _ready():
 
 	Events.connect('inventory_item', self, '_on_inventory_item')
 	Events.connect('mouse_area', self, '_on_mouse_area')
+	Events.connect('shovel', self, '_on_shovel')
 
 
 func reset():
@@ -127,7 +129,7 @@ func update_overlays():
 	if is_mouse_over:
 		if planted:
 			emit_tooltip()
-			if selected_potion != null and can_use_potion(selected_potion) and progress < 100:
+			if (selected_potion != null and can_use_potion(selected_potion) and progress < 100) or shovel_picked_up:
 				overlay.show()
 			else:
 				overlay.hide()
@@ -398,6 +400,10 @@ func update_cursor():
 		else:
 			Utils.set_custom_cursor('sickle', null)
 
+func _on_shovel(picked_up):
+	shovel_picked_up = picked_up
+	update_overlays()
+	update_cursor()
 
 func _on_mouse_area(msg):
 	if msg['node'] == plant_area or msg['node'] == field_area:
@@ -463,6 +469,17 @@ func _on_mouse_area(msg):
 						'animated': true,
 						'from_position': position,
 						'count': round(Utils.rng_choose([2,2,3,3,4])*(1+Data.luck))
+					})
+					reset()
+					update_cursor()
+				elif (left and shovel_picked_up and planted):
+					Events.emit_signal('achievement', {'diff_id': 'diff_plants', 'diff_add': plant})
+					Events.emit_signal('inventory_add', {
+						'type': 'seed',
+						'id': plant,
+						'animated': true,
+						'from_position': position,
+						'count': 1
 					})
 					reset()
 					update_cursor()

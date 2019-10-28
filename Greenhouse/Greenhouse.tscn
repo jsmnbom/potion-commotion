@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Greenhouse/Greenhouse.gd" type="Script" id=1]
 [ext_resource path="res://assets/grass.png" type="Texture" id=2]
 [ext_resource path="res://Greenhouse/Plant.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Greenhouse/BirbController.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Greenhouse/Shovel.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 677, 508 )
@@ -28,103 +29,106 @@ stretch_mode = 2
 [node name="Plants" type="YSort" parent="."]
 
 [node name="Plant" parent="Plants" instance=ExtResource( 3 )]
-position = Vector2( 256, 256 )
+position = Vector2( 226, 256 )
 
 [node name="Plant12" parent="Plants" instance=ExtResource( 3 )]
-position = Vector2( 256, 448 )
+position = Vector2( 226, 448 )
 
 [node name="Plant24" parent="Plants" instance=ExtResource( 3 )]
-position = Vector2( 256, 640 )
+position = Vector2( 226, 640 )
 
 [node name="Plant32" parent="Plants" instance=ExtResource( 3 )]
-position = Vector2( 256, 832 )
+position = Vector2( 226, 832 )
 
 [node name="Plant2" parent="Plants" instance=ExtResource( 3 )]
-position = Vector2( 384, 256 )
+position = Vector2( 354, 256 )
 
 [node name="Plant9" parent="Plants" instance=ExtResource( 3 )]
-position = Vector2( 384, 448 )
+position = Vector2( 354, 448 )
 
 [node name="Plant17" parent="Plants" instance=ExtResource( 3 )]
-position = Vector2( 384, 640 )
+position = Vector2( 354, 640 )
 
 [node name="Plant28" parent="Plants" instance=ExtResource( 3 )]
-position = Vector2( 384, 832 )
+position = Vector2( 354, 832 )
 
 [node name="Plant3" parent="Plants" instance=ExtResource( 3 )]
-position = Vector2( 512, 256 )
+position = Vector2( 482, 256 )
 
 [node name="Plant13" parent="Plants" instance=ExtResource( 3 )]
-position = Vector2( 512, 448 )
+position = Vector2( 482, 448 )
 
 [node name="Plant22" parent="Plants" instance=ExtResource( 3 )]
-position = Vector2( 512, 640 )
+position = Vector2( 482, 640 )
 
 [node name="Plant31" parent="Plants" instance=ExtResource( 3 )]
-position = Vector2( 512, 832 )
+position = Vector2( 482, 832 )
 
 [node name="Plant4" parent="Plants" instance=ExtResource( 3 )]
-position = Vector2( 640, 256 )
+position = Vector2( 610, 256 )
 
 [node name="Plant11" parent="Plants" instance=ExtResource( 3 )]
-position = Vector2( 640, 448 )
+position = Vector2( 610, 448 )
 
 [node name="Plant20" parent="Plants" instance=ExtResource( 3 )]
-position = Vector2( 640, 640 )
+position = Vector2( 610, 640 )
 
 [node name="Plant26" parent="Plants" instance=ExtResource( 3 )]
-position = Vector2( 640, 832 )
+position = Vector2( 610, 832 )
 
 [node name="Plant5" parent="Plants" instance=ExtResource( 3 )]
-position = Vector2( 768, 256 )
+position = Vector2( 738, 256 )
 
 [node name="Plant10" parent="Plants" instance=ExtResource( 3 )]
-position = Vector2( 768, 448 )
+position = Vector2( 738, 448 )
 
 [node name="Plant18" parent="Plants" instance=ExtResource( 3 )]
-position = Vector2( 768, 640 )
+position = Vector2( 738, 640 )
 
 [node name="Plant29" parent="Plants" instance=ExtResource( 3 )]
-position = Vector2( 768, 832 )
+position = Vector2( 738, 832 )
 
 [node name="Plant6" parent="Plants" instance=ExtResource( 3 )]
-position = Vector2( 896, 256 )
+position = Vector2( 866, 256 )
 
 [node name="Plant15" parent="Plants" instance=ExtResource( 3 )]
-position = Vector2( 896, 448 )
+position = Vector2( 866, 448 )
 
 [node name="Plant19" parent="Plants" instance=ExtResource( 3 )]
-position = Vector2( 896, 640 )
+position = Vector2( 866, 640 )
 
 [node name="Plant30" parent="Plants" instance=ExtResource( 3 )]
-position = Vector2( 896, 832 )
+position = Vector2( 866, 832 )
 
 [node name="Plant7" parent="Plants" instance=ExtResource( 3 )]
-position = Vector2( 1024, 256 )
+position = Vector2( 994, 256 )
 
 [node name="Plant14" parent="Plants" instance=ExtResource( 3 )]
-position = Vector2( 1024, 448 )
+position = Vector2( 994, 448 )
 
 [node name="Plant21" parent="Plants" instance=ExtResource( 3 )]
-position = Vector2( 1024, 640 )
+position = Vector2( 994, 640 )
 
 [node name="Plant27" parent="Plants" instance=ExtResource( 3 )]
-position = Vector2( 1024, 832 )
+position = Vector2( 994, 832 )
 
 [node name="Plant8" parent="Plants" instance=ExtResource( 3 )]
-position = Vector2( 1152, 256 )
+position = Vector2( 1122, 256 )
 
 [node name="Plant16" parent="Plants" instance=ExtResource( 3 )]
-position = Vector2( 1152, 448 )
+position = Vector2( 1122, 448 )
 
 [node name="Plant23" parent="Plants" instance=ExtResource( 3 )]
-position = Vector2( 1152, 640 )
+position = Vector2( 1122, 640 )
 
 [node name="Plant25" parent="Plants" instance=ExtResource( 3 )]
-position = Vector2( 1152, 832 )
+position = Vector2( 1122, 832 )
 
 [node name="DayTimer" type="Timer" parent="."]
 
 [node name="BirbController" parent="." instance=ExtResource( 4 )]
+
+[node name="Shovel" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1280, 320.696 )
 [connection signal="timeout" from="WeedsTimer" to="." method="_on_WeedsTimer_timeout"]
 [connection signal="timeout" from="DayTimer" to="." method="_on_DayTimer_timeout"]

@@ -80,8 +80,9 @@ __meta__ = {
 }
 
 [node name="BG" type="TextureRect" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = 2.27209
+margin_right = 1922.27
+margin_bottom = 1080.0
 texture = ExtResource( 2 )
 
 [node name="Clouds" type="Particles2D" parent="."]
@@ -98,7 +99,7 @@ texture = ExtResource( 3 )
 [node name="Title" type="AnimatedSprite" parent="."]
 position = Vector2( 965, 348 )
 frames = SubResource( 3 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="ContinueButton" parent="." instance=ExtResource( 8 )]
@@ -139,6 +140,7 @@ margin_bottom = 1056.0
 text = "Options"
 
 [node name="ExitButton" type="TextureButton" parent="."]
+visible = false
 margin_left = 16.0
 margin_top = 1000.0
 margin_right = 80.0
@@ -173,7 +175,7 @@ texture = ExtResource( 12 )
 [node name="Potion" type="AnimatedSprite" parent="."]
 position = Vector2( 508.341, 488.522 )
 frames = SubResource( 4 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="VersionLabel" type="Label" parent="."]

@@ -13,6 +13,7 @@ var greenhouse_tooltip = 'Click to go back to your greenhouse!'
 var greenhouse_active = true
 
 var selected_item = null
+var shovel_picked_up = false
 
 var main_rect = Rect2(Vector2(32, 32), Vector2(1355, 1080-32-32))
 var sub_rect = Rect2(Vector2(32+1355+32, 32), Vector2(1920-(32+1355+32+32), 352))
@@ -26,6 +27,7 @@ func _ready():
 	Events.connect('load_game', self, 'load_game')
 	
 	Events.connect('inventory_item', self, '_on_inventory_item')
+	Events.connect('shovel', self, '_on_shovel')
 	
 	brewing_viewport_container.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 
@@ -36,6 +38,9 @@ func _on_inventory_item(msg):
 		{'deselected': true}:
 			selected_item = null
 
+func _on_shovel(picked_up):
+	shovel_picked_up = picked_up
+
 func ui_cancel():
 	if $Achievements.visible:
 		Events.emit_signal('show_achievements', false)
@@ -45,6 +50,9 @@ func ui_cancel():
 		return true
 	elif selected_item:
 		Events.emit_signal('inventory_deselect')
+		return true
+	elif shovel_picked_up:
+		Events.emit_signal('shovel', false)
 		return true
 	return false
 

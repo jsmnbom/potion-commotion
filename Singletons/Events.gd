@@ -63,3 +63,6 @@ signal show_journal_page(msg)
 
 # float
 signal add_luck(x)
+
+# true | false
+signal shovel

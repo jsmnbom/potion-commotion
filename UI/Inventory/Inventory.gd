@@ -80,6 +80,7 @@ func _on_mouse_area(msg):
 
 func set_selected_item(item):
 	if item != null:
+		Events.emit_signal('shovel', false)
 		selected_item = item.id
 		selected_item_type = item.type
 		Utils.set_custom_cursor('item', item.get_scaled_res(32, 32), Vector2(16, 16))
