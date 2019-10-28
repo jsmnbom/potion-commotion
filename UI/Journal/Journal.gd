@@ -55,7 +55,6 @@ func _ready():
 		var page = PagePlant.instance()
 		page.name = plant_id
 		var text = plant.description + '\n\n'
-		text += 'Growth time: %s' % Utils.time_string(plant.growth_time)
 		var used_in = []
 		for potion in potions:
 			var potion_item = potions[potion]
