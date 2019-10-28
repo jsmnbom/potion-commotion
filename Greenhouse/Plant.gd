@@ -33,6 +33,7 @@ onready var field_sprite = $FieldSprite
 onready var grow_timer = $GrowTimer
 onready var dry_timer = $DryTimer
 onready var star_particles = $StarParticles
+onready var sleep_particles = $SleepParticles
 onready var light = $Light
 onready var hydration = $Hydration
 
@@ -63,6 +64,7 @@ func reset():
 	offset = Vector2(0, 0)
 	used_potions = []
 	star_particles.emitting = false
+	sleep_particles.emitting = false
 	light.enabled = false
 	for i in range(plant_area.get_children().size()):
 		plant_area.remove_child(plant_area.get_child(0))
@@ -72,8 +74,8 @@ func reset():
 	dry_timer.paused = true
 	
 	plant_sprite.z_index = 2
-	$SleepParticles.z_index = 3
-	$StarParticles.z_index = 3
+	sleep_particles.z_index = 3
+	star_particles.z_index = 3
 	weeds_sprite.z_index = 3
 
 	if should_dry_out:
@@ -161,15 +163,15 @@ func tick():
 	
 	if plant in night_plants:
 		if Utils.is_night():
-			$SleepParticles.emitting = false
+			sleep_particles.emitting = false
 		else:
-			$SleepParticles.emitting = true
+			sleep_particles.emitting = true
 			return
 	if plant in day_plants:
 		if Utils.is_day():
-			$SleepParticles.emitting = false
+			sleep_particles.emitting = false
 		else:
-			$SleepParticles.emitting = true
+			sleep_particles.emitting = true
 			return
 		
 	progress += 1
@@ -182,26 +184,26 @@ func tick():
 			if position.y > 736:
 				# row 4
 				plant_sprite.z_index = 15
-				$SleepParticles.z_index = 16
-				$StarParticles.z_index = 16
+				sleep_particles.z_index = 16
+				star_particles.z_index = 16
 				weeds_sprite.z_index = 16
 			elif position.y > 544:
 				#row 3
 				plant_sprite.z_index = 12
-				$SleepParticles.z_index = 13
-				$StarParticles.z_index = 13
+				sleep_particles.z_index = 13
+				star_particles.z_index = 13
 				weeds_sprite.z_index = 13
 			elif position.y > 352:
 				#row 2
 				plant_sprite.z_index = 9
-				$SleepParticles.z_index = 10
-				$StarParticles.z_index = 10
+				sleep_particles.z_index = 10
+				star_particles.z_index = 10
 				weeds_sprite.z_index = 10
 			else:
 				# row 1
 				plant_sprite.z_index = 6
-				$SleepParticles.z_index = 7
-				$StarParticles.z_index = 7
+				sleep_particles.z_index = 7
+				star_particles.z_index = 7
 				weeds_sprite.z_index = 7
 			
 
