@@ -59,6 +59,6 @@ Music
 
 Audio
 Add subtitle in game
-Clock time left text
+More weed yield
 
 ## Bugs

@@ -148,7 +148,6 @@ func update_overlays():
 			if selected_seed != null and not planted:
 				overlay.show()
 			else:
-				print('hide')
 				overlay.hide()
 			Events.emit_signal('tooltip', {'hide': true})
 	else:

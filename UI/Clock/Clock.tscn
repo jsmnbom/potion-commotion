@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://UI/Clock/Clock.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/clock.png" type="Texture" id=2]
 [ext_resource path="res://assets/ui/clock_hand.png" type="Texture" id=3]
+[ext_resource path="res://assets/fonts/Courgette/Courgette-Regular.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+outline_size = 1
+outline_color = Color( 0.564706, 0.447059, 0.101961, 1 )
+font_data = ExtResource( 4 )
 
 [node name="Clock" type="Node2D"]
 script = ExtResource( 1 )
@@ -16,3 +22,22 @@ texture = ExtResource( 2 )
 position = Vector2( 56.0666, 55.5316 )
 texture = ExtResource( 3 )
 offset = Vector2( 0.215702, -12.1548 )
+
+[node name="Label" type="Label" parent="."]
+visible = false
+margin_left = 16.3234
+margin_top = 24.7647
+margin_right = 100.323
+margin_bottom = 83.7647
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.780392, 0.639216, 0.231373, 1 )
+text = "2 min to
+nighttime"
+align = 1
+valign = 1
+
+[node name="Area" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="Collsion" type="CollisionPolygon2D" parent="Area"]
+polygon = PoolVector2Array( 32.4717, 0.471401, 80.0312, 0.471401, 96.2078, 16.6481, 112.061, 32.8248, 112.061, 79.4136, 81.0018, 112.414, 32.1482, 112.091, 0.118328, 80.3842, 0.44186, 31.8542 )
