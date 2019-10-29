@@ -98,10 +98,10 @@ func _make_data(node, mouse_over, global_position, local_positions, button_mask,
 func _physics_process(delta):
 	var button_mask = Input.get_mouse_button_mask()
 	if visible:
-		var global_position = get_global_mouse_position()
+		var global_position = get_viewport().get_mouse_position()
 		var local_positions = _local_mouse_positions(global_position)
 		var top_node = null
-		if Rect2(Vector2(0,0), get_viewport().size).has_point(global_position):
+		if Rect2(Vector2(0,0), Vector2(1920, 1080)).has_point(global_position):
 			top_node = _find_top_node(global_position, local_positions)
 		if top_node == null or (mouse_over_node != null and top_node != mouse_over_node):
 			Events.emit_signal('mouse_area', _make_data(mouse_over_node, false, global_position, local_positions, button_mask, _button_clicks(button_mask)))
