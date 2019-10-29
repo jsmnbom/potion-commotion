@@ -5,9 +5,11 @@ const MUSIC = 1
 const SFX = 2
 const AMBIANCE = 3
 
-var music = [
-	preload('res://assets/audio/music_main.ogg')
-]
+var music = {
+	'Midnight in the Garden': preload('res://assets/audio/music/midnight_in_the_garden.ogg'),
+	# 'Arden Silvera': preload('res://assets/audio/music/arden_silvera.ogg')
+	# 'Crystal Stalk': preload('res://assets/audio/music/crystal_stalk.ogg')
+}
 
 func _ready():
 	$Music.stream = music[0]

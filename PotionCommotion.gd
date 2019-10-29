@@ -4,6 +4,7 @@ var Game = preload('res://Game/Game.tscn')
 var game = null
 var continue_game_wait = 0
 var new_game_wait = 0
+var has_game_opened = false
 
 func _ready():
 	get_tree().set_auto_accept_quit(false)
@@ -22,6 +23,7 @@ func _process(delta):
 		new_game_wait -= 1
 		if new_game_wait == 0:
 			Data.clear()
+			has_game_opened = true
 			var new_game = Game.instance()
 			if not game:
 				game = new_game
@@ -34,6 +36,7 @@ func _process(delta):
 	elif continue_game_wait != 0:
 		continue_game_wait -= 1
 		if continue_game_wait == 0:
+			has_game_opened = true
 			if game:
 				game.show()
 				$MouseHelper.show()
@@ -51,8 +54,10 @@ func _on_loaded():
 
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
-		$QuitDialog.show()
-		$MouseHelper.show()
+		if has_game_opened:
+			Events.emit_signal('exit_confirm')
+		else:
+			get_tree().quit()
 
 func _input(event):
 	if event.is_action_pressed('ui_cancel'):

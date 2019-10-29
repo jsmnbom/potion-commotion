@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/arden_silvera.ogg-13f3ca88fe0f37badc7657f9e4033dce.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/music/arden_silvera.ogg"
+dest_files=[ "res://.import/arden_silvera.ogg-13f3ca88fe0f37badc7657f9e4033dce.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

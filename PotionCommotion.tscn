@@ -4,7 +4,7 @@
 [ext_resource path="res://MainMenu/MainMenu.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Game/MouseHelper.tscn" type="PackedScene" id=3]
 [ext_resource path="res://UI/QuitDialog/QuitDialog.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Audio.tscn" type="PackedScene" id=5]
+[ext_resource path="res://UI/Audio/Audio.tscn" type="PackedScene" id=5]
 
 [node name="PotionCommotion" type="Node2D"]
 script = ExtResource( 1 )
@@ -18,3 +18,4 @@ visible = false
 visible = false
 
 [node name="Audio" parent="." instance=ExtResource( 5 )]
+position = Vector2( 6.89605, 0.237579 )

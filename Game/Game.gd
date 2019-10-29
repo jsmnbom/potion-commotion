@@ -83,25 +83,43 @@ func switch():
 	brewing_viewport_container.mouse_default_cursor_shape = Control.CURSOR_ARROW
 		
 	var tween = $ViewportTween
-	tween.interpolate_property(sub_container, 'rect_position',
-		sub_container.rect_position, sub_rect.position, 1,
-		Tween.TRANS_QUART, Tween.EASE_IN_OUT)
-	tween.interpolate_property(sub_container, 'rect_size',
-		sub_container.rect_size, sub_rect.size, 1,
-		Tween.TRANS_QUART, Tween.EASE_IN_OUT)
-	tween.interpolate_property(main_container, 'rect_position',
-		main_container.rect_position, main_rect.position, 1,
-		Tween.TRANS_QUART, Tween.EASE_IN_OUT)
-	tween.interpolate_property(main_container, 'rect_size',
-		main_container.rect_size, main_rect.size, 1,
-		Tween.TRANS_QUART, Tween.EASE_IN_OUT)
-	tween.interpolate_property(main_viewport, 'size',
-		main_viewport.size, main_rect.size, 1,
-		Tween.TRANS_QUART, Tween.EASE_IN_OUT)
-	tween.interpolate_property(sub_viewport, 'size',
-		sub_viewport.size, main_rect.size, 1,
-		Tween.TRANS_QUART, Tween.EASE_IN_OUT)
+	tween.interpolate_property(sub_container, 'modulate:a',
+		1, 0, 0.6, Tween.TRANS_QUAD, Tween.EASE_IN)
+	tween.interpolate_property(main_container, 'modulate:a',
+		1, 0, 0.6, Tween.TRANS_QUAD, Tween.EASE_IN)
+	tween.interpolate_callback(self, 0.6, '_switch_inner', main_container, sub_container, main_viewport, sub_viewport)
+	tween.interpolate_property(sub_container, 'modulate:a',
+		0, 1, 0.6, Tween.TRANS_QUAD, Tween.EASE_IN, 0.6)
+	tween.interpolate_property(main_container, 'modulate:a',
+		0, 1, 0.6, Tween.TRANS_QUAD, Tween.EASE_IN, 0.6)
+
+	# tween.interpolate_property(sub_container, 'rect_position',
+	# 	sub_container.rect_position, sub_rect.position, 1,
+	# 	Tween.TRANS_QUART, Tween.EASE_IN_OUT)
+	# tween.interpolate_property(sub_container, 'rect_size',
+	# 	sub_container.rect_size, sub_rect.size, 1,
+	# 	Tween.TRANS_QUART, Tween.EASE_IN_OUT)
+	# tween.interpolate_property(main_container, 'rect_position',
+	# 	main_container.rect_position, main_rect.position, 1,
+	# 	Tween.TRANS_QUART, Tween.EASE_IN_OUT)
+	# tween.interpolate_property(main_container, 'rect_size',
+	# 	main_container.rect_size, main_rect.size, 1,
+	# 	Tween.TRANS_QUART, Tween.EASE_IN_OUT)
+	# tween.interpolate_property(main_viewport, 'size',
+	# 	main_viewport.size, main_rect.size, 1,
+	# 	Tween.TRANS_QUART, Tween.EASE_IN_OUT)
+	# tween.interpolate_property(sub_viewport, 'size',
+	# 	sub_viewport.size, main_rect.size, 1,
+	# 	Tween.TRANS_QUART, Tween.EASE_IN_OUT)
 	tween.start()
+
+func _switch_inner(main_container, sub_container, main_viewport, sub_viewport):
+	sub_container.rect_position = sub_rect.position
+	sub_container.rect_size = sub_rect.size
+	sub_viewport.size = main_rect.size
+	main_container.rect_position = main_rect.position
+	main_container.rect_size = main_rect.size
+	main_viewport.size = main_rect.size
 
 func _on_tween_complete(object, key):
 	if greenhouse_active:

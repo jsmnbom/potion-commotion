@@ -111,4 +111,3 @@ func start_loading():
 func stop_loading():
 	$Loading.hide()
 	show_buttons()
-	
