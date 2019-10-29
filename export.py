@@ -29,6 +29,9 @@ def main():
     export_dir.mkdir(exist_ok=True)
     print('export directory: {}'.format(export_dir))
 
+    if not click.confirm('Proceed with export?', default=False):
+        return
+
     for platform, short_platform in platforms:
         platform_export_dir = export_dir / '-'.join(game_name + [short_platform, short_version])
         platform_export_dir.mkdir(exist_ok=True)
