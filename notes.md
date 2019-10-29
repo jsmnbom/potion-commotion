@@ -58,8 +58,5 @@ Music
 ## TODO
 
 Audio
-Add subtitle in game
 
 ## Bugs
-
-Potion of gardening should yield 2 or 3

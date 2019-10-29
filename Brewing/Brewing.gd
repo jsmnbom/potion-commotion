@@ -82,7 +82,16 @@ func _on_brewing_complete(potion, tween, potion_sprite):
     potion_sprite.get_parent().remove_child(potion_sprite)
     tween.get_parent().remove_child(tween)
     ingredients = []
-    Events.emit_signal('inventory_add', {'type': 'potion', 'id': potion.id, 'animated': true, 'from_position': Utils.get_global_position($Cauldron.position, get_viewport())})
+    var count = 1
+    if potion.id == 'gardening':
+        count = 3
+    Events.emit_signal('inventory_add', {
+        'type': 'potion',
+        'id': potion.id,
+        'animated': true,
+        'from_position': Utils.get_global_position($Cauldron.position, get_viewport()),
+        'count': count
+    })
     Events.emit_signal('achievement', {'diff_id': 'diff_brew', 'diff_add': potion.id, 'total_id': 'total_brew', 'total_add': 1})
     ingredient_offset_size = 90
     for child in $Ingredients.get_children():
