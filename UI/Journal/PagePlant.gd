@@ -22,6 +22,8 @@ func init(title, description, res_path, seed_res_path, resource_res_path, used_i
 		sprite.texture = item.get_scaled_res(48, 48)
 		var i = $Potions.get_children().size()
 		sprite.position = Vector2(38+(i%2)*48, 24+floor(i/2)*64)
+		if i == used_in.size() - 1 and i%2 == 0:
+			sprite.position += Vector2(24, 0)
 		
 		var area = Area2D.new()
 		area.monitorable = false

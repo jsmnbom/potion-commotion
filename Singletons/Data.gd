@@ -149,98 +149,98 @@ func clear():
 			['hydroangea', 'hydroangea', 'hydroangea', 'hydroangea', 'hydroangea'],
 			'Hydrates dry fields',
 			"""
-			The Potion of Hydration is the simplest of all potions. This is the first one any alchemist learns. It only requires 5 samples of the Hydroangea flower. The potion is used for many things such as staying hydrated on work. It's also used to water crop fields at farms. I usually start off all my days by drinking one of these. It tastes way better than normal water.
+			The Potion of Hydration is the simplest of all potions. This is the first one any alchemist learns. The potion is used for many things such as staying hydrated on work. It's also used to water crop fields at farms. I usually start off all my days by drinking one of these. It tastes way better than normal water.
 			"""
 		), _InventoryPotion.new('ice',
 			'Ice',
 			['cool_beans', 'cool_beans', 'cool_beans', 'cool_beans', 'cool_beans'],
 			'Freezes everything it touches',
 			"""
-			This potion will freeze anything it touches. While it is quite easy to make this potion, it’s effects can be quite destructive. Be careful to not accidentally freeze your fingers off! The Potion of Ice is made from nothing more than 5 cool beans. It’s handy to have a couple of these on you since it’s used to produce Frost. I shouldn’t ramble about Frost here though. I did make a dedicated page about that topic.
+			This potion will freeze anything it touches. While it is quite easy to make this potion, it’s effects can be quite destructive. Be careful to not accidentally freeze your fingers off! It’s handy to have a couple of these on you since it’s used to produce Frost. I shouldn’t ramble about Frost here though.
 			"""
 		), _InventoryPotion.new('flames',
 			'Flames',
 			['fire_flower', 'fire_flower', 'fire_flower', 'fire_flower', 'fire_flower'],
 			'Burns everything it touches',
 			"""
-			This is a rather basic potion but it's quite dangerous. This Potion of Flames is able to burn anything to ash. Though that is sometimes a good thing since ash can be used in potions. The Potion of Flames is made from 5 pieces of the hot Fire Flower. I’ve gotten my hand burned multiple times by using this potion. So, please take care!
+			This is a rather basic potion but it's quite dangerous. This Potion of Flames is able to burn anything to ash. Though that is sometimes a good thing since ash can be used in potions. I’ve gotten my hand burned multiple times by using this potion. So, please take care!
 			"""
 		), _InventoryPotion.new('midas',
 			'Midas',
 			['golden_berry', 'golden_berry', 'golden_berry', 'golden_berry', 'golden_berry'],
 			'Turns everything it touches to gold',
 			"""
-			This innocent looking potion will turn anything it touches into gold. Now this might seem like a good thing, but you will want to be really careful with it. Gold is quite fragile and the things that have been turned will therefore quickly crumble into a fine gold powder, also called Aurum Dust. That powder can be used for potion production. The Potion of Midas is made of 5 Golden Berries.
+			This innocent looking potion will turn anything it touches into gold. Now this might seem like a good thing, but you will want to be really careful with it. Gold is quite fragile and the things that have been turned will therefore quickly crumble into a fine gold powder, also called Aurum Dust. That powder can be used for potion production.
 			"""
 		), _InventoryPotion.new('stars',
 			'the Stars',
 			['star_flower', 'star_flower', 'star_flower', 'lucky_clover', 'aurum_dust'],
 			'Summons the power of the stars unto a plant',
 			"""
-			This potion seems to summon the power of the stars. Using it on a plant will make it imbued with star power and drop a purple powder called stardust, which can be used in potions. The Potion of the Stars is made of 3 Star Flowers, 1 Lucky Clover and 1 bag of Aurum Dust. I must say, It’s not the easiest potion to pull off.
+			This potion seems to summon the power of the stars. Using it on a plant will make it imbued with star power and drop a purple powder called stardust, which can be used in potions. I must say, it’s not the easiest potion to pull off.
 			"""
 		), _InventoryPotion.new('midnight',
 			'Midnight',
 			['cool_beans', 'frost', 'frost', 'jade_sunflower', 'jade_sunflower'],
 			'Warps time to nearest nighttime',
 			"""
-			This inky black potion is able to change time. If you look closely at it you can see tiny star-like objects in it, resembling a nighttime sky. It's quite a difficult potion to pull off, since it contains the rare Jade Sunflower. This potion contains 2 Jade Sunflowers, 2 bags of Frost and 1 Cool Bean. If this potion is used, it will warp time towards the nearest nighttime. Handle with care. Time travel isn’t for beginners. 
+			This inky black potion is able to change time. If you look closely at it you can see tiny star-like objects in it, resembling a nighttime sky. It's quite a difficult potion to pull off, since it contains the rare Jade Sunflower. If this potion is used, it will warp time towards the nearest nighttime. Handle with care. Time travel isn’t for beginners. 
 			"""
 		), _InventoryPotion.new('sunlight',
 			'Sunlight',
 			['fire_flower', 'ash', 'ash', 'jade_sunflower', 'jade_sunflower'],
 			'Warps time to nearest daytime.',
 			"""
-			This bright and sunny potion is able to change time. It's quite a difficult potion to pull off, since it contains the rare Jade Sunflower. If this potion is used, it will warp time into the nearest daytime. Handle with care. Time travel isn’t for beginners. To make the potion you need 2 Jade Sunflowers, 2 bags of Ashes and 1 Fire Flower.
+			This bright and sunny potion is able to change time. It's quite a difficult potion to pull off, since it contains the rare Jade Sunflower. If this potion is used, it will warp time into the nearest daytime. Handle with care. Time travel isn’t for beginners.
 			"""
 		), _InventoryPotion.new('growth',
 			'Growth',
 			['mandrake', 'weeds', 'weeds', 'weeds', 'hydroangea'],
 			'Makes plants grow much faster',
 			"""
-			A simple potion that makes plants grow faster. Alchemists have tried to find a good use for those damn weeds and it turns out they can make other plants grow faster. This effective and simple potion can make take up to 50% less time for a plant to mature. This potion contains 3 Weeds, 1 Hydroangea and 1 Mandrake. No mandrakes were harmed in the production of this potion. Actually, now that I think about it, they probably were. Sorry little Mandrakes!
+			A simple potion that makes plants grow faster. Alchemists have tried to find a good use for those damn weeds and it turns out they can make other plants grow faster. This effective and simple potion can make take up to 50% less time for a plant to mature. No mandrakes were harmed in the production of this potion. Actually, now that I think about it, they probably were. Sorry little Mandrakes!
 			"""
 		), _InventoryPotion.new('growth2',
 			'Growth II',
 			['mandrake', 'mandrake', 'mandrake', 'weeds', 'hydroangea'],
 			'A much more potent growth potion',
 			"""
-			This potion works just like the original Potion of Growth. This is just stronger. Alchemist found out if you use less weeds and more mandrakes, the plants take up to 75% less time for a plant to mature. To create this lovely potion you will need 3 Mandrakes, 1 Weeds and 1 hydroangea. Just for the record, this is my favorite potion I’ve ever had the pleasure of using. It’s probably because I’m so impatient though.
+			This lovely potion works just like the original Potion of Growth. This is just stronger. Alchemist found out if you use less weeds and more mandrakes, the plants take up to 75% less time for a plant to mature. Just for the record, this is my favorite potion I’ve ever had the pleasure of using. It’s probably because I’m so impatient though.
 			"""
 		), _InventoryPotion.new('romance',
 			'Romance',
 			['golden_berry', 'star_dust', 'star_dust', 'aurum_dust', 'nightshade'],
 			'Makes people fall in love - highly valuable',
 			"""
-			To put it simply, The Potion of Romance makes people fall in love. Though it might sound useful, it has quite some ethical problems. Even though it has been banned in many places, it is still highly valuable. While the Nightshade might seem like a bad idea in a potion meant for not killing someone, the magical properties of the star dust seems to nullify any ill effects of the Nightshade. I would write the recipe down but I don’t think that’s a good idea. I wonder, if you drank this and looked in the mirror, would you fall in love with yourself?
+			To put it simply, The Potion of Romance makes people fall in love. Though it might sound useful, it has quite some ethical problems. Even though it has been banned in many places, it is still highly valuable. While the Nightshade might seem like a bad idea in a potion meant for not killing someone, the magical properties of the star dust seems to nullify any ill effects of the Nightshade. I wonder, if you drank this and looked in the mirror, would you fall in love with yourself?
 			"""
 		), _InventoryPotion.new('healing',
 			'Healing',
 			['mandrake', 'ash', 'hydroangea', 'hydroangea', 'hydroangea'],
 			'Heals sick plants',
 			"""
-			Now, this is a very important potion. It uses the magical properties of the mandrake to heal plants that have become ill. While plants getting sick is generally quite rare, it is always a good idea to have a couple of these potions on hand. It’s made of 3 Hydroangeas, 1 bag of Ashes and 1 Mandrake. Recently I've discovered an illness that only infects plants with longer growth times. I found out these also work on humans. I had a cold for a week and i got so tired of it i just downed one of these. It worked!
+			Now, this is a very important potion. It uses the magical properties of the mandrake to heal plants that have become ill. While plants getting sick is generally quite rare, it is always a good idea to have a couple of these potions on hand. Recently I've discovered an illness that only infects plants with longer growth times. I found out these also work on humans. I had a cold for a week and I got so tired of it, I just downed one of these. It worked!
 			"""
 		), _InventoryPotion.new('poison',
 			'Poison',
 			['nightshade', 'nightshade', 'nightshade', 'nightshade', 'hydroangea'],
 			'Highly poisonous… duh',
 			"""
-			This purple potion with green mist is extremely dangerous. Dangerous as in deadly. The potion is brewed on the poisonous Nightshade flower. The recipe has even been officially changed so it contains less Nightshade. It's now watered down with a bit of Hydroangea. Specifically, 4 Nightshades and 1 Hydroangea. Handle with extreme caution.
+			This purple potion with green mist is extremely dangerous. Dangerous as in deadly. The potion is brewed on the poisonous Nightshade flower. The recipe has even been officially changed so it contains less Nightshade. It's now watered down with a bit of Hydroangea. Handle with extreme caution.
 			"""
 		), _InventoryPotion.new('gardening',
 			'Gardening',
 			['weeds', 'weeds', 'weeds', 'hydroangea', 'hydroangea'],
 			'Feeds weeds so they don’t disturb plant growth',
 			"""
-			I discovered this potion one morning when i discovered some weeds in my Potion of Hydration. Turns out this potion is capable of feeding nearby weeds so they leave other plants alone. That means that if you use his on a field, the weeds won’t disturb your plant. The weeds will return though. And they will get annoying again. To create this potion you’ll need 3 Weeds and 2 Hydroangeas.
+			I discovered this potion one morning when i discovered some weeds in my Potion of Hydration. Turns out this potion is capable of feeding nearby weeds so they leave other plants alone. That means that if you use his on a field, the weeds won’t disturb your plant. The weeds will return though. And they will get annoying again.
 			"""
 		), _InventoryPotion.new('wealth',
 			'Wealth',
 			['crystal_stalk', 'crystal_stalk', 'crystal_stalk', 'star_dust', 'aurum_dust'],
 			'Drops a huge amount of gems',
 			"""
-			This purple concoction is definitely one of the weirder ones. Instead of being used on a plant, you simply pour it out wherever you would like, and as the liquid comes into contact with air, it turns into a large sum of gems. It mostly consists of the very valuable Crystal Stalk. Specifically, 3 Crystal Stalks, 1 bag of Aurum Dust and 1 bag of Star Dust. Warning: Might destroy capitalism if brewed in large quantities.
+			This purple concoction is definitely one of the weirder ones. Instead of being used on a plant, you simply pour it out wherever you would like, and as the liquid comes into contact with air, it turns into a large sum of gems. It mostly consists of the very valuable Crystal Stalk. Warning: Might destroy capitalism if brewed in large quantities.
 			""",
 			-1
 		), _InventoryPotion.new('fortune',
@@ -248,7 +248,7 @@ func clear():
 			['lucky_clover', 'lucky_clover', 'lucky_clover', 'lucky_clover', 'frost'],
 			'Increases luck',
 			"""
-			This very green looking potion is a peculiar one. It somehow makes whoever used it more lucky. I don’t even want to begin to get into how that could possibly work. Like, is luck even a real thing? To make this potion you will need 4 Lucky Clover and 1 bag of Frost. I’ve had a lot of fun with these myself. One day I used so many that I made more gems than if I had use a Potion of Wealth!
+			This very green looking potion is a peculiar one. It somehow makes whoever used it more lucky. I don’t even want to begin to get into how that could possibly work. Like, is luck even a real thing? I’ve had a lot of fun with these myself. One day I used so many that I made more gems than if I had use a Potion of Wealth!
 			"""
 		)
 	]
