@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/brewing_bg.png-0b95a5a2bf87fcf7c709e7e7bf45b0c2.stex"
+path="res://.import/brewing_bg.png-a55e053893941345e2a900be76f689fc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/brewing_bg.png"
-dest_files=[ "res://.import/brewing_bg.png-0b95a5a2bf87fcf7c709e7e7bf45b0c2.stex" ]
+source_file="res://assets/brewing/brewing_bg.png"
+dest_files=[ "res://.import/brewing_bg.png-a55e053893941345e2a900be76f689fc.stex" ]
 
 [params]
 

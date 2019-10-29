@@ -63,5 +63,3 @@ Add subtitle in game
 ## Bugs
 
 Potion of gardening should yield 2 or 3
-Mirage shader in basement is too big
-Switching between greenhouse and brewing is odd

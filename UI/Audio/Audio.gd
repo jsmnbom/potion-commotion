@@ -15,6 +15,7 @@ var music = {
 
 func _ready():
 	$Music.connect('finished', self, '_on_music_finished')
+	$MusicNowPlayingLabel.modulate.a = 0
 	play_music()
 
 func random_music():

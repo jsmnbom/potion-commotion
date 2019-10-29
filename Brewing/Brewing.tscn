@@ -1,44 +1,38 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Brewing/Brewing.gd" type="Script" id=1]
-[ext_resource path="res://assets/brewing_bg.png" type="Texture" id=2]
-[ext_resource path="res://assets/basement_wall.png" type="Texture" id=3]
-[ext_resource path="res://assets/basement_floor.png" type="Texture" id=4]
-[ext_resource path="res://assets/cauldron/cauldron_liquid.png" type="Texture" id=5]
-[ext_resource path="res://Brewing/mirage.shader" type="Shader" id=6]
-[ext_resource path="res://assets/cauldron/cauldron.png" type="Texture" id=7]
-[ext_resource path="res://assets/cauldron/liqud_particle.png" type="Texture" id=8]
+[ext_resource path="res://assets/brewing/brewing_bg.png" type="Texture" id=2]
+[ext_resource path="res://assets/brewing/basement_wall.png" type="Texture" id=3]
+[ext_resource path="res://assets/brewing/basement_floor.png" type="Texture" id=4]
+[ext_resource path="res://Brewing/rotate_mask.shader" type="Shader" id=5]
+[ext_resource path="res://assets/brewing/cauldron_liquid_mask.png" type="Texture" id=6]
+[ext_resource path="res://assets/brewing/cauldron_liquid.png" type="Texture" id=7]
+[ext_resource path="res://Brewing/mirage.shader" type="Shader" id=8]
+[ext_resource path="res://assets/brewing/cauldron.png" type="Texture" id=9]
+[ext_resource path="res://assets/brewing/liqud_particle.png" type="Texture" id=10]
 
 [sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 6 )
+shader = ExtResource( 5 )
+shader_param/mask_texture = ExtResource( 6 )
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 8 )
 shader_param/frequency = 40.0
 shader_param/depth = 0.005
+shader_param/mask_texture = ExtResource( 6 )
 
-[sub_resource type="Animation" id=2]
-resource_name = "Liquid"
+[sub_resource type="Animation" id=3]
 length = 4.0
 loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Liquid:rect_rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, 360.0 ]
-}
 
-[sub_resource type="Gradient" id=3]
+[sub_resource type="Gradient" id=4]
 offsets = PoolRealArray( 0, 0.362924, 0.981723 )
 colors = PoolColorArray( 0.498039, 0.203922, 0.537255, 0.890196, 0.498039, 0.203922, 0.537255, 0.764706, 1, 1, 1, 0.0117647 )
 
-[sub_resource type="GradientTexture" id=4]
-gradient = SubResource( 3 )
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
 
-[sub_resource type="ParticlesMaterial" id=5]
+[sub_resource type="ParticlesMaterial" id=6]
 emission_shape = 2
 emission_box_extents = Vector3( 100, 30, 1 )
 flag_disable_z = true
@@ -48,7 +42,7 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 angle = 45.0
 angle_random = 1.0
-color_ramp = SubResource( 4 )
+color_ramp = SubResource( 5 )
 
 [node name="Brewing" type="Node2D"]
 script = ExtResource( 1 )
@@ -68,41 +62,42 @@ expand = true
 stretch_mode = 2
 
 [node name="Floor" type="TextureRect" parent="."]
-margin_top = 256.0
+margin_top = 256.95
 margin_right = 1355.0
-margin_bottom = 1016.0
+margin_bottom = 1016.95
 texture = ExtResource( 4 )
 expand = true
 stretch_mode = 2
 
 [node name="Liquid" type="TextureRect" parent="."]
 modulate = Color( 0.498039, 0.203922, 0.537255, 1 )
+material = SubResource( 1 )
 margin_left = 396.229
 margin_top = 398.473
 margin_right = 908.229
 margin_bottom = 910.473
 rect_rotation = 360.0
 rect_pivot_offset = Vector2( 256, 256 )
-texture = ExtResource( 5 )
+texture = ExtResource( 7 )
 
 [node name="Filter" type="TextureRect" parent="."]
-material = SubResource( 1 )
+material = SubResource( 2 )
 margin_left = 393.957
 margin_top = 389.384
 margin_right = 905.957
 margin_bottom = 901.384
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 
 [node name="Ingredients" type="Node2D" parent="."]
 rotation = 4.46638e-06
 
 [node name="Cauldron" type="Sprite" parent="."]
 position = Vector2( 652.229, 654.473 )
-texture = ExtResource( 7 )
+texture = ExtResource( 9 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Liquid"
-anims/Liquid = SubResource( 2 )
+anims/Liquid = SubResource( 3 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
 visible = false
@@ -110,8 +105,8 @@ position = Vector2( 498.216, 404.602 )
 emitting = false
 lifetime = 3.0
 visibility_rect = Rect2( -200, -300, 400, 500 )
-process_material = SubResource( 5 )
-texture = ExtResource( 8 )
+process_material = SubResource( 6 )
+texture = ExtResource( 10 )
 
 [node name="Area" type="Area2D" parent="."]
 position = Vector2( 652.229, 654.473 )

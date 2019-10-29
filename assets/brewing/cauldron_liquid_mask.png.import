@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cauldron.png-2b5c8f380c6b45b90a9665eece1098bf.stex"
+path="res://.import/cauldron_liquid_mask.png-45966f67fd9965e1fce8aaa654770bca.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cauldron/cauldron.png"
-dest_files=[ "res://.import/cauldron.png-2b5c8f380c6b45b90a9665eece1098bf.stex" ]
+source_file="res://assets/brewing/cauldron_liquid_mask.png"
+dest_files=[ "res://.import/cauldron_liquid_mask.png-45966f67fd9965e1fce8aaa654770bca.stex" ]
 
 [params]
 

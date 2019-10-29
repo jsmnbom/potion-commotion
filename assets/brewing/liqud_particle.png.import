@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/liqud_particle.png-13ae4e1029abe70a31225ddbe91af1d8.stex"
+path="res://.import/liqud_particle.png-bf16b7f9322c4acc217f636e27dacad6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cauldron/liqud_particle.png"
-dest_files=[ "res://.import/liqud_particle.png-13ae4e1029abe70a31225ddbe91af1d8.stex" ]
+source_file="res://assets/brewing/liqud_particle.png"
+dest_files=[ "res://.import/liqud_particle.png-bf16b7f9322c4acc217f636e27dacad6.stex" ]
 
 [params]
 
