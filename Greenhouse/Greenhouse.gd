@@ -1,7 +1,7 @@
 extends Node2D
 
-var weed_wait_min = 20
-var weed_wait_max = 2*30
+var weed_wait_min = 30
+var weed_wait_max = 3*30
 
 var selected_potion = null
 

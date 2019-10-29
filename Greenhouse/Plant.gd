@@ -423,7 +423,8 @@ func _on_mouse_area(msg):
 						'type': 'resource',
 						'id': 'weeds',
 						'animated': true,
-						'from_position': position
+						'from_position': position,
+						'count': round(Utils.rng_choose([2,2,2,3])*(1+Data.luck))
 					})
 					grow_timer.paused = false
 					update_cursor()

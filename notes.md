@@ -59,6 +59,5 @@ Music
 
 Audio
 Add subtitle in game
-More weed yield
 
 ## Bugs
