@@ -15,7 +15,7 @@ func _ready():
 	Events.connect('show_main_menu', self, '_on_show_main_menu')
 	Events.connect('loaded', self, '_on_loaded')
 
-	OS.set_window_title('Potion Commotion %s' % Data.version)
+	OS.set_window_title('Potion Commotion: Heart Edition %s' % Data.version)
 
 func _process(delta):
 	if new_game_wait != 0:

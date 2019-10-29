@@ -415,8 +415,8 @@ func _on_mouse_area(msg):
 				Events.emit_signal('tooltip', {'hide': true})
 				hydration.hide()
 				Utils.set_custom_cursor('sickle', null)
-			{'mouse_over': true, 'button_left': var left, 'button_right': var right, 'button_left_click': var left_click, 'global_position': var position, ..}:
-				if left_click and weeds:
+			{'mouse_over': true, 'button_left': var left, 'button_right': var right, 'button_left_click': var left_click, 'button_right_click': var right_click, 'global_position': var position, ..}:
+				if (left_click or right_click) and weeds:
 					weeds = false
 					weeds_sprite.hide()
 					Events.emit_signal('inventory_add', {
@@ -430,7 +430,7 @@ func _on_mouse_area(msg):
 					update_cursor()
 					update_overlays()
 					Events.emit_signal('tooltip', {'hide': true})
-				elif left_click and can_use_potion(selected_potion):
+				elif left_click and can_use_potion(selected_potion) and not weeds:
 					add_potion(selected_potion)
 					Events.emit_signal('inventory_add', {'type': 'potion', 'id': selected_potion.id, 'count': -1})
 					Events.emit_signal('achievement', {'total_id': 'total_potions', 'total_add': 1})
@@ -460,10 +460,10 @@ func _on_mouse_area(msg):
 					plant_sprite.show();
 					grow_timer.start()
 					planted = true
-				elif (right and planted and progress >= 100 and not ('flames' in used_potions or \
-																	 'ice' in used_potions or \
-																	 'midas' in used_potions or \
-																	 'stars' in used_potions)):
+				elif (right and planted and progress >= 100 and not weeds and not ('flames' in used_potions or \
+																				   'ice' in used_potions or \
+																				   'midas' in used_potions or \
+																				   'stars' in used_potions)):
 					Events.emit_signal('achievement', {'diff_id': 'diff_plants', 'diff_add': plant, 'total_id': 'total_plants', 'total_add': 1})
 					Events.emit_signal('inventory_add', {
 						'type': 'seed',
@@ -474,7 +474,7 @@ func _on_mouse_area(msg):
 					})
 					reset()
 					update_cursor()
-				elif (left and shovel_picked_up and planted):
+				elif left and shovel_picked_up and planted and not weeds:
 					Events.emit_signal('achievement', {'diff_id': 'diff_plants', 'diff_add': plant})
 					Events.emit_signal('inventory_add', {
 						'type': 'seed',
