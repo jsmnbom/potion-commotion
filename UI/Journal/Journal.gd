@@ -21,7 +21,7 @@ var viewed_pages = ['index']
 
 var index_areas = []
 
-var current_page = 'AStrangeGarden'
+var current_page = 'index'
 
 var animation_timer = 0
 var animation_timer_paused = false
@@ -94,12 +94,13 @@ func _on_loaded():
 	$Pages/TheApprenticeship/Signature.text = '~%s' % Data.player_name
 
 func _unhandled_input(event):
-	if event.is_action_pressed('ui_up') or event.is_action_pressed('ui_down') or event.is_action_pressed('ui_back'):
-		show_page('index')
-	elif event.is_action_pressed('ui_right') and Data.unlocked_journal_pages.find(current_page) < Data.unlocked_journal_pages.size() - 1:
-		show_next_page()
-	elif event.is_action_pressed('ui_left') and Data.unlocked_journal_pages.find(current_page) > 0:
-		show_prev_page()
+	if visible:
+		if event.is_action_pressed('ui_up') or event.is_action_pressed('ui_down') or event.is_action_pressed('ui_back'):
+			show_page('index')
+		elif event.is_action_pressed('ui_right') and Data.unlocked_journal_pages.find(current_page) < Data.unlocked_journal_pages.size() - 1:
+			show_next_page()
+		elif event.is_action_pressed('ui_left') and Data.unlocked_journal_pages.find(current_page) > 0:
+			show_prev_page()
 
 
 func show_next_page():
@@ -216,6 +217,7 @@ func _on_unlock_journal_page(msg):
 	sort_unlocked_pages()
 
 	Events.emit_signal('achievement', {'diff_id': 'diff_pages', 'diff_add': page_id})
+	Events.emit_signal('show_journal_page', {'id': 'index'})
 
 func _on_show_journal_page(msg):
 	var page_id = msg['id']

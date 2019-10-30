@@ -27,9 +27,9 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
 [node name="Label" type="Label" parent="."]
-margin_left = 32.0
+margin_left = 27.0
 margin_top = 16.0
-margin_right = 208.0
+margin_right = 203.0
 margin_bottom = 96.0
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0.564706, 0.447059, 0.101961, 1 )
@@ -44,7 +44,6 @@ input_pickable = false
 monitoring = false
 monitorable = false
 collision_layer = 16
-
 collision_mask = 0
 
 [node name="Collision" type="CollisionShape2D" parent="Area"]
