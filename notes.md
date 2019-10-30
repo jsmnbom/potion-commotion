@@ -61,8 +61,7 @@ Music
 
 Audio
 Right click to deselect inventory/shovel
-Redo last potion
-Categories in journal
+Redo last potion and clear cauldron buttons
 Rain (that trigger randomly and if all fields dry out)
 Colour field when potion has been used on it
 Hide name of items in sidebar until you get it

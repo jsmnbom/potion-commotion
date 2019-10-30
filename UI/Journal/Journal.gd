@@ -1,12 +1,12 @@
 extends Control
 
 var IndexItem = preload('res://UI/Journal/IndexItem.tscn')
+var IndexTitle = preload('res://UI/Journal/IndexTitle.tscn')
 var PagePlant = preload('res://UI/Journal/PagePlant.tscn')
 var PotionPage = preload('res://UI/Journal/PotionPage.tscn')
 
-var index_per_page = 15
-onready var index_items1 = $Pages/Index/Items1
-onready var index_items2 = $Pages/Index/Items2
+var index_per_page = 14
+onready var index_items = [$Pages/Index/Items1, $Pages/Index/Items2]
 
 onready var PAGES = {
 	'index': ['Index', $Pages/Index],
@@ -53,6 +53,7 @@ func _ready():
 	for plant_id in Data.plants:
 		var plant = Data.plants[plant_id]
 		var page = PagePlant.instance()
+		page.set_meta('page_type', 'plant')
 		page.name = plant_id
 		var text = plant.description + '\n\n'
 		var used_in = []
@@ -70,6 +71,7 @@ func _ready():
 	for potion in potions:
 		var potion_item = potions[potion]
 		var page = PotionPage.instance()
+		page.set_meta('page_type', 'potion')
 		page.name = potion_item.id
 		var text = potion_item.long_description.dedent().lstrip('\n').rstrip('\n') + '\n\n'
 		page.init(potion_item.short_name, text, potion_item.res_path, potion_item.ingredients, self)
@@ -133,13 +135,8 @@ func _on_mouse_area(msg):
 					elif msg['node'] == $Back/Area:
 						show_prev_page()
 						Utils.set_cursor_hand(false)
-			if msg['node'] in index_areas:
-				var i = index_areas.find(msg['node'])
-				var item
-				if i < index_per_page:
-					item = index_items1.get_child(i)
-				else:
-					item = index_items2.get_child(i-index_per_page)
+			if msg['node'] in index_areas.keys():
+				var item = index_areas[msg['node']]
 				item.get_node('BG').color = Color(0,0,0,0.1 if mouse_over else 0)
 				Utils.set_cursor_hand(mouse_over)
 				if left and mouse_over:
@@ -157,34 +154,50 @@ func show_page(page):
 	if not current_page in viewed_pages:
 		viewed_pages.append(current_page)
 		update_index()
-	for item in index_items1.get_children():
-		item.visible = current_page == 'index'
-	for item in index_items2.get_children():
-		item.visible = current_page == 'index'
+	for i in range(2):
+		for item in index_items[i].get_children():
+			item.visible = current_page == 'index'
 
 func update_index():
-	for item in index_items1.get_children():
-		item.queue_free()
-	for item in index_items2.get_children():
-		item.queue_free()
-	index_areas = []
+	for i in range(2):
+		for item in index_items[i].get_children():
+			item.queue_free()
+	index_areas = {}
 	var j = 0
+	var last_category = ''
 	for i in range(PAGES.keys().size()):
 		var page = PAGES.keys()[i]
 		if page == 'index' or not page in Data.unlocked_journal_pages:
 			continue
+
+		var category = 'Lore'
+		if PAGES[page][1].has_meta('page_type'):
+			if PAGES[page][1].get_meta('page_type') == 'plant':
+				category = 'Plants'
+			elif PAGES[page][1].get_meta('page_type') == 'potion':
+				category = 'Potions'
+
+		if category != last_category:
+			var title_item = IndexTitle.instance()
+			title_item.get_node('Label').bbcode_text = '[b][u]%s[/u][/b]' % category
+			if category != 'Potions':
+				index_items[0].add_child(title_item)
+			else:
+				index_items[1].add_child(title_item)
+		last_category = category
+		
 		var item = IndexItem.instance()
 		item.set_meta('page', page)
 		var text = PAGES[page][0]
 		if not page in viewed_pages:
 			text += ' [color=#dc51ca]NEW[/color]'
 		item.get_node('Label').bbcode_text = text
-		index_areas.append(item.get_node('Area'))
 		item.hide()
-		if j < index_per_page:
-			index_items1.add_child(item)
+		index_areas[item.get_node('Area')] = item
+		if category != 'Potions':
+			index_items[0].add_child(item)
 		else:
-			index_items2.add_child(item)
+			index_items[1].add_child(item)
 		j += 1
 
 func _pages_comparison(a,b):
@@ -201,10 +214,9 @@ func _on_show_journal(show):
 		PAGES[current_page][1].hide()
 		for node in [self, $Forward, $Return, $Back]:
 			node.hide()
-		for item in index_items1.get_children():
-			item.visible = false
-		for item in index_items2.get_children():
-			item.visible = false
+		for i in range(2):
+			for item in index_items[i].get_children():
+				item.visible = false
 
 func _on_unlock_journal_page(msg):
 	var page_id = msg['id']
