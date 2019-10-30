@@ -70,6 +70,5 @@ Holding a seed and harvesting a plant will sometimes immediately plant the seed
 Hydrations potions on dry fields is unclear
 You should not be able to harvest hydroangea seeds
 Dusk and dawn on the clock
-Potion of growth page says 50% but it's not?
 Achevement don't show actual %
 Potion of luck consumed even with full luck

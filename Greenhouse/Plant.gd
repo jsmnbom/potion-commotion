@@ -317,7 +317,7 @@ func add_potion(potion, deserializing=false):
 		used_potions.append(potion_id)
 	match(potion_id):
 		'growth', 'growth2':
-			var x = 0.8 if potion_id == 'growth' else 0.5
+			var x = 0.75 if potion_id == 'growth' else 0.5
 			var time_left = grow_timer.time_left
 			grow_timer.stop()
 			next_grow_time = grow_timer.wait_time * x

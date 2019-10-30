@@ -198,14 +198,14 @@ func clear():
 			['mandrake', 'weeds', 'weeds', 'weeds', 'hydroangea'],
 			'Makes plants grow much faster',
 			"""
-			A simple potion that makes plants grow faster. Alchemists have tried to find a good use for those damn weeds and it turns out they can make other plants grow faster. This effective and simple potion can make take up to 50% less time for a plant to mature. No mandrakes were harmed in the production of this potion. Actually, now that I think about it, they probably were. Sorry little Mandrakes!
+			A simple potion that makes plants grow faster. Alchemists have tried to find a good use for those damn weeds and it turns out they can make other plants grow faster. This effective and simple potion can make take up to 25% less time for a plant to mature. No mandrakes were harmed in the production of this potion. Actually, now that I think about it, they probably were. Sorry little Mandrakes!
 			"""
 		), _InventoryPotion.new('growth2',
 			'Growth II',
 			['mandrake', 'mandrake', 'mandrake', 'weeds', 'hydroangea'],
 			'A much more potent growth potion',
 			"""
-			This lovely potion works just like the original Potion of Growth. This is just stronger. Alchemist found out if you use less weeds and more mandrakes, the plants take up to 75% less time for a plant to mature. Just for the record, this is my favorite potion I’ve ever had the pleasure of using. It’s probably because I’m so impatient though.
+			This lovely potion works just like the original Potion of Growth. This is just stronger. Alchemist found out if you use less weeds and more mandrakes, the plants take up to 50% less time for a plant to mature. Just for the record, this is my favorite potion I’ve ever had the pleasure of using. It’s probably because I’m so impatient though.
 			"""
 		), _InventoryPotion.new('romance',
 			'Romance',
