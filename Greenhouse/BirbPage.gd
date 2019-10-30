@@ -26,7 +26,13 @@ func _on_mouse_area(msg):
 					z_index = 17
 					$Tween.interpolate_property(self, 'position', position, JOURNAL_POS, 1,  Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 					$Tween.interpolate_property(self, 'scale', scale, Vector2(0.25, 0.25), 1,  Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
-					$Tween.interpolate_callback(self, 1, 'queue_free')
+					$Tween.interpolate_callback(self, 1, 'done')
 					$Tween.start()
+
+					Events.emit_signal('unlock_journal')
 					
-					Events.emit_signal('unlock_journal_page', {'id': page_id})
+					
+
+func done():
+	Events.emit_signal('unlock_journal_page', {'id': page_id})
+	queue_free()

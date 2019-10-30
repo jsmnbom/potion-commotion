@@ -70,9 +70,7 @@ Hide name of items in sidebar until you get it
 ## Bugs
 
 Holding a seed and harvesting a plant will sometimes immediately plant the seed
-Indicator on journal when you have new pages
 Hydrations potions on dry fields is unclear
-Note for growth2 received before 1
 You should not be able to harvest hydroangea seeds
 Dusk and dawn on the clock
 Potion of growth page says 50% but it's not?

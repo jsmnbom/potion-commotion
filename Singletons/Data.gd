@@ -266,6 +266,7 @@ func clear():
 	]
 
 	unlocked_journal_pages = ['index']
+	has_new_journal_pages = false
 
 	time = 9*60
 
@@ -481,6 +482,7 @@ var inventory_by_id
 var achievements
 
 var unlocked_journal_pages = []
+var has_new_journal_pages = false
 
 var time = 0.0
 

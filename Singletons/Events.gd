@@ -60,6 +60,8 @@ signal unlock_journal
 signal unlock_journal_page(msg)
 # {'id': var page_id}:
 signal show_journal_page(msg)
+# true | false
+signal journal_has_new(msg)
 
 # float
 signal add_luck(x)

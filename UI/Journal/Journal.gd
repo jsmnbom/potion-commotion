@@ -98,7 +98,7 @@ func _on_loaded():
 func _unhandled_input(event):
 	if visible:
 		if event.is_action_pressed('ui_up') or event.is_action_pressed('ui_down') or event.is_action_pressed('ui_back'):
-			show_page('index')
+			Events.emit_signal('show_journal_page', {'id': 'index'})
 		elif event.is_action_pressed('ui_right') and Data.unlocked_journal_pages.find(current_page) < Data.unlocked_journal_pages.size() - 1:
 			show_next_page()
 		elif event.is_action_pressed('ui_left') and Data.unlocked_journal_pages.find(current_page) > 0:
@@ -106,10 +106,10 @@ func _unhandled_input(event):
 
 
 func show_next_page():
-	show_page(Data.unlocked_journal_pages[Data.unlocked_journal_pages.find(current_page)+1])
+	Events.emit_signal('show_journal_page', {'id': Data.unlocked_journal_pages[Data.unlocked_journal_pages.find(current_page)+1]})
 
 func show_prev_page():
-	show_page(Data.unlocked_journal_pages[Data.unlocked_journal_pages.find(current_page)-1])
+	Events.emit_signal('show_journal_page', {'id': Data.unlocked_journal_pages[Data.unlocked_journal_pages.find(current_page)-1]})
 
 func _on_mouse_area(msg):
 	match msg:
@@ -127,7 +127,7 @@ func _on_mouse_area(msg):
 				Utils.set_cursor_hand(mouse_over)
 				if mouse_over and left:
 					if msg['node'] == $Return/Area:
-						show_page('index')
+						Events.emit_signal('show_journal_page', {'id': 'index'})
 						Utils.set_cursor_hand(false)
 					elif msg['node'] == $Forward/Area:
 						show_next_page()
@@ -141,7 +141,7 @@ func _on_mouse_area(msg):
 				Utils.set_cursor_hand(mouse_over)
 				if left and mouse_over:
 					var page = item.get_meta('page')
-					show_page(page)
+					Events.emit_signal('show_journal_page', {'id': page})
 					Utils.set_cursor_hand(false)
 
 func show_page(page):
@@ -199,6 +199,7 @@ func update_index():
 		else:
 			index_items[1].add_child(item)
 		j += 1
+	Events.emit_signal('journal_has_new', Data.unlocked_journal_pages.size() > viewed_pages.size())
 
 func _pages_comparison(a,b):
     return PAGES.keys().find(a) < PAGES.keys().find(b)
@@ -208,7 +209,7 @@ func sort_unlocked_pages():
 
 func _on_show_journal(show):
 	if show:
-		show_page(current_page)
+		Events.emit_signal('show_journal_page', {'id': current_page})
 		show()
 	else:
 		PAGES[current_page][1].hide()
@@ -221,8 +222,6 @@ func _on_show_journal(show):
 func _on_unlock_journal_page(msg):
 	var page_id = msg['id']
 	if not page_id in Data.unlocked_journal_pages:
-		if Data.unlocked_journal_pages.size() == 1:
-			Events.emit_signal('unlock_journal')
 		Data.unlocked_journal_pages.append(page_id)
 		
 	update_index()
