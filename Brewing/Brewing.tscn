@@ -15,30 +15,30 @@
 shader = ExtResource( 4 )
 shader_param/mask_texture = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=2]
 size = 28
 outline_size = 1
 outline_color = Color( 0.564706, 0.447059, 0.101961, 1 )
 font_data = ExtResource( 7 )
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 8 )
 shader_param/frequency = 40.0
 shader_param/depth = 0.005
 shader_param/mask_texture = ExtResource( 5 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 length = 4.0
 loop = true
 
-[sub_resource type="Gradient" id=4]
+[sub_resource type="Gradient" id=5]
 offsets = PoolRealArray( 0, 0.362924, 0.981723 )
 colors = PoolColorArray( 0.498039, 0.203922, 0.537255, 0.890196, 0.498039, 0.203922, 0.537255, 0.764706, 1, 1, 1, 0.0117647 )
 
-[sub_resource type="GradientTexture" id=5]
-gradient = SubResource( 4 )
+[sub_resource type="GradientTexture" id=6]
+gradient = SubResource( 5 )
 
-[sub_resource type="ParticlesMaterial" id=6]
+[sub_resource type="ParticlesMaterial" id=7]
 emission_shape = 2
 emission_box_extents = Vector3( 100, 30, 1 )
 flag_disable_z = true
@@ -48,7 +48,7 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 angle = 45.0
 angle_random = 1.0
-color_ramp = SubResource( 5 )
+color_ramp = SubResource( 6 )
 
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 24, 24 )
@@ -89,17 +89,36 @@ margin_left = 494.604
 margin_top = 549.169
 margin_right = 811.604
 margin_bottom = 634.169
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.780392, 0.639216, 0.231373, 1 )
 text = "Click to brew another
 Potion of Hydration"
 align = 1
 
+[node name="ClearLabel" type="Label" parent="."]
+visible = false
+margin_left = 494.604
+margin_top = 549.169
+margin_right = 811.604
+margin_bottom = 634.169
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.780392, 0.639216, 0.231373, 1 )
+text = "Clear cauldron and
+get ingredients back"
+align = 1
+
+[node name="Clear" type="TextureRect" parent="."]
+visible = false
+margin_left = 636.229
+margin_top = 638.473
+margin_right = 668.229
+margin_bottom = 670.473
+
 [node name="LastPotion" type="Sprite" parent="."]
 position = Vector2( 652.229, 654.473 )
 
 [node name="Filter" type="TextureRect" parent="."]
-material = SubResource( 2 )
+material = SubResource( 3 )
 margin_left = 393.957
 margin_top = 389.384
 margin_right = 905.957
@@ -115,7 +134,7 @@ texture = ExtResource( 9 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Liquid"
-anims/Liquid = SubResource( 3 )
+anims/Liquid = SubResource( 4 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
 visible = false
@@ -123,7 +142,7 @@ position = Vector2( 498.216, 404.602 )
 emitting = false
 lifetime = 3.0
 visibility_rect = Rect2( -200, -300, 400, 500 )
-process_material = SubResource( 6 )
+process_material = SubResource( 7 )
 texture = ExtResource( 10 )
 
 [node name="Area" type="Area2D" parent="."]
@@ -144,5 +163,16 @@ monitorable = false
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MakeAnotherArea"]
+visible = false
+shape = SubResource( 8 )
+
+[node name="ClearArea" type="Area2D" parent="."]
+visible = false
+position = Vector2( 652.229, 654.473 )
+monitoring = false
+monitorable = false
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClearArea"]
 visible = false
 shape = SubResource( 8 )

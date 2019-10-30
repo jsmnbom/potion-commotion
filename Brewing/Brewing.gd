@@ -13,6 +13,8 @@ func _ready():
 	Events.connect('inventory_item', self, '_on_inventory_item')
 	Events.connect('mouse_area', self, '_on_mouse_area')
 	Events.connect('inventory_updated', self, '_on_inventory_updated')
+	
+	$Clear.texture = Utils.get_scaled_res('res://assets/ui/close.png', 32, 32)
 
 func get_ingredient_pos(i, r_offset=0):
 	var center = $Cauldron.position
@@ -38,16 +40,21 @@ func _add_ingredients_animated(item, count, acc):
 			'count': -1,
 			'animated': true,
 			'to_position': Utils.get_global_position(get_ingredient_pos(i+acc, (PI/2)*(1.0+(0.1*i+acc*0.1))), get_viewport()),
-			'callback': [self, 'add_ingredient', item],
+			'callback': [self, 'add_ingredient', item, true],
 			'delay': 0.1*i+acc*0.1})
 	
-func add_ingredient(item):
+func add_ingredient(item, brew_another=false):
 	$MakeAnotherArea.hide()
 	$LastPotion.hide()
+	
+	if not brew_another:
+		$ClearArea.show()
+		$Clear.show()
 
 	var sprite = Sprite.new()
 	sprite.texture = item.get_scaled_res(48, 48)
 	sprite.position = get_ingredient_pos(ingredients.size())
+	sprite.set_meta('item', item)
 	$Ingredients.add_child(sprite)
 	
 	ingredients.append(item.id)
@@ -66,6 +73,8 @@ func potion_to_brew():
 
 func start_brewing():
 	$Area.hide()
+	$ClearArea.hide()
+	$Clear.hide()
 	
 	var potion = potion_to_brew()
 	var tween = Tween.new()
@@ -187,4 +196,27 @@ func _on_mouse_area(msg):
 					for item in items.keys():
 						_add_ingredients_animated(item, items[item], acc)
 						acc += items[item]
+	elif msg['node'] == $ClearArea:
+		match msg:
+			{'mouse_over': false, ..}:
+				$ClearLabel.hide()
+				Utils.set_cursor_hand(false)
+			{'mouse_over': true, 'button_left_click': var left, ..}:
+				$ClearLabel.show()
+				Utils.set_cursor_hand(true)
+				if left:
+					$ClearArea.hide()
+					$Clear.hide()
+					ingredients = []
+					for ingredient in $Ingredients.get_children():
+						#var ingredient = $Ingredients.get_child(0)
+						var item = ingredient.get_meta('item')
+						Events.emit_signal('inventory_add', {
+							'type': 'resource',
+							'id': item.id,
+							'animated': true,
+							'from_position': Utils.get_global_position(ingredient.position, get_viewport()),
+							'count': 1
+						})
+						ingredient.queue_free()
 						
