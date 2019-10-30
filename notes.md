@@ -62,7 +62,6 @@ Music
 Audio
 Right click to deselect inventory/shovel
 Rain (that trigger randomly and if all fields dry out)
-Colour field when potion has been used on it
 Hide name of items in sidebar until you get it
 
 

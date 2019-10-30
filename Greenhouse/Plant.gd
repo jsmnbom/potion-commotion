@@ -41,9 +41,9 @@ func _ready():
 	if Debug.DRY:
 		dry_out_time_min = 10
 		dry_out_time_max = 30
-	dry_out()
-	
 	reset()
+	
+	dry_out()
 	
 	$Hydration.texture = Data.inventory_by_id['potion']['hydration'].get_scaled_res(64,64)
 
@@ -70,7 +70,10 @@ func reset():
 		plant_area.remove_child(plant_area.get_child(0))
 
 	plant_sprite.modulate = Color(1,1,1)
-
+	field_sprite.modulate = Color(1,1,1)
+	
+	$FieldPotionOverlay.texture = null
+	
 	dry_timer.paused = true
 	
 	plant_sprite.z_index = 2
@@ -140,7 +143,7 @@ func update_overlays():
 			overlay.show()
 		elif dried_out:
 			hydration.show()
-			if selected_potion == 'hydration':
+			if selected_potion and selected_potion.id == 'hydration':
 				overlay.show()
 			else:
 				overlay.hide()
@@ -320,6 +323,7 @@ func add_potion(potion, deserializing=false):
 			next_grow_time = grow_timer.wait_time * x
 			grow_timer.wait_time = time_left * x
 			grow_timer.start()
+			field_sprite.modulate = field_sprite.modulate.blend(Color('66d37f42'))
 		'ice':
 			plant_sprite.region_rect.position.y = 256
 			plant_sprite.modulate = FROZEN_MODULATE
@@ -337,6 +341,7 @@ func add_potion(potion, deserializing=false):
 			light.enabled = true
 		'gardening':
 			grow_timer.paused = false
+			$FieldPotionOverlay.texture = Utils.get_scaled_res('res://assets/field_gardening.png', 128, 128)
 
 func serialize():
 	return {

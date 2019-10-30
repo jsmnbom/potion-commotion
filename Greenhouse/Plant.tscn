@@ -51,6 +51,10 @@ script = ExtResource( 1 )
 z_as_relative = false
 texture = ExtResource( 2 )
 
+[node name="FieldPotionOverlay" type="Sprite" parent="."]
+z_as_relative = false
+texture = ExtResource( 2 )
+
 [node name="PlantArea" type="Area2D" parent="." groups=[
 "MouseAreas",
 ]]
