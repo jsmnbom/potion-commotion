@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/fonts/options.tres" type="DynamicFont" id=4]
 
 [sub_resource type="DynamicFont" id=1]
-size = 38
+size = 26
 font_data = ExtResource( 3 )
 
 [node name="HowToPlay" type="NinePatchRect"]
@@ -21,23 +21,30 @@ script = ExtResource( 2 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 margin_left = 32.0
-margin_top = 56.0
+margin_top = 42.0
 margin_right = 608.0
 margin_bottom = 362.0
 rect_clip_content = false
 custom_fonts/normal_font = SubResource( 1 )
 custom_colors/default_color = Color( 0.384314, 0.286275, 0, 1 )
+custom_constants/line_separation = 4
 bbcode_enabled = true
-bbcode_text = "[color=#dc51ca]Click[/color] on a plant to harvest it.
-[color=#dc51ca]Left click[/color] to pick items up.
-[color=#dc51ca]Right click[/color] to sell or buy items.
-[color=#dc51ca]Left click[/color] with an item to use it.
-Press [color=#dc51ca]ESC[/color] to go back."
-text = "Click on a plant to harvest it.
-Left click to pick items up.
-Right click to sell or buy items.
-Left click with an item to use it.
-Press ESC to go back."
+bbcode_text = "[center][color=#dc51ca]Left click[/color] on a plant to resources from it.
+[color=#dc51ca]Right click[/color] on a plant to harvest seeds from it.
+[color=#dc51ca]Left click[/color] to pick items or journal pages up.
+[color=#dc51ca]Right click[/color] to sell or buy items in the inventory.
+[color=#dc51ca]Left click[/color] with an item to use it on something.
+Press [color=#dc51ca]ESC[/color] to go back or deselect current held item.
+[color=#dc51ca]Right click[/color] also deselects current held item
+[/center]"
+text = "Left click on a plant to resources from it.
+Right click on a plant to harvest seeds from it.
+Left click to pick items or journal pages up.
+Right click to sell or buy items in the inventory.
+Left click with an item to use it on something.
+Press ESC to go back or deselect current held item.
+Right click also deselects current held item
+"
 
 [node name="Back" type="Label" parent="."]
 margin_left = 225.944

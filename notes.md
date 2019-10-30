@@ -60,7 +60,6 @@ Music
 ## TODO
 
 Audio
-Multipage how to play
 Right click to deselect inventory/shovel
 Redo last potion
 Categories in journal
