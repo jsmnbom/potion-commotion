@@ -153,12 +153,19 @@ func set_description_italics(text):
 	description_italics_label.text = text
 	var width = 0
 	for line in text.split('\n'):
-		var test = description_italics_font.get_string_size(line).x + 24
+		var test = description_italics_font.get_string_size(line).x + 32
 		if test > width:
 			width = test
 	description_italics_label.rect_size.x = min(width, 200)
 
 func show_inventory_item(item):
+	if not item.seen:
+		set_title('???')
+		set_description_italics('You have not yet seen this item.')
+		show_on_next_frame = true
+		showing_inventory_item = true
+		return
+
 	set_title(item.name)
 	var description_items = []
 	if item.description:
