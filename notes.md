@@ -41,6 +41,8 @@ Poison potion makes everything wonky
 Remove mouseover requirement from overlay
 Better brewing bg
 Gems fly up to gemdisplay when selling and such
+Plant breaking animation
+Custom arrrow/pointing hand cursor
 
 ## Sound
 
@@ -58,5 +60,24 @@ Music
 ## TODO
 
 Audio
+Multipage how to play
+Right click to deselect inventory/shovel
+Redo last potion
+Categories in journal
+Rain (that trigger randomly and if all fields dry out)
+Colour field when potion has been used on it
+Hide name of items in sidebar until you get it
+
 
 ## Bugs
+
+Holding a seed and harvesting a plant will sometimes immediately plant the seed
+Indicator on journal when you have new pages
+Hydrations potions on dry fields is unclear
+Fallback font everywhere there's user input (support hiragana)
+Note for growth2 received before 1
+You should not be able to harvest hydroangea seeds
+Dusk and dawn on the clock
+Potion of growth page says 50% but it's not?
+Achevement don't show actual %
+Potion of luck consumed even with full luck
