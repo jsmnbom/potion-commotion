@@ -118,8 +118,9 @@ func add_item(item, node, count):
 				Events.emit_signal('achievement', {'total_id': 'total_seeds', 'total_add': 1})
 		if item.count == 0:
 			set_selected_item(null)
+	Events.emit_signal('inventory_updated')
 
-func add_item_animated(item, node, from_position, count):
+func add_item_animated_from(item, node, from_position, count):
 	var root = get_tree().get_root()
 	var tween = Tween.new()
 	root.add_child(tween)
@@ -140,9 +141,41 @@ func add_item_animated(item, node, from_position, count):
 		tween.interpolate_property(sprite, 'position',
 			from_position, end_position, 1,
 			Tween.TRANS_QUART, Tween.EASE_IN_OUT, 0.1*i)
-		tween.interpolate_callback(self, 1+0.1*i, 'add_item', item, node, 1)
+		tween.interpolate_callback(self, 1+0.1*i, 'add_item', item, node, count/abs(count))
 	tween.connect('tween_all_completed', self, '_on_add_item_tween_complete', [tween])
 	tween.start()
+
+func add_item_animated_to(item, node, to_position, count, callback, delay):
+	print(item, node, to_position, count)
+	var root = get_tree().get_root()
+	var tween = Tween.new()
+	root.add_child(tween)
+
+	for i in range(abs(count)):
+		var start_position = (node.get_node('Texture').get_global_rect().position +
+			(node.get_node('Texture').rect_size / 2))
+
+		var sprite = Sprite.new()
+		sprite.texture = item.get_scaled_res(48, 48)
+		sprite.position = start_position
+		sprite.name = item.id
+		sprite.modulate.a = 0.85
+		sprite.hide()
+		tween.add_child(sprite)
+		
+		tween.interpolate_callback(self, delay+0.1*i, 'show_sprite', sprite)
+		tween.interpolate_property(sprite, 'position',
+			start_position, to_position, 1,
+			Tween.TRANS_QUART, Tween.EASE_IN_OUT, delay+0.1*i)
+		tween.interpolate_callback(self, delay+1+0.1*i, 'add_item', item, node, count/abs(count))
+		if callback != null:
+			tween.interpolate_callback(self, delay+1+0.1*i, 'call_callback', callback)
+	tween.connect('tween_all_completed', self, '_on_add_item_tween_complete', [tween])
+	tween.start()
+
+func call_callback(callback):
+	var c = callback.duplicate()
+	c.pop_front().callv(c.pop_front(), c)
 
 func _on_add_item_tween_complete(tween):
 	tween.queue_free()
@@ -171,10 +204,13 @@ func _on_inventory_add(msg):
 	match(msg):
 		{'type': var item_type, 'id': var item_id, 'animated': true, 'from_position': var from_position}:
 			var i = get_item_index(item_type, item_id)
-			add_item_animated(inventory_items[i][0], inventory_items[i][1], from_position, 1)
+			add_item_animated_from(inventory_items[i][0], inventory_items[i][1], from_position, 1)
 		{'type': var item_type, 'id': var item_id, 'animated': true, 'from_position': var from_position, 'count': var count}:
 			var i = get_item_index(item_type, item_id)
-			add_item_animated(inventory_items[i][0], inventory_items[i][1], from_position, count)
+			add_item_animated_from(inventory_items[i][0], inventory_items[i][1], from_position, count)
+		{'type': var item_type, 'id': var item_id, 'animated': true, 'to_position': var to_position, 'count': var count, 'callback': var callback, 'delay': var delay}:
+			var i = get_item_index(item_type, item_id)
+			add_item_animated_to(inventory_items[i][0], inventory_items[i][1], to_position, count, callback, delay)
 		{'type': var item_type, 'id': var item_id, 'count': var count}:
 			var i = get_item_index(item_type, item_id)
 			add_item(inventory_items[i][0], inventory_items[i][1], count)

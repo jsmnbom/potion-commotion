@@ -17,6 +17,8 @@ signal tooltip(msg)
 signal inventory_item(msg)
 # no data
 signal inventory_deselect
+# no data
+signal inventory_updated
 
 # {'type': var item_type, 'id': var item_id, 'animated': true, 'from_position': var from_position}:
 # {'type': var item_type, 'id': var item_id, 'animated': true, 'from_position': var from_position, 'count': var count}:
