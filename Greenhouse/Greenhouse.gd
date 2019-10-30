@@ -56,8 +56,10 @@ func _on_mouse_area(msg):
 							_on_DayTimer_timeout()
 							Events.emit_signal('inventory_add', {'type': 'potion', 'id': 'midnight', 'count': -1})
 						'fortune':
-							Events.emit_signal('add_luck', 0.2)
-							Events.emit_signal('inventory_add', {'type': 'potion', 'id': 'fortune', 'count': -1})
+							print(Data.luck)
+							if Data.luck <= 0.8001:
+								Events.emit_signal('add_luck', 0.2)
+								Events.emit_signal('inventory_add', {'type': 'potion', 'id': 'fortune', 'count': -1})
 	
 func _on_inventory_item(msg):
 	match(msg):

@@ -439,7 +439,7 @@ func _on_mouse_area(msg):
 					add_potion(selected_potion)
 					Events.emit_signal('inventory_add', {'type': 'potion', 'id': selected_potion.id, 'count': -1})
 					Events.emit_signal('achievement', {'total_id': 'total_potions', 'total_add': 1})
-				elif left and planted and progress >= 100 and not weeds:
+				elif (left or (right and plant == 'hydroangea')) and planted and progress >= 100 and not weeds :
 					var drop = plant
 					if 'flames' in used_potions:
 						drop = 'ash'
