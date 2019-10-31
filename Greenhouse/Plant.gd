@@ -446,6 +446,8 @@ func _mouse_area(area, msg):
 					Events.emit_signal('inventory_add', {'type': 'potion', 'id': selected_potion.id, 'count': -1})
 					Events.emit_signal('achievement', {'total_id': 'total_potions', 'total_add': 1})
 				elif (left or (right and plant == 'hydroangea')) and planted and progress >= 100 and not weeds and (Data.plant_current_click_action == 'harvest' or Data.plant_current_click_action == null):
+					$BreakParticles.process_material.set_shader_param('plant_texture', $PlantSprite.texture.duplicate())
+					$BreakParticles.emitting = true
 					var drop = plant
 					if 'flames' in used_potions:
 						drop = 'ash'
@@ -479,6 +481,8 @@ func _mouse_area(area, msg):
 																				   'ice' in used_potions or \
 																				   'midas' in used_potions or \
 																				   'stars' in used_potions) and (Data.plant_current_click_action == 'harvest' or Data.plant_current_click_action == null)):
+					$BreakParticles.process_material.set_shader_param('plant_texture', $PlantSprite.texture.duplicate())
+					$BreakParticles.emitting = true
 					Events.emit_signal('achievement', {'diff_id': 'diff_plants', 'diff_add': plant, 'total_id': 'total_plants', 'total_add': 1})
 					Events.emit_signal('inventory_add', {
 						'type': 'seed',
