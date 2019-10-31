@@ -31,10 +31,11 @@ func _ready():
 		plant.make_wet()
 
 	Events.connect('inventory_item', self, '_on_inventory_item')
-	Events.connect('mouse_area', self, '_on_mouse_area')
+	
+	Utils.register_mouse_area(self, $BGArea)
 
-func _on_mouse_area(msg):
-	if msg['node'] == $BGArea:
+func _mouse_area(area, msg):
+	if area == $BGArea:
 		match msg:
 			{'mouse_over': true, 'button_left_click': var left, 'local_positions': var local_positions, ..}:
 				if left and selected_potion != null:

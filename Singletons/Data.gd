@@ -274,6 +274,8 @@ func clear():
 
 	play_time = 0
 
+	plant_current_click_action = null
+
 	inventory_by_id = {
 		'seed': {},
 		'resource': {},
@@ -495,3 +497,5 @@ var play_time = 0
 var version = ''
 
 var day_duration = 24*60
+
+var plant_current_click_action = null

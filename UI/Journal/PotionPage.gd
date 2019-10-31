@@ -5,9 +5,6 @@ var paused = false
 
 var journal
 var ingredient_areas = {}
-
-func _ready():
-	Events.connect('mouse_area', self, '_on_mouse_area')
 	
 func get_ingredient_pos(i):
 	var center = $Preview.position
@@ -50,6 +47,7 @@ func init(title, description, res, ingredients, journal):
 		shape.extents = Vector2(24,24)
 		area.shape_owner_add_shape(area.create_shape_owner(sprite), shape)
 		ingredient_areas[area] = [item.name, item.id]
+		Utils.register_mouse_area(self, area)
 		sprite.add_child(area)
 		
 		$Ingredients.add_child(sprite)
@@ -61,14 +59,14 @@ func _on_Potion_visibility_changed():
 	for area in ingredient_areas.keys():
 		area.visible = visible
 
-func _on_mouse_area(msg):
-	if msg['node'] == $PauseArea:
+func _mouse_area(area, msg):
+	if area == $PauseArea:
 		match msg:
 			{'mouse_over': false, ..}:
 				journal.animation_timer_paused = false
 			{'mouse_over': true, 'button_left_click': var left, ..}:
 				journal.animation_timer_paused = true
-	elif msg['node'] in ingredient_areas:
+	elif area in ingredient_areas:
 		match msg:
 			{'mouse_over': false, ..}:
 				journal.animation_timer_paused = false
@@ -76,7 +74,7 @@ func _on_mouse_area(msg):
 				Events.emit_signal('tooltip', {'hide': true})
 			{'mouse_over': true, 'button_left_click': var left, ..}:
 				journal.animation_timer_paused = true
-				var names = ingredient_areas[msg['node']]
+				var names = ingredient_areas[area]
 				if names[1] in Data.unlocked_journal_pages:
 					Utils.set_cursor_hand(true)
 					Events.emit_signal('tooltip', {'title': names[0], 'description': 'Click to show page.'})

@@ -5,8 +5,10 @@ var Achievement = preload('res://UI/Achievements/Achievement.tscn')
 var achievements = {}
 
 func _ready():
-	Events.connect('mouse_area', self, '_on_mouse_area')
 	Events.connect('achievement', self, '_on_achievement')
+
+	Utils.register_mouse_area(self, $CloseArea)
+	Utils.register_mouse_area(self, $Area)
 
 	var bar_texture = AnimatedTexture.new()
 	bar_texture.frames = 6
@@ -30,8 +32,8 @@ func _ready():
 
 	_on_Achievements_visibility_changed()
 
-func _on_mouse_area(msg):
-	if msg['node'] == $CloseArea:
+func _mouse_area(area, msg):
+	if area == $CloseArea:
 		match msg:
 			{'mouse_over': var mouse_over, 'button_left_click': var left, ..}:
 				if mouse_over:

@@ -11,8 +11,11 @@ var last_potion = null
 
 func _ready():
 	Events.connect('inventory_item', self, '_on_inventory_item')
-	Events.connect('mouse_area', self, '_on_mouse_area')
 	Events.connect('inventory_updated', self, '_on_inventory_updated')
+
+	Utils.register_mouse_area(self, $Area)
+	Utils.register_mouse_area(self, $ClearArea)
+	Utils.register_mouse_area(self, $MakeAnotherArea)
 	
 	$Clear.texture = Utils.get_scaled_res('res://assets/ui/close.png', 32, 32)
 
@@ -153,8 +156,8 @@ func _on_inventory_updated():
 		$LastPotion.visible = has_items
 		$MakeAnotherArea.visible = has_items
 
-func _on_mouse_area(msg):
-	if msg['node'] == $Area:
+func _mouse_area(area, msg):
+	if area == $Area:
 		match msg:
 			{'mouse_over': true, 'button_left_click': var left_click, ..}:
 				if left_click:
@@ -175,7 +178,7 @@ func _on_mouse_area(msg):
 						for item in items.keys():
 							_add_ingredients_animated(item, items[item], acc)
 							acc += items[item]
-	elif msg['node'] == $MakeAnotherArea:
+	elif area == $MakeAnotherArea:
 		match msg:
 			{'mouse_over': false, ..}:
 				$MakeAnotherLabel.hide()
@@ -196,7 +199,7 @@ func _on_mouse_area(msg):
 					for item in items.keys():
 						_add_ingredients_animated(item, items[item], acc)
 						acc += items[item]
-	elif msg['node'] == $ClearArea:
+	elif area == $ClearArea:
 		match msg:
 			{'mouse_over': false, ..}:
 				$ClearLabel.hide()

@@ -51,8 +51,11 @@ func _ready():
 	weeds_sprite.hide()
 
 	Events.connect('inventory_item', self, '_on_inventory_item')
-	Events.connect('mouse_area', self, '_on_mouse_area')
 	Events.connect('shovel', self, '_on_shovel')
+	
+	plant_area.set_meta('area_pretend_to_be', field_area)
+	Utils.register_mouse_area(self, field_area)
+	Utils.register_mouse_area(self, plant_area)
 
 
 func reset():
@@ -411,8 +414,8 @@ func _on_shovel(picked_up):
 	update_overlays()
 	update_cursor()
 
-func _on_mouse_area(msg):
-	if msg['node'] == plant_area or msg['node'] == field_area:
+func _mouse_area(area, msg):
+	if area == plant_area or area == field_area:
 		match msg:
 			{'mouse_over': false, ..}:
 				is_mouse_over = false
@@ -421,6 +424,7 @@ func _on_mouse_area(msg):
 				hydration.hide()
 				Utils.set_custom_cursor('sickle', null)
 			{'mouse_over': true, 'button_left': var left, 'button_right': var right, 'button_left_click': var left_click, 'button_right_click': var right_click, 'global_position': var position, ..}:
+				var used_click = true
 				if (left_click or right_click) and weeds:
 					weeds = false
 					weeds_sprite.hide()
@@ -439,7 +443,7 @@ func _on_mouse_area(msg):
 					add_potion(selected_potion)
 					Events.emit_signal('inventory_add', {'type': 'potion', 'id': selected_potion.id, 'count': -1})
 					Events.emit_signal('achievement', {'total_id': 'total_potions', 'total_add': 1})
-				elif (left or (right and plant == 'hydroangea')) and planted and progress >= 100 and not weeds :
+				elif (left or (right and plant == 'hydroangea')) and planted and progress >= 100 and not weeds and (Data.plant_current_click_action == 'harvest' or Data.plant_current_click_action == null):
 					var drop = plant
 					if 'flames' in used_potions:
 						drop = 'ash'
@@ -459,16 +463,18 @@ func _on_mouse_area(msg):
 					})
 					reset()
 					update_cursor()
-				elif left and not planted and selected_seed != null and not dried_out and not weeds:
+					Data.plant_current_click_action = 'harvest'
+				elif left and not planted and selected_seed != null and not dried_out and not weeds and (Data.plant_current_click_action == 'planting' or Data.plant_current_click_action == null):
 					set_plant(selected_seed.id)
 					Events.emit_signal('inventory_add', {'type': 'seed', 'id': plant, 'count': -1})
 					plant_sprite.show();
 					grow_timer.start()
 					planted = true
+					Data.plant_current_click_action = 'planting'
 				elif (right and planted and progress >= 100 and not weeds and not ('flames' in used_potions or \
 																				   'ice' in used_potions or \
 																				   'midas' in used_potions or \
-																				   'stars' in used_potions)):
+																				   'stars' in used_potions) and (Data.plant_current_click_action == 'harvest' or Data.plant_current_click_action == null)):
 					Events.emit_signal('achievement', {'diff_id': 'diff_plants', 'diff_add': plant, 'total_id': 'total_plants', 'total_add': 1})
 					Events.emit_signal('inventory_add', {
 						'type': 'seed',
@@ -479,7 +485,8 @@ func _on_mouse_area(msg):
 					})
 					reset()
 					update_cursor()
-				elif left and shovel_picked_up and planted and not weeds:
+					Data.plant_current_click_action = 'harvest'
+				elif left and shovel_picked_up and planted and not weeds and (Data.plant_current_click_action == 'shoveling' or Data.plant_current_click_action == null):
 					Events.emit_signal('achievement', {'diff_id': 'diff_plants', 'diff_add': plant})
 					Events.emit_signal('inventory_add', {
 						'type': 'seed',
@@ -490,9 +497,14 @@ func _on_mouse_area(msg):
 					})
 					reset()
 					update_cursor()
+					Data.plant_current_click_action = 'shoveling'
+				else:
+					used_click = false
 				is_mouse_over = true
 				update_overlays()
 				update_cursor()
+				if not used_click:
+					return Utils.collision_layer(1)
 
 func bottom_y():
 	var highest = 0

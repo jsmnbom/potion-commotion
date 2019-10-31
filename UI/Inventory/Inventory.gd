@@ -20,12 +20,12 @@ func _ready():
 		$MarginContainer/GridContainer.add_child(node)
 		update_item(node, item)
 		inventory_items.append([item, node, node.get_node('Area')])
+		Utils.register_mouse_area(self, node.get_node('Area'))
 		var label = node.get_node('Count')
 		label.add_font_override('font', small_item_font)
 
 	Events.connect('inventory_add', self, '_on_inventory_add')
 	Events.connect('gems_update', self, '_on_gems_update')
-	Events.connect('mouse_area', self, '_on_mouse_area')
 	Events.connect('inventory_deselect', self, 'set_selected_item', [null])
 
 	if Debug.INVENTORY:
@@ -46,9 +46,9 @@ func update_item(node, item):
 		node.get_node('FrameTexture').modulate = Color(0.8,0.8,0.8,1)
 		node.get_node('CountFrameTexture').modulate = Color(0.8,0.8,0.8,1)
 
-func _on_mouse_area(msg):
+func _mouse_area(area, msg):
 	for inventory_item in inventory_items:
-		if msg['node'] == inventory_item[2]:
+		if area == inventory_item[2]:
 			var item = inventory_item[0]
 			var node = inventory_item[1]
 			match msg:

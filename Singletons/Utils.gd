@@ -126,3 +126,9 @@ func get_global_position(local_position, viewport):
 
 func collision_layer(x):
 	return pow(2, x-1)
+
+func register_mouse_area(node, area):
+	get_node('/root/PotionCommotion/MouseHelper').register(node, area)
+
+func unregister_mouse_area(area):
+	get_node('/root/PotionCommotion/MouseHelper').unregister(area)

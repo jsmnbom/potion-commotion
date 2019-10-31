@@ -36,11 +36,16 @@ func add_page(key, title, page):
 	PAGES[key] = [title, page]
 
 func _ready():
-	Events.connect('mouse_area', self, '_on_mouse_area')
 	Events.connect('show_journal', self, '_on_show_journal')
 	Events.connect('unlock_journal_page', self, '_on_unlock_journal_page')
 	Events.connect('show_journal_page', self, '_on_show_journal_page')
 	Events.connect('loaded', self, '_on_loaded')
+
+	Utils.register_mouse_area(self, $Area)
+	Utils.register_mouse_area(self, $CloseArea)
+	Utils.register_mouse_area(self, $Return/Area)
+	Utils.register_mouse_area(self, $Forward/Area)
+	Utils.register_mouse_area(self, $Back/Area)
 	
 	for page in PAGES:
 		PAGES[page][1].hide()
@@ -111,32 +116,32 @@ func show_next_page():
 func show_prev_page():
 	Events.emit_signal('show_journal_page', {'id': Data.unlocked_journal_pages[Data.unlocked_journal_pages.find(current_page)-1]})
 
-func _on_mouse_area(msg):
+func _mouse_area(area, msg):
 	match msg:
 		{'mouse_over': var mouse_over, 'button_left_click': var left, ..}:
-			if msg['node'] == $Area:
+			if area == $Area:
 					Utils.set_cursor_hand(false)
-			if msg['node'] == $CloseArea:
+			if area == $CloseArea:
 				if mouse_over:
 					Utils.set_custom_cursor('close', Utils.get_scaled_res('res://assets/ui/close.png', 32, 32), Vector2(14,14))
 					if left:
 						Events.emit_signal('show_journal', false)
 				else:
 					Utils.set_custom_cursor('close', null)
-			if msg['node'] in [$Return/Area, $Forward/Area, $Back/Area]:
+			if area in [$Return/Area, $Forward/Area, $Back/Area]:
 				Utils.set_cursor_hand(mouse_over)
 				if mouse_over and left:
-					if msg['node'] == $Return/Area:
+					if area == $Return/Area:
 						Events.emit_signal('show_journal_page', {'id': 'index'})
 						Utils.set_cursor_hand(false)
-					elif msg['node'] == $Forward/Area:
+					elif area == $Forward/Area:
 						show_next_page()
 						Utils.set_cursor_hand(false)
-					elif msg['node'] == $Back/Area:
+					elif area == $Back/Area:
 						show_prev_page()
 						Utils.set_cursor_hand(false)
-			if msg['node'] in index_areas.keys():
-				var item = index_areas[msg['node']]
+			if area in index_areas.keys():
+				var item = index_areas[area]
 				item.get_node('BG').color = Color(0,0,0,0.1 if mouse_over else 0)
 				Utils.set_cursor_hand(mouse_over)
 				if left and mouse_over:
@@ -159,6 +164,9 @@ func show_page(page):
 			item.visible = current_page == 'index'
 
 func update_index():
+	for area in index_areas:
+		Utils.unregister_mouse_area(area)
+		index_areas[area].queue_free()
 	for i in range(2):
 		for item in index_items[i].get_children():
 			item.queue_free()
@@ -194,6 +202,7 @@ func update_index():
 		item.get_node('Label').bbcode_text = text
 		item.hide()
 		index_areas[item.get_node('Area')] = item
+		Utils.register_mouse_area(self, item.get_node('Area'))
 		if category != 'Potions':
 			index_items[0].add_child(item)
 		else:

@@ -4,3 +4,4 @@
 
 [node name="MouseHelper" type="Node2D"]
 script = ExtResource( 1 )
+[connection signal="visibility_changed" from="." to="." method="_on_MouseHelper_visibility_changed"]

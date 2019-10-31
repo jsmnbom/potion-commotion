@@ -4,11 +4,12 @@ var picked_up = false
 
 func _ready():
 	$Sprite.texture = Utils.get_scaled_res('res://assets/shovel_dirt.png', 96, 96)
-	Events.connect('mouse_area', self, '_on_mouse_area')
 	Events.connect('shovel', self, '_on_shovel')
+
+	Utils.register_mouse_area(self, $Area)
 	
-func _on_mouse_area(msg):
-	if msg['node'] == $Area:
+func _mouse_area(area, msg):
+	if area == $Area:
 		match msg:
 			{'mouse_over': false, ..}:
 				Events.emit_signal('tooltip', {'hide': true})

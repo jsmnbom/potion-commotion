@@ -89,6 +89,7 @@ func _on_continue_game():
 	continue_game_wait = 2
 
 func _on_exit_confirm():
+	yield(get_tree(), "idle_frame")
 	$QuitDialog.show()
 	$MouseHelper.show()
 	

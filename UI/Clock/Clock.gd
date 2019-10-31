@@ -1,7 +1,7 @@
 extends Node2D
 
 func _ready():
-	Events.connect('mouse_area', self, '_on_mouse_area')
+	Utils.register_mouse_area(self, $Area)
 
 func _physics_process(delta):
 	$ClockHand.rotation = (float(Data.time)/(24*60)) * TAU + PI
@@ -28,8 +28,8 @@ func _physics_process(delta):
 		unit = 'min'
 	$Label.set_text('%s %s to\n%s' % [floor(t), unit, till])
 	
-func _on_mouse_area(msg):
-	if msg['node'] == $Area:
+func _mouse_area(area, msg):
+	if area == $Area:
 		match msg:
 			{'mouse_over': false, ..}:
 				$Label.hide()

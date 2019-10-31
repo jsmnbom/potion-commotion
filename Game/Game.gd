@@ -19,7 +19,6 @@ var main_rect = Rect2(Vector2(32, 32), Vector2(1355, 1080-32-32))
 var sub_rect = Rect2(Vector2(32+1355+32, 32), Vector2(1920-(32+1355+32+32), 352))
 
 func _ready():
-	Events.connect('mouse_area', self, '_on_mouse_area')
 	$ViewportTween.connect('tween_completed', self, '_on_tween_complete')
 	Events.connect('show_achievements', self, '_on_show_achievements')
 
@@ -30,6 +29,8 @@ func _ready():
 	Events.connect('shovel', self, '_on_shovel')
 	
 	brewing_viewport_container.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+
+	Utils.register_mouse_area(self, $SubViewportArea)
 
 func _on_inventory_item(msg):
 	match(msg):
@@ -217,8 +218,8 @@ func _on_show_achievements(show):
 	else:
 		$Achievements.hide()
 		
-func _on_mouse_area(msg):
-	if msg['node'] == $SubViewportArea:
+func _mouse_area(area, msg):
+	if area == $SubViewportArea:
 		match msg:
 			{'mouse_over': false, ..}:
 				Events.emit_signal('tooltip', {'hide': true})
@@ -229,10 +230,10 @@ func _on_mouse_area(msg):
 						greenhouse_active = false
 						switch()
 				else:
+					Events.emit_signal('tooltip', {'description': greenhouse_tooltip})
 					if left:
 						greenhouse_active = true
 						switch()
-					Events.emit_signal('tooltip', {'description': greenhouse_tooltip})
 
 func _on_PlayTimeTimer_timeout():
 	Data.play_time += 1

@@ -66,7 +66,6 @@ Rain (that trigger randomly and if all fields dry out)
 
 ## Bugs
 
-Holding a seed and harvesting a plant will sometimes immediately plant the seed
 Hydrations potions on dry fields is unclear
 Dusk and dawn on the clock
 Achevement don't show actual %

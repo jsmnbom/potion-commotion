@@ -41,7 +41,6 @@ input_pickable = false
 monitoring = false
 monitorable = false
 collision_layer = 1024
-
 collision_mask = 0
 
 [node name="Collision" type="CollisionShape2D" parent="CloseArea"]
@@ -57,7 +56,6 @@ input_pickable = false
 monitoring = false
 monitorable = false
 collision_layer = 2048
-
 collision_mask = 0
 
 [node name="Collision" type="CollisionShape2D" parent="Area"]

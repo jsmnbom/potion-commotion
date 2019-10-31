@@ -9,7 +9,7 @@ var clickable = true
 func _ready():
 	$Icon.texture = Utils.get_scaled_res(icon_res, 48, 48)
 
-	Events.connect('mouse_area', self, '_on_mouse_area')
+	Utils.register_mouse_area(self, $Area)
 
 func popoutin():
 	position_tween.stop_all()
@@ -33,8 +33,8 @@ func popin():
 		Tween.TRANS_LINEAR, Tween.EASE_IN)
 	position_tween.start()
 
-func _on_mouse_area(msg):
-	if msg['node'] == $Area:
+func _mouse_area(area, msg):
+	if area == $Area:
 		match msg:
 			{'mouse_over': false, ..}:
 				popin()

@@ -1,8 +1,5 @@
 extends Control
 
-func _ready():
-	Events.connect('mouse_area', self, '_on_mouse_area')
-
 var GROW_STAGES = ['0-24% grown', '25-49% grown', '50-74% grown', '75-99% grown', 'COMPLETE']
 var potion_areas = {}
 var plant_areas = []
@@ -34,6 +31,7 @@ func init(title, description, res_path, seed_res_path, resource_res_path, used_i
 		shape.extents = Vector2(24,24)
 		area.shape_owner_add_shape(area.create_shape_owner(sprite), shape)
 		potion_areas[area] = [item.name, item.id]
+		Utils.register_mouse_area(self, area)
 		sprite.add_child(area)
 		
 		$Potions.add_child(sprite)
@@ -59,19 +57,20 @@ func init(title, description, res_path, seed_res_path, resource_res_path, used_i
 			collision.position = Vector2(-48, -96)
 			area.add_child(collision)
 		
+		Utils.register_mouse_area(self, area)
 		plant_areas.append(area)
 		$Preview.add_child(area)
 	
 	_on_Plant_visibility_changed()
 
-func _on_mouse_area(msg):
-	if msg['node'] in potion_areas.keys():
+func _mouse_area(area, msg):
+	if area in potion_areas.keys():
 		match msg:
 			{'mouse_over': false, ..}:
 				Utils.set_cursor_hand(false)
 				Events.emit_signal('tooltip', {'hide': true})
 			{'mouse_over': true, 'button_left_click': var left, ..}:
-				var names = potion_areas[msg['node']]
+				var names = potion_areas[area]
 				if names[1] in Data.unlocked_journal_pages:
 					Utils.set_cursor_hand(true)
 					Events.emit_signal('tooltip', {'title': names[0], 'description': 'Click to show page.'})
@@ -80,12 +79,12 @@ func _on_mouse_area(msg):
 						Utils.set_cursor_hand(false)
 				else:
 					Events.emit_signal('tooltip', {'title': names[0]})
-	elif msg['node'] in plant_areas:
+	elif area in plant_areas:
 		match msg:
 			{'mouse_over': false, ..}:
 				Events.emit_signal('tooltip', {'hide': true})
 			{'mouse_over': true, 'button_left_click': var left, ..}:
-				Events.emit_signal('tooltip', {'title': GROW_STAGES[plant_areas.find(msg['node'])]})
+				Events.emit_signal('tooltip', {'title': GROW_STAGES[plant_areas.find(area)]})
 
 func _on_Plant_visibility_changed():
 	for area in potion_areas.keys():

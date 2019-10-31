@@ -7,7 +7,7 @@ var destination = Vector2(1355/2, 1016/2)
 func _ready():
 	$PageSprite.texture = Utils.get_scaled_res('res://assets/journal_items/page.png', 128, 128)
 	
-	Events.connect('mouse_area', self, '_on_mouse_area')
+	Utils.register_mouse_area(self, $Area)
 
 func init(_page_id):
 	page_id = _page_id
@@ -16,8 +16,8 @@ func init(_page_id):
 	else:
 		$ItemSprite.texture = Utils.get_scaled_res('res://assets/journal_items/text.png', 128, 128)
 
-func _on_mouse_area(msg):
-	if msg['node'] == $Area:
+func _mouse_area(area, msg):
+	if area == $Area:
 		match msg:
 			{'mouse_over': var mouse_over, 'button_left_click': var left, ..}:
 				Utils.set_cursor_hand(mouse_over)
@@ -30,9 +30,8 @@ func _on_mouse_area(msg):
 					$Tween.start()
 
 					Events.emit_signal('unlock_journal')
-					
-					
 
 func done():
 	Events.emit_signal('unlock_journal_page', {'id': page_id})
+	Utils.unregister_mouse_area($Area)
 	queue_free()

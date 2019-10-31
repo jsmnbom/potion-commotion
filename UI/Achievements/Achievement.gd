@@ -10,7 +10,7 @@ var steps
 var mouse_over = false
 
 func _ready():
-	Events.connect('mouse_area', self, '_on_mouse_area')
+	Utils.register_mouse_area(self, $BarArea)
 
 	set_value(0)
 
@@ -62,8 +62,8 @@ func set_value(_value):
 	$Text.set_text(text)
 
 
-func _on_mouse_area(msg):
-	if msg['node'] == $BarArea:
+func _mouse_area(area, msg):
+	if area == $BarArea:
 		match msg:
 			{'mouse_over': var val, ..}:
 				mouse_over = val
