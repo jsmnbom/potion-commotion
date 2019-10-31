@@ -67,4 +67,3 @@ Rain (that trigger randomly and if all fields dry out)
 
 Hydrations potions on dry fields is unclear
 Dusk and dawn on the clock
-Achevement don't show actual %

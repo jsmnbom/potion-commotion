@@ -18,7 +18,7 @@ var DRY = false
 # Starts all fields wet
 var START_WET = true
 
-# Set achivement values to 150
+# Set achivement values to 700
 var ACHIEVEMENTS = false
 
 # Unlock all journal pages

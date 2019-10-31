@@ -52,15 +52,18 @@ func _mouse_area(area, msg):
 							Data.time = 9*60
 							_on_DayTimer_timeout()
 							Events.emit_signal('inventory_add', {'type': 'potion', 'id': 'sunlight', 'count': -1})
+							Events.emit_signal('achievement', {'total_id': 'total_potions', 'total_add': 1})
 						'midnight':
 							Data.time = 21*60
 							_on_DayTimer_timeout()
 							Events.emit_signal('inventory_add', {'type': 'potion', 'id': 'midnight', 'count': -1})
+							Events.emit_signal('achievement', {'total_id': 'total_potions', 'total_add': 1})
 						'fortune':
 							print(Data.luck)
 							if Data.luck <= 0.8001:
 								Events.emit_signal('add_luck', 0.2)
 								Events.emit_signal('inventory_add', {'type': 'potion', 'id': 'fortune', 'count': -1})
+								Events.emit_signal('achievement', {'total_id': 'total_potions', 'total_add': 1})
 	
 func _on_inventory_item(msg):
 	match(msg):

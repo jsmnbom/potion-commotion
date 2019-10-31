@@ -6,6 +6,7 @@ var achievements = {}
 
 func _ready():
 	Events.connect('achievement', self, '_on_achievement')
+	Events.connect('loaded', self, '_on_loaded')
 
 	Utils.register_mouse_area(self, $CloseArea)
 	Utils.register_mouse_area(self, $Area)
@@ -18,9 +19,6 @@ func _ready():
 
 	for i in Data.achievements.size():
 		var data = Data.achievements[i]
-		if Debug.ACHIEVEMENTS:
-			if data is Data._AchievementTotal:
-				data.total = 150
 		var achievement_node = Achievement.instance()
 		achievement_node.set_data(data)
 		achievement_node.rect_position = Vector2(360+56,180+24)+Vector2((512+64)*floor(i%2), (112+24)*floor(i/2))
@@ -31,6 +29,13 @@ func _ready():
 		achievements[data.id] = [data, achievement_node]
 
 	_on_Achievements_visibility_changed()
+
+func _on_loaded():
+	if Debug.ACHIEVEMENTS:
+		for i in Data.achievements.size():
+			var data = Data.achievements[i]
+			if data is Data._AchievementTotal:
+				Events.emit_signal('achievement', {'total_id': data.id, 'total_add': 700})
 
 func _mouse_area(area, msg):
 	if area == $CloseArea:
