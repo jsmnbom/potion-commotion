@@ -192,24 +192,28 @@ func tick():
 				sleep_particles.z_index = 16
 				star_particles.z_index = 16
 				weeds_sprite.z_index = 16
+				$BreakParticles.z_index = 16
 			elif position.y > 544:
 				#row 3
 				plant_sprite.z_index = 12
 				sleep_particles.z_index = 13
 				star_particles.z_index = 13
 				weeds_sprite.z_index = 13
+				$BreakParticles.z_index = 13
 			elif position.y > 352:
 				#row 2
 				plant_sprite.z_index = 9
 				sleep_particles.z_index = 10
 				star_particles.z_index = 10
 				weeds_sprite.z_index = 10
+				$BreakParticles.z_index = 10
 			else:
 				# row 1
 				plant_sprite.z_index = 6
 				sleep_particles.z_index = 7
 				star_particles.z_index = 7
 				weeds_sprite.z_index = 7
+				$BreakParticles.z_index = 7
 			
 
 			for i in range(plant_area.get_children().size()):
@@ -414,6 +418,12 @@ func _on_shovel(picked_up):
 	update_overlays()
 	update_cursor()
 
+func show_break_particles():
+	$BreakParticles.modulate = $PlantSprite.modulate
+	$BreakParticles.process_material.set_shader_param('random_seed', Utils.rng.randf())
+	$BreakParticles.process_material.set_shader_param('plant_texture', $PlantSprite.texture.duplicate())
+	$BreakParticles.emitting = true
+
 func _mouse_area(area, msg):
 	if area == plant_area or area == field_area:
 		match msg:
@@ -446,8 +456,7 @@ func _mouse_area(area, msg):
 					Events.emit_signal('inventory_add', {'type': 'potion', 'id': selected_potion.id, 'count': -1})
 					Events.emit_signal('achievement', {'total_id': 'total_potions', 'total_add': 1})
 				elif (left or (right and plant == 'hydroangea')) and planted and progress >= 100 and not weeds and (Data.plant_current_click_action == 'harvest' or Data.plant_current_click_action == null):
-					$BreakParticles.process_material.set_shader_param('plant_texture', $PlantSprite.texture.duplicate())
-					$BreakParticles.emitting = true
+					show_break_particles()
 					var drop = plant
 					if 'flames' in used_potions:
 						drop = 'ash'
@@ -481,8 +490,7 @@ func _mouse_area(area, msg):
 																				   'ice' in used_potions or \
 																				   'midas' in used_potions or \
 																				   'stars' in used_potions) and (Data.plant_current_click_action == 'harvest' or Data.plant_current_click_action == null)):
-					$BreakParticles.process_material.set_shader_param('plant_texture', $PlantSprite.texture.duplicate())
-					$BreakParticles.emitting = true
+					show_break_particles()
 					Events.emit_signal('achievement', {'diff_id': 'diff_plants', 'diff_add': plant, 'total_id': 'total_plants', 'total_add': 1})
 					Events.emit_signal('inventory_add', {
 						'type': 'seed',
