@@ -161,7 +161,7 @@ func show_page(page):
 		update_index()
 	for i in range(2):
 		for item in index_items[i].get_children():
-			item.visible = current_page == 'index'
+			item.visible = visible and current_page == 'index'
 
 func update_index():
 	for area in index_areas:
@@ -200,7 +200,6 @@ func update_index():
 		if not page in viewed_pages:
 			text += ' [color=#dc51ca]NEW[/color]'
 		item.get_node('Label').bbcode_text = text
-		item.hide()
 		index_areas[item.get_node('Area')] = item
 		Utils.register_mouse_area(self, item.get_node('Area'))
 		if category != 'Potions':
@@ -218,8 +217,8 @@ func sort_unlocked_pages():
 
 func _on_show_journal(show):
 	if show:
-		Events.emit_signal('show_journal_page', {'id': current_page})
 		show()
+		Events.emit_signal('show_journal_page', {'id': current_page})
 	else:
 		PAGES[current_page][1].hide()
 		for node in [self, $Forward, $Return, $Back]:

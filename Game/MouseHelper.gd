@@ -8,6 +8,7 @@ var mouse_over_area = null
 var areas = {}
 var area_nodes = {}
 var was_just_hidden = false
+var right_click_handled = null
 
 func layer(x):
 	return Utils.collision_layer(x)
@@ -121,6 +122,10 @@ func _physics_process(delta):
 		var button_click_mask = _button_clicks(button_mask)
 		if button_click_mask & BUTTON_LEFT == BUTTON_LEFT or button_click_mask & BUTTON_RIGHT == BUTTON_RIGHT:
 			Data.plant_current_click_action = null
+		
+		if button_click_mask & BUTTON_RIGHT == BUTTON_RIGHT:
+			if right_click_handled != true or right_click_handled == null:
+				right_click_handled = false
 
 		var top_areas = null
 		if Rect2(Vector2(0,0), Vector2(1920, 1080)).has_point(global_position):
@@ -137,15 +142,19 @@ func _physics_process(delta):
 					if not top_area == mouse_over_area or last_button_mask != button_mask:
 						if cont_layer == null:
 							mouse_over_area = top_area
-						prints(top_area.name, top_area.get_parent().name,  top_area.get_parent().rect_position if top_area.get_parent() is Control else 0)
+						prints(top_area.name, top_area.get_parent().name, top_area.is_visible(), top_area.get_parent().is_visible(), top_area.get_parent().rect_position if top_area.get_parent() is Control else 0)
 						cont_layer = top_node._mouse_area(top_area, _make_data(true, global_position, local_positions, button_mask, button_click_mask))
 						if cont_layer:
 							continue
 					break
+					
+		if right_click_handled == false:
+			Events.emit_signal('unhandled_right_click')
+		if button_click_mask & BUTTON_RIGHT == BUTTON_RIGHT:
+			right_click_handled = null
 	last_button_mask = button_mask
 
 
 func _on_MouseHelper_visibility_changed():
 	if not visible:
-		print('wasjusthidden')
 		was_just_hidden = true

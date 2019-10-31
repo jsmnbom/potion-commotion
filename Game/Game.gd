@@ -27,6 +27,7 @@ func _ready():
 	
 	Events.connect('inventory_item', self, '_on_inventory_item')
 	Events.connect('shovel', self, '_on_shovel')
+	Events.connect('unhandled_right_click', self, '_on_unhandled_right_click')
 	
 	brewing_viewport_container.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 
@@ -41,6 +42,12 @@ func _on_inventory_item(msg):
 
 func _on_shovel(picked_up):
 	shovel_picked_up = picked_up
+
+func _on_unhandled_right_click():
+	if selected_item:
+		Events.emit_signal('inventory_deselect')
+	elif shovel_picked_up:
+		Events.emit_signal('shovel', false)
 
 func ui_cancel():
 	if $Achievements.visible:

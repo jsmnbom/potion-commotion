@@ -439,6 +439,8 @@ func _mouse_area(area, msg):
 					update_cursor()
 					update_overlays()
 					Events.emit_signal('tooltip', {'hide': true})
+					if right_click:
+						Utils.set_right_click_handled()
 				elif left_click and can_use_potion(selected_potion) and not weeds:
 					add_potion(selected_potion)
 					Events.emit_signal('inventory_add', {'type': 'potion', 'id': selected_potion.id, 'count': -1})
@@ -464,6 +466,8 @@ func _mouse_area(area, msg):
 					reset()
 					update_cursor()
 					Data.plant_current_click_action = 'harvest'
+					if right:
+						Utils.set_right_click_handled()
 				elif left and not planted and selected_seed != null and not dried_out and not weeds and (Data.plant_current_click_action == 'planting' or Data.plant_current_click_action == null):
 					set_plant(selected_seed.id)
 					Events.emit_signal('inventory_add', {'type': 'seed', 'id': plant, 'count': -1})
@@ -486,6 +490,7 @@ func _mouse_area(area, msg):
 					reset()
 					update_cursor()
 					Data.plant_current_click_action = 'harvest'
+					Utils.set_right_click_handled()
 				elif left and shovel_picked_up and planted and not weeds and (Data.plant_current_click_action == 'shoveling' or Data.plant_current_click_action == null):
 					Events.emit_signal('achievement', {'diff_id': 'diff_plants', 'diff_add': plant})
 					Events.emit_signal('inventory_add', {

@@ -60,7 +60,6 @@ Music
 ## TODO
 
 Audio
-Right click to deselect inventory/shovel
 Rain (that trigger randomly and if all fields dry out)
 
 

@@ -132,3 +132,6 @@ func register_mouse_area(node, area):
 
 func unregister_mouse_area(area):
 	get_node('/root/PotionCommotion/MouseHelper').unregister(area)
+
+func set_right_click_handled():
+	get_node('/root/PotionCommotion/MouseHelper').right_click_handled = true

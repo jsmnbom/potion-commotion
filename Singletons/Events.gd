@@ -36,8 +36,8 @@ signal show_achievements(show)
 # true | false
 signal show_journal(show)
 
-# ???
-signal mouse_area(msg)
+# no data
+signal unhandled_right_click
 
 # {'total_id': var total_id, 'total_add': var total_add}:
 # {'diff_id': var diff_id, 'diff_add': var diff_add}:
