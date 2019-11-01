@@ -325,10 +325,16 @@ func add_potion(potion, deserializing=false):
 	match(potion_id):
 		'growth', 'growth2':
 			var x = 0.75 if potion_id == 'growth' else 0.5
-			var time_left = grow_timer.time_left
-			grow_timer.stop()
-			next_grow_time = grow_timer.wait_time * x
-			grow_timer.wait_time = time_left * x
+			if next_grow_time and next_grow_time != -1:
+				var time_left = grow_timer.time_left
+				grow_timer.stop()
+				next_grow_time = next_grow_time * x
+				grow_timer.wait_time = time_left * x
+			else:
+				var time_left = grow_timer.time_left
+				grow_timer.stop()
+				next_grow_time = grow_timer.wait_time * x
+				grow_timer.wait_time = time_left * x
 			grow_timer.start()
 			field_sprite.modulate = field_sprite.modulate.blend(Color('66d37f42'))
 		'ice':
