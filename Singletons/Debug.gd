@@ -29,3 +29,6 @@ var FAST_DAY = false
 
 # Make it rain much more often
 var RAIN = true
+
+# Disable birbs
+var DISABLE_BIRBS = true

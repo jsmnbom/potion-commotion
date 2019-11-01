@@ -8,6 +8,9 @@ func _ready():
 	$Timer.wait_time = 2
 	$Timer.start()
 
+	if Debug.DISABLE_BIRBS:
+		$Timer.stop()
+
 func seen(type, id):
 	return Data.inventory_by_id[type][id].seen
 

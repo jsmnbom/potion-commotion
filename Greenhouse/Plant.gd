@@ -279,6 +279,8 @@ func _on_inventory_item(msg):
 		{'deselected': true}:
 			selected_seed = null
 			selected_potion = null
+	update_overlays()
+	update_cursor()
 
 func can_use_potion(potion):
 	if potion == null:

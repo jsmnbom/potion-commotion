@@ -40,7 +40,6 @@ color_ramp = SubResource( 3 )
 code = "shader_type particles;
 
 uniform sampler2D plant_texture;
-uniform float random_seed;
 
 float rand_from_seed(inout uint seed) {
 	int k;
@@ -81,7 +80,6 @@ void vertex() {
 
 [sub_resource type="ShaderMaterial" id=8]
 shader = SubResource( 7 )
-shader_param/random_seed = null
 
 [node name="Greenhouse" type="Node2D"]
 script = ExtResource( 1 )
