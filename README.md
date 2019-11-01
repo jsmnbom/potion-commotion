@@ -1,8 +1,8 @@
 # Potion Commotion: Heart Edition
 
-## Grow plants, brew potions, maybe even solve a mystery
+## *Grow plants, brew potions, maybe even solve a mystery*
 
-    "Today marks the first day I was supposed to start as an apprentice for the esteemed magical botanist Arden Silvera. I arrived yesterday and I have yet to see any signs of them. I've found a couple of torn out pages of what seems to be their journal. Maybe they will be happy that I found them. Until then, this garden looks a bit run down, maybe I should get to work."
+*"Today marks the first day I was supposed to start as an apprentice for the esteemed magical botanist Arden Silvera. I arrived yesterday and I have yet to see any signs of them. I've found a couple of torn out pages of what seems to be their journal. Maybe they will be happy that I found them. Until then, this garden looks a bit run down, maybe I should get to work."*
 
 ## About the game
 
