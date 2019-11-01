@@ -2,6 +2,10 @@ extends Node2D
 
 var weed_wait_min = 30
 var weed_wait_max = 3*30
+var rain_wait_min = 5*60
+var rain_wait_max = 20*60
+var raining = false
+var rain_hydrated_fields = 0
 
 var selected_potion = null
 
@@ -13,7 +17,13 @@ func _ready():
 		weed_wait_max = 5
 	$WeedsTimer.wait_time = Utils.rng.randf_range(weed_wait_min, weed_wait_max)
 	$WeedsTimer.start()
-	
+
+	if Debug.RAIN:
+		rain_wait_min = 60
+		rain_wait_max = 2*60
+	$RainTimer.wait_time = Utils.rng.randf_range(rain_wait_min, rain_wait_max)
+	$RainTimer.start()
+
 	if Debug.FAST_DAY:
 		Data.day_duration = 30
 
@@ -111,3 +121,27 @@ func _on_DayTimer_timeout():
 
 	for plant in $Plants.get_children():
 		plant.light.energy = 1 - t
+
+
+func _on_RainTimer_timeout():
+	if raining:
+		var dried_out = []
+		for plant in $Plants.get_children():
+			if plant.dried_out:
+				dried_out.append(plant)
+		if dried_out.size() > 1:
+			Utils.rng_choose(dried_out).make_wet()
+		rain_hydrated_fields += 1
+
+		if rain_hydrated_fields >= 5:
+			$Rain.emitting = false
+			$RainSplash.emitting = false
+			$RainTimer.wait_time = Utils.rng.randf_range(rain_wait_min, rain_wait_max)
+			$RainTimer.start()
+			raining = false
+	else:
+		$Rain.emitting = true
+		$RainSplash.emitting = true
+		$RainTimer.wait_time = Utils.rng.randf_range(rain_wait_min/60, rain_wait_max/60)
+		$RainTimer.start()
+		raining = true

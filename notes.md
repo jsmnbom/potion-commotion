@@ -20,6 +20,7 @@
 16 plant particles + weeds row 1
 17 birbpage - flying
 18 birb - flying
+19 rain
 
 ## Maybe / Later
 
@@ -35,7 +36,6 @@ Achevement boosts
 Better brewing (like spefic rules for some potions)
 Sick plants - Healing potion
 Mandrake - harvested during day runs away
-Rain
 Harder achevements (after playtesting)
 Poison potion makes everything wonky
 Remove mouseover requirement from overlay
@@ -60,7 +60,6 @@ Music
 ## TODO
 
 Audio
-Rain (that trigger randomly and if all fields dry out)
 
 
 ## Bugs

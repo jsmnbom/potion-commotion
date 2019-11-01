@@ -1,13 +1,87 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Greenhouse/Greenhouse.gd" type="Script" id=1]
 [ext_resource path="res://assets/grass.png" type="Texture" id=2]
 [ext_resource path="res://Greenhouse/Plant.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Greenhouse/BirbController.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Greenhouse/Shovel.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/rain_splash.png" type="Texture" id=6]
+[ext_resource path="res://assets/rain.png" type="Texture" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 677, 508 )
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.734247 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0.0141863, 0.259052 ), 0.0, 4.04493, 0, 0, Vector2( 0.0304027, 0.956533 ), 0.0, 0.0, 0, 0, Vector2( 0.619595, 0.93117 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.829719 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+emission_shape = 2
+emission_box_extents = Vector3( 677, 508, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 1.5
+scale_random = 0.4
+scale_curve = SubResource( 5 )
+color_ramp = SubResource( 3 )
+
+[sub_resource type="Shader" id=7]
+code = "shader_type particles;
+
+uniform sampler2D plant_texture;
+uniform float random_seed;
+
+float rand_from_seed(inout uint seed) {
+	int k;
+	int s = int(seed);
+	if (s == 0)
+	s = 305420679;
+	k = s / 127773;
+	s = 16807 * (s - k * 127773) - 2836 * k;
+	if (s < 0)
+		s += 2147483647;
+	seed = uint(s);
+	return float(seed % uint(65536))/65535.0;
+}
+
+uint hash(uint x) {
+	x = ((x >> uint(16)) ^ x) * uint(73244475);
+	x = ((x >> uint(16)) ^ x) * uint(73244475);
+	x = (x >> uint(16)) ^ x;
+	return x;
+}
+
+void vertex() {
+	if (RESTART) {
+		uint alt_seed = hash(NUMBER+uint(1)+RANDOM_SEED);
+		TRANSFORM[3].x = rand_from_seed(alt_seed)*1555.0;
+		COLOR.a = clamp(rand_from_seed(alt_seed), 0.5, 1.0);
+		VELOCITY.y = clamp(rand_from_seed(alt_seed), 0.5, 1.0)*1500.0;
+		VELOCITY.x = 50.0;
+		float size = clamp(rand_from_seed(alt_seed), 0.3, 1.0)*5.0;
+		float pi = 3.14159;
+		float rot = pi / 180.0 * 7.0;
+		TRANSFORM[0] = vec4(cos(rot),-sin(rot),0.0,0.0);
+		TRANSFORM[1] = vec4(sin(rot),cos(rot),0.0,0.0);
+		TRANSFORM[0] *= 1.5;
+		TRANSFORM[1] *= size *1.5;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = SubResource( 7 )
+shader_param/random_seed = null
 
 [node name="Greenhouse" type="Node2D"]
 script = ExtResource( 1 )
@@ -27,6 +101,7 @@ stretch_mode = 2
 [node name="WeedsTimer" type="Timer" parent="."]
 
 [node name="Plants" type="YSort" parent="."]
+editor/display_folded = true
 
 [node name="Plant" parent="Plants" instance=ExtResource( 3 )]
 position = Vector2( 226, 256 )
@@ -130,5 +205,30 @@ position = Vector2( 1122, 832 )
 
 [node name="Shovel" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1280, 320.696 )
+
+[node name="RainTimer" type="Timer" parent="."]
+
+[node name="RainSplash" type="Particles2D" parent="."]
+modulate = Color( 0.47451, 0.788235, 1, 0.27451 )
+position = Vector2( 677, 508 )
+emitting = false
+amount = 50
+lifetime = 3.0
+explosiveness = 0.1
+visibility_rect = Rect2( -677, -508, 1355, 1016 )
+process_material = SubResource( 6 )
+texture = ExtResource( 6 )
+
+[node name="Rain" type="Particles2D" parent="."]
+modulate = Color( 0.760784, 0.776471, 1, 0.588235 )
+position = Vector2( -200, 0 )
+z_index = 19
+z_as_relative = false
+emitting = false
+amount = 500
+visibility_rect = Rect2( 0, 0, 1355, 1016 )
+process_material = SubResource( 8 )
+texture = ExtResource( 7 )
 [connection signal="timeout" from="WeedsTimer" to="." method="_on_WeedsTimer_timeout"]
 [connection signal="timeout" from="DayTimer" to="." method="_on_DayTimer_timeout"]
+[connection signal="timeout" from="RainTimer" to="." method="_on_RainTimer_timeout"]
