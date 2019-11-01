@@ -117,6 +117,7 @@ func set_plant(_plant):
 
 	offset = Vector2(Utils.rng.randi_range(-8, 8), Utils.rng.randi_range(-16,16))
 	plant_sprite.position = offset + Vector2(0, -64)
+	$BreakParticles.position = offset
 
 	light.enabled = true
 	match (plant):
@@ -428,7 +429,7 @@ func _on_shovel(picked_up):
 
 func show_break_particles():
 	$BreakParticles.modulate = $PlantSprite.modulate
-	$BreakParticles.process_material.set_shader_param('random_seed', Utils.rng.randf())
+	$BreakParticles.process_material.set_shader_param('bottom_y', bottom_y(true)+12)
 	$BreakParticles.process_material.set_shader_param('plant_texture', $PlantSprite.texture.duplicate())
 	$BreakParticles.emitting = true
 
@@ -531,11 +532,11 @@ func _mouse_area(area, msg):
 				if not used_click:
 					return Utils.collision_layer(1)
 
-func bottom_y():
+func bottom_y(relative=false):
 	var highest = 0
 	var plantStage = int(progress / 25)
 	for poly in collision_polygons[plantStage]:
 		for vec in poly:
 			if vec.y > highest:
 				highest = vec.y
-	return position.y + highest -128-64-8 + offset.y
+	return highest -128-64-8 + offset.y + (position.y if not relative else 0)

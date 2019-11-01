@@ -1,6 +1,7 @@
 shader_type particles;
 
 uniform sampler2D plant_texture;
+uniform float bottom_y;
 
 float rand_from_seed(inout uint seed) {
 	int k;
@@ -34,16 +35,20 @@ void vertex() {
 		VELOCITY.y = rand_from_seed(alt_seed) * -100.0;
 		VELOCITY.x = (rand_from_seed(alt_seed) - 0.5) * 30.0;
 		CUSTOM.y = 0.0;
+		CUSTOM.z = 10.0;
 	} else {
 		ACTIVE = false;
 	}
   } else {
 	CUSTOM.y += DELTA/LIFETIME;
 	vec2 pos = TRANSFORM[3].xy; 
-	if (pos.y > 80.0) {
-		ACTIVE = false;
-	} else if (pos.y > 48.0) {
-		COLOR.a = 1.0 - (pos.y - 48.0) / 32.0
+	if (pos.y > bottom_y && CUSTOM.z >= 10.0) {
+		VELOCITY.y = -VELOCITY.y / 2.0;
+		VELOCITY.x *= 3.0;
+		CUSTOM.z = 5.0;
+	} else if (CUSTOM.z < 10.0) {
+		COLOR.a = clamp(1.0-clamp(CUSTOM.y, 0.5, 1.0), 0.0, 1.0);
+		VELOCITY.y += 5.0;
 	} else {
     	VELOCITY.y += 5.0
 	}
