@@ -16,7 +16,7 @@ var WEEDS = false
 var DRY = false
 
 # Starts all fields wet
-var START_WET = true
+var START_WET = false
 
 # Set achivement values to 700
 var ACHIEVEMENTS = false

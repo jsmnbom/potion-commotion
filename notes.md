@@ -62,5 +62,4 @@ Audio
 
 ## Bugs
 
-Hydrations potions on dry fields is unclear
 Dusk and dawn on the clock

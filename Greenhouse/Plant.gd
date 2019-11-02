@@ -44,8 +44,6 @@ func _ready():
 	reset()
 	
 	dry_out()
-	
-	$Hydration.texture = Data.inventory_by_id['potion']['hydration'].get_scaled_res(64,64)
 
 	weeds_sprite.texture = Utils.get_scaled_res('res://assets/greenhouse/weeds.png', 128, 128)
 	weeds_sprite.hide()
