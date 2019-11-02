@@ -41,7 +41,6 @@ Poison potion makes everything wonky
 Remove mouseover requirement from overlay
 Better brewing bg
 Gems fly up to gemdisplay when selling and such
-Plant breaking animation
 Custom arrrow/pointing hand cursor
 
 ## Sound
@@ -60,7 +59,6 @@ Music
 ## TODO
 
 Audio
-
 
 ## Bugs
 

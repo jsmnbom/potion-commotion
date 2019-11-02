@@ -3,7 +3,7 @@ extends Node2D
 var picked_up = false
 
 func _ready():
-	$Sprite.texture = Utils.get_scaled_res('res://assets/shovel_dirt.png', 96, 96)
+	$Sprite.texture = Utils.get_scaled_res('res://assets/greenhouse/shovel_dirt.png', 96, 96)
 	Events.connect('shovel', self, '_on_shovel')
 
 	Utils.register_mouse_area(self, $Area)
@@ -20,7 +20,7 @@ func _mouse_area(area, msg):
 						Events.emit_signal('shovel', false)
 					else:
 						Events.emit_signal('inventory_deselect')
-						Utils.set_custom_cursor('shovel', Utils.get_scaled_res('res://assets/shovel.png', 64, 64), Vector2(32, 48))
+						Utils.set_custom_cursor('shovel', Utils.get_scaled_res('res://assets/greeenhouse/shovel.png', 64, 64), Vector2(32, 48))
 						picked_up = true
 						Events.emit_signal('shovel', true)
 				

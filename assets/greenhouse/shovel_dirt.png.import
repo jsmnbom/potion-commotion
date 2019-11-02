@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/shovel_delete_me.png-967a53ca161221710100f963be5903e6.stex"
+path="res://.import/shovel_dirt.png-63a8569744fe2e70e60845598c1114e3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/shovel_delete_me.png"
-dest_files=[ "res://.import/shovel_delete_me.png-967a53ca161221710100f963be5903e6.stex" ]
+source_file="res://assets/greenhouse/shovel_dirt.png"
+dest_files=[ "res://.import/shovel_dirt.png-63a8569744fe2e70e60845598c1114e3.stex" ]
 
 [params]
 

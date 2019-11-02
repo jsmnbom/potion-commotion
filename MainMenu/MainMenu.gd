@@ -10,7 +10,7 @@ onready var eye_middle = $CrystalStalkEye.position
 func _ready():
 	$ContinueButton/TextureRect.texture = Utils.get_scaled_res('res://assets/potions/hydration.png', 48, 48)
 	$NewButton/TextureRect.texture = Utils.get_scaled_res('res://assets/resources/fire_flower.png', 48, 48)
-	$HowToPlayButton/TextureRect.texture = Utils.get_scaled_res('res://assets/weeds.png', 64, 64)
+	$HowToPlayButton/TextureRect.texture = Utils.get_scaled_res('res://assets/greenhouse/weeds.png', 64, 64)
 	$OptionsButton/TextureRect.texture = Utils.get_scaled_res('res://assets/ui/sickle.png', 48, 48)
 	
 	$ExitButton.texture_normal =  Utils.get_scaled_res('res://assets/ui/exit.png', 64, 64)

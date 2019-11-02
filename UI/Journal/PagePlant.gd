@@ -8,7 +8,7 @@ func init(title, description, res_path, seed_res_path, resource_res_path, used_i
 	$Title.text = title
 	$Description.text = description
 	$Preview.texture = Utils.get_scaled_res(res_path, 96*5, 192*2)
-	$FieldPreview.texture = Utils.get_scaled_res('res://assets/field.png', 96, 96)
+	$FieldPreview.texture = Utils.get_scaled_res('res://assets/greenhouse/field.png', 96, 96)
 	
 	$SeedPreview.texture = Utils.get_scaled_res(seed_res_path, 48 ,48)
 	$ResourcePreview.texture = Utils.get_scaled_res(resource_res_path, 48, 48)

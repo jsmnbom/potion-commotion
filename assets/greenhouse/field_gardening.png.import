@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/field.png-fc9543e02f0d3dde744604a8b0366bd3.stex"
+path="res://.import/field_gardening.png-0abbad383c9cf98d53738ed81a02bdb5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/field.png"
-dest_files=[ "res://.import/field.png-fc9543e02f0d3dde744604a8b0366bd3.stex" ]
+source_file="res://assets/greenhouse/field_gardening.png"
+dest_files=[ "res://.import/field_gardening.png-0abbad383c9cf98d53738ed81a02bdb5.stex" ]
 
 [params]
 
