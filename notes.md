@@ -63,3 +63,8 @@ Audio
 ## Bugs
 
 Dusk and dawn on the clock
+When loading the journalpopout doesn't show
+Potion of gardening with 3x yield worth way too much
+Too much plant yield
+When you get a journal page for an item it should not show ??? in inventory
+Improve saving using: var2bytes and serialize() just returning a list of persitent things

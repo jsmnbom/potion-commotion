@@ -20,7 +20,7 @@ func _mouse_area(area, msg):
 						Events.emit_signal('shovel', false)
 					else:
 						Events.emit_signal('inventory_deselect')
-						Utils.set_custom_cursor('shovel', Utils.get_scaled_res('res://assets/greeenhouse/shovel.png', 64, 64), Vector2(32, 48))
+						Utils.set_custom_cursor('shovel', Utils.get_scaled_res('res://assets/greenhouse/shovel.png', 64, 64), Vector2(32, 48))
 						picked_up = true
 						Events.emit_signal('shovel', true)
 				

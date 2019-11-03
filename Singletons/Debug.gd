@@ -4,7 +4,7 @@ extends Node
 var INVENTORY = true
 
 # Makes plants grow 60 times faster (min 5 sec)
-var FAST_PLANTS = true
+var FAST_PLANTS = false
 
 # Gives you 100 000 000 gems from the start
 var GEMS = false
@@ -28,7 +28,7 @@ var JOURNAL = false
 var FAST_DAY = false
 
 # Make it rain much more often
-var RAIN = true
+var RAIN = false
 
 # Disable birbs
-var DISABLE_BIRBS = true
+var DISABLE_BIRBS = false

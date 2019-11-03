@@ -167,7 +167,7 @@ func add_item_animated_to(item, node, to_position, count, callback, delay):
 		tween.interpolate_property(sprite, 'position',
 			start_position, to_position, 1,
 			Tween.TRANS_QUART, Tween.EASE_IN_OUT, delay+0.1*i)
-		tween.interpolate_callback(self, delay+1+0.1*i, 'add_item', item, node, count/abs(count))
+		tween.interpolate_callback(self, delay+0.2+0.1*i, 'add_item', item, node, count/abs(count))
 		if callback != null:
 			tween.interpolate_callback(self, delay+1+0.1*i, 'call_callback', callback)
 	tween.connect('tween_all_completed', self, '_on_add_item_tween_complete', [tween])

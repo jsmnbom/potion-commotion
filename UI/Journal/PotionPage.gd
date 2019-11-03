@@ -5,7 +5,10 @@ var paused = false
 
 var journal
 var ingredient_areas = {}
-	
+
+func _ready():
+	Utils.register_mouse_area(self, $PauseArea)
+
 func get_ingredient_pos(i):
 	var center = $Preview.position
 	var theta = (TAU / 5) * i + (float(journal.animation_timer)/240)*TAU
