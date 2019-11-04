@@ -20,7 +20,8 @@
 16 plant particles + weeds row 1
 17 birbpage - flying
 18 birb - flying
-19 rain
+19 greenhouse potion effect
+20 rain
 
 ## Maybe / Later
 
@@ -73,4 +74,3 @@ Shelves with potions in basement
 ## Bugs
 
 Dusk and dawn on the clock
-Fix luck potion effect z-index?

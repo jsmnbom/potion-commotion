@@ -85,6 +85,8 @@ func luck_potion_effect(pos):
 	sprite.scale = Vector2(0,0)
 	sprite.modulate = Color(1,1,1,0.3)
 	sprite.position = pos
+	sprite.z_as_relative = false
+	sprite.z_index = 19
 
 	tween.add_child(sprite)
 

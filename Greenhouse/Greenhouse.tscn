@@ -220,7 +220,7 @@ texture = ExtResource( 6 )
 [node name="Rain" type="Particles2D" parent="."]
 modulate = Color( 0.760784, 0.776471, 1, 0.588235 )
 position = Vector2( -200, 0 )
-z_index = 19
+z_index = 20
 z_as_relative = false
 emitting = false
 amount = 500
