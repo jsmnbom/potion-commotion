@@ -111,8 +111,6 @@ func _on_brewing_complete(potion, tween, potion_sprite):
 	tween.get_parent().remove_child(tween)
 	ingredients = []
 	var count = 1
-	if potion.id == 'gardening':
-		count = 3
 	Events.emit_signal('inventory_add', {
 		'type': 'potion',
 		'id': potion.id,

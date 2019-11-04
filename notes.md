@@ -29,12 +29,13 @@ More potions:
     Potion of rain
     Potion of birb
     Potion of (something that makes plants ignore time of day)
+    Potion of yielding
 Daily missions
 Daily lootboxes
 Bird feather
 Achevement boosts
 Better brewing (like spefic rules for some potions)
-Sick plants - Healing potion
+Sick plants - Healing potion - Rot
 Mandrake - harvested during day runs away
 Harder achevements (after playtesting)
 Poison potion makes everything wonky
@@ -42,6 +43,12 @@ Remove mouseover requirement from overlay
 Better brewing bg
 Gems fly up to gemdisplay when selling and such
 Custom arrrow/pointing hand cursor
+Improve saving using: var2bytes and serialize() just returning a list of persitent things
+In game jukebox
+Variable luck based on e.g. how many lucky clovers are planted
+Winter berries
+Fun easter eggs
+Potion yields based on luck
 
 ## Sound
 
@@ -63,8 +70,4 @@ Audio
 ## Bugs
 
 Dusk and dawn on the clock
-When loading the journalpopout doesn't show
-Potion of gardening with 3x yield worth way too much
-Too much plant yield
-When you get a journal page for an item it should not show ??? in inventory
-Improve saving using: var2bytes and serialize() just returning a list of persitent things
+

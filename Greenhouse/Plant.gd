@@ -450,7 +450,7 @@ func _mouse_area(area, msg):
 						'id': 'weeds',
 						'animated': true,
 						'from_position': position,
-						'count': round(Utils.rng_choose([2,2,2,3])*(1+Data.luck))
+						'count': round(Utils.rng_choose([1,1,2,2,2,2,3])*(1+Data.luck))
 					})
 					grow_timer.paused = false
 					update_cursor()
@@ -479,7 +479,7 @@ func _mouse_area(area, msg):
 						'id': drop,
 						'animated': true,
 						'from_position': position,
-						'count': round(Utils.rng_choose([1,1,2])*(1+Data.luck))
+						'count': round(Utils.rng_choose([1,1,1,1,1,2])*(1+Data.luck))
 					})
 					reset()
 					update_cursor()
@@ -504,7 +504,7 @@ func _mouse_area(area, msg):
 						'id': plant,
 						'animated': true,
 						'from_position': position,
-						'count': round(Utils.rng_choose([2,2,3,3,4])*(1+Data.luck))
+						'count': round(Utils.rng_choose([1,2,2,2,2,2,2,3])*(1+Data.luck))
 					})
 					reset()
 					update_cursor()

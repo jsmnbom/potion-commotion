@@ -232,6 +232,14 @@ func _on_unlock_journal_page(msg):
 	if not page_id in Data.unlocked_journal_pages:
 		Data.unlocked_journal_pages.append(page_id)
 		
+		var page = PAGES[page_id][1]
+		if page.has_meta('page_type'):
+			var page_type = page.get_meta('page_type')
+			if page_type == 'plant':
+				Data.inventory_by_id['seed'][page_id].seen = true
+			elif page_type == 'potion':
+				Data.inventory_by_id['potion'][page_id].seen = true
+		
 	update_index()
 	sort_unlocked_pages()
 
@@ -251,5 +259,7 @@ func serialize():
 
 func deserialize(data):
 	viewed_pages = data['viewed']
-	for page in data['unlocked']:
-		_on_unlock_journal_page({'id': page})
+	if data['unlocked'].size() > 0:
+		Events.emit_signal('unlock_journal')
+		for page in data['unlocked']:
+			_on_unlock_journal_page({'id': page})
