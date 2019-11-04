@@ -1,7 +1,6 @@
 extends 'res://UI/Popout.gd'
 
 func _init():
-	icon_res = 'res://assets/resources/lucky_clover.png'
 	clickable = false
 	speeds[0] = 0.3
 

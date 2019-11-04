@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://UI/GemDisplay/GemDisplay.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/9pr_small.png" type="Texture" id=2]
 [ext_resource path="res://assets/fonts/PT_Mono/PTMono-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/ui/gem.png" type="Texture" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
@@ -43,14 +44,15 @@ align = 2
 valign = 1
 
 [node name="Icon" type="TextureRect" parent="."]
-margin_left = 348.0
+margin_left = 324.0
 margin_top = 16.0
-margin_right = 348.0
+margin_right = 372.0
 margin_bottom = 96.0
 mouse_filter = 2
 size_flags_vertical = 3
+texture = ExtResource( 4 )
 expand = true
-stretch_mode = 4
+stretch_mode = 6
 
 [node name="PositionTween" type="Tween" parent="."]
 
@@ -61,7 +63,6 @@ input_pickable = false
 monitoring = false
 monitorable = false
 collision_layer = 16
-
 collision_mask = 0
 
 [node name="Collision" type="CollisionShape2D" parent="Area"]

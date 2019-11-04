@@ -5,7 +5,6 @@ var display_gems = 0.0
 onready var gem_tween = $GemTween
 
 func _init():
-	icon_res = 'res://assets/ui/gem.png'
 	clickable = false
 
 func _ready():

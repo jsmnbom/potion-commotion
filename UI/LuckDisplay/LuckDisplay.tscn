@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://UI/LuckDisplay/LuckDisplay.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/9pr_small.png" type="Texture" id=2]
 [ext_resource path="res://UI/LuckDisplay/luck_shader.shader" type="Shader" id=3]
-[ext_resource path="res://assets/fonts/popout.tres" type="DynamicFont" id=4]
+[ext_resource path="res://assets/resources/lucky_clover.png" type="Texture" id=4]
+[ext_resource path="res://assets/fonts/popout.tres" type="DynamicFont" id=5]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )
@@ -31,14 +32,15 @@ axis_stretch_vertical = 1
 
 [node name="Icon" type="TextureRect" parent="."]
 material = SubResource( 1 )
-margin_left = 168.0
+margin_left = 144.0
 margin_top = 16.0
-margin_right = 168.0
+margin_right = 192.0
 margin_bottom = 96.0
 mouse_filter = 2
 size_flags_vertical = 3
+texture = ExtResource( 4 )
 expand = true
-stretch_mode = 4
+stretch_mode = 6
 
 [node name="PositionTween" type="Tween" parent="."]
 
@@ -47,7 +49,7 @@ margin_left = 32.0
 margin_top = 16.0
 margin_right = 142.0
 margin_bottom = 96.0
-custom_fonts/font = ExtResource( 4 )
+custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 0.564706, 0.447059, 0.101961, 1 )
 text = "Luck"
 align = 1
@@ -60,7 +62,6 @@ input_pickable = false
 monitoring = false
 monitorable = false
 collision_layer = 16
-
 collision_mask = 0
 
 [node name="Collision" type="CollisionShape2D" parent="Area"]

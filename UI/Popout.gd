@@ -2,13 +2,10 @@ extends Control
 
 onready var position_tween = $PositionTween
 
-var icon_res = ''
 var speeds = [0.4, 0.2, 0.5]
 var clickable = true
 
 func _ready():
-	$Icon.texture = Utils.get_scaled_res(icon_res, 48, 48)
-
 	Utils.register_mouse_area(self, $Area)
 
 func popoutin():

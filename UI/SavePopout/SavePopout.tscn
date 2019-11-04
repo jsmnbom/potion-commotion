@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://UI/SavePopout/SavePopout.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/9pr_small.png" type="Texture" id=2]
 [ext_resource path="res://assets/fonts/popout.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/ui/save.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 158, 56 )
@@ -44,7 +45,6 @@ input_pickable = false
 monitoring = false
 monitorable = false
 collision_layer = 16
-
 collision_mask = 0
 
 [node name="Collision" type="CollisionShape2D" parent="Area"]
@@ -59,3 +59,6 @@ margin_top = 32.0
 margin_right = 188.0
 margin_bottom = 80.0
 mouse_filter = 2
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 6
