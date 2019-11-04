@@ -17,6 +17,8 @@ _global_script_class_icons={
 
 config/name="PotionCommotion"
 run/main_scene="res://PotionCommotion.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="PotionCommotion"
 boot_splash/image="res://assets/ui/boot_splash.png"
 config/icon="res://icon.png"
 
