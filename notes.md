@@ -66,6 +66,8 @@ Music
 ## TODO
 
 Audio
+Shelves with potions in basement
+Luck potion effect
 
 ## Bugs
 
