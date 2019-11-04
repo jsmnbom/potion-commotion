@@ -32,11 +32,12 @@ loop = true
 extents = Vector2( 24, 24 )
 
 [node name="Cauldron" type="Sprite"]
+self_modulate = Color( 0.811765, 0.811765, 0.811765, 1 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
 
 [node name="Liquid" type="TextureRect" parent="."]
-modulate = Color( 0.498039, 0.203922, 0.537255, 1 )
+modulate = Color( 0.423529, 0.172549, 0.458824, 1 )
 show_behind_parent = true
 material = SubResource( 1 )
 margin_left = -256.0
@@ -111,7 +112,6 @@ collision_mask = 0
 
 [node name="Collision" type="CollisionPolygon2D" parent="Area"]
 visible = false
-scale = Vector2( 1, 1 )
 polygon = PoolVector2Array( -119.51, -667.996, 113.731, -672.756, 280.332, -634.676, 399.333, -568.035, 513.573, -472.835, 604.014, -349.074, 665.895, -163.433, 675.415, 65.0483, 637.334, 303.05, 532.614, 464.891, 413.613, 583.891, 280.332, 641.012, 123.251, 702.892, -109.99, 698.132, -324.192, 621.972, -481.272, 522.011, -605.033, 350.65, -681.194, 93.6085, -666.914, -187.233, -543.153, -439.515, -347.992, -591.836 )
 
 [node name="MakeAnotherArea" type="Area2D" parent="."]
