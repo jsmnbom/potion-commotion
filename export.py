@@ -19,18 +19,16 @@ platforms = [('Windows Desktop', 'windows'), ('Linux/X11', 'linux')]
 
 def main():
     print('fetching version')
+    version_file = Path('VERSION')
     version = str(git.describe('--tags')).strip()
     short_version = version.rsplit('-', maxsplit=1)[0]
     print('new version: {} ({})'.format(version, short_version))
-    with open('VERSION', 'w') as f:
+    with version_file.open('w') as f:
         f.write(version)
-    print('VERSION updated')
+    print('VERSION file created')
     export_dir = Path(__file__).resolve().parent.parent / 'exports' / version
     export_dir.mkdir(exist_ok=True)
     print('export directory: {}'.format(export_dir))
-
-    if not click.confirm('Proceed with export?', default=False):
-        return
 
     for platform, short_platform in platforms:
         platform_export_dir = export_dir / '-'.join(game_name + [short_platform, short_version])
@@ -49,6 +47,8 @@ def main():
 
         with ZipFile(archive_path, 'r') as f:
             print(f.namelist())
+
+    version_file.unlink()
     
     # if click.confirm('Upload to itch.io?', default=False):
     #     for _, short_platform in platforms:

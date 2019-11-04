@@ -10,8 +10,13 @@ func _init():
 	_plant_hitboxes = file.get_var()
 
 	var version_file = File.new()
-	version_file.open("res://VERSION", File.READ)
-	version = version_file.get_line()
+	if version_file.file_exists('res://VERSION'):
+		version_file.open("res://VERSION", File.READ)
+		version = version_file.get_line()
+	elif OS.is_debug_build():
+		version = 'DEBUG BUILD'
+	else:
+		version = 'ERROR: VERSION NOT FOUND'
 	
 func clear():
 	plants = {

@@ -181,11 +181,11 @@ texture = ExtResource( 13 )
 [node name="Potion" type="AnimatedSprite" parent="."]
 position = Vector2( 508.341, 488.522 )
 frames = SubResource( 4 )
-frame = 5
+frame = 4
 playing = true
 
 [node name="VersionLabel" type="Label" parent="."]
-margin_left = 1639.0
+margin_left = 1432.0
 margin_top = 1047.0
 margin_right = 1917.0
 margin_bottom = 1081.0
