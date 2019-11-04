@@ -70,5 +70,6 @@ Music
 
 Audio
 Shelves with potions in basement
+Rest of broken shelf on the floor
 
 ## Bugs

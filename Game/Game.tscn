@@ -100,6 +100,7 @@ shape = SubResource( 1 )
 [node name="BasementViewportContainer" type="ViewportContainer" parent="." groups=[
 "ViewportContainer",
 ]]
+editor/display_folded = true
 show_behind_parent = true
 margin_left = 1419.0
 margin_top = 32.0
