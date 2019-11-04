@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Basement/Basement.gd" type="Script" id=1]
 [ext_resource path="res://assets/basement/wooden_wall.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Basement/Cauldron.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/basement/shelf.png" type="Texture" id=5]
 [ext_resource path="res://assets/basement/shelf_broken.png" type="Texture" id=6]
+[ext_resource path="res://assets/basement/shelf_broken2.png" type="Texture" id=7]
 
 [node name="Basement" type="Node2D"]
 script = ExtResource( 1 )
@@ -14,15 +15,18 @@ script = ExtResource( 1 )
 modulate = Color( 0.564706, 0.564706, 0.564706, 1 )
 margin_right = 1355.0
 margin_bottom = 320.0
+mouse_filter = 2
 texture = ExtResource( 2 )
 expand = true
 stretch_mode = 2
 
 [node name="Floor" type="TextureRect" parent="."]
 modulate = Color( 0.439216, 0.439216, 0.439216, 1 )
+margin_left = 1.50732
 margin_top = 320.0
-margin_right = 1355.0
+margin_right = 1356.51
 margin_bottom = 1016.0
+mouse_filter = 2
 texture = ExtResource( 3 )
 expand = true
 stretch_mode = 2
@@ -36,6 +40,17 @@ margin_left = 165.0
 margin_top = 85.703
 margin_right = 1189.0
 margin_bottom = 149.703
+mouse_filter = 2
+texture = ExtResource( 5 )
+stretch_mode = 2
+
+[node name="ShelvesBottom" type="TextureRect" parent="."]
+modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
+margin_left = 165.0
+margin_top = 198.614
+margin_right = 1061.0
+margin_bottom = 262.614
+mouse_filter = 2
 texture = ExtResource( 5 )
 stretch_mode = 2
 
@@ -45,13 +60,15 @@ margin_left = 1061.0
 margin_top = 198.614
 margin_right = 1189.0
 margin_bottom = 262.614
+mouse_filter = 2
 texture = ExtResource( 6 )
 
-[node name="ShelvesBottom" type="TextureRect" parent="."]
-modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-margin_left = 165.0
-margin_top = 198.614
-margin_right = 1061.0
-margin_bottom = 262.614
-texture = ExtResource( 5 )
-stretch_mode = 2
+[node name="BrokenShelfPiece" type="TextureRect" parent="."]
+modulate = Color( 0.796078, 0.796078, 0.796078, 1 )
+margin_left = 1027.83
+margin_top = 311.555
+margin_right = 1155.83
+margin_bottom = 375.555
+rect_rotation = 20.97
+mouse_filter = 2
+texture = ExtResource( 7 )
