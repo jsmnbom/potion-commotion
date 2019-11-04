@@ -20,10 +20,9 @@ func _ready():
 	$Clear.texture = Utils.get_scaled_res('res://assets/ui/close.png', 32, 32)
 
 func get_ingredient_pos(i, r_offset=0):
-	var center = $Cauldron.position
 	var theta = (TAU / 5) * i + r - r_offset
 	var offset = Vector2(sin(theta), cos(theta)) * ingredient_offset_size
-	return center + offset
+	return offset
 
 func _physics_process(delta):
 	r -= PI / 120
@@ -42,7 +41,7 @@ func _add_ingredients_animated(item, count, acc):
 			'id': item.id,
 			'count': -1,
 			'animated': true,
-			'to_position': Utils.get_global_position(get_ingredient_pos(i+acc, (PI/2)*(1.0+(0.1*i+acc*0.1))), get_viewport()),
+			'to_position': Utils.get_global_position(position + get_ingredient_pos(i+acc, (PI/2)*(1.0+(0.1*i+acc*0.1))), get_viewport()),
 			'callback': [self, 'add_ingredient', item, true],
 			'delay': 0.1*i+acc*0.1})
 	
@@ -83,7 +82,7 @@ func start_brewing():
 	var tween = Tween.new()
 	add_child(tween)
 	
-	var end_pos = Vector2($Cauldron.position.x, $Cauldron.position.y)
+	var end_pos = position
 	
 	var potion_sprite = Sprite.new()
 	potion_sprite.texture = potion.get_scaled_res(48, 48)
@@ -115,7 +114,7 @@ func _on_brewing_complete(potion, tween, potion_sprite):
 		'type': 'potion',
 		'id': potion.id,
 		'animated': true,
-		'from_position': Utils.get_global_position($Cauldron.position, get_viewport()),
+		'from_position': Utils.get_global_position(position, get_viewport()),
 		'count': count
 	})
 	Events.emit_signal('achievement', {'diff_id': 'diff_brew', 'diff_add': potion.id, 'total_id': 'total_brew', 'total_add': 1})

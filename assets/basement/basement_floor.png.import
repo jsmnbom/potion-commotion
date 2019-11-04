@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/liqud_particle.png-bf16b7f9322c4acc217f636e27dacad6.stex"
+path="res://.import/basement_floor.png-33e478b4058395fe32627a4b284c44d9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/brewing/liqud_particle.png"
-dest_files=[ "res://.import/liqud_particle.png-bf16b7f9322c4acc217f636e27dacad6.stex" ]
+source_file="res://assets/basement/basement_floor.png"
+dest_files=[ "res://.import/basement_floor.png-33e478b4058395fe32627a4b284c44d9.stex" ]
 
 [params]
 

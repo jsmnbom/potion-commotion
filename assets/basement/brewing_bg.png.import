@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cauldron_empty.png-c6225fdc380e5b2ca0937f3d5a2c4609.stex"
+path="res://.import/brewing_bg.png-4889551a7ad62e5bda6f77c75e47a6a5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/brewing/cauldron_empty.png"
-dest_files=[ "res://.import/cauldron_empty.png-c6225fdc380e5b2ca0937f3d5a2c4609.stex" ]
+source_file="res://assets/basement/brewing_bg.png"
+dest_files=[ "res://.import/brewing_bg.png-4889551a7ad62e5bda6f77c75e47a6a5.stex" ]
 
 [params]
 

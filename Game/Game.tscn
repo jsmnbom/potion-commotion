@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/greenhouse/grass.png" type="Texture" id=2]
 [ext_resource path="res://assets/ui/frame.png" type="Texture" id=3]
 [ext_resource path="res://Greenhouse/Greenhouse.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Brewing/Brewing.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Basement/Basement.tscn" type="PackedScene" id=5]
 [ext_resource path="res://UI/Inventory/Inventory.tscn" type="PackedScene" id=6]
 [ext_resource path="res://UI/GemDisplay/GemDisplay.tscn" type="PackedScene" id=7]
 [ext_resource path="res://UI/LuckDisplay/LuckDisplay.tscn" type="PackedScene" id=8]
@@ -97,10 +97,9 @@ collision_mask = 0
 position = Vector2( 234, 176 )
 shape = SubResource( 1 )
 
-[node name="BrewingViewportContainer" type="ViewportContainer" parent="." groups=[
+[node name="BasementViewportContainer" type="ViewportContainer" parent="." groups=[
 "ViewportContainer",
 ]]
-editor/display_folded = true
 show_behind_parent = true
 margin_left = 1419.0
 margin_top = 32.0
@@ -109,7 +108,7 @@ margin_bottom = 384.0
 mouse_default_cursor_shape = 2
 stretch = true
 
-[node name="BrewingViewport" type="Viewport" parent="BrewingViewportContainer" groups=[
+[node name="BasementViewport" type="Viewport" parent="BasementViewportContainer" groups=[
 "sub_viewports",
 ]]
 size = Vector2( 1355, 1016 )
@@ -120,7 +119,7 @@ usage = 0
 render_target_update_mode = 3
 gui_disable_input = true
 
-[node name="Brewing" parent="BrewingViewportContainer/BrewingViewport" instance=ExtResource( 5 )]
+[node name="Basement" parent="BasementViewportContainer/BasementViewport" instance=ExtResource( 5 )]
 
 [node name="Inventory" parent="." instance=ExtResource( 6 )]
 margin_left = 1435.0

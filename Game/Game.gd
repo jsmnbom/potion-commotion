@@ -1,13 +1,12 @@
 extends Node2D
 
 onready var greenhouse_viewport_container = $GreenhouseViewportContainer
-onready var brewing_viewport_container = $BrewingViewportContainer
+onready var basement_viewport_container = $BasementViewportContainer
 onready var greenhouse_viewport = $GreenhouseViewportContainer/GreenhouseViewport
-onready var brewing_viewport = $BrewingViewportContainer/BrewingViewport
-onready var brewing = $BrewingViewportContainer/BrewingViewport/Brewing
+onready var basement_viewport = $BasementViewportContainer/BasementViewport
 onready var greenhouse = $GreenhouseViewportContainer/GreenhouseViewport/Greenhouse
 
-var brewing_tooltip = 'Click to start brewing!'
+var basement_tooltip = 'Click to start brewing!'
 var greenhouse_tooltip = 'Click to go back to your greenhouse!'
 
 var greenhouse_active = true
@@ -29,7 +28,7 @@ func _ready():
 	Events.connect('shovel', self, '_on_shovel')
 	Events.connect('unhandled_right_click', self, '_on_unhandled_right_click')
 	
-	brewing_viewport_container.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	basement_viewport_container.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 
 	Utils.register_mouse_area(self, $SubViewportArea)
 
@@ -77,18 +76,18 @@ func _input(event):
 		load_game()
 
 func switch():
-	var main_viewport = brewing_viewport
-	var main_container = brewing_viewport_container
+	var main_viewport = basement_viewport
+	var main_container = basement_viewport_container
 	var sub_viewport = greenhouse_viewport
 	var sub_container = greenhouse_viewport_container
 	if greenhouse_active:
 		main_viewport = greenhouse_viewport
 		main_container = greenhouse_viewport_container
-		sub_viewport = brewing_viewport
-		sub_container = brewing_viewport_container
+		sub_viewport = basement_viewport
+		sub_container = basement_viewport_container
 
 	greenhouse_viewport_container.mouse_default_cursor_shape = Control.CURSOR_ARROW
-	brewing_viewport_container.mouse_default_cursor_shape = Control.CURSOR_ARROW
+	basement_viewport_container.mouse_default_cursor_shape = Control.CURSOR_ARROW
 		
 	var tween = $ViewportTween
 	tween.interpolate_property(sub_container, 'modulate:a',
@@ -131,7 +130,7 @@ func _switch_inner(main_container, sub_container, main_viewport, sub_viewport):
 
 func _on_tween_complete(object, key):
 	if greenhouse_active:
-		brewing_viewport_container.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+		basement_viewport_container.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 	else:
 		greenhouse_viewport_container.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 
@@ -232,7 +231,7 @@ func _mouse_area(area, msg):
 				Events.emit_signal('tooltip', {'hide': true})
 			{'mouse_over': true, 'button_left_click': var left, ..}:
 				if greenhouse_active:
-					Events.emit_signal('tooltip', {'description': brewing_tooltip})
+					Events.emit_signal('tooltip', {'description': basement_tooltip})
 					if left:
 						greenhouse_active = false
 						switch()
