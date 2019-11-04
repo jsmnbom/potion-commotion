@@ -49,6 +49,7 @@ Variable luck based on e.g. how many lucky clovers are planted
 Winter berries
 Fun easter eggs
 Potion yields based on luck
+Brightness
 
 ## Sound
 
@@ -67,7 +68,6 @@ Music
 
 Audio
 Shelves with potions in basement
-Luck potion effect
 
 ## Bugs
 

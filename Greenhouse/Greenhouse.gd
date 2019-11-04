@@ -74,7 +74,34 @@ func _mouse_area(area, msg):
 								Events.emit_signal('add_luck', 0.2)
 								Events.emit_signal('inventory_add', {'type': 'potion', 'id': 'fortune', 'count': -1})
 								Events.emit_signal('achievement', {'total_id': 'total_potions', 'total_add': 1})
-	
+								luck_potion_effect(local_positions[get_viewport()])
+
+func luck_potion_effect(pos):
+	var tween = Tween.new()
+
+	var sprite = Sprite.new()
+	sprite.texture = load('res://assets/greenhouse/luck_potion_effect.png')
+
+	sprite.scale = Vector2(0,0)
+	sprite.modulate = Color(1,1,1,0.3)
+	sprite.position = pos
+
+	tween.add_child(sprite)
+
+	tween.interpolate_property(sprite, 'scale',
+		sprite.scale, Vector2(15, 15), 1.0,
+		Tween.TRANS_QUART, Tween.EASE_OUT)
+	tween.interpolate_callback(tween, 1.0, 'queue_free')
+	tween.interpolate_property(sprite, 'rotation',
+		0, TAU, 1.0,
+		Tween.TRANS_QUART, Tween.EASE_OUT)
+	tween.interpolate_property(sprite, 'modulate:a',
+		0.3, 0.0, 0.2,
+		Tween.TRANS_QUART, Tween.EASE_OUT, 0.8)
+
+	add_child(tween)
+	tween.start()
+
 func _on_inventory_item(msg):
 	match(msg):
 		{'selected': var item}:
