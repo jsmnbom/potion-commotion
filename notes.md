@@ -50,6 +50,7 @@ Winter berries
 Fun easter eggs
 Potion yields based on luck
 Brightness
+Remove custom resizing code, and do it properly?
 
 ## Sound
 
@@ -72,4 +73,4 @@ Shelves with potions in basement
 ## Bugs
 
 Dusk and dawn on the clock
-
+Fix luck potion effect z-index?

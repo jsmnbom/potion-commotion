@@ -165,11 +165,11 @@ func _mouse_area(area, msg):
 							Events.emit_signal('inventory_add', {'type': 'resource', 'id': selected_resource.id, 'count': -1})
 					elif selected_potion != null and ingredients.size() == 0:
 						var items = {}
-						for resource_id in last_potion.ingredients:
+						for resource_id in selected_potion.ingredients:
 							var item = Data.inventory_by_id['resource'][resource_id]
-							if item.count >= last_potion.ingredients.count(resource_id):
+							if item.count >= selected_potion.ingredients.count(resource_id):
 								if not item in items:
-									items[item] = last_potion.ingredients.count(resource_id)
+									items[item] = selected_potion.ingredients.count(resource_id)
 							else:
 								return
 						var acc = 0
