@@ -72,5 +72,3 @@ Audio
 Shelves with potions in basement
 
 ## Bugs
-
-Dusk and dawn on the clock
