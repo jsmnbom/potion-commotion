@@ -128,10 +128,16 @@ func collision_layer(x):
 	return pow(2, x-1)
 
 func register_mouse_area(node, area):
-	get_node('/root/PotionCommotion/MouseHelper').register(node, area)
+	var mouse_helper = get_node('/root/PotionCommotion/MouseHelper')
+	if mouse_helper != null:
+		mouse_helper.register(node, area)
 
 func unregister_mouse_area(area):
-	get_node('/root/PotionCommotion/MouseHelper').unregister(area)
+	var mouse_helper = get_node('/root/PotionCommotion/MouseHelper')
+	if mouse_helper != null:
+		mouse_helper.unregister(area)
 
 func set_right_click_handled():
-	get_node('/root/PotionCommotion/MouseHelper').right_click_handled = true
+	var mouse_helper = get_node('/root/PotionCommotion/MouseHelper')
+	if mouse_helper != null:
+		mouse_helper.right_click_handled = true

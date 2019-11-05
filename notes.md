@@ -52,6 +52,7 @@ Fun easter eggs
 Potion yields based on luck
 Brightness
 Remove custom resizing code, and do it properly?
+Wack-a-mandrake
 
 ## Sound
 
