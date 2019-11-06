@@ -15,6 +15,7 @@ var next_grow_time = -1
 var should_dry_out = false
 var dried_out = false
 var shovel_picked_up = false
+var noise_seed
 
 var dry_out_time_min = 5*60
 var dry_out_time_max = 30*60
@@ -54,7 +55,25 @@ func _ready():
 	plant_area.set_meta('area_pretend_to_be', field_area)
 	Utils.register_mouse_area(self, field_area)
 	Utils.register_mouse_area(self, plant_area)
+	
+	noise_seed = Utils.rng.randi()
+	update_noise()
 
+func update_noise():
+	var noise = OpenSimplexNoise.new()
+	noise.seed = noise_seed
+	noise.octaves = 2
+	noise.period = 4.0
+	noise.persistence = 0.6
+	var noise_img = noise.get_image(16,16)
+	noise_img.resize(128,128, Image.INTERPOLATE_NEAREST)
+	var noise_tex = ImageTexture.new()
+	noise_tex.create_from_image(noise_img)
+	field_sprite.material = field_sprite.material.duplicate(true)
+	field_sprite.material.set_shader_param('noise', noise_tex)
+	overlay.material = overlay.material.duplicate(true)
+	overlay.material.set_shader_param('noise', noise_tex)
+	
 
 func reset():
 	plant_sprite.hide()
@@ -369,7 +388,8 @@ func serialize():
 		'dried_out': dried_out,
 		'should_dry_out': should_dry_out,
 		'grow_time_left': grow_timer.time_left,
-		'dry_time_left': dry_timer.time_left
+		'dry_time_left': dry_timer.time_left,
+		'noise_seed': noise_seed
 	}
 
 func deserialize(data):
@@ -379,6 +399,8 @@ func deserialize(data):
 	prev_plant_stage = -1
 	used_potions = data['used_potions']
 	dried_out = data['dried_out']
+	noise_seed = data['noise_seed']
+	update_noise()
 	if dried_out:
 		dry_out()
 	else:
