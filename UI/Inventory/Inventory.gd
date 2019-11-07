@@ -38,6 +38,7 @@ func update_item(node, item):
 	else:
 		node.get_node('Count').set_text(str(item.count))
 	if item.count > 0 or item.count == -1:
+		item.hidden = false
 		item.seen = true
 	if (item.count > 0 or item.count == -1):
 		node.get_node('FrameTexture').modulate = Color(1,1,1,1)

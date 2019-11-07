@@ -159,7 +159,7 @@ func set_description_italics(text):
 	description_italics_label.rect_size.x = min(width, 200)
 
 func show_inventory_item(item):
-	if not item.seen:
+	if item.hidden:
 		set_title('???')
 		set_description_italics('You have not yet seen this item.')
 		show_on_next_frame = true

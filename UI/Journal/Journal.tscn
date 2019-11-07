@@ -85,6 +85,9 @@ visible = false
 text = "I seem to have stumbled upon a strange garden. It almost oozes magical aura.
 I have decided to write this journal in an attempt to document the strangeness I have observed. It seems the perfect place to grow my magical crops, unfortunately I only brought a single seed, the Hydroangea. I will have to venture to the city to purchase more seeds."
 
+[node name="Signature" parent="Pages/AStrangeGarden" index="2"]
+text = "~Ardon Silvera"
+
 [node name="TheApprenticeship" parent="Pages" instance=ExtResource( 4 )]
 visible = false
 
@@ -110,6 +113,9 @@ text = "The cauldron #1"
 text = "Not many days after I arrived here, I found a cauldron looking apparatus in the nearby cottage that I have moved in to. It looks nothing like any other cauldron I have ever used, but it seems to work about the same. Even though the fact that I never need to add any water is a bit peculiar.
 "
 
+[node name="Signature" parent="Pages/TheCauldron1" index="2"]
+text = "~Ardon Silvera"
+
 [node name="TheCauldron2" parent="Pages" instance=ExtResource( 4 )]
 visible = false
 
@@ -121,6 +127,9 @@ text = "The cauldron is unlike any cauldron I have ever used before! No matter w
 Even weirder is that i get the potion back, already bottled in a flask, that really should have tripped me onto the cauldrons strange properties before.
 "
 
+[node name="Signature" parent="Pages/TheCauldron2" index="2"]
+text = "~Ardon Silvera"
+
 [node name="TheCauldron3" parent="Pages" instance=ExtResource( 4 )]
 visible = false
 
@@ -129,6 +138,9 @@ text = "The cauldron #3"
 
 [node name="Label" parent="Pages/TheCauldron3" index="1"]
 text = "The cauldron! The cauldron is not actually a cauldron. My research leads me to believe it might actually be a portal to another world! I wonder who keeps throwing back potions when i put ingredients into it. More research is required - though I’m not totally sure how to go about doing that. Jumping into it, while a good way of gathering data, doesn’t seem like the best idea, but at this point I’m pretty much out of ideas of what else to do."
+
+[node name="Signature" parent="Pages/TheCauldron3" index="2"]
+text = "~Ardon Silvera"
 
 [node name="Forward" type="TextureRect" parent="."]
 visible = false

@@ -390,10 +390,11 @@ class _PlantData extends _ResourceData:
 		return ResourceLoader.load(self.res_path)
 
 class _InventoryItem extends _ResourceData:
-	var type  
-	var count  
+	var type
+	var count
 	var id
-	var seen = false  
+	var seen = false
+	var hidden = true
 	var description = ''
 
 class _InventorySeed extends _InventoryItem:

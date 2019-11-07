@@ -236,9 +236,9 @@ func _on_unlock_journal_page(msg):
 		if page.has_meta('page_type'):
 			var page_type = page.get_meta('page_type')
 			if page_type == 'plant':
-				Data.inventory_by_id['seed'][page_id].seen = true
+				Data.inventory_by_id['seed'][page_id].hidden = false
 			elif page_type == 'potion':
-				Data.inventory_by_id['potion'][page_id].seen = true
+				Data.inventory_by_id['potion'][page_id].hidden = false
 		
 	update_index()
 	sort_unlocked_pages()

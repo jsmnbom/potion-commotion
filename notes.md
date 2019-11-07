@@ -70,9 +70,7 @@ Music
 ## TODO
 
 Audio
-Shelves with potions in basement
-Rest of broken shelf on the floor
 
 ## Bugs
 
-Birbs looks at seen which the journal now (wrongly) updates
+Right click to go back to journal index
