@@ -9,6 +9,7 @@ var areas = {}
 var area_nodes = {}
 var was_just_hidden = false
 var right_click_handled = null
+var global_viewport
 
 func layer(x):
 	return Utils.collision_layer(x)
@@ -39,6 +40,9 @@ func _init():
 	layers_reversed = AREA_INTERSECT_LAYER.values()
 	layers_reversed.invert()
 
+func _ready():
+	global_viewport = get_viewport()
+
 func _area_intersect(local_position, world):
 	return world.direct_space_state.intersect_point(local_position, 128, [], AREA_INTERSECT_ALL_LAYERS, false, true)
 
@@ -48,13 +52,18 @@ class GlobalPositionYSorter:
 			return true
 		return false
 
+func local_mouse_position_viewport(viewport, global_position=null):
+	if global_position == null:
+		global_position = global_viewport.get_mouse_position()
+	var container = viewport.get_parent()
+	var scale_factor = container.rect_size / viewport.size
+	return (global_position - container.rect_position) / scale_factor
+
 func _local_mouse_positions(global_position):
 	var local_positions = {}
 	var sub_viewports = get_tree().get_nodes_in_group('sub_viewports')
 	for viewport in sub_viewports:
-		var container = viewport.get_parent()
-		var scale_factor = container.rect_size / viewport.size
-		local_positions[viewport] = (global_position - container.rect_position) / scale_factor
+		local_positions[viewport] = local_mouse_position_viewport(viewport, global_position)
 	return local_positions
 
 func _find_top_areas(global_position, local_positions):
@@ -71,7 +80,7 @@ func _find_top_areas(global_position, local_positions):
 			raw_collisions[layer] = []
 		for raw_result in raw_results:
 			var collider = raw_result['collider']
-			if collider is Area2D and collider.collision_layer & AREA_INTERSECT_ALL_LAYERS > 0 and collider.is_visible() and collider.get_parent().is_visible():
+			if collider.collision_layer & AREA_INTERSECT_ALL_LAYERS > 0 and collider.is_visible() and collider.get_parent().is_visible():
 				if collider in areas[collider.collision_layer]:
 					if collider.has_meta('area_pretend_to_be'):
 						collider = collider.get_meta('area_pretend_to_be')
@@ -104,6 +113,9 @@ func _make_data(mouse_over, global_position, local_positions, button_mask, butto
 		'button_left_click': button_click_mask & BUTTON_LEFT == BUTTON_LEFT,
 		'button_right_click': button_click_mask & BUTTON_RIGHT == BUTTON_RIGHT
 	}
+	
+func get_local_position_for_viewport(viewport):
+	pass
 
 func register(node, area):
 	areas[area.collision_layer].append(area)
@@ -117,7 +129,7 @@ func _physics_process(delta):
 	var button_mask = Input.get_mouse_button_mask()
 	if visible or was_just_hidden:
 		was_just_hidden = false
-		var global_position = get_viewport().get_mouse_position()
+		var global_position = global_viewport.get_mouse_position()
 		var local_positions = _local_mouse_positions(global_position)
 		var button_click_mask = _button_clicks(button_mask)
 		if button_click_mask & BUTTON_LEFT == BUTTON_LEFT or button_click_mask & BUTTON_RIGHT == BUTTON_RIGHT:

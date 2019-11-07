@@ -1,16 +1,36 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Basket.gd" type="Script" id=1]
-[ext_resource path="res://assets/basket/basket_back.png" type="Texture" id=2]
-[ext_resource path="res://assets/basket/basket_front.png" type="Texture" id=3]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float alpha = 0.0;
+
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+	vec4 screen = textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.0);
+	if (tex.a > 0.9) {
+		COLOR = mix(tex, screen, 1.0-alpha);
+	} else {
+		COLOR = vec4(0.0);
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/alpha = 1.0
 
 [node name="Basket" type="Node2D"]
+material = SubResource( 2 )
 script = ExtResource( 1 )
 
-[node name="Back" type="Sprite" parent="."]
-scale = Vector2( 4, 4 )
-texture = ExtResource( 2 )
+[node name="Area" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
 
-[node name="Front" type="Sprite" parent="."]
-scale = Vector2( 4, 4 )
-texture = ExtResource( 3 )
+[node name="Collision" type="CollisionPolygon2D" parent="Area"]
+visible = false
+polygon = PoolVector2Array( -55.8044, -19.2171, -47.9373, -27.9583, -40.0702, -31.8044, -28.1822, -35.8253, -12.2732, -40.0211, 12.0274, -40.0211, 27.5867, -35.8253, 39.6496, -32.154, 48.2159, -27.259, 52.0621, -23.5877, 55.3837, -19.9163, 55.5586, 43.7196, 48.2159, 51.7615, 40.174, 55.9573, 27.9364, 59.8034, 12.2022, 63.9992, -11.0494, 63.9992, -28.0073, 59.9782, -39.8954, 55.9573, -48.1121, 51.7615, -55.9792, 43.7196 )
+[connection signal="area_entered" from="Area" to="." method="_on_Area_area_entered"]
+[connection signal="area_exited" from="Area" to="." method="_on_Area_area_exited"]

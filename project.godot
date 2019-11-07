@@ -183,7 +183,6 @@ ui_fullscreen={
 
 [physics]
 
-2d/thread_model=2
 common/enable_object_picking=false
 
 [rendering]

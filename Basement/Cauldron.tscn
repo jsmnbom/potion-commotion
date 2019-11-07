@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/basement/cauldron.png" type="Texture" id=1]
 [ext_resource path="res://Basement/Cauldron.gd" type="Script" id=2]
@@ -12,23 +12,19 @@
 shader = ExtResource( 3 )
 shader_param/mask_texture = ExtResource( 4 )
 
-[sub_resource type="ShaderMaterial" id=3]
+[sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 6 )
 shader_param/frequency = 40.0
 shader_param/depth = 0.005
 shader_param/mask_texture = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=3]
 size = 28
 outline_size = 1
 outline_color = Color( 0.564706, 0.447059, 0.101961, 1 )
 font_data = ExtResource( 7 )
 
-[sub_resource type="Animation" id=4]
-length = 4.0
-loop = true
-
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 24, 24 )
 
 [node name="Cauldron" type="Sprite"]
@@ -50,7 +46,7 @@ texture = ExtResource( 5 )
 
 [node name="Filter" type="TextureRect" parent="."]
 show_behind_parent = true
-material = SubResource( 3 )
+material = SubResource( 2 )
 margin_left = -256.0
 margin_top = -256.0
 margin_right = 256.0
@@ -77,7 +73,7 @@ margin_left = -158.0
 margin_top = -100.0
 margin_right = 159.0
 margin_bottom = -15.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.780392, 0.639216, 0.231373, 1 )
 text = "Click to brew another
 Potion of Hydration"
@@ -90,7 +86,7 @@ margin_left = -158.0
 margin_top = -100.0
 margin_right = 159.0
 margin_bottom = -15.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.780392, 0.639216, 0.231373, 1 )
 text = "Clear cauldron and
 get ingredients back"
@@ -100,10 +96,6 @@ align = 1
 rotation = 4.46638e-06
 z_index = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Liquid"
-anims/Liquid = SubResource( 4 )
-
 [node name="Area" type="Area2D" parent="."]
 position = Vector2( -6.10352e-05, -3.05176e-05 )
 scale = Vector2( 0.333333, 0.333333 )
@@ -111,25 +103,24 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="Collision" type="CollisionPolygon2D" parent="Area"]
-visible = false
 polygon = PoolVector2Array( -119.51, -667.996, 113.731, -672.756, 280.332, -634.676, 399.333, -568.035, 513.573, -472.835, 604.014, -349.074, 665.895, -163.433, 675.415, 65.0483, 637.334, 303.05, 532.614, 464.891, 413.613, 583.891, 280.332, 641.012, 123.251, 702.892, -109.99, 698.132, -324.192, 621.972, -481.272, 522.011, -605.033, 350.65, -681.194, 93.6085, -666.914, -187.233, -543.153, -439.515, -347.992, -591.836 )
 
 [node name="MakeAnotherArea" type="Area2D" parent="."]
 visible = false
 monitoring = false
 monitorable = false
-collision_layer = 4
+collision_layer = 16
 
 [node name="Collision" type="CollisionShape2D" parent="MakeAnotherArea"]
 visible = false
-shape = SubResource( 8 )
+shape = SubResource( 4 )
 
 [node name="ClearArea" type="Area2D" parent="."]
 visible = false
 monitoring = false
 monitorable = false
-collision_layer = 4
+collision_layer = 16
 
 [node name="Collision" type="CollisionShape2D" parent="ClearArea"]
 visible = false
-shape = SubResource( 8 )
+shape = SubResource( 4 )

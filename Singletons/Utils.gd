@@ -125,7 +125,7 @@ func get_global_position(local_position, viewport):
 
 
 func collision_layer(x):
-	return pow(2, x-1)
+	return int(pow(2, x-1))
 
 func register_mouse_area(node, area):
 	var mouse_helper = get_node('/root/PotionCommotion/MouseHelper')
@@ -141,3 +141,12 @@ func set_right_click_handled():
 	var mouse_helper = get_node('/root/PotionCommotion/MouseHelper')
 	if mouse_helper != null:
 		mouse_helper.right_click_handled = true
+
+func local_mouse_position_viewport(viewport):
+	var mouse_helper = get_node('/root/PotionCommotion/MouseHelper')
+	if mouse_helper != null:
+		return mouse_helper.local_mouse_position_viewport(viewport)
+
+func clamp_vector2(vector2, rect2):
+	return Vector2(clamp(vector2.x, rect2.position.x, rect2.position.x + rect2.size.x), clamp(vector2.y, rect2.position.y, rect2.position.y + rect2.size.y))
+

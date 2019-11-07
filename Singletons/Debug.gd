@@ -1,7 +1,7 @@
 extends Node
 
 # Gives 10 of each inventory item
-var INVENTORY = true
+var INVENTORY = false
 
 # Makes plants grow 60 times faster (min 5 sec)
 var FAST_PLANTS = true
