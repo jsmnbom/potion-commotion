@@ -53,6 +53,7 @@ Potion yields based on luck
 Brightness
 Remove custom resizing code, and do it properly?
 Wack-a-mandrake
+Right click to go back to journal index
 
 ## Sound
 
@@ -72,5 +73,3 @@ Music
 Audio
 
 ## Bugs
-
-Right click to go back to journal index

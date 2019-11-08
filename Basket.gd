@@ -51,7 +51,9 @@ func _draw():
 		for i in range(min(content_transforms.size(), int(amount))):
 			var pos = content_transforms[i][0]
 			var r = content_transforms[i][1]
-			if item.id == 'fire_flower':
+			if item.id == 'lucky_clover':
+				draw_set_transform(pos+Vector2(0, -25), r, Vector2(0.9,0.9))
+			elif item.id == 'fire_flower':
 				draw_set_transform(pos+Vector2(0, -25), r, Vector2(1.1,1.1))
 			elif item.id in ['mandrake', 'nightshade']:
 				draw_set_transform(pos+Vector2(0, -15), r, Vector2(1.3, 1.3))
@@ -102,15 +104,6 @@ func init(_item):
 	item = _item
 	
 	content_texture = item.get_scaled_res(64,64)
-		
-#	if item.id == 'fire_flower':
-#		$Contents.position.y -= 10
-#	for content in $Contents.get_children():
-#		content.texture = item.get_scaled_res(64, 64)
-#		if not item.id in ['ash', 'frost', 'aurum_dust', 'star_dust']:
-#			content.rotation = Utils.rng.randf_range(-PI/4, PI/4)
-#		if item.id in ['mandrake', 'nightshade']:
-#			content.scale = Vector2(1.3, 1.3)
 
 func _physics_process(delta):
 	if not position_ok:

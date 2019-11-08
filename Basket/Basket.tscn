@@ -1,29 +1,15 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Basket.gd" type="Script" id=1]
-
-[sub_resource type="Shader" id=1]
-code = "shader_type canvas_item;
-
-uniform float alpha = 0.0;
-
-void fragment() {
-	vec4 tex = texture(TEXTURE, UV);
-	vec4 screen = textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.0);
-	if (tex.a > 0.9) {
-		COLOR = mix(tex, screen, 1.0-alpha);
-	} else {
-		COLOR = vec4(0.0);
-	}
-}"
+[ext_resource path="res://Basket/Alpha.shader" type="Shader" id=1]
+[ext_resource path="res://Basket.gd" type="Script" id=2]
 
 [sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
+shader = ExtResource( 1 )
 shader_param/alpha = 1.0
 
 [node name="Basket" type="Node2D"]
 material = SubResource( 2 )
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 
 [node name="Area" type="Area2D" parent="."]
 collision_layer = 4
