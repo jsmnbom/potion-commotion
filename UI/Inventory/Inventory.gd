@@ -42,10 +42,8 @@ func update_item(node, item):
 		item.seen = true
 	if (item.count > 0 or item.count == -1):
 		node.get_node('FrameTexture').modulate = Color(1,1,1,1)
-		node.get_node('CountFrameTexture').modulate = Color(1,1,1,1)
 	else:
 		node.get_node('FrameTexture').modulate = Color(0.8,0.8,0.8,1)
-		node.get_node('CountFrameTexture').modulate = Color(0.8,0.8,0.8,1)
 
 func _mouse_area(area, msg):
 	for inventory_item in inventory_items:

@@ -180,7 +180,7 @@ texture = ExtResource( 13 )
 [node name="Potion" type="AnimatedSprite" parent="."]
 position = Vector2( 508.341, 488.522 )
 frames = SubResource( 4 )
-frame = 5
+frame = 4
 playing = true
 
 [node name="VersionLabel" type="Label" parent="."]
