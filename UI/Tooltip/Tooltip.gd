@@ -176,9 +176,11 @@ func show_inventory_item(item):
 			if item.cost:
 				price_container.show()
 				price_label.text = 'Price:  %s' % Utils.format_number(item.cost)
-				set_description_italics('Right click to buy.')
+				set_description_italics('Right click to buy.\nUse on a field to plant.')
+			else:
+				set_description_italics('Use on a field to plant.')
 		'resource':
-			pass
+			set_description_italics('Throw 5 ingredients in the cauldron to brew potions.')
 		'potion':
 			sell_price_container.show()
 			if item.sell_price:

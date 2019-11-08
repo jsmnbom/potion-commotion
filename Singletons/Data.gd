@@ -85,35 +85,35 @@ func clear():
 	inventory = [
 		_InventorySeed.new('hydroangea',
 			0,
-			'Use on an empty field to plant.',
+			'',
 			-1
 		), _InventorySeed.new('cool_beans',
 			10,
-			'Use on an empty field to plant.'
+			''
 		), _InventorySeed.new('fire_flower',
 			10,
-			'Use on an empty field to plant.'
+			''
 		), _InventorySeed.new('mandrake',
 			100,
-			'Use on an empty field to plant.'
+			''
 		), _InventorySeed.new('lucky_clover',
 			500,
-			'Use on an empty field to plant.'
+			''
 		), _InventorySeed.new('nightshade',
 			2500,
-			'Use on an empty field to plant.'
+			''
 		), _InventorySeed.new('golden_berry',
 			10000,
-			'Use on an empty field to plant.'
+			''
 		), _InventorySeed.new('star_flower',
 			25000,
-			'Use on an empty field to plant.'
+			''
 		), _InventorySeed.new('jade_sunflower',
 			100000,
-			'Use on an empty field to plant.'
+			''
 		), _InventorySeed.new('crystal_stalk',
 			1000000,
-			'Use on an empty field to plant.'
+			''
 		), _InventoryPlantResource.new('hydroangea',
 			''
 		), _InventoryPlantResource.new('cool_beans',

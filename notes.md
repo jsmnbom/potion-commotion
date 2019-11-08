@@ -54,6 +54,7 @@ Brightness
 Remove custom resizing code, and do it properly?
 Wack-a-mandrake
 Right click to go back to journal index
+Indicator (maybe mouse animation) when you can use a potion
 
 ## Sound
 

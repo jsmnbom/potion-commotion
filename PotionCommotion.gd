@@ -5,6 +5,8 @@ var game = null
 var continue_game_wait = 0
 var new_game_wait = 0
 var has_game_opened = false
+var last_screenshot_time = null
+var screenshot_index = 1
 
 func _ready():
 	get_tree().set_auto_accept_quit(false)
@@ -73,6 +75,25 @@ func _input(event):
 					game.hide()
 					$MouseHelper.hide()
 					$MainMenu.show()
+	elif event.is_action_pressed('ui_screenshot'):
+		screenshot()
+		
+func screenshot():
+	var time = OS.get_datetime()
+	var time_str = "%s_%02d_%02d_%02d%02d%02d" % [time['year'], time['month'], time['day'], 
+										time['hour'], time['minute'], time['second']]
+	if time_str == last_screenshot_time:
+		screenshot_index += 1
+	get_viewport().set_clear_mode(Viewport.CLEAR_MODE_ONLY_NEXT_FRAME)
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")		
+	var img = get_viewport().get_texture().get_data()
+	img.flip_y()
+	var dir = Directory.new()
+	dir.open('user://')
+	dir.make_dir('screenshots')
+	img.save_png('user://screenshots/%s_%s.png' % [time_str, screenshot_index])
+	last_screenshot_time = time_str
 
 func _on_show_main_menu():
 	$MainMenu.stop_loading()
