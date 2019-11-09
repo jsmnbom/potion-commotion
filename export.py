@@ -3,10 +3,12 @@
 # git
 # godot
 # butler
+# wine + rcedit
 
 from sh import git
 from sh import godot
 from sh import butler
+from sh import wine
 import click
 
 from pathlib import Path
@@ -40,6 +42,15 @@ def main():
         godot('--export', platform, export_path)
 
         copyfile(Path(__file__).parent / 'LICENSE', Path(platform_export_dir) / 'LICENSE')
+
+        if short_platform == 'windows':
+            wine('/home/jas/bin/rcedit-x64.exe', export_path, '--set-icon', 'icon.ico')
+            wine('/home/jas/bin/rcedit-x64.exe', export_path, '--set-file-version', short_version)
+            wine('/home/jas/bin/rcedit-x64.exe', export_path, '--set-product-version', short_version)
+            wine('/home/jas/bin/rcedit-x64.exe', export_path, '--set-version-string', 'CompanyName', '-'.join(game_name))
+            wine('/home/jas/bin/rcedit-x64.exe', export_path, '--set-version-string', 'ProductName', '-'.join(game_name))
+            wine('/home/jas/bin/rcedit-x64.exe', export_path, '--set-version-string', 'FileDescription', '-'.join(game_name))
+            wine('/home/jas/bin/rcedit-x64.exe', export_path, '--set-version-string', 'OriginalFilename', export_path.name)
 
         archive_path = export_dir / ('-'.join(game_name + [short_platform, short_version]) + '.zip')
         print('archiving to {}'.format(archive_path))
