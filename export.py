@@ -52,8 +52,7 @@ def main():
             wine('/home/jas/bin/rcedit-x64.exe', export_path, '--set-version-string', 'ProductName', '-'.join(game_name))
             wine('/home/jas/bin/rcedit-x64.exe', export_path, '--set-version-string', 'FileDescription', '-'.join(game_name))
             wine('/home/jas/bin/rcedit-x64.exe', export_path, '--set-version-string', 'OriginalFilename', export_path.name)
-            with license_file.open('r') as f:
-                wine('/home/jas/bin/rcedit-x64.exe', export_path, '--set-version-string', 'LegalCopyright', f.read())
+            wine('/home/jas/bin/rcedit-x64.exe', export_path, '--set-version-string', 'LegalCopyright', 'Copyright Jasmin Bom 2019')
 
         archive_path = export_dir / ('-'.join(game_name + [short_platform, short_version]) + '.zip')
         print('archiving to {}'.format(archive_path))
