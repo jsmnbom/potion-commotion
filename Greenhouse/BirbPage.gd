@@ -11,7 +11,7 @@ func _ready():
 
 func init(_page_id):
 	page_id = _page_id
-	if File.new().file_exists('res://assets/journal_items/%s.png' % page_id):
+	if ResourceLoader.exists('res://assets/journal_items/%s.png' % page_id):
 		$ItemSprite.texture = Utils.get_scaled_res('res://assets/journal_items/%s.png' % page_id, 128, 128)
 	else:
 		$ItemSprite.texture = Utils.get_scaled_res('res://assets/journal_items/text.png', 128, 128)

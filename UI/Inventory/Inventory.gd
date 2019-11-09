@@ -133,7 +133,7 @@ func add_item_animated_from(item, node, from_position, count):
 		sprite.hide()
 		tween.add_child(sprite)
 		
-		var end_position = (node.get_node('Texture').get_global_rect().position +
+		var end_position = (node.get_node('Texture').position +
 			(node.get_node('Texture').rect_size / 2))
 		
 		tween.interpolate_callback(self, 0.1*i, 'show_sprite', sprite)

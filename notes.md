@@ -74,6 +74,3 @@ Music
 Audio
 
 ## Bugs
-
-EVERYTHING is blurry as fuuuck (inventory, icon)
-Wrong file icon (tho not in the taskbar)
