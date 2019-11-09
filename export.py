@@ -41,16 +41,19 @@ def main():
         print('exporting {} to {}'.format(platform, export_path))
         godot('--export', platform, export_path)
 
-        copyfile(Path(__file__).parent / 'LICENSE', Path(platform_export_dir) / 'LICENSE')
+        license_file = Path(__file__).parent / 'LICENSE'
+        copyfile(license_file, Path(platform_export_dir) / 'LICENSE')
 
         if short_platform == 'windows':
             wine('/home/jas/bin/rcedit-x64.exe', export_path, '--set-icon', 'icon.ico')
-            wine('/home/jas/bin/rcedit-x64.exe', export_path, '--set-file-version', short_version)
-            wine('/home/jas/bin/rcedit-x64.exe', export_path, '--set-product-version', short_version)
+            wine('/home/jas/bin/rcedit-x64.exe', export_path, '--set-file-version', short_version[1:])
+            wine('/home/jas/bin/rcedit-x64.exe', export_path, '--set-product-version', short_version[1:])
             wine('/home/jas/bin/rcedit-x64.exe', export_path, '--set-version-string', 'CompanyName', '-'.join(game_name))
             wine('/home/jas/bin/rcedit-x64.exe', export_path, '--set-version-string', 'ProductName', '-'.join(game_name))
             wine('/home/jas/bin/rcedit-x64.exe', export_path, '--set-version-string', 'FileDescription', '-'.join(game_name))
             wine('/home/jas/bin/rcedit-x64.exe', export_path, '--set-version-string', 'OriginalFilename', export_path.name)
+            with license_file.open('r') as f:
+                wine('/home/jas/bin/rcedit-x64.exe', export_path, '--set-version-string', 'LegalCopyright', f.read())
 
         archive_path = export_dir / ('-'.join(game_name + [short_platform, short_version]) + '.zip')
         print('archiving to {}'.format(archive_path))
