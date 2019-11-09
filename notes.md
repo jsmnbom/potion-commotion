@@ -74,3 +74,24 @@ Music
 Audio
 
 ## Bugs
+
+## Changelog
+
+### v0.1.3
+
+Add plant breaking animation
+Add moveable baskets in the basement
+Add potion shelves in the basement
+Update basaement background and cauldron texture
+Add effect when using luck potion
+Make dried out fields easier to understand
+Implement rain
+Fix growth potion growth rates
+Add clear cauldron button
+Add a button to quickly brew previous potion
+Update how-to-play with more info
+Add category titles in the journal
+Add a fallback font to user inputs and the journal - now supports CJK
+Move save file location out of weird godot/app_userdata directory
+Make fields blend better with the grass around
+Fix various small bugs
