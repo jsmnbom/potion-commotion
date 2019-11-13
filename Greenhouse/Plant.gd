@@ -35,7 +35,6 @@ onready var grow_timer = $GrowTimer
 onready var dry_timer = $DryTimer
 onready var star_particles = $StarParticles
 onready var sleep_particles = $SleepParticles
-onready var light = $Light
 onready var hydration = $Hydration
 
 func _ready():
@@ -85,7 +84,6 @@ func reset():
 	used_potions = []
 	star_particles.emitting = false
 	sleep_particles.emitting = false
-	light.enabled = false
 	for i in range(plant_area.get_children().size()):
 		plant_area.remove_child(plant_area.get_child(0))
 
@@ -135,19 +133,6 @@ func set_plant(_plant):
 	offset = Vector2(Utils.rng.randi_range(-8, 8), Utils.rng.randi_range(-16,16))
 	plant_sprite.position = offset + Vector2(0, -64)
 	$BreakParticles.position = offset
-
-	light.enabled = true
-	match (plant):
-		'nightshade':
-			light.color = Color(0.45098, 0, 0.811765)
-		'fire_flower':
-			light.color = Color(1, 0.560784, 0)
-		'star_flower':
-			light.color = Color(1, 0.984314, 0)
-		'golden_berry':
-			light.color = Color(1, 0.984314, 0)
-		_:
-			light.enabled = false
 
 	dry_timer.paused = false
 
@@ -366,12 +351,8 @@ func add_potion(potion, deserializing=false):
 		'midas':
 			plant_sprite.region_rect.position.y = 256
 			plant_sprite.modulate = GOLD_MODULATE
-			light.color = Color(1, 0.984314, 0)
-			light.enabled = true
 		'stars':
 			star_particles.emitting = true
-			light.color = Color(1, 0.984314, 0)
-			light.enabled = true
 		'gardening':
 			grow_timer.paused = false
 			$FieldPotionOverlay.texture = Utils.get_scaled_res('res://assets/field_gardening.png', 128, 128)

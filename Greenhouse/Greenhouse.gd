@@ -148,9 +148,6 @@ func _on_DayTimer_timeout():
 		t = range_lerp(float(Data.time), 18*60, 21*60, 0.8, 0.2)
 	modulate = NIGHT.linear_interpolate(DAY, t)
 
-	for plant in $Plants.get_children():
-		plant.light.energy = 1 - t
-
 
 func _on_RainTimer_timeout():
 	if raining:
