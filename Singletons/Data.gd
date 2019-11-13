@@ -48,7 +48,7 @@ func clear():
 			'lucky_clover',
 			'Lucky Clover',
 			10*60,
-			"The Lucky Clover is a tall green clover with 4 leaves. I feel more lucky just being near this plant. It seems to almost emit a lucky aura - whatever that means. It grows both at night and during the day and can be used to brew the Potion of Fortune and the Potion of the Star. This clover takes around 10 minutes to grow. I recommend using growth potions on them if you’re as impatient as me."
+			"The Lucky Clover is a tall green clover with 4 leaves. I feel more lucky just being near this plant. It seems to almost emit a lucky aura - whatever that means. It grows both at night and during the day and can be used to brew the Potion of Fortune as well as the Potion of the Stars. This clover takes around 10 minutes to grow. I recommend using growth potions on them if you’re as impatient as me."
 		),
 		'nightshade': _PlantData.new(
 			'nightshade',
