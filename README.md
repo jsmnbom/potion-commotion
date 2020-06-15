@@ -21,7 +21,7 @@ This is just the basics. The game has a 'How to play' section in the menu and th
 
 ## Download
 
-The game can be downloaded for free on [Itch.io](https://jsmnbom.itch.io/potion-commotion).
+The game can be purchased on [Itch.io](https://jsmnbom.itch.io/potion-commotion).
 
 *Note: no MacOSX version as I have no mac computer available for testing.*
 
