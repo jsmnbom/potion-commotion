@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://MainMenu/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/main_menu/bg.png" type="Texture" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://assets/ui/main_menu/potion5.png" type="Texture" id=19]
 [ext_resource path="res://assets/fonts/Open_Sans/OpenSans-Regular.ttf" type="DynamicFontData" id=20]
 [ext_resource path="res://assets/fonts/Courgette/Courgette-Regular.ttf" type="DynamicFontData" id=21]
+[ext_resource path="res://assets/MainTheme.tres" type="Theme" id=22]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 particles_animation = true
@@ -84,6 +85,9 @@ __meta__ = {
 margin_right = 1920.0
 margin_bottom = 1080.0
 texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Clouds" type="Particles2D" parent="."]
 material = SubResource( 1 )
@@ -108,49 +112,59 @@ margin_top = 567.861
 margin_right = 1435.69
 margin_bottom = 746.861
 texture = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ContinueButton" parent="." instance=ExtResource( 9 )]
 margin_left = 625.0
 margin_top = 576.0
 margin_right = 1009.0
 margin_bottom = 672.0
+hint_tooltip = "Continue with your ongoing savegame"
+theme = ExtResource( 22 )
 
 [node name="Label" parent="ContinueButton" index="0"]
 text = "Continue"
 
 [node name="NewButton" parent="." instance=ExtResource( 9 )]
-editor/display_folded = true
 margin_left = 625.0
 margin_top = 704.0
 margin_right = 1009.0
 margin_bottom = 800.0
+hint_tooltip = "Start a new game, overriding any old savegame"
+theme = ExtResource( 22 )
 
 [node name="HowToPlayButton" parent="." instance=ExtResource( 9 )]
-editor/display_folded = true
 margin_left = 625.0
 margin_top = 832.0
 margin_right = 1009.0
 margin_bottom = 928.0
+hint_tooltip = "See quick instructions on how to play the game"
+theme = ExtResource( 22 )
 
 [node name="Label" parent="HowToPlayButton" index="0"]
 text = "How to play"
 
 [node name="OptionsButton" parent="." instance=ExtResource( 9 )]
-editor/display_folded = true
 margin_left = 625.0
 margin_top = 960.0
 margin_right = 1009.0
 margin_bottom = 1056.0
+hint_tooltip = "Change options of the game"
+theme = ExtResource( 22 )
 
 [node name="Label" parent="OptionsButton" index="0"]
 text = "Options"
 
 [node name="ExitButton" type="TextureButton" parent="."]
 margin_left = 16.0
-margin_top = 1000.0
+margin_top = 998.493
 margin_right = 80.0
-margin_bottom = 1064.0
+margin_bottom = 1062.49
+hint_tooltip = "Exit game"
 mouse_default_cursor_shape = 2
+theme = ExtResource( 22 )
 
 [node name="Options" parent="." instance=ExtResource( 10 )]
 visible = false
@@ -180,7 +194,7 @@ texture = ExtResource( 13 )
 [node name="Potion" type="AnimatedSprite" parent="."]
 position = Vector2( 508.341, 488.522 )
 frames = SubResource( 4 )
-frame = 4
+frame = 3
 playing = true
 
 [node name="VersionLabel" type="Label" parent="."]
