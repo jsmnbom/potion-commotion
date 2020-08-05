@@ -276,7 +276,7 @@ func clear():
 	achievements = [
 		_AchievementDiff.new('diff_plants', 'Harvest %s different plants', [2, 5, 10]),
 		_AchievementTotal.new('total_brew', 'Brew a total of %s potions', [200, 2000, 5000]),
-		_AchievementDiff.new('diff_brew', 'Brew %s different potions', [5, 10, 20]),
+		_AchievementDiff.new('diff_brew', 'Brew %s different potions', [3, 7, 15]),
 		_AchievementTotal.new('total_plants', 'Harvest a total of %s plants.', [500, 5000, 50000]),
 		_AchievementTotal.new('total_potions', 'Use a total of %s potions', [100, 1000, 2500]),
 		_AchievementTotal.new('total_items', 'Gain a total of %s items', [3000, 30000, 300000]),
