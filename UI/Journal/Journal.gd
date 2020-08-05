@@ -210,7 +210,7 @@ func update_index():
 	Events.emit_signal('journal_has_new', Data.unlocked_journal_pages.size() > viewed_pages.size())
 
 func _pages_comparison(a,b):
-    return PAGES.keys().find(a) < PAGES.keys().find(b)
+	return PAGES.keys().find(a) < PAGES.keys().find(b)
 
 func sort_unlocked_pages():
 	Data.unlocked_journal_pages.sort_custom(self, '_pages_comparison')

@@ -54,7 +54,7 @@ func _on_Timer_timeout():
 			should_have.append(potion_id)
 	if 'growth2' in should_have and not 'growth' in unlocked:
 		should_have.erase('growth2')
- 			
+
 	if 'mandrake' in should_have:
 		should_have.append('TheCauldron1')
 	if 'golden_berry' in should_have:
