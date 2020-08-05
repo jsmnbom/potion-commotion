@@ -3,12 +3,12 @@
 [ext_resource path="res://Basket/Alpha.shader" type="Shader" id=1]
 [ext_resource path="res://Basket.gd" type="Script" id=2]
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )
 shader_param/alpha = 1.0
 
 [node name="Basket" type="Node2D"]
-material = SubResource( 2 )
+material = SubResource( 1 )
 script = ExtResource( 2 )
 
 [node name="Area" type="Area2D" parent="."]
