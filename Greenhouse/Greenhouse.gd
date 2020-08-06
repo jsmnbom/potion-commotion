@@ -10,6 +10,7 @@ var rain_hydrated_fields = 0
 var selected_potion = null
 
 var GemParticles = preload('res://Greenhouse/GemParticles.tscn')
+onready var audio = get_node('/root/PotionCommotion/Audio')
 
 func _ready():
 	if Debug.WEEDS:
@@ -23,6 +24,7 @@ func _ready():
 		rain_wait_max = 2*60
 	$RainTimer.wait_time = Utils.rng.randf_range(rain_wait_min, rain_wait_max)
 	$RainTimer.start()
+	_on_RainTimer_timeout()
 
 	$DayTimer.wait_time = float(Data.day_duration) / (24.0*60)
 	$DayTimer.start()
@@ -166,9 +168,11 @@ func _on_RainTimer_timeout():
 			$RainTimer.wait_time = Utils.rng.randf_range(rain_wait_min, rain_wait_max)
 			$RainTimer.start()
 			raining = false
+			audio.set_rain(false)
 	else:
 		$Rain.emitting = true
 		$RainSplash.emitting = true
 		$RainTimer.wait_time = Utils.rng.randf_range(rain_wait_min/60, rain_wait_max/60)
 		$RainTimer.start()
 		raining = true
+		audio.set_rain(true)

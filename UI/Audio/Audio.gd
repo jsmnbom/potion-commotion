@@ -36,6 +36,20 @@ func set_ambience(day, night):
 	elif $AmbienceNight.playing:
 		$AmbienceNight.playing = false
 
+func set_rain(is_raining):
+	if is_raining:
+		set_rain_vol(0)
+		$AmbienceRainTween.interpolate_method(self, "set_rain_vol", 0.0, 1.0, 1, Tween.TRANS_CIRC, Tween.EASE_IN)
+		$AmbienceRainTween.start()
+		$AmbienceRain.playing = true
+	else:
+		$AmbienceRainTween.interpolate_method(self, "set_rain_vol", db2linear($AmbienceRain.volume_db), 0.0, 2, Tween.TRANS_CIRC, Tween.EASE_OUT)
+		$AmbienceRainTween.interpolate_callback($AmbienceRain, 2, "stop")
+		$AmbienceRainTween.start()
+
+func set_rain_vol(vol):
+	$AmbienceRain.volume_db = linear2db(vol)
+
 func _on_DayTimer_timeout():
 	var t = 0.0
 	

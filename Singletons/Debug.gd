@@ -28,7 +28,7 @@ var JOURNAL = false
 var FAST_DAY = true
 
 # Make it rain much more often
-var RAIN = false
+var RAIN = true
 
 # Disable birbs
 var DISABLE_BIRBS = false
