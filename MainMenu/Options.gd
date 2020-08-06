@@ -2,6 +2,8 @@ extends NinePatchRect
 
 onready var audio = get_node('/root/PotionCommotion/Audio')
 
+var options_theme: Theme = preload('res://MainMenu/OptionsTheme.tres')
+
 var default_options = {
 	'fullscreen': false,
 	'master': 100,
@@ -13,14 +15,8 @@ var default_options = {
 
 func _ready():
 	var hydration = Utils.get_scaled_res('res://assets/potions/hydration.png', 48, 48)
-	$Master.add_icon_override('grabber', hydration)
-	$Master.add_icon_override('grabber_highlight', hydration)
-	$Music.add_icon_override('grabber', hydration)
-	$Music.add_icon_override('grabber_highlight', hydration)
-	$SFX.add_icon_override('grabber', hydration)
-	$SFX.add_icon_override('grabber_highlight', hydration)
-	$Ambiance.add_icon_override('grabber', hydration)
-	$Ambiance.add_icon_override('grabber_highlight', hydration)
+	options_theme.set_icon('grabber', 'HSlider', hydration)
+	options_theme.set_icon('grabber_highlight', 'HSlider', hydration)
 	
 	load_options()
 
