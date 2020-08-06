@@ -12,7 +12,7 @@ func _ready():
 	Events.connect('add_luck', self, '_on_add_luck')
 	
 func update_luck():
-	print(Data.luck)
+	#print(Data.luck)
 	$Icon.material.set_shader_param('luck', Data.luck)
 	
 func _on_Timer_timeout():

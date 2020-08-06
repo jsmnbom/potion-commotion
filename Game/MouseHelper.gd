@@ -154,7 +154,7 @@ func _physics_process(delta):
 					if not top_area == mouse_over_area or last_button_mask != button_mask:
 						if cont_layer == null:
 							mouse_over_area = top_area
-						prints(top_area.name, top_area.get_parent().name, top_area.is_visible(), top_area.get_parent().is_visible(), top_area.get_parent().rect_position if top_area.get_parent() is Control else 0)
+						#prints(top_area.name, top_area.get_parent().name, top_area.is_visible(), top_area.get_parent().is_visible(), top_area.get_parent().rect_position if top_area.get_parent() is Control else 0)
 						cont_layer = top_node._mouse_area(top_area, _make_data(true, global_position, local_positions, button_mask, button_click_mask))
 						if cont_layer:
 							continue

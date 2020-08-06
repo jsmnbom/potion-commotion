@@ -70,9 +70,12 @@ func _mouse_area(area, msg):
 						elif item.count > 0 or item.count == -1:
 							set_selected_item(item)
 					elif right:
-						if item.count != -1 and item.type == 'seed' and gems >= item.cost:
-							add_item(item, node, 1)
-							Events.emit_signal('gems_add', {'amount': -item.cost})
+						if item.count != -1 and item.type == 'seed':
+							if gems >= item.cost:
+								add_item(item, node, 1)
+								Events.emit_signal('gems_add', {'amount': -item.cost})
+							else:
+								SFX.error.play()
 						elif item.count > 0 and item.type == 'potion' and item.sell_price > 0:
 							add_item(item, node, -1)
 							Events.emit_signal('gems_add', {'amount': item.sell_price})
@@ -144,7 +147,7 @@ func add_item_animated_from(item, node, from_position, count):
 	tween.start()
 
 func add_item_animated_to(item, node, to_position, count, callback, delay):
-	print(item, node, to_position, count)
+	#print(item, node, to_position, count)
 	var root = get_tree().get_root()
 	var tween = Tween.new()
 	root.add_child(tween)

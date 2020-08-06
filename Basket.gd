@@ -76,7 +76,7 @@ func empty_position():
 	var pos = random_pos()
 	
 	while true:
-		print(name, pos)
+		#print(name, pos)
 		if is_position_empty(pos, true):
 			return pos
 		else:
@@ -89,7 +89,7 @@ func is_position_empty(pos, initial=false):
 	query.collision_layer = Utils.collision_layer(2) # game1
 	if initial:
 		query.collision_layer = Utils.collision_layer(2) | Utils.collision_layer(3) 
-	print(query.collision_layer)
+	#print(query.collision_layer)
 	query.collide_with_bodies = false
 	query.collide_with_areas = true
 	query.set_transform(Transform2D(0, pos))
@@ -113,7 +113,7 @@ func _physics_process(delta):
 			position = empty_position()
 			last_position = position
 	if picked_up:
-		prints(get_viewport(), get_viewport().name, get_viewport().get_mouse_position(), get_global_mouse_position(), Utils.local_mouse_position_viewport(get_viewport()))
+		#s(get_viewport(), get_viewport().name, get_viewport().get_mouse_position(), get_global_mouse_position(), Utils.local_mouse_position_viewport(get_viewport()))
 		position = Utils.clamp_vector2(Utils.local_mouse_position_viewport(get_viewport()), Rect2(0,0,1355,1016)) + mouse_offset
 		if is_position_empty(position) and bounds.has_point(position):
 			material.set_shader_param('alpha', 0.7)
