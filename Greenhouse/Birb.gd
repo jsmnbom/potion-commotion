@@ -104,7 +104,7 @@ func stop_jumping():
 
 func fetch_page(node):
 	page_node_ref = weakref(node)
-	prints(name, 'start_flying')
+	#prints(name, 'start_flying')
 	flying = true
 	
 	var offscreen_pos
@@ -138,6 +138,7 @@ func fetch_page(node):
 		$Tween.interpolate_callback(self, time+1, 'midway')
 		$Tween.interpolate_property(self, 'position', offscreen_pos, last_pos, time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, time+5)
 		$Tween.interpolate_callback(self, time+time+5, 'stop_flying')
+		SFX.bird_wings.play()
 	
 	$Tween.start()
 	$AnimationPlayer.play('Flying')
@@ -148,7 +149,7 @@ func midway():
 	page_node_ref.get_ref().show()
 	
 func stop_flying():
-	prints(name, 'stop_flying')
+	#prints(name, 'stop_flying')
 	$AnimationPlayer.stop()
 	$Sprite.frame = 0
 	z_index = 5
@@ -158,6 +159,7 @@ func stop_flying():
 			page_node.z_index = 3
 	page_node_ref = null
 	flying = false
+	SFX.bird_call.play()
 
 func serialize():
 	return {

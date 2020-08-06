@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/bird_call.wav-7334501ec36a5c0607716ae64f50c40b.sample"
+
+[deps]
+
+source_file="res://assets/audio/sfx/bird_call.wav"
+dest_files=[ "res://.import/bird_call.wav-7334501ec36a5c0607716ae64f50c40b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

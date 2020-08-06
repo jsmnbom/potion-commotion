@@ -71,6 +71,8 @@ var sunlight_potion_use: SingleSound
 var midnight_potion_use: SingleSound
 var error: SingleSound
 var save_game: SingleSound
+var bird_wings: SingleSound
+var bird_call: SingleSound
 
 var shovel: MultiSound
 var gem: MultiSound
@@ -94,6 +96,8 @@ func _ready():
 	midnight_potion_use = SingleSound.new(self, preload("res://assets/audio/sfx/midnight_potion_use.wav"))
 	error = SingleSound.new(self, preload("res://assets/audio/sfx/error.wav"))
 	save_game = SingleSound.new(self, preload("res://assets/audio/sfx/save_game.wav"))
+	bird_wings = SingleSound.new(self, preload("res://assets/audio/sfx/bird_wings.wav"))
+	bird_call = SingleSound.new(self, preload("res://assets/audio/sfx/bird_call.wav"))
 	
 	shovel = MultiSound.new(self, [
 		preload("res://assets/audio/sfx/shovel0.wav"),
