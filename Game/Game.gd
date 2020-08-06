@@ -19,7 +19,6 @@ var sub_rect = Rect2(Vector2(32+1355+32, 32), Vector2(1920-(32+1355+32+32), 352)
 
 func _ready():
 	$ViewportTween.connect('tween_completed', self, '_on_tween_complete')
-	Events.connect('show_achievements', self, '_on_show_achievements')
 
 	Events.connect('save_game', self, 'save_game')
 	Events.connect('load_game', self, 'load_game')
@@ -99,25 +98,6 @@ func switch():
 		0, 1, 0.6, Tween.TRANS_QUAD, Tween.EASE_IN, 0.6)
 	tween.interpolate_property(main_container, 'modulate:a',
 		0, 1, 0.6, Tween.TRANS_QUAD, Tween.EASE_IN, 0.6)
-
-	# tween.interpolate_property(sub_container, 'rect_position',
-	# 	sub_container.rect_position, sub_rect.position, 1,
-	# 	Tween.TRANS_QUART, Tween.EASE_IN_OUT)
-	# tween.interpolate_property(sub_container, 'rect_size',
-	# 	sub_container.rect_size, sub_rect.size, 1,
-	# 	Tween.TRANS_QUART, Tween.EASE_IN_OUT)
-	# tween.interpolate_property(main_container, 'rect_position',
-	# 	main_container.rect_position, main_rect.position, 1,
-	# 	Tween.TRANS_QUART, Tween.EASE_IN_OUT)
-	# tween.interpolate_property(main_container, 'rect_size',
-	# 	main_container.rect_size, main_rect.size, 1,
-	# 	Tween.TRANS_QUART, Tween.EASE_IN_OUT)
-	# tween.interpolate_property(main_viewport, 'size',
-	# 	main_viewport.size, main_rect.size, 1,
-	# 	Tween.TRANS_QUART, Tween.EASE_IN_OUT)
-	# tween.interpolate_property(sub_viewport, 'size',
-	# 	sub_viewport.size, main_rect.size, 1,
-	# 	Tween.TRANS_QUART, Tween.EASE_IN_OUT)
 	tween.start()
 
 func _switch_inner(main_container, sub_container, main_viewport, sub_viewport):
@@ -217,12 +197,6 @@ func load_game():
 	print('done loading!')
 
 	Events.emit_signal('loaded')
-
-func _on_show_achievements(show):
-	if show:
-		$Achievements.show()
-	else:
-		$Achievements.hide()
 		
 func _mouse_area(area, msg):
 	if area == $SubViewportArea:

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/shovel_activate.wav-49ef6013fc3d9de8bea37b4f18f78aa7.sample"
+
+[deps]
+
+source_file="res://assets/audio/sfx/shovel_activate.wav"
+dest_files=[ "res://.import/shovel_activate.wav-49ef6013fc3d9de8bea37b4f18f78aa7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

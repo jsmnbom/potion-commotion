@@ -126,6 +126,7 @@ func _mouse_area(area, msg):
 					Utils.set_custom_cursor('close', Utils.get_scaled_res('res://assets/ui/close.png', 32, 32), Vector2(14,14))
 					if left:
 						Events.emit_signal('show_journal', false)
+						SFX.page_flip.play()
 				else:
 					Utils.set_custom_cursor('close', null)
 			if area in [$Return/Area, $Forward/Area, $Back/Area]:
@@ -219,6 +220,7 @@ func _on_show_journal(show):
 	if show:
 		show()
 		Events.emit_signal('show_journal_page', {'id': current_page})
+		SFX.page_flip.play()
 	else:
 		PAGES[current_page][1].hide()
 		for node in [self, $Forward, $Return, $Back]:
@@ -244,9 +246,11 @@ func _on_unlock_journal_page(msg):
 	sort_unlocked_pages()
 
 	Events.emit_signal('achievement', {'diff_id': 'diff_pages', 'diff_add': page_id})
-	Events.emit_signal('show_journal_page', {'id': 'index'})
+	Events.emit_signal('show_journal_page', {'id': 'index', "silent": true})
 
 func _on_show_journal_page(msg):
+	if not (msg.has("silent") and msg["silent"]):
+		SFX.page_flip.play()
 	var page_id = msg['id']
 	if page_id in Data.unlocked_journal_pages:
 		show_page(page_id)

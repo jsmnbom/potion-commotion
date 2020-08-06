@@ -28,6 +28,7 @@ Debug="*res://Singletons/Debug.gd"
 Utils="*res://Singletons/Utils.gd"
 Data="*res://Singletons/Data.gd"
 Events="*res://Singletons/Events.gd"
+SFX="*res://Singletons/SFX.gd"
 
 [debug]
 

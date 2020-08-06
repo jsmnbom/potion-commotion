@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/plant3.wav-3b4764007b01d28babbc46aff44cf883.sample"
+
+[deps]
+
+source_file="res://assets/audio/sfx/plant3.wav"
+dest_files=[ "res://.import/plant3.wav-3b4764007b01d28babbc46aff44cf883.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

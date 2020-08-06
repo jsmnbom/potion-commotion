@@ -37,8 +37,6 @@ func set_ambience(day, night):
 		$AmbienceNight.playing = false
 
 func _on_DayTimer_timeout():
-	Data.time = (Data.time + 1) % (24*60)
-	
 	var t = 0.0
 	
 	if Data.time > 21*60 or Data.time < 6*60:

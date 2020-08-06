@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/save_game.wav-3c905d0c692238a4528999bc10d4b4bf.sample"
+
+[deps]
+
+source_file="res://assets/audio/sfx/save_game.wav"
+dest_files=[ "res://.import/save_game.wav-3c905d0c692238a4528999bc10d4b4bf.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

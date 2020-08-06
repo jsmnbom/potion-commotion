@@ -7,6 +7,7 @@ var achievements = {}
 func _ready():
 	Events.connect('achievement', self, '_on_achievement')
 	Events.connect('loaded', self, '_on_loaded')
+	Events.connect('show_achievements', self, '_on_show_achievements')
 
 	Utils.register_mouse_area(self, $CloseArea)
 	Utils.register_mouse_area(self, $Area)
@@ -69,6 +70,14 @@ func _on_achievement(msg):
 func _on_Achievements_visibility_changed():
 	for i in achievements:
 		achievements[i][1].visible = visible
+
+func _on_show_achievements(show):
+	if show:
+		SFX.page_flip.play()
+		show()
+	else:
+		SFX.page_flip.play()
+		hide()
 
 func serialize():
 	var data = {}

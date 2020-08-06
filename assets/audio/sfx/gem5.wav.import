@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/gem5.wav-b2069e496a29664645870aa0f9f9afae.sample"
+
+[deps]
+
+source_file="res://assets/audio/sfx/gem5.wav"
+dest_files=[ "res://.import/gem5.wav-b2069e496a29664645870aa0f9f9afae.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

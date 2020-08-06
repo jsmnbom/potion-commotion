@@ -103,7 +103,7 @@ texture = ExtResource( 3 )
 [node name="Title" type="AnimatedSprite" parent="."]
 position = Vector2( 965, 348 )
 frames = SubResource( 3 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="HeartEdition" type="TextureRect" parent="."]
@@ -194,7 +194,7 @@ texture = ExtResource( 13 )
 [node name="Potion" type="AnimatedSprite" parent="."]
 position = Vector2( 508.341, 488.522 )
 frames = SubResource( 4 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="VersionLabel" type="Label" parent="."]
@@ -231,6 +231,7 @@ texture = ExtResource( 3 )
 [connection signal="pressed" from="NewButton" to="." method="_on_NewButton_pressed"]
 [connection signal="pressed" from="HowToPlayButton" to="." method="_on_HowToPlayButton_pressed"]
 [connection signal="pressed" from="OptionsButton" to="." method="_on_OptionsButton_pressed"]
+[connection signal="mouse_entered" from="ExitButton" to="." method="_on_ExitButton_mouse_entered"]
 [connection signal="pressed" from="ExitButton" to="." method="_on_ExitButton_pressed"]
 
 [editable path="ContinueButton"]

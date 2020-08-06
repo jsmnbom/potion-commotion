@@ -19,6 +19,9 @@ custom_styles/focus = ExtResource( 1 )
 custom_styles/disabled = ExtResource( 2 )
 custom_styles/normal = ExtResource( 1 )
 script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="."]
 margin_left = 16.0
@@ -40,3 +43,4 @@ margin_bottom = 80.0
 stretch_mode = 4
 [connection signal="mouse_entered" from="." to="." method="_on_Button_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_Button_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_Button_pressed"]

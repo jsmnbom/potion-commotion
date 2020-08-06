@@ -124,3 +124,7 @@ collision_layer = 16
 [node name="Collision" type="CollisionShape2D" parent="ClearArea"]
 visible = false
 shape = SubResource( 4 )
+
+[node name="SplashSFXTImer" type="Timer" parent="."]
+wait_time = 0.4
+[connection signal="timeout" from="SplashSFXTImer" to="." method="_on_SplashSFXTImer_timeout"]

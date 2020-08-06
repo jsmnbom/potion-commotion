@@ -62,7 +62,6 @@ texture = ExtResource( 3 )
 [node name="GreenhouseViewportContainer" type="ViewportContainer" parent="." groups=[
 "ViewportContainer",
 ]]
-editor/display_folded = true
 show_behind_parent = true
 margin_left = 32.0
 margin_top = 32.0
@@ -85,7 +84,6 @@ gui_disable_input = true
 [node name="SubViewportArea" type="Area2D" parent="." groups=[
 "MouseAreas",
 ]]
-editor/display_folded = true
 position = Vector2( 1419, 32 )
 input_pickable = false
 monitoring = false
@@ -100,7 +98,6 @@ shape = SubResource( 1 )
 [node name="BasementViewportContainer" type="ViewportContainer" parent="." groups=[
 "ViewportContainer",
 ]]
-editor/display_folded = true
 show_behind_parent = true
 margin_left = 1419.0
 margin_top = 32.0
@@ -177,7 +174,6 @@ margin_right = 128.0
 margin_bottom = 968.0
 
 [node name="SaveNotification" type="Control" parent="."]
-editor/display_folded = true
 visible = false
 modulate = Color( 1, 1, 1, 0 )
 margin_top = 440.0

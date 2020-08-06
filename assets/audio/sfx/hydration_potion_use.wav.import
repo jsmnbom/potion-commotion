@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/hydration_potion_use.wav-3242e6ef34d2d7826db717bdd88bf3e8.sample"
+
+[deps]
+
+source_file="res://assets/audio/sfx/hydration_potion_use.wav"
+dest_files=[ "res://.import/hydration_potion_use.wav-3242e6ef34d2d7826db717bdd88bf3e8.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -68,3 +68,7 @@ collision_mask = 0
 [node name="Collision" type="CollisionShape2D" parent="Area"]
 position = Vector2( 152, 56 )
 shape = SubResource( 2 )
+
+[node name="GemSFXTimer" type="Timer" parent="."]
+wait_time = 0.8
+[connection signal="timeout" from="GemSFXTimer" to="." method="_on_GemSFXTimer_timeout"]

@@ -8,6 +8,7 @@ var ingredient_offset_size = 90
 var selected_resource
 var selected_potion
 var last_potion = null
+var splash_count = 0
 
 func _ready():
 	Events.connect('inventory_item', self, '_on_inventory_item')
@@ -106,6 +107,7 @@ func start_brewing():
 	tween.start()
 
 func _on_brewing_complete(potion, tween, potion_sprite):
+	SFX.potion_fill.play()
 	potion_sprite.get_parent().remove_child(potion_sprite)
 	tween.get_parent().remove_child(tween)
 	ingredients = []
@@ -162,7 +164,9 @@ func _mouse_area(area, msg):
 						if ingredients.size() < 5:
 							add_ingredient(selected_resource)
 							Events.emit_signal('inventory_add', {'type': 'resource', 'id': selected_resource.id, 'count': -1})
+							SFX.splash.play()
 					elif selected_potion != null and ingredients.size() == 0:
+						$SplashSFXTImer.start()
 						var items = {}
 						for resource_id in selected_potion.ingredients:
 							var item = Data.inventory_by_id['resource'][resource_id]
@@ -187,6 +191,7 @@ func _mouse_area(area, msg):
 					$MakeAnotherArea.hide()
 					$LastPotion.hide()
 					$Area.hide()
+					$SplashSFXTImer.start()
 					var items = {}
 					for resource_id in last_potion.ingredients:
 						var item = Data.inventory_by_id['resource'][resource_id]
@@ -220,3 +225,13 @@ func _mouse_area(area, msg):
 						})
 						ingredient.queue_free()
 						
+
+
+func _on_SplashSFXTImer_timeout():
+	$SplashSFXTImer.wait_time = 0.2
+	SFX.splash.play()
+	splash_count += 1;
+	if splash_count >= 5:
+		splash_count = 0
+		$SplashSFXTImer.stop()
+		$SplashSFXTImer.wait_time = 0.4
