@@ -1,10 +1,10 @@
 extends Node
 
 # Gives 10 of each inventory item
-var INVENTORY = true
+var INVENTORY = false
 
 # Makes plants grow 60 times faster (min 5 sec)
-var FAST_PLANTS = true
+var FAST_PLANTS = false
 
 # Gives you 100 000 000 gems from the start
 var GEMS = false
@@ -16,7 +16,7 @@ var WEEDS = false
 var DRY = false
 
 # Starts all fields wet
-var START_WET = true
+var START_WET = false
 
 # Set achivement values to 700
 var ACHIEVEMENTS = false
