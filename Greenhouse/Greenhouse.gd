@@ -24,9 +24,6 @@ func _ready():
 	$RainTimer.wait_time = Utils.rng.randf_range(rain_wait_min, rain_wait_max)
 	$RainTimer.start()
 
-	if Debug.FAST_DAY:
-		Data.day_duration = 30
-
 	$DayTimer.wait_time = float(Data.day_duration) / (24.0*60)
 	$DayTimer.start()
 	_on_DayTimer_timeout()

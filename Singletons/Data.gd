@@ -308,6 +308,9 @@ func clear():
 		inventory_by_id[item.type][item.id] = item
 
 	_calculate_potion_prices()
+	
+	if Debug.FAST_DAY:
+		day_duration = 30
 
 func _calculate_potion_prices():
 	for potion_id in inventory_by_id['potion']:
