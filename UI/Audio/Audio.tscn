@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://UI/Audio/Audio.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/Courgette/Courgette-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/audio/ambience/night.ogg" type="AudioStream" id=3]
+[ext_resource path="res://assets/audio/ambience/day.ogg" type="AudioStream" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 26
@@ -23,3 +25,13 @@ custom_colors/font_color = Color( 0.780392, 0.639216, 0.231373, 1 )
 text = "Now playing: Midnight in the garden"
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="AmbienceDay" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+bus = "Ambiance"
+
+[node name="AmbienceNight" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+bus = "Ambiance"
+
+[node name="DayTimer" type="Timer" parent="."]
