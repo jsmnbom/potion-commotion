@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/fonts/Courgette/Courgette-Regular.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="DynamicFont" id=1]
-size = 40
+size = 42
 font_data = ExtResource( 4 )
 
 [node name="Button" type="Button"]
@@ -24,16 +24,19 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="."]
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 304.0
-margin_bottom = 80.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 317.0
+margin_bottom = 88.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.564706, 0.447059, 0.101961, 1 )
 text = "New game"
 align = 1
 valign = 1
 uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_left = 300.0
