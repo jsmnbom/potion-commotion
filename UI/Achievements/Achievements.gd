@@ -73,10 +73,10 @@ func _on_Achievements_visibility_changed():
 
 func _on_show_achievements(show):
 	if show:
-		SFX.page_flip.play()
+		SFX.page_flip.play(self)
 		show()
 	else:
-		SFX.page_flip.play()
+		SFX.page_flip.play(self)
 		hide()
 
 func serialize():

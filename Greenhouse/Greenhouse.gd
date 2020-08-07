@@ -61,22 +61,22 @@ func _mouse_area(area, msg):
 							_on_DayTimer_timeout()
 							Events.emit_signal('inventory_add', {'type': 'potion', 'id': 'sunlight', 'count': -1})
 							Events.emit_signal('achievement', {'total_id': 'total_potions', 'total_add': 1})
-							SFX.sunlight_potion_use.play()
+							SFX.sunlight_potion_use.play(self)
 						'midnight':
 							Data.time = 21*60
 							_on_DayTimer_timeout()
 							Events.emit_signal('inventory_add', {'type': 'potion', 'id': 'midnight', 'count': -1})
 							Events.emit_signal('achievement', {'total_id': 'total_potions', 'total_add': 1})
-							SFX.midnight_potion_use.play()
+							SFX.midnight_potion_use.play(self)
 						'fortune':
 							if Data.luck <= 0.8001:
 								Events.emit_signal('add_luck', 0.2)
 								Events.emit_signal('inventory_add', {'type': 'potion', 'id': 'fortune', 'count': -1})
 								Events.emit_signal('achievement', {'total_id': 'total_potions', 'total_add': 1})
 								luck_potion_effect(local_positions[get_viewport()])
-								SFX.luck_potion_use.play()
+								SFX.luck_potion_use.play(self)
 							else:
-								SFX.error.play()
+								SFX.error.play(self)
 
 func luck_potion_effect(pos):
 	var tween = Tween.new()
@@ -149,7 +149,6 @@ func _on_DayTimer_timeout():
 	elif (Data.time <= 21*60):
 		t = range_lerp(float(Data.time), 18*60, 21*60, 0.8, 0.2)
 	modulate = NIGHT.linear_interpolate(DAY, t)
-
 
 func _on_RainTimer_timeout():
 	if raining:

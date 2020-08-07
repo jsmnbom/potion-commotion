@@ -63,13 +63,13 @@ func _on_MainMenu_visibility_changed():
 
 func _on_HowToPlay_Back_gui_input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
-		SFX.press.play()
+		SFX.pop.play(self)
 		$HowToPlay.hide()
 		show_buttons()
 
 func _on_Options_Back_gui_input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
-		SFX.press.play()
+		SFX.pop.play(self)
 		$Options.hide()
 		show_buttons()
 
@@ -91,7 +91,7 @@ func _on_NewButton_pressed():
 
 func _on_NameEntry_Cancel_gui_input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
-		SFX.press.play()
+		SFX.pop.play(self)
 		$NameEntry.hide()
 		show_buttons()
 	
@@ -102,7 +102,7 @@ func _on_menu_new_game():
 	Events.emit_signal('start_new_game')
 
 func _on_ExitButton_pressed():
-	SFX.press.play()
+	SFX.pop.play(self)
 	if has_game_opened:
 		Events.emit_signal('exit_confirm')
 	else:
@@ -118,4 +118,4 @@ func stop_loading():
 
 
 func _on_ExitButton_mouse_entered():
-	SFX.hover.play()
+	SFX.hover.play(self)

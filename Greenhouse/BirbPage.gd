@@ -30,7 +30,7 @@ func _mouse_area(area, msg):
 					$Tween.start()
 
 					Events.emit_signal('unlock_journal')
-					SFX.page_flip.play()
+					SFX.page_flip.play(self)
 
 func done():
 	Events.emit_signal('unlock_journal_page', {'id': page_id})

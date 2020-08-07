@@ -323,7 +323,7 @@ func add_potion(potion, deserializing=false):
 	if potion_id == 'hydration':
 		make_wet()
 		hydration.hide()
-		SFX.hydration_potion_use.play()
+		SFX.hydration_potion_use.play(self)
 		return
 	
 	if not deserializing:
@@ -343,26 +343,26 @@ func add_potion(potion, deserializing=false):
 				grow_timer.wait_time = time_left * x
 			grow_timer.start()
 			field_sprite.modulate = field_sprite.modulate.blend(Color('66d37f42'))
-			SFX.potion_use.play()
+			SFX.potion_use.play(self)
 		'ice':
 			plant_sprite.region_rect.position.y = 256
 			plant_sprite.modulate = FROZEN_MODULATE
-			SFX.freeze.play()
+			SFX.freeze.play(self)
 		'flames':
 			plant_sprite.region_rect.position.y = 256
 			plant_sprite.modulate = FIRE_MODULATE
-			SFX.ignite.play()
+			SFX.ignite.play(self)
 		'midas':
 			plant_sprite.region_rect.position.y = 256
 			plant_sprite.modulate = GOLD_MODULATE
-			SFX.gem.play()
+			SFX.gem.play(self)
 		'stars':
 			star_particles.emitting = true
-			SFX.gem.play()
+			SFX.gem.play(self)
 		'gardening':
 			grow_timer.paused = false
 			$FieldPotionOverlay.texture = Utils.get_scaled_res('res://assets/greenhouse/field_gardening.png', 128, 128)
-			SFX.potion_use.play()
+			SFX.potion_use.play(self)
 
 func serialize():
 	return {
@@ -468,7 +468,7 @@ func _mouse_area(area, msg):
 					Events.emit_signal('tooltip', {'hide': true})
 					if right_click:
 						Utils.set_right_click_handled()
-					SFX.harvest.play()
+					SFX.harvest.play(self)
 				elif left_click and can_use_potion(selected_potion) and not weeds:
 					add_potion(selected_potion)
 					Events.emit_signal('inventory_add', {'type': 'potion', 'id': selected_potion.id, 'count': -1})
@@ -497,7 +497,7 @@ func _mouse_area(area, msg):
 					Data.plant_current_click_action = 'harvest'
 					if right:
 						Utils.set_right_click_handled()
-					SFX.harvest.play()
+					SFX.harvest.play(self)
 				elif left and not planted and selected_seed != null and not dried_out and not weeds and (Data.plant_current_click_action == 'planting' or Data.plant_current_click_action == null):
 					set_plant(selected_seed.id)
 					Events.emit_signal('inventory_add', {'type': 'seed', 'id': plant, 'count': -1})
@@ -505,7 +505,7 @@ func _mouse_area(area, msg):
 					grow_timer.start()
 					planted = true
 					Data.plant_current_click_action = 'planting'
-					SFX.plant.play()
+					SFX.plant.play(self)
 				elif (right and planted and progress >= 100 and not weeds and not ('flames' in used_potions or \
 																				   'ice' in used_potions or \
 																				   'midas' in used_potions or \
@@ -523,7 +523,7 @@ func _mouse_area(area, msg):
 					update_cursor()
 					Data.plant_current_click_action = 'harvest'
 					Utils.set_right_click_handled()
-					SFX.harvest.play()
+					SFX.harvest.play(self)
 				elif left and shovel_picked_up and planted and not weeds and (Data.plant_current_click_action == 'shoveling' or Data.plant_current_click_action == null):
 					Events.emit_signal('achievement', {'diff_id': 'diff_plants', 'diff_add': plant})
 					Events.emit_signal('inventory_add', {
@@ -536,7 +536,7 @@ func _mouse_area(area, msg):
 					reset()
 					update_cursor()
 					Data.plant_current_click_action = 'shoveling'
-					SFX.shovel.play()
+					SFX.shovel.play(self)
 				else:
 					used_click = false
 				is_mouse_over = true

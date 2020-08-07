@@ -4,6 +4,8 @@ const MASTER = 0
 const MUSIC = 1
 const SFX = 2
 const AMBIANCE = 3
+const SFX_GH = 4
+const SFX_B = 5
 
 var current_music = 'Midnight in the Garden'
 
@@ -49,6 +51,18 @@ func set_rain(is_raining):
 
 func set_rain_vol(vol):
 	$AmbienceRain.volume_db = linear2db(vol)
+
+func set_current(greenhouse):
+	if greenhouse:
+		AudioServer.set_bus_effect_enabled(SFX_GH, 0, false)
+		AudioServer.set_bus_effect_enabled(SFX_B, 0, true)
+		AudioServer.set_bus_effect_enabled(SFX_GH, 1, false)
+		AudioServer.set_bus_effect_enabled(SFX_B, 1, true)
+	else:
+		AudioServer.set_bus_effect_enabled(SFX_GH, 0, true)
+		AudioServer.set_bus_effect_enabled(SFX_B, 0, false)
+		AudioServer.set_bus_effect_enabled(SFX_GH, 1, true)
+		AudioServer.set_bus_effect_enabled(SFX_B, 1, false)
 
 func _on_DayTimer_timeout():
 	var t = 0.0

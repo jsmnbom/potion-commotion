@@ -138,7 +138,7 @@ func fetch_page(node):
 		$Tween.interpolate_callback(self, time+1, 'midway')
 		$Tween.interpolate_property(self, 'position', offscreen_pos, last_pos, time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, time+5)
 		$Tween.interpolate_callback(self, time+time+5, 'stop_flying')
-		SFX.bird_wings.play()
+		SFX.bird_wings.play(self)
 	
 	$Tween.start()
 	$AnimationPlayer.play('Flying')
@@ -159,7 +159,7 @@ func stop_flying():
 			page_node.z_index = 3
 	page_node_ref = null
 	flying = false
-	SFX.bird_call.play()
+	SFX.bird_call.play(self)
 
 func serialize():
 	return {

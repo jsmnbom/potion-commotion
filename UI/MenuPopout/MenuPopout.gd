@@ -6,3 +6,4 @@ func _init():
 func _on_click():
 	Events.emit_signal('show_main_menu')
 	popin()
+	SFX.pop.play(self)

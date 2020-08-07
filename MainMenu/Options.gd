@@ -27,7 +27,7 @@ func _unhandled_input(event):
 		save_options()
 
 func _on_FullScreen_toggled(button_pressed):
-	SFX.press.play()
+	SFX.pop.play(self)
 	OS.window_fullscreen = button_pressed
 
 
@@ -52,7 +52,7 @@ func _on_Ambiance_value_changed(value):
 
 
 func _on_Back_mouse_entered():
-	SFX.hover.play()
+	SFX.hover.play(self)
 	$Back.add_color_override("font_color", Color('#dc51ca'))
 	$Back.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 

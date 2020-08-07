@@ -7,7 +7,7 @@ func _on_Button_mouse_entered():
 	if not disabled:
 		$Label.add_color_override("font_color", Color('#dc51ca'))
 		mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-		SFX.hover.play()
+		SFX.hover.play(self)
 
 
 func _on_Button_mouse_exited():
@@ -16,4 +16,4 @@ func _on_Button_mouse_exited():
 
 
 func _on_Button_pressed():
-	SFX.press.play(1.0)
+	SFX.pop.play(self)

@@ -75,7 +75,7 @@ func _mouse_area(area, msg):
 								add_item(item, node, 1)
 								Events.emit_signal('gems_add', {'amount': -item.cost})
 							else:
-								SFX.error.play()
+								SFX.error.play(self)
 						elif item.count > 0 and item.type == 'potion' and item.sell_price > 0:
 							add_item(item, node, -1)
 							Events.emit_signal('gems_add', {'amount': item.sell_price})
@@ -89,6 +89,7 @@ func set_selected_item(item):
 		#Input.set_custom_mouse_cursor(item.get_scaled_res(32, 32), Input.CURSOR_ARROW, Vector2(16,16))
 		#Input.set_custom_mouse_cursor(item.get_scaled_res(32, 32), Input.CURSOR_POINTING_HAND, Vector2(16,16))
 		Events.emit_signal('inventory_item', {'selected': item})
+		SFX.pop.play(self)
 	else:
 		selected_item = null
 		selected_item_type = null

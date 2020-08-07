@@ -5,7 +5,7 @@ func _ready():
 	pass
 	
 func _on_StartNewGame_mouse_entered():
-	SFX.hover.play()
+	SFX.hover.play(self)
 	$StartNewGame.add_color_override("font_color", Color('#dc51ca'))
 	$StartNewGame.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 
@@ -15,7 +15,7 @@ func _on_StartNewGame_mouse_exited():
 	$StartNewGame.mouse_default_cursor_shape = Control.CURSOR_ARROW
 
 func _on_Cancel_mouse_entered():
-	SFX.hover.play()
+	SFX.hover.play(self)
 	$Cancel.add_color_override("font_color", Color('#dc51ca'))
 	$Cancel.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 
@@ -34,7 +34,7 @@ func _on_NameEntry_visibility_changed():
 		_on_StartNewGame_mouse_exited()
 
 func _on_LineEdit_text_entered(new_text):
-	SFX.press.play()
+	SFX.pop.play(self)
 	_on_LineEdit_text_changed(new_text)
 	Events.emit_signal('menu_new_game')
 
@@ -47,6 +47,6 @@ func _on_LineEdit_text_changed(new_text):
 
 func _on_StartNewGame_gui_input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
-		SFX.press.play()
+		SFX.pop.play(self)
 		_on_LineEdit_text_changed(Data.player_name)
 		Events.emit_signal('menu_new_game')

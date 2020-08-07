@@ -5,4 +5,4 @@ func _init():
 
 func _on_click():
 	Events.emit_signal('save_game')
-	SFX.save_game.play()
+	SFX.save_game.play(self)

@@ -1,28 +1,37 @@
 extends Node
 
-class SingleSound extends Object:
-	var parent: Node
+class SingleSound:
+	var volume: float
 	var stream: AudioStream
 	var bus: String
 	
-	func _init(parent: Node, stream: AudioStream, bus: String = "SFX"):
-		self.parent = parent
+	
+	func _init(volume: float, stream: AudioStream):
+		self.volume = volume
 		self.stream = stream
 		self.bus = bus
 
-	func play(volume: float = 1.0, pitch_scale: float = 1.0):
-		self._play(AudioStreamPlayer.new(), self.parent.get_tree().root, volume, pitch_scale)
+	func play(parent: Node):
+		self._play(AudioStreamPlayer.new(), parent)
 	
-	func play2d(parent: Node, volume: float = 1.0, pitch_scale: float = 1.0):
-		self._play(AudioStreamPlayer2D.new(), parent, volume, pitch_scale)
+	func play2d(parent: Node):
+		self._play(AudioStreamPlayer2D.new(), parent)
 		
-	func _play(player, parent, volume, pitch_scale):
+	func _play(player, parent):
 		player.stream = self.stream
-		player.bus = self.bus
-		player.volume_db = linear2db(volume)
-		player.pitch_scale = pitch_scale
+		player.bus = self._get_bus(parent)
 		self.call_deferred("_play_deferred", parent, player)
-		
+	
+	func _get_bus(parent) -> String:
+		var path = parent.get_path()
+		for i in range(path.get_name_count()):
+			var name = path.get_name(i)
+			if name == "Greenhouse":
+				return "SFX_GH"
+			elif name == "Basement":
+				return "SFX_B"
+		return "SFX"
+	
 	func _play_deferred(parent, player):
 		parent.add_child(player)
 		player.play()
@@ -33,22 +42,22 @@ class MultiSound:
 	var last_sound = 0.0
 	var limit_msec
 	
-	func _init(parent: Node, streams, limit_msec: float = 100.0, bus: String = "SFX"):
+	func _init(volume: float, streams, limit_msec: float = 100.0):
 		self.limit_msec = limit_msec
 		self.sounds = []
 		for stream in streams:
-			self.sounds.append(SingleSound.new(parent, stream, bus))
+			self.sounds.append(SingleSound.new(volume, stream))
 	
 	func _get_random_sound() -> SingleSound:
 		return Utils.rng_choose(sounds)
 	
-	func play(volume: float = 1.0, pitch_scale: float = 1.0):
+	func play(parent: Node):
 		if self.check_limit():
-			self._get_random_sound().play(volume, pitch_scale)
+			self._get_random_sound().play(parent)
 	
-	func play2d(parent: Node, volume: float = 1.0, pitch_scale: float = 1.0):
+	func play2d(parent: Node):
 		if self.check_limit():
-			self._get_random_sound().play2d(parent, volume, pitch_scale)
+			self._get_random_sound().play2d(parent)
 	
 	func check_limit() -> bool:
 		var now = OS.get_ticks_msec()
@@ -58,7 +67,6 @@ class MultiSound:
 		return false
 
 var hover: SingleSound
-var press: SingleSound
 var shovel_activate: SingleSound
 var shovel_deactivate: SingleSound
 var potion_fill: SingleSound
@@ -73,6 +81,7 @@ var error: SingleSound
 var save_game: SingleSound
 var bird_wings: SingleSound
 var bird_call: SingleSound
+var footsteps: SingleSound
 
 var shovel: MultiSound
 var gem: MultiSound
@@ -80,33 +89,34 @@ var plant: MultiSound
 var harvest: MultiSound
 var splash: MultiSound
 var page_flip: MultiSound
+var pop: MultiSound
 
 func _ready():
-	hover = SingleSound.new(self, preload("res://assets/audio/sfx/hover.wav"))
-	press = SingleSound.new(self, preload("res://assets/audio/sfx/press.wav"), "SFX_lowpass")
-	shovel_activate = SingleSound.new(self, preload("res://assets/audio/sfx/shovel_activate.wav"))
-	shovel_deactivate = SingleSound.new(self, preload("res://assets/audio/sfx/shovel_deactivate.wav"))
-	potion_fill = SingleSound.new(self, preload("res://assets/audio/sfx/potion_fill.wav"))
-	potion_use = SingleSound.new(self, preload("res://assets/audio/sfx/potion_use.wav"))
-	freeze = SingleSound.new(self, preload("res://assets/audio/sfx/freeze.wav"))
-	ignite = SingleSound.new(self, preload("res://assets/audio/sfx/ignite.wav"))
-	hydration_potion_use = SingleSound.new(self, preload("res://assets/audio/sfx/hydration_potion_use.wav"))
-	luck_potion_use = SingleSound.new(self, preload("res://assets/audio/sfx/luck_potion_use.wav"))
-	sunlight_potion_use = SingleSound.new(self, preload("res://assets/audio/sfx/sunlight_potion_use.wav"))
-	midnight_potion_use = SingleSound.new(self, preload("res://assets/audio/sfx/midnight_potion_use.wav"))
-	error = SingleSound.new(self, preload("res://assets/audio/sfx/error.wav"))
-	save_game = SingleSound.new(self, preload("res://assets/audio/sfx/save_game.wav"))
-	bird_wings = SingleSound.new(self, preload("res://assets/audio/sfx/bird_wings.wav"))
-	bird_call = SingleSound.new(self, preload("res://assets/audio/sfx/bird_call.wav"))
+	hover = SingleSound.new(1.0, preload("res://assets/audio/sfx/hover.wav"))
+	shovel_activate = SingleSound.new(1.0, preload("res://assets/audio/sfx/shovel_activate.wav"))
+	shovel_deactivate = SingleSound.new(1.0, preload("res://assets/audio/sfx/shovel_deactivate.wav"))
+	potion_fill = SingleSound.new(1.0, preload("res://assets/audio/sfx/potion_fill.wav"))
+	potion_use = SingleSound.new(1.0, preload("res://assets/audio/sfx/potion_use.wav"))
+	freeze = SingleSound.new(1.0, preload("res://assets/audio/sfx/freeze.wav"))
+	ignite = SingleSound.new(1.0, preload("res://assets/audio/sfx/ignite.wav"))
+	hydration_potion_use = SingleSound.new(1.0, preload("res://assets/audio/sfx/hydration_potion_use.wav"))
+	luck_potion_use = SingleSound.new(1.0, preload("res://assets/audio/sfx/luck_potion_use.wav"))
+	sunlight_potion_use = SingleSound.new(1.0, preload("res://assets/audio/sfx/sunlight_potion_use.wav"))
+	midnight_potion_use = SingleSound.new(1.0, preload("res://assets/audio/sfx/midnight_potion_use.wav"))
+	error = SingleSound.new(1.0, preload("res://assets/audio/sfx/error.wav"))
+	save_game = SingleSound.new(1.0, preload("res://assets/audio/sfx/save_game.wav"))
+	bird_wings = SingleSound.new(1.0, preload("res://assets/audio/sfx/bird_wings.wav"))
+	bird_call = SingleSound.new(1.0, preload("res://assets/audio/sfx/bird_call.wav"))
+	footsteps = SingleSound.new(1.0, preload("res://assets/audio/sfx/footsteps.wav"))
 	
-	shovel = MultiSound.new(self, [
+	shovel = MultiSound.new(1.0, [
 		preload("res://assets/audio/sfx/shovel0.wav"),
 		preload("res://assets/audio/sfx/shovel1.wav"),
 		preload("res://assets/audio/sfx/shovel2.wav"),
 		preload("res://assets/audio/sfx/shovel3.wav")
 	])
 	
-	gem = MultiSound.new(self, [
+	gem = MultiSound.new(1.0, [
 		preload("res://assets/audio/sfx/gem0.wav"),
 		preload("res://assets/audio/sfx/gem1.wav"),
 		preload("res://assets/audio/sfx/gem2.wav"),
@@ -115,30 +125,36 @@ func _ready():
 		preload("res://assets/audio/sfx/gem5.wav")
 	], 0)
 	
-	plant = MultiSound.new(self, [
+	plant = MultiSound.new(1.0, [
 		preload("res://assets/audio/sfx/plant0.wav"),
 		preload("res://assets/audio/sfx/plant1.wav"),
 		preload("res://assets/audio/sfx/plant2.wav"),
 		preload("res://assets/audio/sfx/plant3.wav")
-	])
+	], 50)
 	
-	harvest = MultiSound.new(self, [
+	harvest = MultiSound.new(1.0, [
 		preload("res://assets/audio/sfx/harvest0.wav"),
 		preload("res://assets/audio/sfx/harvest1.wav"),
 		preload("res://assets/audio/sfx/harvest2.wav"),
 		preload("res://assets/audio/sfx/harvest3.wav"),
 		preload("res://assets/audio/sfx/harvest4.wav")
-	])
+	], 50)
 	
-	splash = MultiSound.new(self, [
+	splash = MultiSound.new(1.0, [
 		preload("res://assets/audio/sfx/splash0.wav"),
 		preload("res://assets/audio/sfx/splash1.wav"),
 		preload("res://assets/audio/sfx/splash2.wav"),
-		preload("res://assets/audio/sfx/splash3.wav"),
+		preload("res://assets/audio/sfx/splash3.wav")
 	])
 	
-	page_flip = MultiSound.new(self, [
+	page_flip = MultiSound.new(1.0, [
 		preload("res://assets/audio/sfx/page_flip0.wav"),
-		preload("res://assets/audio/sfx/page_flip1.wav"),
+		preload("res://assets/audio/sfx/page_flip1.wav")
+	])
+	
+	pop = MultiSound.new(1.0, [
+		preload("res://assets/audio/sfx/pop0.wav"),
+		preload("res://assets/audio/sfx/pop1.wav"),
+		preload("res://assets/audio/sfx/pop2.wav")
 	])
 	

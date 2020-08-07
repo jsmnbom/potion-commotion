@@ -5,6 +5,9 @@ onready var basement_viewport_container = $BasementViewportContainer
 onready var greenhouse_viewport = $GreenhouseViewportContainer/GreenhouseViewport
 onready var basement_viewport = $BasementViewportContainer/BasementViewport
 onready var greenhouse = $GreenhouseViewportContainer/GreenhouseViewport/Greenhouse
+onready var basement = $BasementViewportContainer/BasementViewport/Basement
+
+onready var audio = get_node('/root/PotionCommotion/Audio')
 
 var basement_tooltip = 'Click to start brewing!'
 var greenhouse_tooltip = 'Click to go back to your greenhouse!'
@@ -30,6 +33,8 @@ func _ready():
 	basement_viewport_container.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 
 	Utils.register_mouse_area(self, $SubViewportArea)
+	
+	audio.set_current(true)
 
 func _on_inventory_item(msg):
 	match(msg):
@@ -99,6 +104,9 @@ func switch():
 	tween.interpolate_property(main_container, 'modulate:a',
 		0, 1, 0.6, Tween.TRANS_QUAD, Tween.EASE_IN, 0.6)
 	tween.start()
+	
+	SFX.footsteps.play(self)
+	audio.set_current(greenhouse_active)
 
 func _switch_inner(main_container, sub_container, main_viewport, sub_viewport):
 	sub_container.rect_position = sub_rect.position

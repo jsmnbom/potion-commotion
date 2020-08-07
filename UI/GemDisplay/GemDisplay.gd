@@ -68,4 +68,4 @@ func deserialize(data):
 	Events.emit_signal('gems_add', {'amount': 0})
 
 func _on_GemSFXTimer_timeout():
-	SFX.gem.play()
+	SFX.gem.play(self)
