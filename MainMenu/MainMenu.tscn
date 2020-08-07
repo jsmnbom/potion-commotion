@@ -103,7 +103,6 @@ texture = ExtResource( 3 )
 [node name="Title" type="AnimatedSprite" parent="."]
 position = Vector2( 965, 348 )
 frames = SubResource( 3 )
-frame = 1
 playing = true
 
 [node name="HeartEdition" type="TextureRect" parent="."]
@@ -194,7 +193,6 @@ texture = ExtResource( 13 )
 [node name="Potion" type="AnimatedSprite" parent="."]
 position = Vector2( 508.341, 488.522 )
 frames = SubResource( 4 )
-frame = 2
 playing = true
 
 [node name="VersionLabel" type="Label" parent="."]
