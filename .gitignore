@@ -16,3 +16,5 @@ addons/
 
 # Mono-specific ignores
 .mono/
+
+Singletons/Debug.gd
