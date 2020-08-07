@@ -153,13 +153,18 @@ func _mouse_area(area, msg):
 func show_page(page):
 	PAGES[current_page][1].hide()
 	current_page = page
+	
+	if not current_page in viewed_pages:
+		viewed_pages.append(current_page)
+		update_index()
+	
+	if not visible:
+		return
+	
 	PAGES[current_page][1].show()
 	$Return.visible = current_page != 'index'
 	$Forward.visible = Data.unlocked_journal_pages.find(current_page) < Data.unlocked_journal_pages.size() - 1
 	$Back.visible = Data.unlocked_journal_pages.find(current_page) > 0
-	if not current_page in viewed_pages:
-		viewed_pages.append(current_page)
-		update_index()
 	for i in range(2):
 		for item in index_items[i].get_children():
 			item.visible = visible and current_page == 'index'
