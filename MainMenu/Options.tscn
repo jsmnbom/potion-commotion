@@ -102,16 +102,19 @@ margin_bottom = 245.0
 mouse_default_cursor_shape = 6
 theme = ExtResource( 6 )
 
-[node name="AmbianceLabel" type="Label" parent="."]
+[node name="AmbienceLabel" type="Label" parent="."]
 margin_left = 37.0
 margin_top = 276.0
 margin_right = 267.0
 margin_bottom = 317.0
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0.384314, 0.286275, 0, 1 )
-text = "Ambiance volume:"
+text = "Ambience volume:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Ambiance" type="HSlider" parent="."]
+[node name="Ambience" type="HSlider" parent="."]
 margin_left = 360.0
 margin_top = 269.0
 margin_right = 584.0
@@ -133,6 +136,6 @@ text = "Back to menu"
 [connection signal="value_changed" from="Master" to="." method="_on_Master_value_changed"]
 [connection signal="value_changed" from="Music" to="." method="_on_Music_value_changed"]
 [connection signal="value_changed" from="SFX" to="." method="_on_SFX_value_changed"]
-[connection signal="value_changed" from="Ambiance" to="." method="_on_Ambiance_value_changed"]
+[connection signal="value_changed" from="Ambience" to="." method="_on_Ambience_value_changed"]
 [connection signal="mouse_entered" from="Back" to="." method="_on_Back_mouse_entered"]
 [connection signal="mouse_exited" from="Back" to="." method="_on_Back_mouse_exited"]

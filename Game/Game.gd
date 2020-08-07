@@ -7,8 +7,6 @@ onready var basement_viewport = $BasementViewportContainer/BasementViewport
 onready var greenhouse = $GreenhouseViewportContainer/GreenhouseViewport/Greenhouse
 onready var basement = $BasementViewportContainer/BasementViewport/Basement
 
-onready var audio = get_node('/root/PotionCommotion/Audio')
-
 var basement_tooltip = 'Click to start brewing!'
 var greenhouse_tooltip = 'Click to go back to your greenhouse!'
 
@@ -34,7 +32,7 @@ func _ready():
 
 	Utils.register_mouse_area(self, $SubViewportArea)
 	
-	audio.set_current(true)
+	Audio.set_current(true)
 
 func _on_inventory_item(msg):
 	match(msg):
@@ -106,7 +104,7 @@ func switch():
 	tween.start()
 	
 	SFX.footsteps.play(self)
-	audio.set_current(greenhouse_active)
+	Audio.set_current(greenhouse_active)
 
 func _switch_inner(main_container, sub_container, main_viewport, sub_viewport):
 	sub_container.rect_position = sub_rect.position

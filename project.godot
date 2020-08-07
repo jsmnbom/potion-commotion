@@ -29,6 +29,7 @@ Utils="*res://Singletons/Utils.gd"
 Data="*res://Singletons/Data.gd"
 Events="*res://Singletons/Events.gd"
 SFX="*res://Singletons/SFX.gd"
+Audio="*res://Singletons/Audio.tscn"
 
 [debug]
 

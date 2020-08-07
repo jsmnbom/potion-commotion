@@ -27,9 +27,9 @@ class SingleSound:
 		for i in range(path.get_name_count()):
 			var name = path.get_name(i)
 			if name == "Greenhouse":
-				return "SFX_GH"
+				return "GreenhouseSFX"
 			elif name == "Basement":
-				return "SFX_B"
+				return "BasementSFX"
 		return "SFX"
 	
 	func _play_deferred(parent, player):

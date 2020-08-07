@@ -1,7 +1,5 @@
 extends NinePatchRect
 
-onready var audio = get_node('/root/PotionCommotion/Audio')
-
 var options_theme: Theme = preload('res://MainMenu/OptionsTheme.tres')
 
 var default_options = {
@@ -33,22 +31,22 @@ func _on_FullScreen_toggled(button_pressed):
 
 func _on_Master_value_changed(value):
 	$MasterLabel.text = 'Master volume: %s%%' % round(value)
-	audio.set_volume(audio.MASTER, value)
+	Audio.set_volume(Audio.Bus.Master, value)
 
 
 func _on_Music_value_changed(value):
 	$MusicLabel.text = 'Music volume: %s%%' % round(value)
-	audio.set_volume(audio.MUSIC, value)
+	Audio.set_volume(Audio.Bus.Music, value)
 
 
 func _on_SFX_value_changed(value):
 	$SFXLabel.text = 'Sound FX volume: %s%%' % round(value)
-	audio.set_volume(audio.SFX, value)
+	Audio.set_volume(Audio.Bus.SFX, value)
 
 
-func _on_Ambiance_value_changed(value):
-	$AmbianceLabel.text = 'Ambiance volume: %s%%' % round(value)
-	audio.set_volume(audio.AMBIANCE, value)
+func _on_Ambience_value_changed(value):
+	$AmbienceLabel.text = 'Ambience volume: %s%%' % round(value)
+	Audio.set_volume(Audio.Bus.Ambience, value)
 
 
 func _on_Back_mouse_entered():
@@ -73,7 +71,7 @@ func save_options():
 		'master': $Master.value,
 		'music': $Music.value,
 		'sfx': $SFX.value,
-		'ambiance': $Ambiance.value
+		'ambience': $Ambience.value
 	}
 
 	var options_file = File.new()
@@ -91,6 +89,11 @@ func load_options():
 		print('No loaded options found, using defaults.')
 		data = default_options
 	
+	if data.has('ambiance'):
+		data['ambience'] = data['ambiance']
+		data.erase('ambiance')
+		save_options()
+	
 	$Fullscreen.pressed = data['fullscreen']
 	_on_FullScreen_toggled($Fullscreen.pressed)
 	$Master.value = data['master']
@@ -99,5 +102,5 @@ func load_options():
 	_on_Music_value_changed($Music.value)
 	$SFX.value = data['sfx']
 	_on_SFX_value_changed($SFX.value)
-	$Ambiance.value = data['ambiance']
-	_on_Ambiance_value_changed($Ambiance.value)
+	$Ambience.value = data['ambience']
+	_on_Ambience_value_changed($Ambience.value)

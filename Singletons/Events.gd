@@ -70,3 +70,6 @@ signal add_luck(x)
 
 # true | false
 signal shovel
+
+# {'current_music': name'}
+signal now_playing(msg)

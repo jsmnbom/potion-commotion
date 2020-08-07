@@ -1,13 +1,13 @@
 extends Node2D
 
-const MASTER = 0
-const MUSIC = 1
-const SFX = 2
-const AMBIANCE = 3
-const SFX_GH = 4
-const SFX_B = 5
-
-var current_music = 'Midnight in the Garden'
+enum Bus {
+	Master = 0
+	Music = 1
+	SFX = 2
+	Ambience = 3
+	GreenhouseSFX = 4
+	BasementSFX = 5
+}
 
 var music = {
 	'Midnight in the Garden': preload('res://assets/audio/music/midnight_in_the_garden.ogg'),
@@ -15,10 +15,12 @@ var music = {
 	'Crystal Stalk': preload('res://assets/audio/music/crystal_stalk.ogg')
 }
 
+var current_music = random_music()
+
 func _ready():
 	$Music.connect('finished', self, '_on_music_finished')
-	$MusicNowPlayingLabel.modulate.a = 0
 	play_music()
+	call_deferred('emit_now_playing')
 	
 	$DayTimer.wait_time = float(Data.day_duration) / (24.0*60)
 	$DayTimer.start()
@@ -54,15 +56,15 @@ func set_rain_vol(vol):
 
 func set_current(greenhouse):
 	if greenhouse:
-		AudioServer.set_bus_effect_enabled(SFX_GH, 0, false)
-		AudioServer.set_bus_effect_enabled(SFX_B, 0, true)
-		AudioServer.set_bus_effect_enabled(SFX_GH, 1, false)
-		AudioServer.set_bus_effect_enabled(SFX_B, 1, true)
+		AudioServer.set_bus_effect_enabled(Bus.GreenhouseSFX, 0, false)
+		AudioServer.set_bus_effect_enabled(Bus.BasementSFX, 0, true)
+		AudioServer.set_bus_effect_enabled(Bus.GreenhouseSFX, 1, false)
+		AudioServer.set_bus_effect_enabled(Bus.BasementSFX, 1, true)
 	else:
-		AudioServer.set_bus_effect_enabled(SFX_GH, 0, true)
-		AudioServer.set_bus_effect_enabled(SFX_B, 0, false)
-		AudioServer.set_bus_effect_enabled(SFX_GH, 1, true)
-		AudioServer.set_bus_effect_enabled(SFX_B, 1, false)
+		AudioServer.set_bus_effect_enabled(Bus.GreenhouseSFX, 0, true)
+		AudioServer.set_bus_effect_enabled(Bus.BasementSFX, 0, false)
+		AudioServer.set_bus_effect_enabled(Bus.GreenhouseSFX, 1, true)
+		AudioServer.set_bus_effect_enabled(Bus.BasementSFX, 1, false)
 
 func _on_DayTimer_timeout():
 	var t = 0.0
@@ -85,19 +87,8 @@ func play_music():
 	$Music.stream = music[current_music]
 	$Music.play(0.0)
 
-	if AudioServer.get_bus_volume_db(MASTER) != -INF and AudioServer.get_bus_volume_db(MUSIC) != -INF:
-		show_music_now_playing_label()
-
-func show_music_now_playing_label():
-	var label = $MusicNowPlayingLabel
-	label.set_text('Now playing: %s' % current_music)
-	$Tween.interpolate_property(label, 'modulate:a',
-		0.0, 1.0, 0.5,
-		Tween.TRANS_LINEAR, Tween.EASE_IN)
-	$Tween.interpolate_property(label, 'modulate:a',
-		1.0, 0.0, 0.5,
-		Tween.TRANS_LINEAR, Tween.EASE_OUT, 2)
-	$Tween.start()
+	if AudioServer.get_bus_volume_db(Bus.Master) != -INF and AudioServer.get_bus_volume_db(Bus.Music) != -INF:
+		emit_now_playing()
 
 func _on_music_finished():
 	var new_song = random_music()
@@ -107,10 +98,13 @@ func _on_music_finished():
 	play_music()
 
 func set_volume(bus, volume):
-	if (bus == MASTER or bus == MUSIC):
+	if (bus == Bus.Master or bus == Bus.Music):
 		if AudioServer.get_bus_volume_db(bus) == -INF and volume > 0:
-			show_music_now_playing_label()
+			emit_now_playing()
 			$Music.stream_paused = false
 		elif volume == 0:
 			$Music.stream_paused = true
 	AudioServer.set_bus_volume_db(bus, linear2db(volume/100))
+
+func emit_now_playing():
+	Events.emit_signal('now_playing', {'current_music': current_music})
