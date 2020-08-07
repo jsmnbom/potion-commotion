@@ -93,6 +93,7 @@ var harvest: MultiSound
 var splash: MultiSound
 var page_flip: MultiSound
 var pop: MultiSound
+var footstep: MultiSound
 
 func _ready():
 	hover = SingleSound.new(0.2, preload("res://assets/audio/sfx/hover.wav"))
@@ -159,5 +160,11 @@ func _ready():
 		preload("res://assets/audio/sfx/pop0.wav"),
 		preload("res://assets/audio/sfx/pop1.wav"),
 		preload("res://assets/audio/sfx/pop2.wav")
+	])
+	
+	footstep = MultiSound.new(0.5, [
+		preload("res://assets/audio/sfx/footstep0.wav"),
+		preload("res://assets/audio/sfx/footstep1.wav"),
+		preload("res://assets/audio/sfx/footstep2.wav")
 	])
 	

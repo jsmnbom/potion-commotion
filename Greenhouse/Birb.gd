@@ -100,7 +100,7 @@ func stop_jumping():
 	jumping = false
 	small_goal = Vector2(0,0)
 	top = 0
-		
+	SFX.footstep.play(self)
 
 func fetch_page(node):
 	page_node_ref = weakref(node)

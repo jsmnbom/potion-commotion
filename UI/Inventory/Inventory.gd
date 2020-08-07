@@ -97,6 +97,7 @@ func set_selected_item(item):
 		#Input.set_custom_mouse_cursor(null, Input.CURSOR_ARROW)
 		#Input.set_custom_mouse_cursor(null, Input.CURSOR_POINTING_HAND)
 		Events.emit_signal('inventory_item', {'deselected': true})
+		SFX.pop.play(self)
 
 func get_item_index(item_type, item_id):
 	for i in Data.inventory.size():
