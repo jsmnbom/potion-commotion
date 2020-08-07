@@ -15,7 +15,10 @@ class SingleSound:
 		self._play(AudioStreamPlayer.new(), parent)
 	
 	func play2d(parent: Node):
-		self._play(AudioStreamPlayer2D.new(), parent)
+		var player = AudioStreamPlayer2D.new()
+		player.attenuation = 0.7
+		player.max_distance = 100000
+		self._play(player, parent)
 		
 	func _play(player, parent):
 		player.stream = self.stream
