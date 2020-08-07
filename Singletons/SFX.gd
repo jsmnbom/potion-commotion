@@ -149,7 +149,7 @@ func _ready():
 		preload("res://assets/audio/sfx/splash1.wav"),
 		preload("res://assets/audio/sfx/splash2.wav"),
 		preload("res://assets/audio/sfx/splash3.wav")
-	])
+	], 0)
 	
 	page_flip = MultiSound.new(1.3, [
 		preload("res://assets/audio/sfx/page_flip0.wav"),
