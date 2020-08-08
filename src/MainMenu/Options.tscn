@@ -1,0 +1,142 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/ui/9pr_big.png" type="Texture" id=1]
+[ext_resource path="res://src/MainMenu/Options.gd" type="Script" id=2]
+[ext_resource path="res://assets/fonts/options.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/ui/check_on.png" type="Texture" id=4]
+[ext_resource path="res://assets/ui/check_off.png" type="Texture" id=5]
+[ext_resource path="res://src/MainMenu/OptionsTheme.tres" type="Theme" id=6]
+
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[node name="Options" type="NinePatchRect"]
+margin_right = 640.0
+margin_bottom = 392.0
+texture = ExtResource( 1 )
+patch_margin_left = 49
+patch_margin_top = 49
+patch_margin_right = 49
+patch_margin_bottom = 49
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 141.351, 112.721, 56.2346, 84.8647 ],
+"_edit_use_anchors_": false,
+"_edit_vertical_guides_": [ 341.782, 597.905 ]
+}
+
+[node name="FullscreenLabel" type="Label" parent="."]
+margin_left = 37.0
+margin_top = 52.0
+margin_right = 267.0
+margin_bottom = 93.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.384314, 0.286275, 0, 1 )
+text = "Fullscreen:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fullscreen" type="CheckBox" parent="."]
+margin_left = 447.206
+margin_top = 42.3866
+margin_right = 503.206
+margin_bottom = 98.3866
+mouse_default_cursor_shape = 2
+custom_icons/checked = ExtResource( 4 )
+custom_icons/unchecked = ExtResource( 5 )
+custom_styles/focus = SubResource( 1 )
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color_hover_pressed = Color( 0.862745, 0.317647, 0.792157, 1 )
+custom_colors/font_color = Color( 0.564706, 0.447059, 0.101961, 1 )
+custom_colors/font_color_hover = Color( 0.862745, 0.317647, 0.792157, 1 )
+custom_colors/font_color_pressed = Color( 0.564706, 0.447059, 0.101961, 1 )
+
+[node name="MasterLabel" type="Label" parent="."]
+margin_left = 37.0
+margin_top = 108.0
+margin_right = 267.0
+margin_bottom = 149.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.384314, 0.286275, 0, 1 )
+text = "Master volume: "
+
+[node name="Master" type="HSlider" parent="."]
+margin_left = 360.0
+margin_top = 101.774
+margin_right = 584.0
+margin_bottom = 133.774
+mouse_default_cursor_shape = 6
+theme = ExtResource( 6 )
+
+[node name="MusicLabel" type="Label" parent="."]
+margin_left = 37.0
+margin_top = 164.0
+margin_right = 267.0
+margin_bottom = 205.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.384314, 0.286275, 0, 1 )
+text = "Music volume:"
+
+[node name="Music" type="HSlider" parent="."]
+margin_left = 360.0
+margin_top = 157.0
+margin_right = 584.0
+margin_bottom = 189.0
+mouse_default_cursor_shape = 6
+theme = ExtResource( 6 )
+
+[node name="SFXLabel" type="Label" parent="."]
+margin_left = 37.0
+margin_top = 220.0
+margin_right = 308.0
+margin_bottom = 261.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.384314, 0.286275, 0, 1 )
+text = "Sound FX volume:"
+
+[node name="SFX" type="HSlider" parent="."]
+margin_left = 360.0
+margin_top = 213.0
+margin_right = 584.0
+margin_bottom = 245.0
+mouse_default_cursor_shape = 6
+theme = ExtResource( 6 )
+
+[node name="AmbienceLabel" type="Label" parent="."]
+margin_left = 37.0
+margin_top = 276.0
+margin_right = 267.0
+margin_bottom = 317.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.384314, 0.286275, 0, 1 )
+text = "Ambience volume:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ambience" type="HSlider" parent="."]
+margin_left = 360.0
+margin_top = 269.0
+margin_right = 584.0
+margin_bottom = 301.0
+mouse_default_cursor_shape = 6
+theme = ExtResource( 6 )
+
+[node name="Back" type="Label" parent="."]
+margin_left = 225.944
+margin_top = 327.31
+margin_right = 391.944
+margin_bottom = 363.31
+mouse_filter = 0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.564706, 0.447059, 0.101961, 1 )
+text = "Back to menu"
+[connection signal="visibility_changed" from="." to="." method="_on_Options_visibility_changed"]
+[connection signal="toggled" from="Fullscreen" to="." method="_on_FullScreen_toggled"]
+[connection signal="value_changed" from="Master" to="." method="_on_Master_value_changed"]
+[connection signal="value_changed" from="Music" to="." method="_on_Music_value_changed"]
+[connection signal="value_changed" from="SFX" to="." method="_on_SFX_value_changed"]
+[connection signal="value_changed" from="Ambience" to="." method="_on_Ambience_value_changed"]
+[connection signal="mouse_entered" from="Back" to="." method="_on_Back_mouse_entered"]
+[connection signal="mouse_exited" from="Back" to="." method="_on_Back_mouse_exited"]

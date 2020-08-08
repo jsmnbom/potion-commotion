@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/ui/9pr_big.png" type="Texture" id=1]
+[ext_resource path="res://src/MainMenu/HowToPlay.gd" type="Script" id=2]
+[ext_resource path="res://assets/fonts/Courgette/Courgette-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/fonts/options.tres" type="DynamicFont" id=4]
+
+
+[sub_resource type="DynamicFont" id=1]
+size = 26
+font_data = ExtResource( 3 )
+
+[node name="HowToPlay" type="NinePatchRect"]
+margin_right = 640.0
+margin_bottom = 392.0
+texture = ExtResource( 1 )
+patch_margin_left = 49
+patch_margin_top = 49
+patch_margin_right = 49
+patch_margin_bottom = 49
+script = ExtResource( 2 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 608.0
+margin_bottom = 362.0
+rect_clip_content = false
+custom_fonts/normal_font = SubResource( 1 )
+custom_colors/default_color = Color( 0.384314, 0.286275, 0, 1 )
+custom_constants/line_separation = 2
+bbcode_enabled = true
+bbcode_text = "[center][color=#dc51ca]Left click[/color] on a plant to harvest resources from it.
+[color=#dc51ca]Right click[/color] on a plant to harvest seeds from it.
+[color=#dc51ca]Left click[/color] to pick items or journal pages up.
+[color=#dc51ca]Right click[/color] to sell or buy items in the inventory.
+[color=#dc51ca]Left click[/color] with an item to use it on something.
+Press [color=#dc51ca]ESC[/color] to go back or deselect current held item.
+[color=#dc51ca]Right click[/color] also deselects current held item.
+[color=#dc51ca]Left click[/color] to move baskets in the basements.
+[/center]"
+text = "Left click on a plant to harvest resources from it.
+Right click on a plant to harvest seeds from it.
+Left click to pick items or journal pages up.
+Right click to sell or buy items in the inventory.
+Left click with an item to use it on something.
+Press ESC to go back or deselect current held item.
+Right click also deselects current held item.
+Left click to move baskets in the basements.
+"
+scroll_active = false
+
+[node name="Back" type="Label" parent="."]
+margin_left = 225.944
+margin_top = 327.31
+margin_right = 391.944
+margin_bottom = 363.31
+mouse_filter = 0
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0.564706, 0.447059, 0.101961, 1 )
+text = "Back to menu"
+[connection signal="visibility_changed" from="." to="." method="_on_HowToPlay_visibility_changed"]
+[connection signal="mouse_entered" from="Back" to="." method="_on_Back_mouse_entered"]
+[connection signal="mouse_exited" from="Back" to="." method="_on_Back_mouse_exited"]
