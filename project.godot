@@ -21,6 +21,7 @@ config/use_custom_user_dir=true
 config/custom_user_dir_name="PotionCommotion"
 boot_splash/image="res://assets/ui/boot_splash.png"
 config/icon="res://icon.png"
+config/windows_native_icon="res://icon.ico"
 
 [autoload]
 
@@ -33,7 +34,7 @@ Audio="*res://Singletons/Audio.tscn"
 
 [debug]
 
-settings/crash_handler/message="Please"
+settings/crash_handler/message="Please include this when reporting the bug on https://github.com/jsmnbom/potion-commotion/issues."
 gdscript/warnings/enable=false
 gdscript/warnings/unused_variable=false
 gdscript/warnings/unused_argument=false
@@ -189,4 +190,3 @@ common/enable_object_picking=false
 
 quality/intended_usage/framebuffer_allocation=0
 quality/2d/use_pixel_snap=true
-environment/default_environment="res://default_env.tres"
