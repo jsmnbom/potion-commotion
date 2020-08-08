@@ -18,12 +18,12 @@ from pathlib import Path
 from shutil import copyfile, make_archive
 from zipfile import ZipFile
 
-export_dir = Path(__file__).resolve().parent.parent / 'exports'
+export_dir = Path('exports')
 game_file_name = 'PotionCommotion-HeartEdition'
 game_pretty_name = 'Potion Commotion - Heart Edition'
 platforms = [('Windows Desktop 64', 'windows64'), ('Linux/X11 64', 'linux64'),
              ('Windows Desktop 32', 'windows32'), ('Linux/X11 32', 'linux32')]
-windows_icon = Path('icon.ico')
+windows_icon = Path('assets/icon.ico')
 legal_copyright = 'Copyright Jasmin Bom 2020'
 info = 'https://jsmnbom.itch.io/potion-commotion'
 
