@@ -29,8 +29,10 @@ func get_plants():
 func _init():
 	var plants = get_plants()
 	for plant in plants:
-		#print(plant)
-		var original_img = get_scaled_img('res://assets/plants/originals/%s.png' % plant, 320, 128)
+		print(plant)
+		var width = 640
+		var height = 256
+		var original_img = get_scaled_img('res://assets/plants/originals/%s.png' % plant, width, height)
 		var original_rect = Rect2(Vector2(0,0), original_img.get_size())
 
 		var atlas_img = Image.new()
@@ -46,8 +48,8 @@ func _init():
 		bitmap.grow_mask(1, original_rect)
 		var bitmap2 = BitMap.new()
 		bitmap2.create_from_image_alpha(original_img, 0.5)
-		for x in range(320):
-			for y in range(128):
+		for x in range(width):
+			for y in range(height):
 				if bitmap.get_bit(Vector2(x, y)) and not bitmap2.get_bit(Vector2(x, y)):
 					atlas_img.set_pixel(x, y + original_rect.size.y, Color(1,1,1))
 
