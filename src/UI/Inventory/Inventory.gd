@@ -200,6 +200,7 @@ func deserialize(data):
 		var item = Data.inventory[i]
 		item.count = int(data[item.type][item.id])
 		update_item(inventory_items[i][1], item)
+	Events.emit_signal('inventory_updated')
 
 func _on_inventory_add(msg):
 	match(msg):
