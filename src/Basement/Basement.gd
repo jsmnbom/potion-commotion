@@ -1,7 +1,7 @@
 extends Node2D
 
 var baskets = {}
-var Basket = preload('res://src/Basket/Basket.tscn')
+var Basket = preload('../Basket/Basket.tscn')
 
 var baskets_to_add = []
 

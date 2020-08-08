@@ -1,6 +1,6 @@
 extends NinePatchRect
 
-var options_theme: Theme = preload('res://src/MainMenu/OptionsTheme.tres')
+var options_theme: Theme = preload('./OptionsTheme.tres')
 
 var default_options = {
 	'fullscreen': false,

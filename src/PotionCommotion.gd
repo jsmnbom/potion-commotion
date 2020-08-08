@@ -1,6 +1,6 @@
 extends Node2D
 
-var Game = preload('res://src/Game/Game.tscn')
+var Game = preload('./Game/Game.tscn')
 var game = null
 var continue_game_wait = 0
 var new_game_wait = 0

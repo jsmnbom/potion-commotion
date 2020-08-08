@@ -1,6 +1,6 @@
 extends Control
 
-var Achievement = preload('res://src/UI/Achievements/Achievement.tscn')
+var Achievement = preload('./Achievement.tscn')
 
 var achievements = {}
 

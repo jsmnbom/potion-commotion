@@ -1,6 +1,6 @@
 extends Node2D
 
-var BirbPage = preload('res://src/Greenhouse/BirbPage.tscn')
+var BirbPage = preload('./BirbPage.tscn')
 
 var birb_pages_created = []
 

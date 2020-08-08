@@ -9,7 +9,7 @@ var rain_hydrated_fields = 0
 
 var selected_potion = null
 
-var GemParticles = preload('res://src/Greenhouse/GemParticles.tscn')
+var GemParticles = preload('./GemParticles.tscn')
 
 func _ready():
 	if Debug.WEEDS:
