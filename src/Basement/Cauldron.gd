@@ -220,7 +220,7 @@ func _mouse_area(area, msg):
 							'type': 'resource',
 							'id': item.id,
 							'animated': true,
-							'from_position': Utils.get_global_position(ingredient.position, get_viewport()),
+							'from_position': Utils.get_global_position(position + ingredient.position, get_viewport()),
 							'count': 1
 						})
 						ingredient.queue_free()
