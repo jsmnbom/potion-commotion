@@ -217,7 +217,6 @@ func tick():
 				star_particles.z_index = 7
 				weeds_sprite.z_index = 7
 				$BreakParticles.z_index = 7
-			
 
 			for i in range(plant_area.get_children().size()):
 				plant_area.remove_child(plant_area.get_child(0))
@@ -525,7 +524,6 @@ func _mouse_area(area, msg):
 					Utils.set_right_click_handled()
 					SFX.harvest.play2d(self)
 				elif left and shovel_picked_up and planted and not weeds and (Data.plant_current_click_action == 'shoveling' or Data.plant_current_click_action == null):
-					Events.emit_signal('achievement', {'diff_id': 'diff_plants', 'diff_add': plant})
 					Events.emit_signal('inventory_add', {
 						'type': 'seed',
 						'id': plant,
