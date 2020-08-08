@@ -48,7 +48,7 @@ def main():
         platform_export_dir = export_dir / file_name
         platform_export_dir.mkdir(exist_ok=True)
 
-        export_path = platform_export_dir / file_name
+        export_path = platform_export_dir / game_file_name
         if 'windows' in short_platform:
             export_path = export_path.parent / (export_path.name + '.exe')
 
