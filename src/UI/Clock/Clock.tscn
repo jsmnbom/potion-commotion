@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/ui/clock_hand.png" type="Texture" id=4]
 
 [sub_resource type="DynamicFont" id=1]
+size = 24
 outline_size = 1
 outline_color = Color( 0.564706, 0.447059, 0.101961, 1 )
 font_data = ExtResource( 1 )
@@ -25,16 +26,19 @@ offset = Vector2( 0.215702, -12.1548 )
 
 [node name="Label" type="Label" parent="."]
 visible = false
-margin_left = 16.3234
-margin_top = 24.7647
-margin_right = 100.323
-margin_bottom = 83.7647
+margin_left = -116.134
+margin_top = 18.883
+margin_right = -0.133896
+margin_bottom = 95.883
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.780392, 0.639216, 0.231373, 1 )
 text = "2 min to
 nighttime"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Area" type="Area2D" parent="."]
 collision_layer = 16

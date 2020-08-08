@@ -14,12 +14,12 @@ func _physics_process(delta):
 	var unit = 'sec'
 
 	if Data.time > 21*60 or Data.time < 9*60:
-		till = 'daytime'
+		till = 'daybreak'
 		t = 9*60-Data.time
 		if Data.time > 21*60:
 			t += 24*60
 	elif (Data.time <= 21*60):
-		till = 'nighttime'
+		till = 'nightfall'
 		t = 21*60-Data.time
 	
 	t = range_lerp(t, 0, 24*60, 0, Data.day_duration)
@@ -33,7 +33,5 @@ func _mouse_area(area, msg):
 		match msg:
 			{'mouse_over': false, ..}:
 				$Label.hide()
-				$ClockHand.show()
 			{'mouse_over': true, 'button_left_click': var left, ..}:
 				$Label.show()
-				$ClockHand.hide()
