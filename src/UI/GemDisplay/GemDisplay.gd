@@ -40,8 +40,9 @@ func add_gems(amount):
 	elif abs(amount) <= 10000:
 		time = 1.0/2
 		$GemSFXTimer.wait_time = 0.08
-		
-	$GemSFXTimer.start()
+
+	if amount != 0:
+		$GemSFXTimer.start()
 
 	gem_tween.stop_all()
 	gem_tween.interpolate_property(self, 'display_gems',
