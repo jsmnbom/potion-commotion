@@ -4,18 +4,15 @@
 [ext_resource path="res://src/Basement/mirage.shader" type="Shader" id=2]
 [ext_resource path="res://assets/basement/cauldron.png" type="Texture" id=3]
 [ext_resource path="res://src/Basement/Cauldron.gd" type="Script" id=4]
-[ext_resource path="res://assets/basement/cauldron_liquid.png" type="Texture" id=5]
+[ext_resource path="res://assets/basement/cauldron_empty.png" type="Texture" id=5]
 [ext_resource path="res://assets/basement/cauldron_liquid_mask.png" type="Texture" id=6]
-[ext_resource path="res://src/Basement/rotate_mask.shader" type="Shader" id=7]
-
-[sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 7 )
-shader_param/mask_texture = ExtResource( 6 )
+[ext_resource path="res://assets/basement/cauldron_liquid.png" type="Texture" id=7]
+[ext_resource path="res://assets/basement/cauldron_inner.png" type="Texture" id=8]
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 2 )
-shader_param/frequency = 40.0
-shader_param/depth = 0.005
+shader_param/frequency = 30.0
+shader_param/depth = 0.003
 shader_param/mask_texture = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=3]
@@ -32,19 +29,42 @@ self_modulate = Color( 0.811765, 0.811765, 0.811765, 1 )
 texture = ExtResource( 3 )
 script = ExtResource( 4 )
 
-[node name="Liquid" type="TextureRect" parent="."]
-modulate = Color( 0.423529, 0.172549, 0.458824, 1 )
+[node name="Bottom" type="TextureRect" parent="."]
 show_behind_parent = true
-material = SubResource( 1 )
 margin_left = -256.0
 margin_top = -256.0
 margin_right = 256.0
 margin_bottom = 256.0
-rect_rotation = 360.0
 rect_pivot_offset = Vector2( 256, 256 )
 texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Filter" type="TextureRect" parent="."]
+[node name="Inner" type="TextureRect" parent="."]
+show_behind_parent = true
+margin_left = -256.0
+margin_top = -256.0
+margin_right = 256.0
+margin_bottom = 256.0
+rect_pivot_offset = Vector2( 256, 256 )
+texture = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Liquid" type="TextureRect" parent="."]
+margin_left = -256.0
+margin_top = -256.0
+margin_right = 256.0
+margin_bottom = 256.0
+rect_pivot_offset = Vector2( 256, 256 )
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LiquidFilter" type="TextureRect" parent="."]
 show_behind_parent = true
 material = SubResource( 2 )
 margin_left = -256.0
@@ -52,6 +72,9 @@ margin_top = -256.0
 margin_right = 256.0
 margin_bottom = 256.0
 texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Clear" type="TextureRect" parent="."]
 visible = false
