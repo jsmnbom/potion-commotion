@@ -201,6 +201,7 @@ func update_index():
 		last_category = category
 		
 		var item = IndexItem.instance()
+		item.hide()
 		item.set_meta('page', page)
 		var text = PAGES[page][0]
 		if not page in viewed_pages:
