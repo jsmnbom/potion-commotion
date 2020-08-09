@@ -3,12 +3,13 @@
 ## v0.2.0
 
 - Update plant textures so they look a whole lot better
-- Add hover over tooltips to main menu
+- Improve the look of the cauldron a lot
 - Add ambience music (unique for day, night and when it's raining)
 - Add a ton of sound effects (almost 50!)
 - Improve the look of options screen and the main menu buttons
 - Add 32 bit versions both for linux and windows
 - Move the clock label out of clock to improve readability (by a lot)
+- Add hover over tooltips to main menu
 
 *Bug fixes:*
 
