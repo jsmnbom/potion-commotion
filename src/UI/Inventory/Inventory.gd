@@ -88,7 +88,6 @@ func set_selected_item(item):
 		#Input.set_custom_mouse_cursor(item.get_scaled_res(32, 32), Input.CURSOR_ARROW, Vector2(16,16))
 		#Input.set_custom_mouse_cursor(item.get_scaled_res(32, 32), Input.CURSOR_POINTING_HAND, Vector2(16,16))
 		Events.emit_signal('inventory_item', {'selected': item})
-		print('!= null')
 		SFX.pop.play(self)
 	elif selected_item != null:
 		selected_item = null
@@ -97,7 +96,6 @@ func set_selected_item(item):
 		#Input.set_custom_mouse_cursor(null, Input.CURSOR_ARROW)
 		#Input.set_custom_mouse_cursor(null, Input.CURSOR_POINTING_HAND)
 		Events.emit_signal('inventory_item', {'deselected': true})
-		print('== null')
 		SFX.pop.play(self)
 
 func get_item_index(item_type, item_id):

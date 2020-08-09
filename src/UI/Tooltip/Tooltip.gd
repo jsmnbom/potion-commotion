@@ -212,7 +212,6 @@ func show_weeds():
 	show_on_next_frame = true
 	
 func show_plant(plant, progress, time_left, used_potions, weeds):
-	print(plant)
 	set_title(Data.plants[plant].name)
 	description_label.hide()
 	description_italics_label.hide()
