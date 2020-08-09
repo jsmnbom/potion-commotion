@@ -82,7 +82,6 @@ expand = true
 stretch_mode = 4
 
 [node name="RecipeContainer" type="HBoxContainer" parent="."]
-editor/display_folded = true
 margin_right = 189.0
 margin_bottom = 23.0
 size_flags_horizontal = 0
@@ -175,9 +174,12 @@ stretch_margin_left = 12
 stretch_margin_top = 12
 stretch_margin_right = 12
 stretch_margin_bottom = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="BG" type="TextureRect" parent="Progress"]
-modulate = Color( 0.545098, 0.329412, 0.654902, 1 )
+modulate = Color( 0.109804, 0.556863, 0.0980392, 1 )
 show_behind_parent = true
 margin_left = 4.0
 margin_top = 4.0
