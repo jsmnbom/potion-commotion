@@ -108,7 +108,7 @@ func _ready():
 	sunlight_potion_use = SingleSound.new(1.0, preload("res://assets/audio/sfx/sunlight_potion_use.wav"))
 	midnight_potion_use = SingleSound.new(1.0, preload("res://assets/audio/sfx/midnight_potion_use.wav"))
 	error = SingleSound.new(0.2, preload("res://assets/audio/sfx/error.wav"))
-	save_game = SingleSound.new(0.8, preload("res://assets/audio/sfx/save_game.wav"))
+	save_game = SingleSound.new(0.6, preload("res://assets/audio/sfx/save_game.wav"))
 	bird_wings = SingleSound.new(0.7, preload("res://assets/audio/sfx/bird_wings.wav"))
 	bird_call = SingleSound.new(0.7, preload("res://assets/audio/sfx/bird_call.wav"))
 	footsteps = SingleSound.new(1.5, preload("res://assets/audio/sfx/footsteps.wav"))
