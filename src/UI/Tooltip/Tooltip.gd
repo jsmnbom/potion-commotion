@@ -212,6 +212,7 @@ func show_weeds():
 	show_on_next_frame = true
 	
 func show_plant(plant, progress, time_left, used_potions, weeds):
+	print(plant)
 	set_title(Data.plants[plant].name)
 	description_label.hide()
 	description_italics_label.hide()
@@ -222,7 +223,7 @@ func show_plant(plant, progress, time_left, used_potions, weeds):
 	else:
 		progress_bar_label.text = 'COMPLETE'
 		var s = 'Click to harvest resource.'
-		if not ('flames' in used_potions or 'ice' in used_potions or 'midas' in used_potions or 'stars' in used_potions):
+		if not ('flames' in used_potions or 'ice' in used_potions or 'midas' in used_potions or 'stars' in used_potions or plant == 'hydroangea'):
 			s += '\nRight-click to harvest seeds.'
 		set_description_italics(s)
 	if weeds:
